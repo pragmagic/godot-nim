@@ -1,0 +1,16 @@
+{
+  "editor.tabSize": 2,
+  "editor.rulers": [80],
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "nim.project": ["godot/core/godot.nim",
+                  "godot/apigen/apigen.nim"],
+  "nim.buildOnSave": false,
+  "nim.lintOnSave": true,
+  "nim.licenseString": "# Copyright 2017 Xored Software, Inc.\n\n",
+  "files.exclude": {
+    "**/nimcache/**": true
+  }
+}
