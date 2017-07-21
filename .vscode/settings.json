@@ -5,7 +5,7 @@
   "editor.detectIndentation": false,
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
-  "nim.project": ["godot/core/godot.nim",
+  "nim.project": ["godot/godot.nim",
                   "godot/apigen/apigen.nim"],
   "nim.buildOnSave": false,
   "nim.lintOnSave": true,
