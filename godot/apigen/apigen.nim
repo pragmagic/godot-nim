@@ -99,9 +99,6 @@ proc newInfix(left, op, right: PNode): PNode =
   result.add(left)
   result.add(right)
 
-proc newInfix(left: PNode, op: string, right: PNode): PNode =
-  newInfix(left, ident(op), right)
-
 proc postfix(left: PNode, op: string): PNode =
   result = newNode(nkPostfix)
   result.add(ident(op))
