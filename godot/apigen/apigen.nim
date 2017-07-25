@@ -822,6 +822,7 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
   genTypeFile(types, targetDir)
 
   writeFile(targetDir / "godotall.nim", megaImport)
+  writeFile(targetDir / splitPath(targetDir)[1] & ".nimble", "")
 
 when isMainModule:
   import os

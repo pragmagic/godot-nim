@@ -1,6 +1,6 @@
 import godotbase
 
-import arrays, basis, dictionary, nodepath
+import arrays, basis, nodepath
 import plane, poolarray, quat, rect2, rect3, rid
 import strings, transform, transform2d, vector2
 import vector3, color
@@ -100,9 +100,6 @@ proc initVariant(dest: var Variant; rid: RID) {.
     importc: "godot_variant_new_rid", header: "godot_variant.h".}
 proc initVariant(dest: var Variant; obj: ptr GodotObject) {.
     importc: "godot_variant_new_object", header: "godot_variant.h".}
-proc initVariant(dest: var Variant; dict: Dictionary) {.
-    importc: "godot_variant_new_dictionary",
-    header: "godot_variant.h".}
 proc initVariant(dest: var Variant; arr: Array) {.
     importc: "godot_variant_new_array", header: "godot_variant.h".}
 proc initVariant(dest: var Variant; pba: PoolByteArray) {.
@@ -146,7 +143,8 @@ proc variant*(s: GodotString): Variant {.inline.} =
   initVariant(result, s)
 
 proc variant*(s: string): Variant {.inline.} =
-  initVariant(result, s.toGodotString())
+  let godotStr = s.toGodotString()
+  initVariant(result, godotStr)
 
 proc variant*(v2: Vector2): Variant {.inline.} =
   initVariant(result, v2)
@@ -186,9 +184,6 @@ proc variant*(rid: RID): Variant {.inline.} =
 
 proc variant*(obj: ptr GodotObject): Variant {.inline.} =
   initVariant(result, obj)
-
-proc variant*(dict: Dictionary): Variant {.inline.} =
-  initVariant(result, dict)
 
 proc variant*(arr: Array): Variant {.inline.} =
   initVariant(result, arr)
@@ -255,8 +250,6 @@ proc asRid*(self: Variant): RID {.
     importc: "godot_variant_as_rid", header: "godot_variant.h".}
 proc asObject*(self: Variant): ptr GodotObject {.
     importc: "godot_variant_as_object", header: "godot_variant.h".}
-proc asDictionary*(self: Variant): Dictionary {.
-    importc: "godot_variant_as_dictionary", header: "godot_variant.h".}
 proc asArray*(self: Variant): Array {.
     importc: "godot_variant_as_array", header: "godot_variant.h".}
 proc asPoolByteArray*(self: Variant): PoolByteArray {.

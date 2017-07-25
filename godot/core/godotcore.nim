@@ -28,14 +28,6 @@ proc call*(methodBind: ptr GodotMethodBind;
            callError: var VariantCallError): Variant {.
     importc: "godot_method_bind_call", header: "../godot.h".}
 
-var getClassMethodBind {.threadvar.}: ptr GodotMethodBind
-proc getClassName*(o: ptr GodotObject): string =
-  if getClassMethodBind.isNil:
-    getClassMethodBind = getMethod(cstring"Object", cstring"get_class")
-  var ret: GodotString
-  getClassMethodBind.ptrCall(o, nil, addr ret)
-  result = $ret
-
 # Script API
 
 type

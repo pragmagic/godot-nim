@@ -7,6 +7,16 @@ type
   Dictionary* {.importc: "godot_dictionary",
                 header: "godot_dictionary.h", byref.} = object
 
+proc initVariant(dest: var Variant; dict: Dictionary) {.
+    importc: "godot_variant_new_dictionary",
+    header: "godot_variant.h".}
+
+proc variant*(dict: Dictionary): Variant {.inline.} =
+  initVariant(result, dict)
+
+proc asDictionary*(self: Variant): Dictionary {.
+    importc: "godot_variant_as_dictionary", header: "godot_variant.h".}
+
 proc initDictionary(dest: var Dictionary;
                     src: Dictionary) {.
     importc: "godot_dictionary_new_copy",
@@ -52,6 +62,11 @@ proc values*(self: Dictionary): Array {.
     importc: "godot_dictionary_values", header: "godot_dictionary.h".}
 proc `[]`*(self: Dictionary; key: Variant): Variant {.
     importc: "godot_dictionary_get", header: "godot_dictionary.h".}
+
+proc `[]`*(self: Dictionary; keyStr: string): Variant =
+  let key = variant(keyStr)
+  result = self[key]
+
 proc `[]=`*(self: var Dictionary; key, value: Variant) {.
     importc: "godot_dictionary_set",
     header: "godot_dictionary.h".}

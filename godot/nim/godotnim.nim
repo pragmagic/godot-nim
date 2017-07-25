@@ -51,6 +51,17 @@ static:
   import sets, strutils
 var nativeClasses {.compileTime.} = initSet[string]()
 
+var getClassMethodBind {.threadvar.}: ptr GodotMethodBind
+proc getClassName*(o: ptr GodotObject): string =
+  if getClassMethodBind.isNil:
+    getClassMethodBind = getMethod(cstring"Object", cstring"get_class")
+  var ret: GodotString
+  getClassMethodBind.ptrCall(o, nil, addr ret)
+  result = $ret
+  if result.endsWith("SW"):
+    # There are physics type not known by ClassDB
+    result = result[0..result.len-3]
+
 proc godotFinalizer[T: NimGodotObject](obj: T) =
   # hmm, not sure yet how to deal with references correctly
   # when T is Reference:
