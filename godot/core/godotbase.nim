@@ -1,7 +1,7 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
 type
-  Error* {.importc: "godot_error", header: "../godot.h",
+  Error* {.importc: "godot_error", header: "godot/gdnative.h",
            size: sizeof(cint), pure.} = enum
     OK,
     Failed,    ## Generic fail error
@@ -59,17 +59,17 @@ type
 const MAX_ARG_COUNT* = 128
 
 type
-  GodotObject* {.importc: "godot_object", header: "../godot.h".} = object
-  Array* {.importc: "godot_array", header: "godot_array.h", byref.} = object
+  GodotObject* {.importc: "godot_object", header: "godot/gdnative.h".} = object
+  Array* {.importc: "godot_array", header: "godot/array.h", byref.} = object
   Variant* {.importc: "godot_variant",
-             header: "godot_variant.h", byref.} = object
+             header: "godot/variant.h", byref.} = object
 
 proc initArray(dest: var Array, src: Array) {.
     importc: "godot_array_new_copy",
-    header: "godot_array.h".}
+    header: "godot/array.h".}
 
 proc deinit(self: var Array) {.importc: "godot_array_destroy",
-    header: "godot_array.h".}
+    header: "godot/array.h".}
 
 proc `=`(self: var Array, other: Array) {.inline.} =
   initArray(self, other)
@@ -78,10 +78,10 @@ proc `=destroy`(self: Array) {.inline.} =
   unsafeAddr(self).deinit()
 
 proc initVariant(dest: var Variant; src: Variant) {.
-    importc: "godot_variant_new_copy", header: "godot_variant.h".}
+    importc: "godot_variant_new_copy", header: "godot/variant.h".}
 
 proc deinit*(self: var Variant) {.
-    importc: "godot_variant_destroy", header: "godot_variant.h".}
+    importc: "godot_variant_destroy", header: "godot/variant.h".}
 
 proc `=`(self: var Variant, other: Variant) {.inline.} =
   initVariant(self, other)
@@ -92,16 +92,16 @@ proc `=destroy`(self: Variant) {.inline.} =
 # System Functions
 
 proc godotAlloc*(bytes: cint): pointer {.
-  importc: "godot_alloc", header: "../godot.h".}
+  importc: "godot_alloc", header: "godot/gdnative.h".}
   ## Allocates the specified number of bytes.
   ## Using this instead of stdlib proc will help Godot track how much memory
   ## is in use in debug mode.
 proc godotRealloc*(p: pointer; bytes: cint): pointer {.
-  importc: "godot_realloc", header: "../godot.h".}
+  importc: "godot_realloc", header: "godot/gdnative.h".}
   ## Reallocates the pointer for the specified number of bytes.
   ## Using this instead of stdlib proc will help Godot track how much memory
   ## is in use in debug mode.
-proc godotFree*(p: pointer) {.importc: "godot_free", header: "../godot.h".}
+proc godotFree*(p: pointer) {.importc: "godot_free", header: "godot/gdnative.h".}
   ## Frees the memory pointed to by the pointer.
   ## Using this instead of stdlib proc will help Godot track how much memory
   ## is in use in debug mode.

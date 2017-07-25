@@ -284,7 +284,7 @@ template registerGodotClass(classNameIdent, classNameLit,
     destroyFunc: nimDestroyFunc
   )
   registerClass(classNameIdent, classNameLit, false)
-  godotScriptRegisterClass(classNameLit, baseNameLit,
+  godotScriptRegisterClass(getNativeLibHandle(), classNameLit, baseNameLit,
                            createFuncObj, destroyFuncObj)
 
 template registerGodotField(classNameLit, classNameIdent, propNameLit,
@@ -325,7 +325,7 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
   )
   when hasDefaultValue:
     attr.defaultValue = (defaultValueNode).toGodot()
-  godotScriptRegisterProperty(classNameLit, propNameLit,
+  godotScriptRegisterProperty(getNativeLibHandle(), classNameLit, propNameLit,
                               attr, setFunc, getFunc)
 static:
   import strutils
@@ -440,7 +440,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     let meth = GodotInstanceMethod(
       meth: methFuncIdent
     )
-    godotScriptRegisterMethod(classNameLit, methodNameLit,
+    godotScriptRegisterMethod(getNativeLibHandle(), classNameLit, methodNameLit,
                               GodotMethodAttributes(), meth)
 
   for meth in obj.methods:

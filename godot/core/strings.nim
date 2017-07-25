@@ -3,22 +3,22 @@
 import godotbase
 
 type
-  GodotString* {.importc: "godot_string", header: "godot_string.h",
+  GodotString* {.importc: "godot_string", header: "godot/string.h",
                  byref.} = object
 
 proc initGodotString(dest: var GodotString) {.
-    importc: "godot_string_new", header: "godot_string.h".}
+    importc: "godot_string_new", header: "godot/string.h".}
 proc initGodotString(dest: var GodotString; src: GodotString) {.
-    importc: "godot_string_new_copy", header: "godot_string.h".}
+    importc: "godot_string_new_copy", header: "godot/string.h".}
 proc initGodotString(dest: var GodotString; contents: cstring;
                       size: cint) {.
-    importc: "godot_string_new_data", header: "godot_string.h".}
+    importc: "godot_string_new_data", header: "godot/string.h".}
   ## Initializes ``dest`` from UTF-8 ``contents``
 proc getData(self: GodotString; dest: cstring;
              size: var cint) {.
     noSideEffect
     importc: "godot_string_get_data",
-    header: "godot_string.h".}
+    header: "godot/string.h".}
   ## Converts ``self`` into UTF-8 encoding, putting the result into ``dest``.
 
 proc len*(self: GodotString): cint {.inline.} =
@@ -26,19 +26,19 @@ proc len*(self: GodotString): cint {.inline.} =
   getData(self, nil, result)
 
 proc cstring*(self: GodotString): cstring {.
-    importc: "godot_string_c_str", header: "godot_string.h".}
+    importc: "godot_string_c_str", header: "godot/string.h".}
 proc `==`*(self, b: GodotString): bool {.
     importc: "godot_string_operator_equal",
-    header: "godot_string.h".}
+    header: "godot/string.h".}
 proc `<`*(self, b: GodotString): bool {.
     importc: "godot_string_operator_less",
-    header: "godot_string.h".}
+    header: "godot/string.h".}
 proc `&`*(self, b: GodotString): GodotString {.
     importc: "godot_string_operator_plus",
-    header: "godot_string.h".}
+    header: "godot/string.h".}
 
 proc deinit*(self: var GodotString) {.importc: "godot_string_destroy",
-                                      header: "godot_string.h".}
+                                      header: "godot/string.h".}
 proc `=destroy`(self: GodotString) {.inline.} =
   unsafeAddr(self).deinit()
 

@@ -142,7 +142,7 @@ proc `as`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): T =
     result = T(obj)
 
 proc getSingletonGodot*(name: cstring): ptr GodotObject {.
-    importc: "godot_global_get_singleton", header: "../godot.h".}
+    importc: "godot_global_get_singleton", header: "godot/gdnative.h".}
 
 proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
@@ -175,25 +175,6 @@ proc gdnew*[T: NimGodotObject](): T =
   if obj.isNil:
     printError("godot_new returned nil for type " & $godotName)
   result = asNimGodotObject[T](obj)
-  # const godotName = toGodotName(T)
-  # let objInfo = classRegistry.getOrDefault(godotName)
-  # if objInfo.constructor.isNil:
-  #   printError("gdnew invoked on unregistered class: " & $godotName)
-  #   return
-  # let godotConstructor = getClassConstructor(
-  #   if objInfo.isNative: godotName else: objInfo.baseNativeClass)
-  # printError("Base native class for " & T.name & ": " & $objInfo.baseNativeClass)
-  # when not defined(release):
-  #   if godotConstructor.isNil:
-  #     printError("Failed to obtain Godot constrcutor for type: " & $godotName)
-  #     return
-  # let godotObject = godotConstructor()
-  # when not defined(release):
-  #   if godotObject.isNil:
-  #     printError("Godot constructor returned nil - must never happen")
-  #     return
-  # new(result, godotFinalizer[T])
-  # result.setGodotObject(godotObject)
 
 proc newCallError*(err: VariantCallError): ref CallError =
   let msg = case err.error:
@@ -511,9 +492,14 @@ void NimMain(void);
 N_NOINLINE(void, setStackBottom)(void* thestackbottom);
 """.}
 
-const stackIncreases = defined(emscripten)
+var nativeLibHandle: pointer
+proc getNativeLibHandle*(): pointer =
+  return nativeLibHandle
 
-proc godot_native_init() {.cdecl, exportc, dynlib.} =
+proc godot_nativescript_init(handle: pointer) {.
+    cdecl, exportc, dynlib.} =
+  nativeLibHandle = handle
+
   let stackBottom = godotStackBottom()
   {.emit: """
     NimMain();
@@ -522,5 +508,10 @@ proc godot_native_init() {.cdecl, exportc, dynlib.} =
   GC_fullCollect()
   GC_disable()
 
-proc godot_native_terminate() {.cdecl, exportc, dynlib.} =
+proc godot_gdnative_init(options: ptr GodotNativeInitOptions) {.
+    cdecl, exportc, dynlib.} =
   discard
+
+proc godot_gdnative_terminate(options: ptr GodotNativeTerminateOptions) {.
+    cdecl, exportc, dynlib.} =
+  deallocHeap()
