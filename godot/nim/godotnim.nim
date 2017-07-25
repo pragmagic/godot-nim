@@ -14,6 +14,7 @@ import "../core/strings.nim", "../core/vector2.nim", "../core/rect2.nim",
 type
   NimGodotObject* = ref object of RootObj
     godotObject: ptr GodotObject
+    isRef: bool
 
   ConversionResult* {.pure.} = enum
     OK,
@@ -44,6 +45,7 @@ type
     constructor: proc(): NimGodotObject {.gcsafe, nimcall.}
     baseNativeClass: cstring
     isNative: bool
+    isRef: bool
 
 var classRegistry {.threadvar.}: TableRef[cstring, ObjectInfo]
 
@@ -62,11 +64,31 @@ proc getClassName*(o: ptr GodotObject): string =
     # There are physics type not known by ClassDB
     result = result[0..result.len-3]
 
+var unreferenceMethodBind {.threadvar.}: ptr GodotMethodBind
+proc unreference(o: ptr GodotObject): bool =
+  if isNil(unreferenceMethodBind):
+    unreferenceMethodBind = getMethod(cstring"Reference",
+        cstring"unreference")
+  unreferenceMethodBind.ptrCall(o, nil, addr(result))
+
+var referenceMethodBind {.threadvar.}: ptr GodotMethodBind
+proc reference(o: ptr GodotObject) =
+  if isNil(referenceMethodBind):
+    referenceMethodBind = getMethod(cstring"Reference",
+        cstring"reference")
+  referenceMethodBind.ptrCall(o, nil, nil)
+
+proc deinit*(obj: NimGodotObject) =
+  ## Destroy the object. You only need to call this for objects not inherited
+  ## from Reference, where manual lifecycle control is necessary.
+  assert(not obj.godotObject.isNil)
+  obj.godotObject.deinit()
+  obj.godotObject = nil
+
 proc godotFinalizer[T: NimGodotObject](obj: T) =
-  # hmm, not sure yet how to deal with references correctly
-  # when T is Reference:
-  #   obj.godotObject.deinit()
-  discard
+  if obj.godotObject.isNil: return
+  if obj.isRef and obj.godotObject.unreference():
+    obj.deinit()
 
 macro baseNativeType(T: typedesc): cstring =
   var t = getType(getType(T)[1][1])
@@ -86,6 +108,20 @@ macro baseNativeType(T: typedesc): cstring =
     rStr.strVal = baseT
     result = newNimNode(nnkCallStrLit).add(ident("cstring"), rStr)
 
+macro isReference(T: typedesc): bool =
+  var isRef = false
+  var t = getType(T)
+  while true:
+    let typeName = ($t[1][1]).split(':')[0]
+    if typeName == "Reference":
+      isRef = true
+      break
+    if typeName == "NimGodotObject":
+      break
+    t = getType(t[1][1])
+  result = if isRef: ident("true")
+           else: ident("false")
+
 template registerClass*(T: typedesc; godotClassName: cstring,
                         isNativeParam: bool) =
   if classRegistry.isNil:
@@ -96,10 +132,12 @@ template registerClass*(T: typedesc; godotClassName: cstring,
     result = t
 
   const base = baseNativeType(T)
+  const isRef: bool = isReference(T)
   classRegistry[godotClassName] = ObjectInfo(
     constructor: constructor,
     baseNativeClass: base,
-    isNative: isNativeParam
+    isNative: isNativeParam,
+    isRef: isRef
   )
   when isNativeParam:
     static:
@@ -115,6 +153,9 @@ proc newNimGodotObject[T: NimGodotObject](
   else:
     result = T(objInfo.constructor())
     result.godotObject = godotObject
+    if objInfo.isRef:
+      result.isRef = true
+      result.godotObject.reference()
 
 proc asNimGodotObject*[T: NimGodotObject](godotObject: ptr GodotObject): T =
   if godotObject.isNil: return nil
