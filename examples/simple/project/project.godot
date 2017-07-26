@@ -1,0 +1,14 @@
+config_version=3
+[application]
+
+config/name="Simple Sample"
+run/main_scene="res://main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+NimRuntime="*res://scripts/NimRuntime.gdns"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

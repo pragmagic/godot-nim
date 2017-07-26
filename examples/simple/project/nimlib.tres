@@ -1,0 +1,12 @@
+[gd_resource type="GDNativeLibrary" format=2]
+
+[resource]
+
+platform/X11_32bit = "res://_dlls/nim_linux_32.so"
+platform/X11_64bit = "res://_dlls/nim_linux_64.so"
+platform/Windows_32bit = "res://_dlls/nim_32.dll"
+platform/Windows_64bit = "res://_dlls/nim_64.dll"
+platform/OSX = "res://_dlls/nim_mac.dylib"
+platform/Android = "res://_dlls/nim_android.so"
+platform/iOS = "res://_dlls/nim_ios.dylib"
+platform/WebAssembly = ""
