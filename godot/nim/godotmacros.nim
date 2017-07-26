@@ -264,16 +264,29 @@ proc rangeError(nimType: cstring, value: string, className: cstring,
 
 proc nimDestroyFunc(obj: ptr GodotObject, methData: pointer,
                     userData: pointer) {.noconv.} =
-  let nimObj = cast[ref NimGodotObject](userData)
+  let nimObj = cast[NimGodotObject](userData)
   nimObj.removeGodotObject()
   GC_unref(nimObj)
 
-template registerGodotClass(classNameIdent, classNameLit,
+proc nimDestroyRefFunc(obj: ptr GodotObject, methData: pointer,
+                       userData: pointer) {.noconv.} =
+  # references are destroyed by Godot when they are already destroyed by Nim,
+  # so nothing to do here.
+  discard
+
+proc refcountIncremented*(obj: NimGodotObject) =
+  GC_ref(obj)
+
+proc refcountDecremented*(obj: NimGodotObject): bool =
+  GC_unref(obj)
+
+template registerGodotClass(classNameIdent, classNameLit, isRef,
                             baseNameLit, createFuncIdent) =
   proc createFuncIdent(obj: ptr GodotObject,
                        methData: pointer): pointer {.noconv.} =
     let nimObj = new(classNameIdent)
-    setGodotObject(nimObj, obj)
+    nimObj.setOwn()
+    nimObj.setGodotObject(obj)
     GC_ref(nimObj)
     result = cast[pointer](nimObj)
 
@@ -281,7 +294,7 @@ template registerGodotClass(classNameIdent, classNameLit,
     createFunc: createFuncIdent
   )
   let destroyFuncObj = GodotInstanceDestroyFunc(
-    destroyFunc: nimDestroyFunc
+    destroyFunc: when isRef: nimDestroyRefFunc else: nimDestroyFunc
   )
   registerClass(classNameIdent, classNameLit, false)
   godotScriptRegisterClass(getNativeLibHandle(), classNameLit, baseNameLit,
@@ -328,7 +341,7 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
   godotScriptRegisterProperty(getNativeLibHandle(), classNameLit, propNameLit,
                               attr, setFunc, getFunc)
 static:
-  import strutils
+  import strutils, sets
 proc toGodotStyle(s: string): string {.compileTime.} =
   result = newStringOfCap(s.len + 10)
   for c in s:
@@ -385,12 +398,14 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     result.add(meth.nimNode)
 
   # 4. Register Godot object
-  let parentName = if obj.parentName.isNil: newNilLit()
+  let parentName = if obj.parentName.isNil: newStrLitNode("Object")
                    else: newStrLitNode(obj.parentName)
   let classNameLit = newCStringLit(obj.name)
   let classNameIdent = ident(obj.name)
+  let isRef: bool = if obj.parentName.isNil: false
+                    else: obj.parentName in refClasses
   result.add(getAst(
-    registerGodotClass(classNameIdent, classNameLit, parentName,
+    registerGodotClass(classNameIdent, classNameLit, isRef, parentName,
                        genSym(nskProc, "createFunc"))))
 
   # 5. Register fields (properties)
@@ -466,6 +481,20 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                           newCStringLit(godotMethodName), minArgs, maxArgs,
                           argTypes, genSym(nskProc, "methFunc"),
                           hasReturnValue)))
+
+  if isRef:
+    # add ref/unref for types inherited from Reference
+    let noArgs = newSeq[NimNode]()
+    result.add(getAst(
+        registerGodotMethod(classNameLit, classNameIdent, ident("refcountIncremented"),
+                            cstring"_refcount_incremented", 0, 0,
+                            noArgs, genSym(nskProc, "refcount_incremented"),
+                            ident("false"))))
+    result.add(getAst(
+        registerGodotMethod(classNameLit, classNameIdent, ident("refcountDecremented"),
+                            cstring"_refcount_decremented", 0, 0,
+                            noArgs, genSym(nskProc, "refcount_decremented"),
+                            ident("true"))))
 
 macro gdobj*(definition: untyped, body: untyped): typed =
   let typeDef = parseType(definition, callsite())
