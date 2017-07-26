@@ -300,11 +300,11 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
       cast[classNameIdent](nimPtr).propNameIdent = nimVal
     of ConversionResult.TypeError:
       let errStr = typeError(propTypeLit, $val, val.getType(),
-                             classNameLit, propNameLit)
+                             classNameLit, astToStr(propNameIdent))
       printError(errStr)
     of ConversionResult.RangeError:
       let errStr = rangeError(propTypeLit, $val,
-                              classNameLit, propNameLit)
+                              classNameLit, astToStr(propNameIdent))
       printError(errStr)
 
   proc getFuncIdent(obj: ptr GodotObject, methData: pointer,
@@ -408,7 +408,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     let usageIdent = ident(usage)
     result.add(getAst(
       registerGodotField(classNameLit, classNameIdent,
-                         newCStringLit($field.name.basename()),
+                         newCStringLit(toGodotStyle($field.name.basename())),
                          ident(field.name), newCStringLit($field.typ),
                          field.typ, genSym(nskProc, "setFunc"),
                          genSym(nskProc, "getFunc"),
