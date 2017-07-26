@@ -285,6 +285,10 @@ proc print*(message: string) {.inline.} =
   let s = message.toGodotString()
   godotPrint(s)
 
+proc print*(message: cstring) {.inline.} =
+  let s = message.toGodotString()
+  godotPrint(s)
+
 template printWarning*(warn: typed) =
   let (filename, line) = instantiationInfo()
   godotPrintWarning(cstring($warn), nil, cstring(filename), line.cint)

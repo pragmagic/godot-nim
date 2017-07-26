@@ -554,4 +554,16 @@ proc godot_gdnative_init(options: ptr GodotNativeInitOptions) {.
 
 proc godot_gdnative_terminate(options: ptr GodotNativeTerminateOptions) {.
     cdecl, exportc, dynlib.} =
-  deallocHeap()
+  deallocHeap(runFinalizers = true, allowGcAfterwards = false)
+
+proc godot_nativescript_thread_enter() {.
+    cdecl, exportc, dynlib.} =
+  when compileOption("threads"):
+    setupForeignThreadGc()
+  else:
+    print(cstring"A foreign thread is created, but app is compiled without --threads:on. Bad things will happen if Nim code is invoked from this thread.")
+
+proc godot_nativescript_thread_exit() {.
+    cdecl, exportc, dynlib.} =
+  when compileOption("threads"):
+    teardownForeignThreadGc()
