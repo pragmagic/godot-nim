@@ -24,7 +24,7 @@ proc ptrCall*(methodBind: ptr GodotMethodBind;
     importc: "godot_method_bind_ptrcall", header: "godot/gdnative.h".}
 proc call*(methodBind: ptr GodotMethodBind;
            instance: ptr GodotObject;
-           args: ptr array[MAX_ARG_COUNT, Variant]; argCount: cint;
+           args: var ptr array[MAX_ARG_COUNT, Variant]; argCount: cint;
            callError: var VariantCallError): Variant {.
     importc: "godot_method_bind_call", header: "godot/gdnative.h".}
 

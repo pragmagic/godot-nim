@@ -4,7 +4,7 @@ description   = "FPS Counter Sample"
 license       = "MIT"
 bin           = @["simple"]
 
-requires "https://github.com/pragmagic/godot-nim.git >= 0.2.2 & < 0.3.0"
+requires "https://github.com/pragmagic/godot-nim.git >= 0.2.3 & < 0.3.0"
 
 task make, "build":
   const archPostfix = when sizeof(int) == 8: "_64" else: "_32"

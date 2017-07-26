@@ -416,7 +416,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
         raise newException(ValueError,
           "Non-standard type $# for varargs params of method $# of type $#" %
             [arg.typ, godotMethodName, typ.godotName])
-      if not isStandardType:
+      if not isStandardType and varargsName.isNil:
         if arg.typ == "string":
           argConversions.add(newNode(nkLetSection).addChain(
             newIdentDefs(ident("argToPassToGodot" & $idx), newEmptyNode(),
@@ -441,8 +441,9 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
         argConversions.add(argLoop)
         argLoop.add(newInfix(ident("idx"), ident("<"), argLenNode)
         )
-        argLoop.add(argAsgn)
-        argLoop.add(newCommand(ident("inc"), ident("idx")))
+        argLoop.add(newNode(nkStmtList).addChain(
+          argAsgn,
+          newCommand(ident("inc"), ident("idx"))))
 
     let retName = if isVarargs: "callRet" else: "ptrCallRet"
     let theCall = newCall(
