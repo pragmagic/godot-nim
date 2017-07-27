@@ -14,7 +14,8 @@ import "../core/strings.nim", "../core/vector2.nim", "../core/rect2.nim",
 type
   NimGodotObject* = ref object of RootObj
     godotObject: ptr GodotObject
-    isRef: bool
+    isExternalRef: bool
+    isOwn: bool
 
   ConversionResult* {.pure.} = enum
     OK,
@@ -51,7 +52,8 @@ var classRegistry {.threadvar.}: TableRef[cstring, ObjectInfo]
 
 static:
   import sets, strutils
-var nativeClasses {.compileTime.} = initSet[string]()
+var nativeClasses {.compileTime.} = newSeq[string]()
+var refClasses* {.compileTime.} = newSeq[string]()
 
 var getClassMethodBind {.threadvar.}: ptr GodotMethodBind
 proc getClassName*(o: ptr GodotObject): string =
@@ -87,7 +89,9 @@ proc deinit*(obj: NimGodotObject) =
 
 proc godotFinalizer[T: NimGodotObject](obj: T) =
   if obj.godotObject.isNil: return
-  if obj.isRef and obj.godotObject.unreference():
+  if obj.isExternalRef and obj.godotObject.unreference():
+    obj.deinit()
+  elif obj.isOwn:
     obj.deinit()
 
 macro baseNativeType(T: typedesc): cstring =
@@ -139,9 +143,12 @@ template registerClass*(T: typedesc; godotClassName: cstring,
     isNative: isNativeParam,
     isRef: isRef
   )
+  when isRef:
+    static:
+      refClasses.add(T.name)
   when isNativeParam:
     static:
-      nativeClasses.incl(T.name)
+      nativeClasses.add(T.name)
 
 proc newNimGodotObject[T: NimGodotObject](
     godotObject: ptr GodotObject, godotClassName: cstring): T =
@@ -154,7 +161,7 @@ proc newNimGodotObject[T: NimGodotObject](
     result = T(objInfo.constructor())
     result.godotObject = godotObject
     if objInfo.isRef:
-      result.isRef = true
+      result.isExternalRef = true
       result.godotObject.reference()
 
 proc asNimGodotObject*[T: NimGodotObject](godotObject: ptr GodotObject): T =
@@ -252,6 +259,9 @@ proc setGodotObject*(nimObj: NimGodotObject, obj: ptr GodotObject) {.inline.} =
   assert(nimObj.godotObject.isNil) # reassignment is not allowed
   nimObj.godotObject = obj
 
+proc setOwn*(nimObj: NimGodotObject) {.inline.} =
+  nimObj.isOwn = true
+
 proc godotObject*(nimObj: NimGodotObject): ptr GodotObject {.inline.} =
   nimObj.godotObject
 
@@ -277,7 +287,7 @@ proc godotVariantType*(T: typedesc[enum]): VariantType {.inline.} =
   VariantType.Int
 
 proc toGodot*[T: enum](self: T): Variant {.inline.} =
-  variant(ord(self))
+  variant(int64(ord(self)))
 
 proc fromGodot*[T: enum](self: var T, val: Variant): ConversionResult =
   if val.getType() == VariantType.Int:
@@ -446,8 +456,7 @@ proc godotVariantType*(T: typedesc[array]): VariantType =
   VariantType.Array
 
 proc toGodot*[T](s: openarray[T]): Variant =
-  var arr: Array
-  initArray(arr)
+  var arr = initArray()
   mixin toGodot
   for item in s:
     arr.add(toGodot(item))
@@ -483,7 +492,7 @@ proc godotVariantType*(T: typedesc[Table|TableRef]): VariantType {.inline.} =
   VariantType.Dictionary
 
 proc toGodot*[T: Table or TableRef](t: T): Variant =
-  let dict = initDictionary()
+  var dict = initDictionary()
   mixin toGodot
   for k, v in t.pairs():
     dict[toGodot(k)] = toGodot(v)
@@ -554,7 +563,7 @@ proc godot_gdnative_init(options: ptr GodotNativeInitOptions) {.
 
 proc godot_gdnative_terminate(options: ptr GodotNativeTerminateOptions) {.
     cdecl, exportc, dynlib.} =
-  deallocHeap(runFinalizers = true, allowGcAfterwards = false)
+  deallocHeap(runFinalizers = false, allowGcAfterwards = false)
 
 proc godot_nativescript_thread_enter() {.
     cdecl, exportc, dynlib.} =

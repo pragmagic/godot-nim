@@ -5,6 +5,7 @@ Prerequisites:
 1. Install [nake](https://github.com/fowlmouth/nake): `nimble install nake -n`.
 2. Ensure `~/.nimble/bin` is in your PATH.
 3. Set `GODOT_BIN` environment varible to point to Godot executable (currently requires Godot fork - see below).
+4. Install godot-nim: `nimble install https://github.com/pragmagic/godot-nim.git` (needed for nakefile)
 
 Run `nake build` in this directory to compile for the current platform.
 
