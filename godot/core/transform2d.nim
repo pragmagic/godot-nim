@@ -1,10 +1,12 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, strings, vector2, rect2
+import godotbase, vector2, rect2
+
+import "../internal/godotstrings.nim"
 
 type
   Transform2D* {.byref.} = object
-    elements: array[3, Vector2]
+    elements*: array[3, Vector2]
 
 proc initTransform2D(dest: var Transform2D) {.
     importc: "godot_transform2d_new_identity".}
@@ -22,8 +24,9 @@ proc initTransform2D*(rot: float32; pos: Vector2): Transform2D {.inline.} =
 proc initTransform2D*(xAxis, yAxis, origin: Vector2): Transform2D {.inline.} =
   initTransform2D(result, xAxis, yAxis, origin)
 
-proc toGodotString*(self: Transform2D): GodotString {.
+proc toGodotString(self: Transform2D): GodotString {.
     importc: "godot_transform2d_as_string".}
+
 proc `$`*(self: Transform2D): string {.inline.} =
   $self.toGodotString()
 
@@ -71,4 +74,3 @@ proc `*`*(a, b: Transform2D): Transform2D {.
 
 proc `*=`*(a: var Transform2D, b: Transform2D) {.inline.} =
   a = a * b
-

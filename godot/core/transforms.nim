@@ -1,6 +1,8 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, basis, vector3, strings, plane, rect3
+import godotbase, basis, vector3, planes, rect3
+
+import "../internal/godotstrings.nim"
 
 type
   Transform* {.byref.} = object
@@ -21,8 +23,9 @@ proc initTransform*(xAxis, yAxis, zAxis,
 proc initTransform*(basis: Basis, origin: Vector3): Transform {.inline.} =
   Transform(basis: basis, origin: origin)
 
-proc toGodotString*(self: Transform): GodotString {.
+proc toGodotString(self: Transform): GodotString {.
     importc: "godot_transform_as_string".}
+
 proc `$`*(self: Transform): string {.inline.} =
   $self.toGodotString()
 

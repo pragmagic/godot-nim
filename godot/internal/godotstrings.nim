@@ -1,15 +1,11 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase
-
 type
   GodotString* {.byref.} = object
     p: pointer
 
 proc initGodotString(dest: var GodotString) {.
     importc: "godot_string_new".}
-proc initGodotString(dest: var GodotString; src: GodotString) {.
-    importc: "godot_string_new_copy".}
 proc initGodotString(dest: var GodotString; contents: cstring;
                       size: cint) {.
     importc: "godot_string_new_data".}
@@ -34,11 +30,6 @@ proc `&`*(self, b: GodotString): GodotString {.
     importc: "godot_string_operator_plus".}
 
 proc deinit*(self: var GodotString) {.importc: "godot_string_destroy".}
-proc `=destroy`(self: GodotString) {.inline.} =
-  unsafeAddr(self).deinit()
-
-proc `=`(self: var GodotString, other: GodotString) {.inline.} =
-  initGodotString(self, other)
 
 proc `$`*(self: GodotString): string =
   ## Converts the ``GodotString`` into Nim string
@@ -61,14 +52,3 @@ proc toGodotString*(s: cstring): GodotString {.inline.} =
     initGodotString(result)
   else:
     initGodotString(result, s, cint(s.len + 1))
-
-proc godotPrint(message: GodotString) {.
-  importc: "godot_print".}
-
-proc print*(message: string) {.inline.} =
-  let s = message.toGodotString()
-  godotPrint(s)
-
-proc print*(message: cstring) {.inline.} =
-  let s = message.toGodotString()
-  godotPrint(s)

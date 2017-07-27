@@ -1,13 +1,13 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, strings
+import godotbase
 
 type
   Color* {.byref.} = object
-    r: float32
-    g: float32
-    b: float32
-    a: float32
+    r*: float32
+    g*: float32
+    b*: float32
+    a*: float32
 
 proc initColor*(r, g, b: float32; a: float32 = 1.0'f32): Color {.inline.} =
   Color(
@@ -38,10 +38,23 @@ proc `$`*(self: Color): string {.inline.} =
   result.add(", ")
   result.add($self.a)
 
-proc toHtml*(self: Color; with_alpha: bool): GodotString {.
-    importc: "godot_color_to_html".}
+proc toHex(val: float32, target: var string, targetIdx: int) =
+  let val = clamp(int(val * 255), 0, 255)
+  let nums = [(val and 0xF0) shr 4, val and 0xF]
+  for i, num in nums:
+    target[targetIdx + i] = if num < 10: chr(ord('0') + num)
+                            else: chr(ord('A') + (num - 10))
 
-proc toARGB32*(self: Color): uint32 =
+proc toHtml*(self: Color, withAlpha: bool): string =
+  let size = if withAlpha: 8 else: 6
+  result = newString(size)
+  toHex(self.r, result, 0)
+  toHex(self.g, result, 2)
+  toHex(self.b, result, 4)
+  if withAlpha:
+    toHex(self.b, result, 6)
+
+proc toARGB32*(self: Color): uint32 {.inline.} =
   result = uint8(self.a * 255)
   result = (result shl 8) or uint8(self.r * 255)
   result = (result shl 8) or uint8(self.g * 255)
@@ -58,7 +71,7 @@ proc lerp*(self: Color; b: Color; t: float32): Color {.
 proc blend*(self: Color; over: Color): Color {.
     importc: "godot_color_blend".}
 
-proc `==`*(a, b: Color): bool =
+proc `==`*(a, b: Color): bool {.inline.} =
   a.r == b.r and a.g == b.g and a.b == b.b and a.a == b.a
 
 proc `<`*(a, b: Color): bool =

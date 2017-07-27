@@ -1,6 +1,7 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, vector3, strings
+import godotbase, vector3
+import "../internal/godotstrings.nim"
 
 type
   Quat* {.byref.} = object
@@ -20,34 +21,10 @@ proc initQuat*(x, y, z, w: float32): Quat {.inline.} =
 proc initQuat*(axis: Vector3; angle: float32): Quat {.inline.} =
   initQuat(result, axis, angle)
 
-proc x*(self: Quat): float32 {.
-    noSideEffect,
-    importc: "godot_quat_get_x".}
-proc `x=`*(self: var Quat; val: float32) {.
-    noSideEffect,
-    importc: "godot_quat_set_x".}
-proc y*(self: Quat): float32 {.
-    noSideEffect,
-    importc: "godot_quat_get_y".}
-proc `y=`*(self: var Quat; val: float32) {.
-    noSideEffect,
-    importc: "godot_quat_set_y".}
-proc z*(self: Quat): float32 {.
-    noSideEffect,
-    importc: "godot_quat_get_z".}
-proc `z=`*(self: var Quat; val: float32) {.
-    noSideEffect,
-    importc: "godot_quat_set_z".}
-proc w*(self: Quat): float32 {.
-    noSideEffect,
-    importc: "godot_quat_get_w".}
-proc `w=`*(self: var Quat; val: float32) {.
-    noSideEffect,
-    importc: "godot_quat_set_w".}
-
-proc toGodotString*(self: Quat): GodotString {.
+proc toGodotString(self: Quat): GodotString {.
     noSideEffect,
     importc: "godot_quat_as_string".}
+
 proc `$`*(self: Quat): string {.inline.} =
   $self.toGodotString()
 

@@ -1,6 +1,8 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, strings
+import godotbase
+
+import "../internal/godotstrings.nim"
 
 type
   Vector2* {.byref.} = object
@@ -10,8 +12,9 @@ type
 proc vec2*(x, y: float32): Vector2 {.inline.} =
   Vector2(x: x, y: y)
 
-proc toGodotString*(self: Vector2): GodotString {.
+proc toGodotString(self: Vector2): GodotString {.
     importc: "godot_vector2_as_string".}
+
 proc `$`*(self: Vector2): string {.inline.} =
   $self.toGodotString()
 

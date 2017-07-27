@@ -1,8 +1,8 @@
 # Copyright 2017 Xored Software, Inc.
 
 import macros, tables, typetraits
-import "../core/godotcore.nim"
-import godotnim
+import "../godotinternal.nim", "../internal/godotvariants.nim"
+import godotnim, "../core/variants.nim"
 
 type
   VarDecl = ref object
@@ -63,18 +63,6 @@ iterator pragmas(node: NimNode):
       yield (node[index][0].ident, val, index)
     elif node[index].kind == nnkIdent:
       yield (node[index].ident, nil, index)
-
-proc hasPragma(statement: NimNode, pname: string): bool =
-  ## Checks if the pragma is present in the `statement`
-  if not (RoutineNodes.contains(statement.kind) or
-          statement.kind == nnkPragmaExpr):
-    return false
-  var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
-                else: statement[1]
-  let pnameIdent = !pname
-  for ident, val, i in pragmas(pragmas):
-    if ident == pnameIdent:
-      return true
 
 proc removePragma(statement: NimNode, pname: string): bool =
   ## Removes the pragma from the node and returns whether pragma was removed
@@ -205,7 +193,9 @@ macro invokeVarArgs(procIdent, objIdent;
   ##     error(...)
 
   template conv(procLit, argT, argSeq, idx, argIdent, errIdent) =
-    let (argIdent, errIdent) = godotToNim[argT](argSeq[idx])
+    let v = newVariant(argSeq[idx])
+    v.markNoDeinit() # args should be destroyed externally
+    let (argIdent, errIdent) = godotToNim[argT](v)
     if errIdent != ConversionResult.OK:
       let errorKind = if errIdent == ConversionResult.TypeError: "a type error"
                       else: "a range error"
@@ -214,6 +204,14 @@ macro invokeVarArgs(procIdent, objIdent;
         ": " & errorKind & " has occurred when converting argument " & $idx &
         " of Godot type " & $argSeq[idx].getType())
       return
+
+  # these help to avoid exporting internal modules
+  # thanks to closed symbol binding
+  template initGodotVariantCall(result) =
+    initGodotVariant(result)
+
+  template initGodotVariantCall(result, src) =
+    initGodotVariant(result, src)
 
   result = newNimNode(nnkCaseStmt)
   result.add(numArgsIdent)
@@ -231,12 +229,13 @@ macro invokeVarArgs(procIdent, objIdent;
                                  argSeqIdent, idx, argIdent, errIdent)))
       invocation.add(argIdent)
     if hasReturnValue:
-      branchBody.add(newNimNode(nnkAsgn).add(ident("result"),
-        newCall("toGodot", invocation)))
+      let theCall = newNimNode(nnkBracketExpr).add(newNimNode(nnkDotExpr).add(
+        newCall("toGodot", newCall("newVariant", invocation)),
+        ident("godotVariant")))
+      branchBody.add(getAst(initGodotVariantCall(ident("result"), theCall)))
     else:
       branchBody.add(invocation)
-      branchBody.add(newNimNode(nnkAsgn).add(ident("result"),
-                                             newCall("variant")))
+      branchBody.add(getAst(initGodotVariantCall(ident("result"))))
 
     branch.add(branchBody)
     result.add(branch)
@@ -306,8 +305,10 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
                             hintIdent, usageIdent, hasDefaultValue,
                             defaultValueNode) =
   proc setFuncIdent(obj: ptr GodotObject, methData: pointer,
-                    nimPtr: pointer, val: Variant) {.noconv.} =
-    let (nimVal, err) = godotToNim[propTypeIdent](val)
+                    nimPtr: pointer, val: GodotVariant) {.noconv.} =
+    let variant = newVariant(val)
+    variant.markNoDeinit()
+    let (nimVal, err) = godotToNim[propTypeIdent](variant)
     case err:
     of ConversionResult.OK:
       cast[classNameIdent](nimPtr).propNameIdent = nimVal
@@ -321,8 +322,10 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
       printError(errStr)
 
   proc getFuncIdent(obj: ptr GodotObject, methData: pointer,
-                    nimPtr: pointer): Variant {.noconv.} =
-    result = nimToGodot(cast[classNameIdent](nimPtr).propNameIdent)
+                    nimPtr: pointer): GodotVariant {.noconv.} =
+    let variant = nimToGodot(cast[classNameIdent](nimPtr).propNameIdent)
+    variant.markNoDeinit()
+    result = variant.godotVariant[]
 
   let setFunc = GodotPropertySetFunc(
     setFunc: setFuncIdent
@@ -436,8 +439,8 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                                argTypes, methFuncIdent, hasReturnValue) =
     proc methFuncIdent(obj: ptr GodotObject, methodData: pointer,
                        userData: pointer, numArgs: cint,
-                       args: var ptr array[MAX_ARG_COUNT, Variant]):
-                      Variant {.noconv.} =
+                       args: var ptr array[MAX_ARG_COUNT, GodotVariant]):
+                      GodotVariant {.noconv.} =
       let self = cast[classNameIdent](userData)
       when defined(release):
         invokeVarArgs(methodNameIdent, self, minArgs, maxArgs, numArgs,
@@ -448,8 +451,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                         args, argTypes, hasReturnValue)
         except:
           let ex = getCurrentException()
-          printError("Unhandled Nim exception (" &
-                     $ex.name & "): " &
+          printError("Unhandled Nim exception (" & $ex.name & "): " &
                      ex.msg & "\n" & ex.getStackTrace())
 
     let meth = GodotInstanceMethod(

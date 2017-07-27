@@ -1,5 +1,7 @@
 import godotbase
 
+import "../internal/godotinternaltypes.nim"
+
 type
   RID* {.byref.} = object
     p: pointer

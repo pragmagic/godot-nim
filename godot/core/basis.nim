@@ -1,7 +1,7 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
 import math
-import godotbase, vector3, quat, strings
+import godotbase, vector3, quats
 
 type
   Basis* {.byref.} = object

@@ -4,7 +4,7 @@ import asyncdispatch
 import godot, node
 
 gdobj NimRuntime of Node:
-  method process*(delta: float32) =
+  method process*(delta: float64) =
     if asyncdispatch.hasPendingOperations():
       poll(0)
     GC_step(2000, false, 0)

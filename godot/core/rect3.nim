@@ -1,6 +1,8 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, plane, vector3, strings
+import godotbase, planes, vector3
+
+import "../internal/godotstrings.nim"
 
 type
   Rect3* {.byref.} = object
@@ -10,11 +12,13 @@ type
 proc initRect3*(pos, size: Vector3): Rect3 {.inline.} =
   Rect3(position: pos, size: size)
 
-proc toGodotString*(self: Rect3): GodotString {.
+proc toGodotString(self: Rect3): GodotString {.
     noSideEffect,
     importc: "godot_rect3_as_string".}
+
 proc `$`*(self: Rect3): string {.inline.} =
   $self.toGodotString()
+
 proc area*(self: Rect3): float32 {.
     noSideEffect,
     importc: "godot_rect3_get_area".}

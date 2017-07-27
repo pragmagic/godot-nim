@@ -1,13 +1,13 @@
-# Copyright (c) 2017 Xored Software, Inc.
+# Copyright 2017 Xored Software, Inc.
 
-import godotbase
-import strings, vector2, rect2, vector3, transform2d, plane, quat
-import rect3, basis, transform, color, nodepath, rid
-import dictionary, arrays, poolarray, variant
+import internal / [
+       godotinternaltypes, godotarrays, godotnodepaths, godotpoolarrays,
+       godotstrings, godotvariants, godotdictionaries]
 
-export godotbase, strings, vector2, rect2, vector3, transform2d, plane, quat,
-       rect3, basis, transform, color, nodepath, rid, dictionary, arrays,
-       poolarray, variant
+export godotinternaltypes, godotarrays, godotnodepaths, godotpoolarrays,
+       godotstrings, godotvariants, godotdictionaries
+
+const MAX_ARG_COUNT* = 128
 
 # MethodBind API
 
@@ -22,8 +22,8 @@ proc ptrCall*(methodBind: ptr GodotMethodBind;
     importc: "godot_method_bind_ptrcall".}
 proc call*(methodBind: ptr GodotMethodBind;
            instance: ptr GodotObject;
-           args: var ptr array[MAX_ARG_COUNT, Variant]; argCount: cint;
-           callError: var VariantCallError): Variant {.
+           args: ptr array[MAX_ARG_COUNT, ptr GodotVariant]; argCount: cint;
+           callError: var VariantCallError): GodotVariant {.
     importc: "godot_method_bind_call".}
 
 # Script API
@@ -151,7 +151,7 @@ type
     hint*: GodotPropertyHint
     hintString*: GodotString
     usage*: GodotPropertyUsageFlags
-    defaultValue*: Variant
+    defaultValue*: GodotVariant
 
   GodotInstanceCreateFunc* {.bycopy.} = object
     createFunc*:
@@ -180,7 +180,8 @@ type
     meth*:
       proc (obj: ptr GodotObject; methodData: pointer;
             userData: pointer; numArgs: cint;
-            args: var ptr array[MAX_ARG_COUNT, Variant]): Variant {.noconv.}
+            args: var ptr array[MAX_ARG_COUNT, GodotVariant]):
+              GodotVariant {.noconv.}
     methodData*: pointer
     freeFunc*: proc (a2: pointer) {.noconv.}
 
@@ -192,13 +193,13 @@ proc godotScriptRegisterMethod*(libHandle: pointer;
 type
   GodotPropertySetFunc* {.bycopy.} = object
     setFunc*: proc (obj: ptr GodotObject; methodData: pointer;
-                    userData: pointer; value: Variant) {.noconv.}
+                    userData: pointer; value: GodotVariant) {.noconv.}
     methodData*: pointer
     freeFunc*: proc (a2: pointer) {.noconv.}
 
   GodotPropertyGetFunc* {.bycopy.} = object
     getFunc*: proc (obj: ptr GodotObject; methodData: pointer;
-                    userData: pointer): Variant {.noconv.}
+                    userData: pointer): GodotVariant {.noconv.}
     methodData*: pointer
     freeFunc*: proc (a2: pointer) {.noconv.}
 
@@ -216,14 +217,15 @@ type
     hint*: GodotPropertyHint
     hintString*: GodotString
     usage*: GodotPropertyUsageFlags
-    defaultValue*: Variant
+    defaultValue*: GodotVariant
 
   GodotSignal* = object
     name*: GodotString
     numArgs*: cint
     args*: ptr GodotSignalArgument
     numDefaultArgs*: cint
-    defaultArgs*: ptr Variant
+    defaultArgs*: ptr GodotVariant
+
 
 proc godotScriptRegisterSignal*(libHandle: pointer; name: cstring;
                                 signal: GodotSignal) {.
@@ -240,3 +242,27 @@ proc godotStackBottom*(): pointer {.
 
 proc deinit*(o: ptr GodotObject) {.
     importc: "godot_object_destroy".}
+
+# print using Godot's error handler list
+
+proc godotPrintError*(description: cstring; function: cstring; file: cstring;
+                      line: cint) {.
+  importc: "godot_print_error".}
+
+proc godotPrintWarning*(description: cstring; function: cstring;
+                        file: cstring; line: cint) {.
+  importc: "godot_print_warning".}
+
+proc godotPrint*(message: GodotString) {.
+  importc: "godot_print".}
+
+var getClassMethodBind {.threadvar.}: ptr GodotMethodBind
+proc getClassName*(o: ptr GodotObject): string =
+  if getClassMethodBind.isNil:
+    getClassMethodBind = getMethod(cstring"Object", cstring"get_class")
+  var ret: GodotString
+  getClassMethodBind.ptrCall(o, nil, addr ret)
+  result = $ret
+  if result.len > 2 and result[^2] == 'S' and result[^1] == 'W':
+    # There are physics type not known by ClassDB
+    result = result[0..result.len-3]

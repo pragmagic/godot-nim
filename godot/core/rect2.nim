@@ -1,6 +1,8 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, vector2, strings
+import godotbase, vector2
+
+import "../internal/godotstrings.nim"
 
 type
   Rect2* {.byref.} = object
@@ -13,9 +15,10 @@ proc initRect2*(pos, size: Vector2): Rect2 {.inline.} =
 proc initRect2*(x, y, sizeX, sizeY: float32): Rect2 {.inline.} =
   Rect2(position: vec2(x, y), size: vec2(sizeX, sizeY))
 
-proc toGodotString*(self: Rect2): GodotString {.
+proc toGodotString(self: Rect2): GodotString {.
     noSideEffect,
     importc: "godot_rect2_as_string".}
+
 proc `$`*(self: Rect2): string {.inline.} =
   $self.toGodotString()
 

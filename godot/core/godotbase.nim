@@ -57,77 +57,10 @@ type
     PrinterOnFire, ## the parallel port printer is engulfed in flames
     WTF ## shit happens, has never been used, though
 
-const MAX_ARG_COUNT* = 128
-
-type
-  GodotObject* = object
-  Array* {.byref.} = object
-    p: pointer
-  Variant* {.byref.} = object
-    data: array[24, byte]
-
-proc initArray(dest: var Array, src: Array) {.
-    importc: "godot_array_new_copy".}
-
-proc deinit(self: var Array) {.importc: "godot_array_destroy".}
-
-proc `=`(self: var Array, other: Array) {.inline.} =
-  initArray(self, other)
-
-proc `=destroy`(self: Array) {.inline.} =
-  unsafeAddr(self).deinit()
-
-proc initVariant(dest: var Variant; src: Variant) {.
-    importc: "godot_variant_new_copy".}
-
-proc deinit*(self: var Variant) {.
-    importc: "godot_variant_destroy".}
-
-proc `=`(self: var Variant, other: Variant) {.inline.} =
-  initVariant(self, other)
-
-proc `=destroy`(self: Variant) {.inline.} =
-  unsafeAddr(self).deinit()
-
-# System Functions
-
-proc godotAlloc*(bytes: cint): pointer {.
-  importc: "godot_alloc".}
-  ## Allocates the specified number of bytes.
-  ## Using this instead of stdlib proc will help Godot track how much memory
-  ## is in use in debug mode.
-proc godotRealloc*(p: pointer; bytes: cint): pointer {.
-  importc: "godot_realloc".}
-  ## Reallocates the pointer for the specified number of bytes.
-  ## Using this instead of stdlib proc will help Godot track how much memory
-  ## is in use in debug mode.
-proc godotFree*(p: pointer) {.importc: "godot_free".}
-  ## Frees the memory pointed to by the pointer.
-  ## Using this instead of stdlib proc will help Godot track how much memory
-  ## is in use in debug mode.
-
-# print using Godot's error handler list
-
-proc godotPrintError(description: cstring; function: cstring; file: cstring;
-                     line: cint) {.
-  importc: "godot_print_error".}
-
-proc godotPrintWarning(description: cstring; function: cstring;
-                       file: cstring; line: cint) {.
-  importc: "godot_print_warning".}
-
-template printWarning*(warn: typed) =
-  let (filename, line) = instantiationInfo()
-  godotPrintWarning(cstring($warn), nil, cstring(filename), line.cint)
-
-template printError*(err: typed) =
-  let (filename, line) = instantiationInfo()
-  godotPrintError(cstring($err), nil, cstring(filename), line.cint)
-
 # math helpers
 
 const EPSILON = 0.00001'f32
-proc isEqualApprox*(a, b: float32): bool {.inline.} =
+proc isEqualApprox*(a, b: float32): bool {.inline.}  =
   abs(a - b) < EPSILON
 
 proc isEqualApprox*(a, b: float64): bool {.inline.} =
@@ -150,3 +83,48 @@ proc stepify*(value, step: float32): float32 =
     floor(value / step + 0.5'f32) * step
   else:
     value
+
+import "../internal/godotinternaltypes.nim"
+
+type
+  Variant* = ref object
+    godotVariant: GodotVariant
+    noDeinit: bool # used to avoid copying when passing the variant to Godot
+
+  Array* = ref object
+    godotArray: GodotArray
+
+proc markNoDeinit*(v: Variant) {.inline.} =
+  ## Makes it so that internal GodotVariant object will not be destroyed
+  ## when the reference is gone. Use only if you know what you are doing.
+  v.noDeinit = true
+
+proc isNoDeinit*(v: Variant): bool {.inline.} =
+  v.noDeinit
+
+proc godotArray*(arr: Array): ptr GodotArray {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## ``arr``
+  addr arr.godotArray
+
+proc godotVariant*(v: Variant): ptr GodotVariant {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## ``v``
+  addr v.godotVariant
+
+# System Functions
+
+proc godotAlloc*(bytes: cint): pointer {.
+  importc: "godot_alloc".}
+  ## Allocates the specified number of bytes.
+  ## Using this instead of stdlib proc will help Godot track how much memory
+  ## is in use in debug mode.
+proc godotRealloc*(p: pointer; bytes: cint): pointer {.
+  importc: "godot_realloc".}
+  ## Reallocates the pointer for the specified number of bytes.
+  ## Using this instead of stdlib proc will help Godot track how much memory
+  ## is in use in debug mode.
+proc godotFree*(p: pointer) {.importc: "godot_free".}
+  ## Frees the memory pointed to by the pointer.
+  ## Using this instead of stdlib proc will help Godot track how much memory
+  ## is in use in debug mode.

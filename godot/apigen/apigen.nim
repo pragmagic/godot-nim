@@ -104,12 +104,6 @@ proc postfix(left: PNode, op: string): PNode =
   result.add(ident(op))
   result.add(left)
 
-proc newExprColonExpr(key, value: PNode): PNode =
-  newNode(nkExprColonExpr).addChain(key, value)
-
-proc pragma(key: PNode, value: PNode): PNode =
-  newNode(nkPragma).addChain(key, value)
-
 proc newBracketExpr(first, bracket: PNode): PNode =
   newNode(nkBracketExpr).addChain(first, bracket)
 
@@ -263,9 +257,9 @@ const standardTypes = toSet(
    "uint64",
    "int64", "float32", "cfloat", "float64", "GodotString", "Vector2", "Rect2",
    "Vector3", "Transform2D", "Plane", "Quat", "Rect3", "Basis", "Transform",
-   "Color", "NodePath", "RID", "Dictionary", "Array", "PoolByteArray",
-   "PoolIntArray", "PoolRealArray", "PoolStringArray", "PoolVector2Array",
-   "PoolVector3Array", "PoolColorArray", "Variant"])
+   "Color", "RID", "NodePath", "Dictionary", "Variant", "Array",
+   "PoolByteArray", "PoolIntArray", "PoolRealArray", "PoolStringArray",
+   "PoolVector2Array", "PoolVector3Array", "PoolColorArray"])
 
 const smallIntTypes = toSet(["uint8", "int8", "uint16", "int16", "uint32", "int32",
                              "cint", "int", "Error"])
@@ -277,6 +271,12 @@ const floatTypes = union(float64Types, float32Types)
 const arrayTypes = toSet(["Array", "PoolByteArray",
   "PoolIntArray", "PoolRealArray", "PoolStringArray", "PoolVector2Array",
   "PoolVector3Array", "PoolColorArray"])
+const wrapperTypes = union(arrayTypes,
+                           toSet(["NodePath", "Dictionary", "Variant"]))
+
+proc getInternalPtr(varName: PNode, typ: string): PNode =
+  assert(typ in wrapperTypes)
+  result = newDotExpr(varName, ident("godot" & typ))
 
 proc newNilCheck(ident, toAssign: PNode): PNode =
   newIfStmt(newCall("isNil", ident),
@@ -301,7 +301,7 @@ proc makeDefaultValue(arg: MethodArg): PNode =
       result = newFloatLit(parseFloat(arg.defaultVal.str))
     elif arg.defaultVal.str == "Null":
       if arg.typ == "Variant":
-        result = newCall("variant")
+        result = newCall("newVariant")
       else:
         result = newNilLit()
     elif arg.typ == "Color":
@@ -376,7 +376,8 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
         newNode(nkPtrTy).addChain(
           newNode(nkBracketExpr).addChain(
             ident("array"), ident("MAX_ARG_COUNT"),
-            if isVarargs: ident("Variant") else: ident("pointer"))))
+            if isVarargs: newNode(nkPtrTy).addChain(ident("GodotVariant"))
+            else: ident("pointer"))))
       staticArgsLen = if varargsName.isNil: args.len
                       else: args.len - 1
       if not varargsName.isNil:
@@ -407,7 +408,10 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
           newInfix(ident("idx"), ident("-"), newIntLit(staticArgsLen)))
       let argIdx = if arg.isVarargs: ident("idx") else: newIntLit(idx)
       let isStandardType = arg.typ in standardTypes
-      let convArg = if not varargsName.isNil: newCall("toGodot", argName)
+      let isWrappedType = arg.typ in wrapperTypes
+      let convArg = if not varargsName.isNil:
+                      getInternalPtr(newCall("toGodot", argName), "Variant")
+                    elif isWrappedType: getInternalPtr(argName, arg.typ)
                     elif isStandardType: newCall("unsafeAddr", argName)
                     elif arg.typ == "string": newCall("unsafeAddr",
                                   ident("argToPassToGodot" & $idx))
@@ -418,7 +422,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
             [arg.typ, godotMethodName, typ.godotName])
       if not isStandardType and varargsName.isNil:
         if arg.typ == "string":
-          argConversions.add(newNode(nkLetSection).addChain(
+          argConversions.add(newNode(nkVarSection).addChain(
             newIdentDefs(ident("argToPassToGodot" & $idx), newEmptyNode(),
                          newCall("toGodotString", argName))))
         else:
@@ -465,11 +469,6 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
       body.add(newNode(nkLetSection).addChain(newIdentDefs(
         ident("self"), newNode(nkEmpty), varName
       )))
-    if not varargsName.isNil:
-      body.add(
-        pragma(ident("push"), newExprColonExpr(
-               newBracketExpr(ident("warning"), ident("Destructor")),
-               ident("off"))))
     body.add(nilCheck)
     body.add(vars)
     body.add(argConversions)
@@ -482,9 +481,10 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
     var isConversionRet: bool
     var isObjRet: bool
     var isStringRet: bool
+    var isWrapperRet: bool
     let retValIdent = if not isVarargs: ident("ptrCallVal") else: ident(retName)
-    if not returnType.isNil and varargsName.isNil:
-      var addrToAssign = newCall("addr", ident("ptrCallVal"))
+    if not returnType.isNil and not isVarargs:
+      var addrToAssign = newCall("addr", retValIdent)
       if returnType in smallIntTypes:
         isConversionRet = true
         body.add(newNode(nkVarSection).addChain(newIdentDefs(
@@ -494,6 +494,11 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
         isConversionRet = true
         body.add(newNode(nkVarSection).addChain(newIdentDefs(
           retValIdent, ident("float64"),
+        )))
+      elif returnType in wrapperTypes:
+        isWrapperRet = true
+        body.add(newNode(nkVarSection).addChain(newIdentDefs(
+          retValIdent, ident("Godot" & returnType),
         )))
       elif returnType in standardTypes:
         addrToAssign = newCall("addr", ident("result"))
@@ -520,9 +525,12 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
             ident(retName), newNode(nkPragma).addChain(ident("used"))),
           newNode(nkEmpty), theCall))
       body.add(callStmt)
-    # if not returnType.isNil and not varargsName.isNil:
-    #   body.add(newCall("fromGodot", ident("result"), ident(retName)))
-      # body.add(newCall("deinit", ident(retName)))
+
+    if varargsName.isNil:
+      for idx, arg in args:
+        if arg.typ == "string":
+          body.add(newCall("deinit", ident("argToPassToGodot" & $idx)))
+
     if args.len > 0 and not varargsName.isNil:
       body.add(freeCall)
     if not varargsName.isNil:
@@ -536,7 +544,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
     if isVariantRet:
       let convErrDef = newNode(nkLetSection).addChain(
           newIdentDefs(ident("convErr"), newNode(nkEmpty),
-              newCall("fromGodot", ident("result"), retValIdent)))
+              newCall("fromGodot", ident("result"), newCall("newVariant", retValIdent))))
       let convCheck = newIfStmt(
         newInfix(ident("convErr"), ident("!="),
                  newDotExpr(ident("ConversionResult"), ident("OK"))),
@@ -545,12 +553,16 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
       )
       body.add(convErrDef)
       body.add(convCheck)
-    if not isVarargs and (isVariantRet or isStringRet):
-      # varargs use call with "let" so destructor is invoked
+    if isStringRet:
       body.add(newCall("deinit", retValIdent))
     elif isConversionRet:
-      body.add(newNode(nkAsgn).addChain(ident("result"),
-                                        newCall(returnType, retValIdent)))
+      body.add(newNode(nkAsgn).addChain(
+        ident("result"),
+        newCall(returnType, retValIdent)))
+    elif isWrapperRet:
+      body.add(newNode(nkAsgn).addChain(
+        ident("result"),
+        newCall("new" & returnType, retValIdent)))
     elif isObjRet:
       body.add(newNode(nkAsgn).addChain(ident("result"),
                newCall(newBracketExpr(ident("asNimGodotObject"),
@@ -558,11 +570,6 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
     elif isStringRet:
       body.add(newNode(nkAsgn).addChain(ident("result"),
                                         newCall("$", retValIdent)))
-    if not varargsName.isNil:
-      body.add(
-        pragma(ident("push"), newExprColonExpr(
-                  newBracketExpr(ident("warning"), ident("Destructor")),
-                  ident("on"))))
 
   let procType = if isVirtual: nkMethodDef
                  else: nkProcDef
@@ -770,7 +777,7 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
     let importStmt = newNode(nkImportStmt)
     importStmt.add(ident("godot"))
     importStmt.add(ident("godottypes"))
-    importStmt.add(newDotExpr(ident("core"), ident("godotcore")))
+    importStmt.add(ident("godotinternal"))
     tree.add(importStmt)
     let exportStmt = newNode(nkExportStmt)
     exportStmt.add(ident("godottypes"))

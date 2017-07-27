@@ -1,6 +1,8 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, vector3, strings
+import godotbase, vector3
+
+import "../internal/godotstrings.nim"
 
 type
   Plane* {.byref.} = object
@@ -26,6 +28,7 @@ proc initPlane*(normal: Vector3; d: float32): Plane =
 proc toGodotString(self: Plane): GodotString {.
     noSideEffect,
     importc: "godot_plane_as_string".}
+
 proc `$`*(self: Plane): string {.inline.} =
   $self.toGodotString()
 
