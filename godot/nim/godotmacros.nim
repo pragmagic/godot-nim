@@ -473,7 +473,8 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                           else: toGodotStyle(meth.name)
     let hasReturnValueBool = not (meth.returnType.isNil or
                          meth.returnType.kind == nnkEmpty or
-                         $meth.returnType == "void")
+                         (meth.returnType.kind == nnkIdent and
+                          meth.returnType.ident == !"void"))
     let hasReturnValue = if hasReturnValueBool: ident("true")
                          else: ident("false")
     result.add(getAst(

@@ -493,7 +493,7 @@ proc godotVariantType*(T: typedesc[Table|TableRef]): VariantType {.inline.} =
   VariantType.Dictionary
 
 proc toGodot*[T: Table or TableRef](t: T): Variant =
-  let dict = initDictionary()
+  var dict = initDictionary()
   mixin toGodot
   for k, v in t.pairs():
     dict[toGodot(k)] = toGodot(v)
