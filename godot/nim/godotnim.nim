@@ -456,8 +456,7 @@ proc godotVariantType*(T: typedesc[array]): VariantType =
   VariantType.Array
 
 proc toGodot*[T](s: openarray[T]): Variant =
-  var arr: Array
-  initArray(arr)
+  var arr = initArray()
   mixin toGodot
   for item in s:
     arr.add(toGodot(item))
