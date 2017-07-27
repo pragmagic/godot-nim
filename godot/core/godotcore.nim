@@ -11,53 +11,44 @@ export godotbase, strings, vector2, rect2, vector3, transform2d, plane, quat,
 
 # MethodBind API
 
-type
-  GodotMethodBind* {.importc: "godot_method_bind",
-                     header: "godot/gdnative.h".} = object
+type GodotMethodBind* = object
 
 proc getMethod*(className: cstring; methodName: cstring): ptr GodotMethodBind {.
-    importc: "godot_method_bind_get_method", header: "godot/gdnative.h".}
+    importc: "godot_method_bind_get_method".}
 proc ptrCall*(methodBind: ptr GodotMethodBind;
               instance: ptr GodotObject;
               args: ptr array[MAX_ARG_COUNT, pointer];
               ret: pointer) {.
-    importc: "godot_method_bind_ptrcall", header: "godot/gdnative.h".}
+    importc: "godot_method_bind_ptrcall".}
 proc call*(methodBind: ptr GodotMethodBind;
            instance: ptr GodotObject;
            args: var ptr array[MAX_ARG_COUNT, Variant]; argCount: cint;
            callError: var VariantCallError): Variant {.
-    importc: "godot_method_bind_call", header: "godot/gdnative.h".}
+    importc: "godot_method_bind_call".}
 
 # Script API
 
 type
-  GodotNativeInitOptions* {.importc: "godot_gdnative_init_options",
-                            header: "godot/gdnative.h".} = object
-    inEditor* {.importc: "in_editor".}: bool
-    coreApiHash* {.importc: "core_api_hash".}: uint64
-    editorApiHash* {.importc: "editor_api_hash".}: uint64
-    noApiHash* {.importc: "no_api_hash".}: uint64
+  GodotNativeInitOptions* = object
+    inEditor*: bool
+    coreApiHash*: uint64
+    editorApiHash*: uint64
+    noApiHash*: uint64
 
-  GodotNativeTerminateOptions* {.importc: "godot_gdnative_terminate_options",
-                                 header: "godot/gdnative.h".} = object
-    inEditor* {.importc: "in_editor".}: bool
+  GodotNativeTerminateOptions* = object
+    inEditor*: bool
 
-  GodotMethodRPCMode* {.importc: "godot_method_rpc_mode",
-                        header: "godot_nativescript.h",
-                        size: sizeof(cint), pure.} = enum
+  GodotMethodRPCMode* {.size: sizeof(cint), pure.} = enum
     Disabled,
     Remote,
     Sync,
     Master,
     Slave
 
-  GodotMethodAttributes* {.importc: "godot_method_attributes",
-                           header: "godot_nativescript.h".} = object
-    rpcMode* {.importc: "rpc_type".}: GodotMethodRPCMode
+  GodotMethodAttributes* = object
+    rpcMode*: GodotMethodRPCMode
 
-  GodotPropertyHint* {.importc: "godot_property_hint",
-                       header: "godot_nativescript.h",
-                       size: sizeof(cint), pure.} = enum
+  GodotPropertyHint* {.size: sizeof(cint), pure.} = enum
     None, ## no hint provided.
     Range, ## hint_text = "min,max,step,slider; // slider is optional"
     ExpRange, ## hint_text = "min,max,step", exponential edit
@@ -126,9 +117,7 @@ const
       GODOT_PROPERTY_USAGE_STORAGE_VALUE or GODOT_PROPERTY_USAGE_NETWORK_VALUE
 
 type
-  GodotPropertyUsageFlags* {.importc: "godot_property_usage_flags",
-                             header: "godot_nativescript.h", size: sizeof(cint),
-                             pure.} = enum
+  GodotPropertyUsageFlags* {.size: sizeof(cint), pure.} = enum
     Storage = GODOT_PROPERTY_USAGE_STORAGE_VALUE
     Editor = GODOT_PROPERTY_USAGE_EDITOR_VALUE
     Network = GODOT_PROPERTY_USAGE_NETWORK_VALUE
@@ -156,143 +145,98 @@ type
     AnimateAsTrigger = GODOT_PROPERTY_USAGE_ANIMATE_AS_TRIGGER_VALUE
     UpdateAllIfModified = GODOT_PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED_VALUE
 
-  GodotPropertyAttributes* {.importc: "godot_property_attributes",
-                             header: "godot_nativescript.h", bycopy.} = object
-    rsetType* {.importc: "rset_type".}: GodotMethodRPCMode
-    typ* {.importc: "type".}: cint
-    hint* {.importc: "hint".}: GodotPropertyHint
-    hintString* {.importc: "hint_string".}: GodotString
-    usage* {.importc: "usage".}: GodotPropertyUsageFlags
-    defaultValue* {.importc: "default_value".}: Variant
+  GodotPropertyAttributes* {.bycopy.} = object
+    rsetType*: GodotMethodRPCMode
+    typ*: cint
+    hint*: GodotPropertyHint
+    hintString*: GodotString
+    usage*: GodotPropertyUsageFlags
+    defaultValue*: Variant
 
-  GodotInstanceCreateFunc* {.importc: "godot_instance_create_func",
-                             header: "godot_nativescript.h", bycopy.} = object
-    createFunc* {.importc: "create_func".}:
+  GodotInstanceCreateFunc* {.bycopy.} = object
+    createFunc*:
       proc (obj: ptr GodotObject; methodData: pointer): pointer {.noconv.}
         ## returns user data
-    methodData* {.importc: "method_data".}: pointer
-    freeFunc* {.importc: "free_func".}: proc (a2: pointer) {.noconv.}
+    methodData*: pointer
+    freeFunc*: proc (a2: pointer) {.noconv.}
 
-  GodotInstanceDestroyFunc* {.importc: "godot_instance_destroy_func",
-                              header: "godot_nativescript.h", bycopy.} = object
-    destroyFunc* {.importc: "destroy_func".}:
+  GodotInstanceDestroyFunc* {.bycopy.} = object
+    destroyFunc*:
       proc (obj: ptr GodotObject; methodData: pointer;
             userData: pointer) {.noconv.}
-    methodData* {.importc: "method_data".}: pointer
-    freeFunc* {.importc: "free_func".}: proc (a2: pointer) {.noconv.}
+    methodData*: pointer
+    freeFunc*: proc (a2: pointer) {.noconv.}
 
 proc godotScriptRegisterClass*(libHandle: pointer; name, base: cstring;
                                create_func: GodotInstanceCreateFunc;
                                destroy_func: GodotInstanceDestroyFunc) {.
-    importc: "godot_nativescript_register_class",
-    header: "godot_nativescript.h".}
+    importc: "godot_nativescript_register_class".}
 proc godotScriptRegisterToolClass*(libHandle: pointer; name, base: cstring;
                                    createFunc: GodotInstanceCreateFunc;
                                    destroyFunc: GodotInstanceDestroyFunc) {.
-    importc: "godot_nativescript_register_tool_class",
-    header: "godot_nativescript.h".}
+    importc: "godot_nativescript_register_tool_class".}
 type
-  GodotInstanceMethod* {.importc: "godot_instance_method",
-                         header: "godot_nativescript.h", bycopy.} = object
-    meth* {.importc: "method".}:
+  GodotInstanceMethod* {.bycopy.} = object
+    meth*:
       proc (obj: ptr GodotObject; methodData: pointer;
             userData: pointer; numArgs: cint;
             args: var ptr array[MAX_ARG_COUNT, Variant]): Variant {.noconv.}
-    methodData* {.importc: "method_data".}: pointer
-    freeFunc* {.importc: "free_func".}: proc (a2: pointer) {.noconv.}
+    methodData*: pointer
+    freeFunc*: proc (a2: pointer) {.noconv.}
 
 proc godotScriptRegisterMethod*(libHandle: pointer;
                                 name: cstring; function_name: cstring;
                                 attr: GodotMethodAttributes;
                                 meth: GodotInstanceMethod) {.
-    importc: "godot_nativescript_register_method",
-    header: "godot_nativescript.h".}
+    importc: "godot_nativescript_register_method".}
 type
-  GodotPropertySetFunc* {.importc: "godot_property_set_func",
-                          header: "godot_nativescript.h", bycopy.} = object
-    setFunc* {.importc: "set_func".}: proc (obj: ptr GodotObject;
-                                            methodData: pointer;
-                                            userData: pointer;
-                                            value: Variant) {.noconv.}
-    methodData* {.importc: "method_data".}: pointer
-    freeFunc* {.importc: "free_func".}: proc (a2: pointer) {.noconv.}
+  GodotPropertySetFunc* {.bycopy.} = object
+    setFunc*: proc (obj: ptr GodotObject; methodData: pointer;
+                    userData: pointer; value: Variant) {.noconv.}
+    methodData*: pointer
+    freeFunc*: proc (a2: pointer) {.noconv.}
 
-  GodotPropertyGetFunc* {.importc: "godot_property_get_func",
-                          header: "godot_nativescript.h", bycopy.} = object
-    getFunc* {.importc: "get_func".}:
-      proc (obj: ptr GodotObject; methodData: pointer;
-            userData: pointer): Variant {.noconv.}
-    methodData* {.importc: "method_data".}: pointer
-    freeFunc* {.importc: "free_func".}: proc (a2: pointer) {.noconv.}
+  GodotPropertyGetFunc* {.bycopy.} = object
+    getFunc*: proc (obj: ptr GodotObject; methodData: pointer;
+                    userData: pointer): Variant {.noconv.}
+    methodData*: pointer
+    freeFunc*: proc (a2: pointer) {.noconv.}
 
 proc godotScriptRegisterProperty*(libHandle: pointer;
                                   name: cstring; path: cstring;
                                   attr: var GodotPropertyAttributes;
                                   setFunc: GodotPropertySetFunc;
                                   getFunc: GodotPropertyGetFunc) {.
-    importc: "godot_nativescript_register_property",
-    header: "godot_nativescript.h".}
+    importc: "godot_nativescript_register_property".}
 
 type
-  GodotSignalArgument* {.importc: "godot_signal_argument",
-                         header: "godot_nativescript.h", bycopy.} = object
-    name* {.importc: "name".}: GodotString
-    typ* {.importc: "type".}: cint
-    hint* {.importc: "hint".}: GodotPropertyHint
-    hintString* {.importc: "hint_string".}: GodotString
-    usage* {.importc: "usage".}: GodotPropertyUsageFlags
-    defaultValue* {.importc: "default_value".}: Variant
+  GodotSignalArgument* {.bycopy.} = object
+    name*: GodotString
+    typ*: cint
+    hint*: GodotPropertyHint
+    hintString*: GodotString
+    usage*: GodotPropertyUsageFlags
+    defaultValue*: Variant
 
-  GodotSignal* {.importc: "godot_signal",
-                 header: "godot_nativescript.h".} = object
-    name* {.importc: "name".}: GodotString
-    numArgs* {.importc: "num_args".}: cint
-    args* {.importc: "args".}: ptr GodotSignalArgument
-    numDefaultArgs* {.importc: "num_default_args".}: cint
-    defaultArgs* {.importc: "default_args".}: ptr Variant
+  GodotSignal* = object
+    name*: GodotString
+    numArgs*: cint
+    args*: ptr GodotSignalArgument
+    numDefaultArgs*: cint
+    defaultArgs*: ptr Variant
 
 proc godotScriptRegisterSignal*(libHandle: pointer; name: cstring;
                                 signal: GodotSignal) {.
-    importc: "godot_nativescript_register_signal",
-    header: "godot_nativescript.h".}
+    importc: "godot_nativescript_register_signal".}
 
 proc getUserdata*(instance: ptr GodotObject): pointer {.
-    importc: "godot_nativescript_get_userdata", header: "godot_nativescript.h".}
+    importc: "godot_nativescript_get_userdata".}
 
 proc godotNew*(p_classname: cstring): ptr GodotObject {.
-  importc: "godot_nativescript_new", header: "godot_nativescript.h".}
+  importc: "godot_nativescript_new".}
 
 proc godotStackBottom*(): pointer {.
-  importc: "godot_get_stack_bottom", header: "godot/gdnative.h".}
+  importc: "godot_get_stack_bottom".}
 
 proc deinit*(o: ptr GodotObject) {.
-    importc: "godot_object_destroy", header: "godot/gdnative.h".}
-
-# print using Godot's error handler list
-
-proc godotPrintError(description: cstring; function: cstring; file: cstring;
-                     line: cint) {.
-  importc: "godot_print_error", header: "godot/gdnative.h".}
-
-proc godotPrintWarning(description: cstring; function: cstring;
-                       file: cstring; line: cint) {.
-  importc: "godot_print_warning", header: "godot/gdnative.h".}
-
-proc godotPrint(message: GodotString) {.
-  importc: "godot_print", header: "godot/gdnative.h".}
-
-proc print*(message: string) {.inline.} =
-  let s = message.toGodotString()
-  godotPrint(s)
-
-proc print*(message: cstring) {.inline.} =
-  let s = message.toGodotString()
-  godotPrint(s)
-
-template printWarning*(warn: typed) =
-  let (filename, line) = instantiationInfo()
-  godotPrintWarning(cstring($warn), nil, cstring(filename), line.cint)
-
-template printError*(err: typed) =
-  let (filename, line) = instantiationInfo()
-  godotPrintError(cstring($err), nil, cstring(filename), line.cint)
+    importc: "godot_object_destroy".}

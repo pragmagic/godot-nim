@@ -190,7 +190,7 @@ proc `as`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): T =
     result = T(obj)
 
 proc getSingletonGodot*(name: cstring): ptr GodotObject {.
-    importc: "godot_global_get_singleton", header: "godot/gdnative.h".}
+    importc: "godot_global_get_singleton".}
 
 proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)

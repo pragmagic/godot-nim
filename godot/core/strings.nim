@@ -3,22 +3,21 @@
 import godotbase
 
 type
-  GodotString* {.importc: "godot_string", header: "godot/string.h",
-                 byref.} = object
+  GodotString* {.byref.} = object
+    p: pointer
 
 proc initGodotString(dest: var GodotString) {.
-    importc: "godot_string_new", header: "godot/string.h".}
+    importc: "godot_string_new".}
 proc initGodotString(dest: var GodotString; src: GodotString) {.
-    importc: "godot_string_new_copy", header: "godot/string.h".}
+    importc: "godot_string_new_copy".}
 proc initGodotString(dest: var GodotString; contents: cstring;
                       size: cint) {.
-    importc: "godot_string_new_data", header: "godot/string.h".}
+    importc: "godot_string_new_data".}
   ## Initializes ``dest`` from UTF-8 ``contents``
 proc getData(self: GodotString; dest: cstring;
              size: var cint) {.
     noSideEffect
-    importc: "godot_string_get_data",
-    header: "godot/string.h".}
+    importc: "godot_string_get_data".}
   ## Converts ``self`` into UTF-8 encoding, putting the result into ``dest``.
 
 proc len*(self: GodotString): cint {.inline.} =
@@ -26,19 +25,15 @@ proc len*(self: GodotString): cint {.inline.} =
   getData(self, nil, result)
 
 proc cstring*(self: GodotString): cstring {.
-    importc: "godot_string_c_str", header: "godot/string.h".}
+    importc: "godot_string_c_str".}
 proc `==`*(self, b: GodotString): bool {.
-    importc: "godot_string_operator_equal",
-    header: "godot/string.h".}
+    importc: "godot_string_operator_equal".}
 proc `<`*(self, b: GodotString): bool {.
-    importc: "godot_string_operator_less",
-    header: "godot/string.h".}
+    importc: "godot_string_operator_less".}
 proc `&`*(self, b: GodotString): GodotString {.
-    importc: "godot_string_operator_plus",
-    header: "godot/string.h".}
+    importc: "godot_string_operator_plus".}
 
-proc deinit*(self: var GodotString) {.importc: "godot_string_destroy",
-                                      header: "godot/string.h".}
+proc deinit*(self: var GodotString) {.importc: "godot_string_destroy".}
 proc `=destroy`(self: GodotString) {.inline.} =
   unsafeAddr(self).deinit()
 
@@ -66,3 +61,14 @@ proc toGodotString*(s: cstring): GodotString {.inline.} =
     initGodotString(result)
   else:
     initGodotString(result, s, cint(s.len + 1))
+
+proc godotPrint(message: GodotString) {.
+  importc: "godot_print".}
+
+proc print*(message: string) {.inline.} =
+  let s = message.toGodotString()
+  godotPrint(s)
+
+proc print*(message: cstring) {.inline.} =
+  let s = message.toGodotString()
+  godotPrint(s)

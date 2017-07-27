@@ -3,74 +3,69 @@
 import godotbase, strings
 
 type
-  Color* {.importc: "godot_color", header: "godot/color.h", byref.} = object
+  Color* {.byref.} = object
+    r: float32
+    g: float32
+    b: float32
+    a: float32
 
-proc initColor(dest: var Color; r, g, b, a: float32) {.
-    importc: "godot_color_new_rgba", header: "godot/color.h".}
-proc initColor(dest: var Color; r, g, b: float32) {.
-    importc: "godot_color_new_rgb",
-    header: "godot/color.h".}
+proc initColor*(r, g, b: float32; a: float32 = 1.0'f32): Color {.inline.} =
+  Color(
+    r: r,
+    g: g,
+    b: b,
+    a: a
+  )
 
-proc initColor*(r, g, b, a: float32): Color {.inline.} =
-  initColor(result, r, g, b, a)
-
-proc initColor*(r, g, b: float32): Color {.inline.} =
-  initColor(result, r, g, b)
-
-proc r*(self: Color): float32 {.
-    importc: "godot_color_get_r", header: "godot/color.h".}
-proc `r=`*(self: var Color; r: float32) {.
-    importc: "godot_color_set_r", header: "godot/color.h".}
-proc g*(self: Color): float32 {.
-    importc: "godot_color_get_g", header: "godot/color.h".}
-proc `g=`*(self: var Color; g: float32) {.
-    importc: "godot_color_set_g", header: "godot/color.h".}
-proc b*(self: Color): float32 {.
-    importc: "godot_color_get_b", header: "godot/color.h".}
-proc `b=`*(self: var Color; b: float32) {.
-    importc: "godot_color_set_b", header: "godot/color.h".}
-proc a*(self: Color): float32 {.
-    importc: "godot_color_get_a", header: "godot/color.h".}
-proc `a=`*(self: var Color; a: float32) {.
-    importc: "godot_color_set_a", header: "godot/color.h".}
+proc initColor*(): Color {.inline.} =
+  ## Initializes black color with 1.0 alpha
+  initColor(0, 0, 0)
 
 proc h*(self: Color): float32 {.
-    importc: "godot_color_get_h", header: "godot/color.h".}
+    importc: "godot_color_get_h".}
 proc s*(self: Color): float32 {.
-    importc: "godot_color_get_s", header: "godot/color.h".}
+    importc: "godot_color_get_s".}
 proc v*(self: Color): float32 {.
-    importc: "godot_color_get_v", header: "godot/color.h".}
+    importc: "godot_color_get_v".}
 
-proc toGodotString*(self: Color): GodotString {.
-    importc: "godot_color_as_string", header: "godot/color.h".}
 proc `$`*(self: Color): string {.inline.} =
-  $self.toGodotString()
+  result = newStringOfCap(50)
+  result.add($self.r)
+  result.add(", ")
+  result.add($self.g)
+  result.add(", ")
+  result.add($self.b)
+  result.add(", ")
+  result.add($self.a)
 
 proc toHtml*(self: Color; with_alpha: bool): GodotString {.
-    importc: "godot_color_to_html", header: "godot/color.h".}
+    importc: "godot_color_to_html".}
 
-proc to32CInt(self: Color): cint {.
-    importc: "godot_color_to_32", header: "godot/color.h".}
-proc toARGB32CInt(self: Color): cint {.
-    importc: "godot_color_to_ARGB32", header: "godot/color.h".}
-
-proc to32*(self: Color): uint32 {.inline.}=
-  cast[uint32](to32CInt(self))
-proc toARGB32*(self: Color): uint32 {.inline.} =
-  cast[uint32](toARGB32CInt(self))
+proc toARGB32*(self: Color): uint32 =
+  result = uint8(self.a * 255)
+  result = (result shl 8) or uint8(self.r * 255)
+  result = (result shl 8) or uint8(self.g * 255)
+  result = (result shl 8) or uint8(self.b * 255)
 
 proc gray*(self: Color): float32 {.
-    importc: "godot_color_gray", header: "godot/color.h".}
+    importc: "godot_color_gray".}
 proc inverted*(self: Color): Color {.
-    importc: "godot_color_inverted", header: "godot/color.h".}
+    importc: "godot_color_inverted".}
 proc contrasted*(self: Color): Color {.
-    importc: "godot_color_contrasted", header: "godot/color.h".}
+    importc: "godot_color_contrasted".}
 proc lerp*(self: Color; b: Color; t: float32): Color {.
-    importc: "godot_color_linear_interpolate", header: "godot/color.h".}
+    importc: "godot_color_linear_interpolate".}
 proc blend*(self: Color; over: Color): Color {.
-    importc: "godot_color_blend", header: "godot/color.h".}
+    importc: "godot_color_blend".}
 
-proc `==`*(self, b: Color): bool {.
-    importc: "godot_color_operator_equal", header: "godot/color.h".}
-proc `<`*(self, b: Color): bool {.
-    importc: "godot_color_operator_less", header: "godot/color.h".}
+proc `==`*(a, b: Color): bool =
+  a.r == b.r and a.g == b.g and a.b == b.b and a.a == b.a
+
+proc `<`*(a, b: Color): bool =
+  if a.r == b.r:
+    if a.g == b.g:
+      if a.b == b.b:
+        return a.a < b.a
+      return a.b < b.b
+    return a.g < b.g
+  return a.r < b.r

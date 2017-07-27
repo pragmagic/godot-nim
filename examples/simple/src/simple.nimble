@@ -1,10 +1,10 @@
 version       = "0.1.0"
 author        = "Xored Software, Inc."
-description   = "FPS Counter Sample"
+description   = "Simple Sample"
 license       = "MIT"
 bin           = @["simple"]
 
-requires "https://github.com/pragmagic/godot-nim.git >= 0.2.3 & < 0.3.0"
+requires "https://github.com/pragmagic/godot-nim.git >= 0.3.0 & < 0.4.0"
 
 task make, "build":
   const archPostfix = when sizeof(int) == 8: "_64" else: "_32"

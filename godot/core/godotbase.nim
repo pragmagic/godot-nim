@@ -1,8 +1,9 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
+import math
+
 type
-  Error* {.importc: "godot_error", header: "godot/gdnative.h",
-           size: sizeof(cint), pure.} = enum
+  Error* {.size: sizeof(cint), pure.} = enum
     OK,
     Failed,    ## Generic fail error
     Unavailable,    ## What is requested is unsupported/unavailable
@@ -59,17 +60,16 @@ type
 const MAX_ARG_COUNT* = 128
 
 type
-  GodotObject* {.importc: "godot_object", header: "godot/gdnative.h".} = object
-  Array* {.importc: "godot_array", header: "godot/array.h", byref.} = object
-  Variant* {.importc: "godot_variant",
-             header: "godot/variant.h", byref.} = object
+  GodotObject* = object
+  Array* {.byref.} = object
+    p: pointer
+  Variant* {.byref.} = object
+    data: array[24, byte]
 
 proc initArray(dest: var Array, src: Array) {.
-    importc: "godot_array_new_copy",
-    header: "godot/array.h".}
+    importc: "godot_array_new_copy".}
 
-proc deinit(self: var Array) {.importc: "godot_array_destroy",
-    header: "godot/array.h".}
+proc deinit(self: var Array) {.importc: "godot_array_destroy".}
 
 proc `=`(self: var Array, other: Array) {.inline.} =
   initArray(self, other)
@@ -78,10 +78,10 @@ proc `=destroy`(self: Array) {.inline.} =
   unsafeAddr(self).deinit()
 
 proc initVariant(dest: var Variant; src: Variant) {.
-    importc: "godot_variant_new_copy", header: "godot/variant.h".}
+    importc: "godot_variant_new_copy".}
 
 proc deinit*(self: var Variant) {.
-    importc: "godot_variant_destroy", header: "godot/variant.h".}
+    importc: "godot_variant_destroy".}
 
 proc `=`(self: var Variant, other: Variant) {.inline.} =
   initVariant(self, other)
@@ -92,16 +92,61 @@ proc `=destroy`(self: Variant) {.inline.} =
 # System Functions
 
 proc godotAlloc*(bytes: cint): pointer {.
-  importc: "godot_alloc", header: "godot/gdnative.h".}
+  importc: "godot_alloc".}
   ## Allocates the specified number of bytes.
   ## Using this instead of stdlib proc will help Godot track how much memory
   ## is in use in debug mode.
 proc godotRealloc*(p: pointer; bytes: cint): pointer {.
-  importc: "godot_realloc", header: "godot/gdnative.h".}
+  importc: "godot_realloc".}
   ## Reallocates the pointer for the specified number of bytes.
   ## Using this instead of stdlib proc will help Godot track how much memory
   ## is in use in debug mode.
-proc godotFree*(p: pointer) {.importc: "godot_free", header: "godot/gdnative.h".}
+proc godotFree*(p: pointer) {.importc: "godot_free".}
   ## Frees the memory pointed to by the pointer.
   ## Using this instead of stdlib proc will help Godot track how much memory
   ## is in use in debug mode.
+
+# print using Godot's error handler list
+
+proc godotPrintError(description: cstring; function: cstring; file: cstring;
+                     line: cint) {.
+  importc: "godot_print_error".}
+
+proc godotPrintWarning(description: cstring; function: cstring;
+                       file: cstring; line: cint) {.
+  importc: "godot_print_warning".}
+
+template printWarning*(warn: typed) =
+  let (filename, line) = instantiationInfo()
+  godotPrintWarning(cstring($warn), nil, cstring(filename), line.cint)
+
+template printError*(err: typed) =
+  let (filename, line) = instantiationInfo()
+  godotPrintError(cstring($err), nil, cstring(filename), line.cint)
+
+# math helpers
+
+const EPSILON = 0.00001'f32
+proc isEqualApprox*(a, b: float32): bool {.inline.} =
+  abs(a - b) < EPSILON
+
+proc isEqualApprox*(a, b: float64): bool {.inline.} =
+  abs(a - b) < EPSILON
+
+proc sign*(a: float32): float32 {.inline.} =
+  if a < 0: -1.0'f32 else: 1.0'f32
+
+proc sign*(a: float64): float64 {.inline.} =
+  if a < 0: -1.0'f64 else: 1.0'f64
+
+proc stepify*(value, step: float64): float64 =
+  if step != 0'f64:
+    floor(value / step + 0.5'f64) * step
+  else:
+    value
+
+proc stepify*(value, step: float32): float32 =
+  if step != 0'f32:
+    floor(value / step + 0.5'f32) * step
+  else:
+    value
