@@ -55,8 +55,14 @@ proc `$`*(self: GodotString): string =
 
 proc toGodotString*(s: string): GodotString {.inline.} =
   ## Converts the Nim string into ``GodotString``
-  initGodotString(result, unsafeAddr s[0], cint(s.len + 1))
+  if s.isNil:
+    initGodotString(result)
+  else:
+    initGodotString(result, unsafeAddr s[0], cint(s.len + 1))
 
 proc toGodotString*(s: cstring): GodotString {.inline.} =
   ## Converts the cstring into ``GodotString``
-  initGodotString(result, s, cint(s.len + 1))
+  if s.isNil:
+    initGodotString(result)
+  else:
+    initGodotString(result, s, cint(s.len + 1))
