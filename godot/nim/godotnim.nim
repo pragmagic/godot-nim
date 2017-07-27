@@ -563,7 +563,7 @@ proc godot_gdnative_init(options: ptr GodotNativeInitOptions) {.
 
 proc godot_gdnative_terminate(options: ptr GodotNativeTerminateOptions) {.
     cdecl, exportc, dynlib.} =
-  deallocHeap(runFinalizers = true, allowGcAfterwards = false)
+  deallocHeap(runFinalizers = false, allowGcAfterwards = false)
 
 proc godot_nativescript_thread_enter() {.
     cdecl, exportc, dynlib.} =
