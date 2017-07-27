@@ -287,7 +287,7 @@ proc godotVariantType*(T: typedesc[enum]): VariantType {.inline.} =
   VariantType.Int
 
 proc toGodot*[T: enum](self: T): Variant {.inline.} =
-  variant(ord(self))
+  variant(int64(ord(self)))
 
 proc fromGodot*[T: enum](self: var T, val: Variant): ConversionResult =
   if val.getType() == VariantType.Int:
