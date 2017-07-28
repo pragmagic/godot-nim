@@ -34,3 +34,10 @@ task "build", "Builds the client for the current platform":
   genGodotApi()
   withDir "src":
     direShell("nimble", "make")
+
+task "clean", "Remove files produced by build":
+  removeDir("nimcache")
+  removeDir("src"/"nimcache")
+  removeDir("godotapi")
+  removeDir("project"/"_dlls")
+  removeFile("nakefile")
