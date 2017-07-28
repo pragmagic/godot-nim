@@ -230,8 +230,7 @@ macro invokeVarArgs(procIdent, objIdent;
       invocation.add(argIdent)
     if hasReturnValue:
       let theCall = newNimNode(nnkBracketExpr).add(newNimNode(nnkDotExpr).add(
-        newCall("toGodot", newCall("newVariant", invocation)),
-        ident("godotVariant")))
+        newCall("toGodot", invocation), ident("godotVariant")))
       branchBody.add(getAst(initGodotVariantCall(ident("result"), theCall)))
     else:
       branchBody.add(invocation)
