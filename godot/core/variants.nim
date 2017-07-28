@@ -36,13 +36,23 @@ proc newVariant*(b: bool): Variant {.inline.} =
   new(result, variantFinalizer)
   initGodotVariant(result.godotVariant[], b)
 
-proc newVariant*(i: uint64): Variant {.inline.} =
-  new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], i)
+# resolves Nim call ambiguities well
+template numConstructor(T, ConvT) =
+  proc newVariant*(i: T): Variant {.inline.} =
+    new(result, variantFinalizer)
+    initGodotVariant(result.godotVariant[], ConvT(i))
 
-proc newVariant*(i: int64): Variant {.inline.} =
-  new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], i)
+numConstructor(uint8, uint64)
+numConstructor(uint16, uint64)
+numConstructor(uint32, uint64)
+numConstructor(uint64, uint64)
+numConstructor(uint, uint64)
+
+numConstructor(int8, int64)
+numConstructor(int16, int64)
+numConstructor(int32, int64)
+numConstructor(int64, int64)
+numConstructor(int, int64)
 
 proc newVariant*(r: cdouble): Variant {.inline.} =
   new(result, variantFinalizer)
