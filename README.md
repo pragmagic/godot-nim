@@ -2,6 +2,8 @@
 
 Nim bindings for Godot 3.0 based on [GDNative](https://godotengine.org/article/dlscript-here).
 
+Documentation is coming. You can learn from the [sample project](examples/simple) in the meantime.
+
 ## Links
 
 - [Godot Engine](http://www.godotengine.org/)
@@ -9,6 +11,6 @@ Nim bindings for Godot 3.0 based on [GDNative](https://godotengine.org/article/d
 
 ## License
 
-This project is licensed under the MIT license. Read [LICENSE](https://github.com/pragmagic/godot-nim/blob/master/LICENSE) file for details.
+This project is licensed under the MIT license. Read [LICENSE](LICENSE) file for details.
 
 Copyright (c) 2017 Xored Software, Inc.
