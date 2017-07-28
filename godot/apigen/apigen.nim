@@ -604,7 +604,8 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
 proc generateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
                     name: PNode, godotMethodName: string,
                     typ: GodotType, args: seq[MethodArg],
-                    returnType: string, isVirtual, isBase, withImplementation: bool) =
+                    returnType: string,
+                    isVirtual, isBase, withImplementation: bool) =
   doGenerateMethod(
     tree, methodBindRegistry, name, godotMethodName, typ,
     args, returnType, isVirtual, isBase, withImplementation)
@@ -666,8 +667,14 @@ proc makeMethod(types: Table[string, GodotType], tree: PNode,
     args.add(("variantArgs", "Variant", JsonNode(nil), true))
 
   let godotName = methodObj["name"].str
+  var nimName = toNimStyle(godotName)
+  if not godotName.startsWith('_'):
+    for meth in typ.jsonNode["methods"]:
+      if meth["name"].str == '_' & godotName:
+        nimName = nimName & "Impl"
+
   generateMethod(tree, methodBindRegistry,
-                 ident(toNimStyle(godotName)), methodObj["name"].str,
+                 ident(nimName), methodObj["name"].str,
                  typ, args,
                  returnType, methodObj["is_virtual"].bval, isBase,
                  withImplementation)
