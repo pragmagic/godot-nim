@@ -2,7 +2,7 @@
 
 import strutils
 import godot
-import engine, label, resource_loader, packed_scene
+import engine, label
 
 gdobj FPSCounter of Label:
   var lastFPS: float32
