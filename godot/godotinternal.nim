@@ -180,7 +180,7 @@ type
     meth*:
       proc (obj: ptr GodotObject; methodData: pointer;
             userData: pointer; numArgs: cint;
-            args: var ptr array[MAX_ARG_COUNT, GodotVariant]):
+            args: var array[MAX_ARG_COUNT, ptr GodotVariant]):
               GodotVariant {.noconv.}
     methodData*: pointer
     freeFunc*: proc (a2: pointer) {.noconv.}
@@ -263,6 +263,7 @@ proc getClassName*(o: ptr GodotObject): string =
   var ret: GodotString
   getClassMethodBind.ptrCall(o, nil, addr ret)
   result = $ret
+  deinit(ret)
   if result.len > 2 and result[^2] == 'S' and result[^1] == 'W':
     # There are physics type not known by ClassDB
     result = result[0..result.len-3]

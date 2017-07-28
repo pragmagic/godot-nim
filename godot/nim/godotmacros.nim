@@ -193,8 +193,8 @@ macro invokeVarArgs(procIdent, objIdent;
   ##     error(...)
 
   template conv(procLit, argT, argSeq, idx, argIdent, errIdent) =
-    let v = newVariant(argSeq[idx])
-    v.markNoDeinit() # args should be destroyed externally
+    let v = newVariant(argSeq[idx][])
+    v.markNoDeinit() # args will be destroyed externally
     let (argIdent, errIdent) = godotToNim[argT](v)
     if errIdent != ConversionResult.OK:
       let errorKind = if errIdent == ConversionResult.TypeError: "a type error"
@@ -202,7 +202,7 @@ macro invokeVarArgs(procIdent, objIdent;
       printError(
         "Failed to invoke Nim procedure " & $procLit &
         ": " & errorKind & " has occurred when converting argument " & $idx &
-        " of Godot type " & $argSeq[idx].getType())
+        " of Godot type " & $argSeq[idx][].getType())
       return
 
   # these help to avoid exporting internal modules
@@ -439,7 +439,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                                argTypes, methFuncIdent, hasReturnValue) =
     proc methFuncIdent(obj: ptr GodotObject, methodData: pointer,
                        userData: pointer, numArgs: cint,
-                       args: var ptr array[MAX_ARG_COUNT, GodotVariant]):
+                       args: var array[MAX_ARG_COUNT, ptr GodotVariant]):
                       GodotVariant {.noconv.} =
       let self = cast[classNameIdent](userData)
       when defined(release):
