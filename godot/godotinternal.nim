@@ -34,6 +34,7 @@ type
     coreApiHash*: uint64
     editorApiHash*: uint64
     noApiHash*: uint64
+    gdNativeLibrary*: ptr GodotObject
 
   GodotNativeTerminateOptions* = object
     inEditor*: bool
@@ -234,8 +235,9 @@ proc godotScriptRegisterSignal*(libHandle: pointer; name: cstring;
 proc getUserdata*(instance: ptr GodotObject): pointer {.
     importc: "godot_nativescript_get_userdata".}
 
-proc godotNew*(p_classname: cstring): ptr GodotObject {.
-  importc: "godot_nativescript_new".}
+type ClassConstructor = proc (): ptr GodotObject {.noconv.}
+proc getClassConstructor*(className: cstring): ClassConstructor {.
+  importc: "godot_get_class_constructor".}
 
 proc godotStackBottom*(): pointer {.
   importc: "godot_get_stack_bottom".}
@@ -256,7 +258,7 @@ proc godotPrintWarning*(description: cstring; function: cstring;
 proc godotPrint*(message: GodotString) {.
   importc: "godot_print".}
 
-var getClassMethodBind {.threadvar.}: ptr GodotMethodBind
+var getClassMethodBind: ptr GodotMethodBind
 proc getClassName*(o: ptr GodotObject): string =
   if getClassMethodBind.isNil:
     getClassMethodBind = getMethod(cstring"Object", cstring"get_class")

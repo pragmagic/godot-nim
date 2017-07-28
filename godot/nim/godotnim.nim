@@ -68,6 +68,9 @@ proc print*(message: cstring) {.inline.} =
   s.deinit()
 
 var classRegistry {.threadvar.}: TableRef[cstring, ObjectInfo]
+var classRegistryStatic {.compileTime.}: TableRef[cstring, ObjectInfo]
+static:
+  classRegistryStatic = newTable[cstring, ObjectInfo]()
 
 static:
   import sets, strutils
@@ -148,12 +151,20 @@ template registerClass*(T: typedesc; godotClassName: cstring,
 
   const base = baseNativeType(T)
   const isRef: bool = isReference(T)
-  classRegistry[godotClassName] = ObjectInfo(
+  let objInfo = ObjectInfo(
     constructor: constructor,
     baseNativeClass: base,
     isNative: isNativeParam,
     isRef: isRef
   )
+  classRegistry[godotClassName] = objInfo
+  static:
+    let objInfoStatic = ObjectInfo(
+      baseNativeClass: base,
+      isNative: isNativeParam,
+      isRef: isRef
+    )
+    classRegistryStatic[godotClassName] = objInfoStatic
   when isRef:
     static:
       refClasses.add(T.name)
@@ -237,12 +248,48 @@ proc getSingleton*[T: NimGodotObject](): T =
   else:
     result = asNimGodotObject[T](singleton)
 
+var gdNativeLibraryObj: ptr GodotObject
+
+var setClassNameMethod: ptr GodotMethodBind
+var setLibraryMethod: ptr GodotMethodBind
+var newMethod: ptr GodotMethodBind
+type
+  PtrCallArgType = ptr array[MAX_ARG_COUNT, pointer]
+proc newOwnObj[T: NimGodotObject](name: cstring): T =
+  let newNativeScript = getClassConstructor(cstring"NativeScript")()
+  if setClassNameMethod.isNil:
+    setClassNameMethod =
+      getMethod(cstring"NativeScript", cstring"set_class_name")
+  if setLibraryMethod.isNil:
+    setLibraryMethod =
+      getMethod(cstring"NativeScript", cstring"set_library")
+  if newMethod.isNil:
+    newMethod = getMethod(cstring"NativeScript", cstring"new")
+  var godotStrName = name.toGodotString()
+  var argPtr: pointer = addr godotStrName
+  setClassNameMethod.ptrCall(
+    newNativeScript, cast[PtrCallArgType](addr argPtr), nil)
+  deinit(godotStrName)
+  setLibraryMethod.ptrCall(
+    newNativeScript, cast[PtrCallArgType](addr gdNativeLibraryObj), nil)
+
+  var err: VariantCallError
+  var ret = newMethod.call(newNativeScript, nil, 0, err)
+  if err.error != VariantCallErrorType.OK:
+    printError("Failed to invoke 'new' on NativeScript for " & $name)
+  elif ret.getType() != VariantType.Object:
+    printError("Expected that NativeScript::new returns Object, " &
+               "but it returned: " & $ret.getType())
+  else:
+    result = asNimGodotObject[T](ret.asGodotObject())
+  ret.deinit()
+
 proc gdnew*[T: NimGodotObject](): T =
   const godotName = toGodotName(T)
-  let obj = godotNew(godotName)
-  if obj.isNil:
-    printError("godot_new returned nil for type " & $godotName)
-  result = asNimGodotObject[T](obj)
+  const objInfo = classRegistryStatic[godotName]
+  result = when objInfo.isNative:
+             asNimGodotObject[T](getClassConstructor(godotName)())
+           else: newOwnObj[T](godotName)
 
 proc newCallError*(err: VariantCallError): ref CallError =
   let msg = case err.error:
@@ -583,7 +630,7 @@ proc godot_nativescript_init(handle: pointer) {.
 
 proc godot_gdnative_init(options: ptr GodotNativeInitOptions) {.
     cdecl, exportc, dynlib.} =
-  discard
+  gdNativeLibraryObj = options.gdNativeLibrary
 
 proc godot_gdnative_terminate(options: ptr GodotNativeTerminateOptions) {.
     cdecl, exportc, dynlib.} =
