@@ -83,20 +83,3 @@ proc stepify*(value, step: float32): float32 =
     floor(value / step + 0.5'f32) * step
   else:
     value
-
-# System Functions
-
-proc godotAlloc*(bytes: cint): pointer {.
-  importc: "godot_alloc".}
-  ## Allocates the specified number of bytes.
-  ## Using this instead of stdlib proc will help Godot track how much memory
-  ## is in use in debug mode.
-proc godotRealloc*(p: pointer; bytes: cint): pointer {.
-  importc: "godot_realloc".}
-  ## Reallocates the pointer for the specified number of bytes.
-  ## Using this instead of stdlib proc will help Godot track how much memory
-  ## is in use in debug mode.
-proc godotFree*(p: pointer) {.importc: "godot_free".}
-  ## Frees the memory pointed to by the pointer.
-  ## Using this instead of stdlib proc will help Godot track how much memory
-  ## is in use in debug mode.

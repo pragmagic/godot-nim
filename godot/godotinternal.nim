@@ -269,3 +269,20 @@ proc getClassName*(o: ptr GodotObject): string =
   if result.len > 2 and result[^2] == 'S' and result[^1] == 'W':
     # There are physics type not known by ClassDB
     result = result[0..result.len-3]
+
+# System Functions
+
+proc godotAlloc*(bytes: cint): pointer {.
+  importc: "godot_alloc".}
+  ## Allocates the specified number of bytes.
+  ## Using this instead of stdlib proc will help Godot track how much memory
+  ## is in use in debug mode.
+proc godotRealloc*(p: pointer; bytes: cint): pointer {.
+  importc: "godot_realloc".}
+  ## Reallocates the pointer for the specified number of bytes.
+  ## Using this instead of stdlib proc will help Godot track how much memory
+  ## is in use in debug mode.
+proc godotFree*(p: pointer) {.importc: "godot_free".}
+  ## Frees the memory pointed to by the pointer.
+  ## Using this instead of stdlib proc will help Godot track how much memory
+  ## is in use in debug mode.
