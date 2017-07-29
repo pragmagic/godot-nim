@@ -84,34 +84,6 @@ proc stepify*(value, step: float32): float32 =
   else:
     value
 
-import "../internal/godotinternaltypes.nim"
-
-type
-  Variant* = ref object
-    godotVariant: GodotVariant
-    noDeinit: bool # used to avoid copying when passing the variant to Godot
-
-  Array* = ref object
-    godotArray: GodotArray
-
-proc markNoDeinit*(v: Variant) {.inline.} =
-  ## Makes it so that internal GodotVariant object will not be destroyed
-  ## when the reference is gone. Use only if you know what you are doing.
-  v.noDeinit = true
-
-proc isNoDeinit*(v: Variant): bool {.inline.} =
-  v.noDeinit
-
-proc godotArray*(arr: Array): ptr GodotArray {.inline.} =
-  ## WARNING: do not keep the returned value for longer than the lifetime of
-  ## ``arr``
-  addr arr.godotArray
-
-proc godotVariant*(v: Variant): ptr GodotVariant {.inline.} =
-  ## WARNING: do not keep the returned value for longer than the lifetime of
-  ## ``v``
-  addr v.godotVariant
-
 # System Functions
 
 proc godotAlloc*(bytes: cint): pointer {.

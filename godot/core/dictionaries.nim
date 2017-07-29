@@ -1,7 +1,6 @@
 # Copyright 2017 Xored Software, Inc.
 
 import hashes
-import godotbase
 import "../internal/godotinternaltypes.nim", "../internal/godotstrings.nim",
        "../internal/godotdictionaries.nim", "../internal/godotvariants.nim"
 
@@ -33,6 +32,8 @@ proc isEmpty*(self: Dictionary): bool {.inline.} =
 
 proc clear*(self: var Dictionary) {.inline.} =
   self.godotDictionary.clear()
+
+import variants, arrays
 
 proc contains*(self: Dictionary; key: Variant): bool {.inline.}=
   self.godotDictionary.contains(key.godotVariant[])

@@ -1,7 +1,5 @@
 # Copyright 2017 Xored Software, Inc.
 
-import godotbase
-
 import "../internal/godotnodepaths.nim", "../internal/godotstrings.nim"
 
 type

@@ -1,14 +1,70 @@
 # Copyright 2017 Xored Software, Inc.
 
-import godotbase, vector2, vector3, colors
+import vector2, vector3, colors
 import "../internal/godotpoolarrays.nim", "../internal/godotstrings.nim"
 
-# byte
+type
+  PoolByteArray* = ref object
+    godotPoolByteArray: GodotPoolByteArray
+  PoolIntArray* = ref object
+    godotPoolIntArray: GodotPoolIntArray
+  PoolRealArray* = ref object
+    godotPoolRealArray: GodotPoolRealArray
+  PoolVector2Array* = ref object
+    godotPoolVector2Array: GodotPoolVector2Array
+  PoolVector3Array* = ref object
+    godotPoolVector3Array: GodotPoolVector3Array
+  PoolColorArray* = ref object
+    godotPoolColorArray: GodotPoolColorArray
+  PoolStringArray* = ref object
+    godotPoolStringArray: GodotPoolStringArray
+
+proc godotPoolByteArray*(self: PoolByteArray):
+    ptr GodotPoolByteArray {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## the array.
+  addr self.godotPoolByteArray
+
+proc godotPoolIntArray*(self: PoolIntArray):
+    ptr GodotPoolIntArray {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## the array.
+  addr self.godotPoolIntArray
+
+proc godotPoolRealArray*(self: PoolRealArray):
+    ptr GodotPoolRealArray {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## the array.
+  addr self.godotPoolRealArray
+
+proc godotPoolVector2Array*(self: PoolVector2Array):
+    ptr GodotPoolVector2Array {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## the array.
+  addr self.godotPoolVector2Array
+
+proc godotPoolVector3Array*(self: PoolVector3Array):
+    ptr GodotPoolVector3Array {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## the array.
+  addr self.godotPoolVector3Array
+
+proc godotPoolColorArray*(self: PoolColorArray):
+    ptr GodotPoolColorArray {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## the array.
+  addr self.godotPoolColorArray
+
+proc godotPoolStringArray*(self: PoolStringArray):
+    ptr GodotPoolStringArray {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## the array.
+  addr self.godotPoolStringArray
+
+import godotbase, arrays
+
 template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
                          noData = false) =
-  type
-    T* = ref object
-      fieldName: GodotT
 
   proc poolArrayFinalizer(arr: T) =
     arr.fieldName.deinit()
@@ -39,11 +95,6 @@ template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
 
   proc len*(self: T): int {.inline.} =
     self.fieldName.len.int
-
-  proc fieldName*(self: T): ptr GodotT {.inline.} =
-    ## WARNING: do not keep the returned value for longer than the lifetime of
-    ## the array.
-    addr self.fieldName
 
   when not noData:
     proc add*(self: var T; data: DataT) {.inline.} =
@@ -87,7 +138,6 @@ definePoolArray(PoolVector3Array, GodotPoolVector3Array, Vector3,
 definePoolArray(PoolColorArray, GodotPoolColorArray, Color,
                 godotPoolColorArray, newPoolColorArray,
                 initGodotPoolColorArray)
-
 definePoolArray(PoolStringArray, GodotPoolStringArray, string,
                 godotPoolStringArray, newPoolStringArray,
                 initGodotPoolStringArray, true)

@@ -1,6 +1,6 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, planes, vector3
+import planes, vector3
 
 import "../internal/godotstrings.nim"
 

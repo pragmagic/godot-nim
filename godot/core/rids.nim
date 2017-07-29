@@ -1,5 +1,3 @@
-import godotbase
-
 import "../internal/godotinternaltypes.nim"
 
 type

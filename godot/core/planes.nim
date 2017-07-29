@@ -1,6 +1,6 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotbase, vector3
+import vector3
 
 import "../internal/godotstrings.nim"
 

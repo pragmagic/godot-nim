@@ -1,46 +1,56 @@
 import tables
 
-import godotbase
-import basis, nodepaths
-import planes, poolarrays, quats, rect2, rect3, rids
-import transforms, transform2d, vector2
-import vector3, colors
-
 import "../internal/godotinternaltypes.nim"
-import "../internal/godotvariants.nim", "../internal/godotpoolarrays.nim",
-       "../internal/godotstrings.nim", "../internal/godotnodepaths.nim"
+import "../internal/godotvariants.nim"
+import "../internal/godotpoolarrays.nim", "../internal/godotstrings.nim",
+       "../internal/godotnodepaths.nim"
+
+type
+  Variant* = ref object
+    godotVariant: GodotVariant
+    noDeinit: bool # used to avoid copying when passing the variant to Godot
 
 export VariantType, VariantCallErrorType, VariantCallError
 
+proc markNoDeinit*(v: Variant) {.inline.} =
+  ## Makes it so that internal GodotVariant object will not be destroyed
+  ## when the reference is gone. Use only if you know what you are doing.
+  v.noDeinit = true
+
+proc godotVariant*(v: Variant): ptr GodotVariant {.inline.} =
+  ## WARNING: do not keep the returned value for longer than the lifetime of
+  ## ``v``
+  addr v.godotVariant
+
 proc getType*(v: Variant): VariantType =
-  v.godotVariant[].getType()
+  v.godotVariant.getType()
 
 proc variantFinalizer(v: Variant) =
-  if not v.isNoDeinit:
-    v.godotVariant[].deinit()
+  if not v.noDeinit:
+    v.godotVariant.deinit()
 
 proc newVariant*(): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[])
+  initGodotVariant(result.godotVariant)
 
 proc newVariant*(v: Variant): Variant {.inline.} =
   ## Makes a copy
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], v.godotVariant[])
+  initGodotVariant(result.godotVariant, v.godotVariant)
 
 proc newVariant*(v: GodotVariant): Variant {.inline.} =
   new(result, variantFinalizer)
-  result.godotVariant[] = v
+  result.godotVariant = v
 
 proc newVariant*(b: bool): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], b)
+  initGodotVariant(result.godotVariant, b)
 
 # resolves Nim call ambiguities well
 template numConstructor(T, ConvT) =
   proc newVariant*(i: T): Variant {.inline.} =
     new(result, variantFinalizer)
-    initGodotVariant(result.godotVariant[], ConvT(i))
+    initGodotVariant(result.godotVariant, ConvT(i))
 
 numConstructor(uint8, uint64)
 numConstructor(uint16, uint64)
@@ -56,206 +66,207 @@ numConstructor(int, int64)
 
 proc newVariant*(r: cdouble): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], r)
-
-proc newVariant*(s: GodotString): Variant {.inline.} =
-  new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], s)
+  initGodotVariant(result.godotVariant, r)
 
 proc newVariant*(s: string): Variant {.inline.} =
   new(result, variantFinalizer)
   var godotStr = s.toGodotString()
-  initGodotVariant(result.godotVariant[], godotStr)
+  initGodotVariant(result.godotVariant, godotStr)
   godotStr.deinit()
+
+import basis, nodepaths
+import planes, poolarrays, quats, rect2, rect3, rids
+import transforms, transform2d, vector2
+import vector3, colors
 
 proc newVariant*(v2: Vector2): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], v2)
+  initGodotVariant(result.godotVariant, v2)
 
 proc newVariant*(rect2: Rect2): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], rect2)
+  initGodotVariant(result.godotVariant, rect2)
 
 proc newVariant*(v3: Vector3): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], v3)
+  initGodotVariant(result.godotVariant, v3)
 
 proc newVariant*(t2d: Transform2D): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], t2d)
+  initGodotVariant(result.godotVariant, t2d)
 
 proc newVariant*(plane: Plane): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], plane)
+  initGodotVariant(result.godotVariant, plane)
 
 proc newVariant*(quat: Quat): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], quat)
+  initGodotVariant(result.godotVariant, quat)
 
 proc newVariant*(rect3: Rect3): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], rect3)
+  initGodotVariant(result.godotVariant, rect3)
 
 proc newVariant*(basis: Basis): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], basis)
+  initGodotVariant(result.godotVariant, basis)
 
 proc newVariant*(trans: Transform): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], trans)
+  initGodotVariant(result.godotVariant, trans)
 
 proc newVariant*(color: Color): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], color)
+  initGodotVariant(result.godotVariant, color)
 
 proc newVariant*(nodePath: NodePath): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], nodePath.godotNodePath[])
+  initGodotVariant(result.godotVariant, nodePath.godotNodePath[])
 
 proc newVariant*(godotNodePath: GodotNodePath): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], godotNodePath)
+  initGodotVariant(result.godotVariant, godotNodePath)
 
 proc newVariant*(rid: RID): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], rid)
+  initGodotVariant(result.godotVariant, rid)
 
 proc newVariant*(obj: ptr GodotObject): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], obj)
+  initGodotVariant(result.godotVariant, obj)
 
 import arrays
 
 proc newVariant*(arr: Array): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], arr.godotArray[])
+  initGodotVariant(result.godotVariant, arr.godotArray[])
 
 proc newVariant*(pba: PoolByteArray): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], pba.godotPoolByteArray[])
+  initGodotVariant(result.godotVariant, pba.godotPoolByteArray[])
 
 proc newVariant*(pia: PoolIntArray): Variant {.inline.} =
-  initGodotVariant(result.godotVariant[], pia.godotPoolIntArray[])
+  initGodotVariant(result.godotVariant, pia.godotPoolIntArray[])
 
 proc newVariant*(pra: PoolRealArray): Variant {.inline.} =
-  initGodotVariant(result.godotVariant[], pra.godotPoolRealArray[])
+  initGodotVariant(result.godotVariant, pra.godotPoolRealArray[])
 
 proc newVariant*(psa: PoolStringArray): Variant {.inline.} =
-  initGodotVariant(result.godotVariant[], psa.godotPoolStringArray[])
+  initGodotVariant(result.godotVariant, psa.godotPoolStringArray[])
 
 proc newVariant*(pv2a: PoolVector2Array): Variant {.inline.} =
-  initGodotVariant(result.godotVariant[], pv2a.godotPoolVector2Array[])
+  initGodotVariant(result.godotVariant, pv2a.godotPoolVector2Array[])
 
 proc newVariant*(pv3a: PoolVector3Array): Variant {.inline.} =
-  initGodotVariant(result.godotVariant[], pv3a.godotPoolVector3Array[])
+  initGodotVariant(result.godotVariant, pv3a.godotPoolVector3Array[])
 
 proc newVariant*(pca: PoolColorArray): Variant {.inline.} =
-  initGodotVariant(result.godotVariant[], pca.godotPoolColorArray[])
+  initGodotVariant(result.godotVariant, pca.godotPoolColorArray[])
 
 import dictionaries
 
 proc newVariant*(dict: Dictionary): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant[], dict.godotDictionary[])
+  initGodotVariant(result.godotVariant, dict.godotDictionary[])
 
 proc asBool*(self: Variant): bool {.inline.} =
-  self.godotVariant[].asBool()
+  self.godotVariant.asBool()
 
 proc asUInt*(self: Variant): uint64 =
-  self.godotVariant[].asUInt()
+  self.godotVariant.asUInt()
 
 proc asInt*(self: Variant): int64 =
-  self.godotVariant[].asInt()
+  self.godotVariant.asInt()
 
 proc asReal*(self: Variant): cdouble =
-  self.godotVariant[].asReal()
+  self.godotVariant.asReal()
 
 proc asString*(self: Variant): string =
-  var s = self.godotVariant[].asGodotString()
+  var s = self.godotVariant.asGodotString()
   result = $s
   s.deinit()
 
 proc asVector2*(self: Variant): Vector2 =
-  self.godotVariant[].asVector2()
+  self.godotVariant.asVector2()
 
 proc asRect2*(self: Variant): Rect2 =
-  self.godotVariant[].asRect2()
+  self.godotVariant.asRect2()
 
 proc asVector3*(self: Variant): Vector3 =
-  self.godotVariant[].asVector3()
+  self.godotVariant.asVector3()
 
 proc asTransform2D*(self: Variant): Transform2D =
-  self.godotVariant[].asTransform2D()
+  self.godotVariant.asTransform2D()
 
 proc asPlane*(self: Variant): Plane =
-  self.godotVariant[].asPlane()
+  self.godotVariant.asPlane()
 
 proc asQuat*(self: Variant): Quat =
-  self.godotVariant[].asQuat()
+  self.godotVariant.asQuat()
 
 proc asRect3*(self: Variant): Rect3 =
-  self.godotVariant[].asRect3()
+  self.godotVariant.asRect3()
 
 proc asBasis*(self: Variant): Basis =
-  self.godotVariant[].asBasis()
+  self.godotVariant.asBasis()
 
 proc asTransform*(self: Variant): Transform =
-  self.godotVariant[].asTransform()
+  self.godotVariant.asTransform()
 
 proc asColor*(self: Variant): Color =
-  self.godotVariant[].asColor()
+  self.godotVariant.asColor()
 
 proc asNodePath*(self: Variant): NodePath =
-  result = newNodePath(self.godotVariant[].asNodePath())
+  result = newNodePath(self.godotVariant.asNodePath())
 
 proc asRID*(self: Variant): RID =
-  self.godotVariant[].asRID()
+  self.godotVariant.asRID()
 
 proc asGodotObject*(self: Variant): ptr GodotObject =
-  self.godotVariant[].asGodotObject()
+  self.godotVariant.asGodotObject()
 
 proc asArray*(self: Variant): Array =
-  newArray(self.godotVariant[].asGodotArray())
+  newArray(self.godotVariant.asGodotArray())
 
 proc asPoolByteArray*(self: Variant): PoolByteArray =
-  newPoolByteArray(self.godotVariant[].asGodotPoolByteArray())
+  newPoolByteArray(self.godotVariant.asGodotPoolByteArray())
 
 proc asPoolIntArray*(self: Variant): PoolIntArray =
-  newPoolIntArray(self.godotVariant[].asGodotPoolIntArray())
+  newPoolIntArray(self.godotVariant.asGodotPoolIntArray())
 
 proc asPoolRealArray*(self: Variant): PoolRealArray =
-  newPoolRealArray(self.godotVariant[].asGodotPoolRealArray())
+  newPoolRealArray(self.godotVariant.asGodotPoolRealArray())
 
 proc asPoolStringArray*(self: Variant): PoolStringArray =
-  newPoolStringArray(self.godotVariant[].asGodotPoolStringArray())
+  newPoolStringArray(self.godotVariant.asGodotPoolStringArray())
 
 proc asPoolVector2Array*(self: Variant): PoolVector2Array =
-  newPoolVector2Array(self.godotVariant[].asGodotPoolVector2Array())
+  newPoolVector2Array(self.godotVariant.asGodotPoolVector2Array())
 
 proc asPoolVector3Array*(self: Variant): PoolVector3Array =
-  newPoolVector3Array(self.godotVariant[].asGodotPoolVector3Array())
+  newPoolVector3Array(self.godotVariant.asGodotPoolVector3Array())
 
 proc asPoolColorArray*(self: Variant): PoolColorArray =
-  newPoolColorArray(self.godotVariant[].asGodotPoolColorArray())
+  newPoolColorArray(self.godotVariant.asGodotPoolColorArray())
 
 proc asDictionary*(self: Variant): Dictionary {.inline.} =
-  newDictionary(self.godotVariant[].asGodotDictionary)
+  newDictionary(self.godotVariant.asGodotDictionary)
 
 proc hasMethod*(self: Variant; meth: string): bool =
   var s = meth.toGodotString()
-  result = self.godotVariant[].hasMethod(s)
+  result = self.godotVariant.hasMethod(s)
   s.deinit()
 
 proc `==`*(self, other: Variant): bool =
   if self.isNil and other.isNil: return true
   if self.isNil != other.isNil: return false
-  result = self.godotVariant[] == other.godotVariant[]
+  result = self.godotVariant == other.godotVariant
 
 proc `<`*(self, other: Variant): bool =
-  result = self.godotVariant[] < other.godotVariant[]
+  result = self.godotVariant < other.godotVariant
 
 proc hashCompare*(self, other: Variant): bool =
-  self.godotVariant[].hashCompare(other.godotVariant[])
+  self.godotVariant.hashCompare(other.godotVariant)
 
 proc booleanize*(self: Variant; isValid: var bool): bool =
-  self.godotVariant[].booleanize(isValid)
+  self.godotVariant.booleanize(isValid)
