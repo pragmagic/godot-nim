@@ -1,16 +1,16 @@
 version       = "0.1.0"
 author        = "Xored Software, Inc."
-description   = "Simple Sample"
+description   = "Godot-Nim Project Stub"
 license       = "MIT"
-bin           = @["simple"]
+bin           = @["stub"]
 
-requires "https://github.com/pragmagic/godot-nim.git >= 0.3.0 & < 0.4.0"
+requires "godot >= 0.3.0 & < 0.4.0"
 
 task make, "build":
-  const archPostfix = when sizeof(int) == 8: "_64" else: "_32"
+  const bitsPostfix = when sizeof(int) == 8: "_64" else: "_32"
   const libFile =
     when defined(windows):
-      "nim" & archPostfix & ".dll"
+      "nim" & bitsPostfix & ".dll"
     elif defined(ios):
       "nim_ios.dylib"
     elif defined(macosx):
@@ -18,7 +18,7 @@ task make, "build":
     elif defined(android):
       "nim_android.so"
     elif defined(linux):
-      "nim_linux" & archPostfix & ".so"
+      "nim_linux" & bitsPostfix & ".so"
     else: nil
   if libFile.isNil:
     raise newException(OSError, "Unsupported platform")

@@ -1,7 +1,7 @@
 config_version=3
 [application]
 
-config/name="Simple Sample"
+config/name="Godot-Nim Stub"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 

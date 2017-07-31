@@ -2,7 +2,7 @@
 
 Nim bindings for Godot 3.0 based on [GDNative](https://godotengine.org/article/dlscript-here).
 
-Documentation is coming. You can learn from the [sample project](examples/simple) in the meantime.
+Documentation is coming. You can learn from the [project stub](examples/stub) in the meantime.
 
 ## Links
 
