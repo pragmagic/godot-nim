@@ -13,6 +13,7 @@ type
     hint: string
     hintTip: string
     usage: string
+    isExported: bool
 
   MethodDecl = ref object
     name: string
@@ -123,7 +124,8 @@ proc identDefsToVarDecls(identDefs: NimNode): seq[VarDecl] =
       hint: hint,
       hintTip: hintTip,
       isNoGodot: isNoGodot,
-      usage: usage
+      usage: usage,
+      isExported: nameNode.isExported()
     ))
 
 proc parseMethod(meth: NimNode): MethodDecl =
@@ -375,7 +377,9 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     if not decl.defaultValue.isNil and decl.defaultValue.kind != nnkEmpty:
       parseError(decl.defaultValue,
                  "Default values are not supported for fields for now.")
-    recList.add(newIdentDefs(decl.name, decl.typ))
+    let name = if not decl.isExported: decl.name
+               else: postfix(decl.name, "*")
+    recList.add(newIdentDefs(name, decl.typ))
 
   # 2. {.this: self.} for convenience
   result.add(newNimNode(nnkPragma).add(newNimNode(nnkExprColonExpr).add(
