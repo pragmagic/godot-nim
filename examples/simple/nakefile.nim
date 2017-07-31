@@ -2,7 +2,7 @@
 
 import nake
 import os, ospaths, times
-import apigen.apigen
+import godotapigen
 
 proc cmdParams(): string =
   let params = commandLineParams()

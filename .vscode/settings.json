@@ -6,7 +6,7 @@
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
   "nim.project": ["godot/godot.nim",
-                  "godot/apigen/apigen.nim"],
+                  "godot/godotapigen.nim"],
   "nim.buildOnSave": false,
   "nim.lintOnSave": true,
   "nim.licenseString": "# Copyright 2017 Xored Software, Inc.\n\n",

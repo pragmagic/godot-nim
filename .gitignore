@@ -1,4 +1,8 @@
 nimcache/
-.DS_Store
+
 /godot/apigen/apigen
 /godot/apigen/apigen.exe
+/godot/godotapigen
+/godot/godotapigen.exe
+
+.DS_Store
