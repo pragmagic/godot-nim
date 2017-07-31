@@ -4,7 +4,13 @@ import asyncdispatch
 import godot, node
 
 gdobj NimRuntime of Node:
-  method process*(delta: float64) =
+  method enterTree*() =
+    discard getTree().connect("idle_frame", self, "idle", newArray())
+
+  method exitTree*() =
+    getTree().disconnect("idle_frame", self, "idle")
+
+  proc idle*() {.gdExport.} =
     if asyncdispatch.hasPendingOperations():
       poll(0)
     GC_step(2000, false, 0)
