@@ -35,6 +35,13 @@ proc clear*(self: var Dictionary) {.inline.} =
 
 import variants, arrays
 
+proc newVariant*(dict: Dictionary): Variant {.inline.} =
+  new(result, variantFinalizer)
+  initGodotVariant(result.godotVariant[], dict.godotDictionary)
+
+proc asDictionary*(self: Variant): Dictionary {.inline.} =
+  newDictionary(self.godotVariant[].asGodotDictionary)
+
 proc contains*(self: Dictionary; key: Variant): bool {.inline.}=
   self.godotDictionary.contains(key.godotVariant[])
 
@@ -46,8 +53,6 @@ proc del*(self: var Dictionary; key: Variant) {.inline.} =
 
 proc hash*(self: Dictionary): Hash {.inline.} =
   hash(self.godotDictionary.godotHash())
-
-import arrays, variants
 
 proc keys*(self: Dictionary): Array {.inline.} =
   newArray(self.godotDictionary.keys())
@@ -79,16 +84,16 @@ proc toJson*(self: Dictionary): string {.inline.} =
   result = $s
   s.deinit()
 
-iterator keys*(dict: Dictionary): Variant {.inline.} =
+iterator keys*(dict: Dictionary): Variant =
   let keyArr = dict.keys()
   for key in keyArr:
     yield key
 
-iterator values*(dict: Dictionary): Variant {.inline.} =
+iterator values*(dict: Dictionary): Variant =
   let valArr = dict.values()
   for val in valArr:
     yield val
 
-iterator pairs*(dict: Dictionary): tuple[key, val: Variant] {.inline.} =
+iterator pairs*(dict: Dictionary): tuple[key, val: Variant] =
   for key in keys(dict):
     yield (key, dict[key])

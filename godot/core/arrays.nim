@@ -23,7 +23,7 @@ proc newArray*(arr: GodotArray): Array {.inline.} =
   new(result, arrayFinalizer)
   result.godotArray = arr
 
-import poolarrays, variants
+import poolarrays
 
 proc newArray*(pca: PoolColorArray): Array {.inline.} =
   new(result, arrayFinalizer)
@@ -127,10 +127,10 @@ proc len*(self: Array): int {.inline.} =
 proc sort*(self: var Array) {.inline.} =
   self.godotArray.sort()
 
-iterator items*(arr: Array): Variant {.inline.} =
+iterator items*(arr: Array): Variant =
   for i in 0..<arr.len:
     yield arr[i]
 
-iterator pairs*(arr: Array): tuple[key: int, val: Variant] {.inline.} =
+iterator pairs*(arr: Array): tuple[key: int, val: Variant] =
   for i in 0..<arr.len:
     yield (i, arr[i])

@@ -25,7 +25,7 @@ proc godotVariant*(v: Variant): ptr GodotVariant {.inline.} =
 proc getType*(v: Variant): VariantType =
   v.godotVariant.getType()
 
-proc variantFinalizer(v: Variant) =
+proc variantFinalizer*(v: Variant) =
   if not v.noDeinit:
     v.godotVariant.deinit()
 
@@ -75,7 +75,7 @@ proc newVariant*(s: string): Variant {.inline.} =
   godotStr.deinit()
 
 import basis, nodepaths
-import planes, poolarrays, quats, rect2, rect3, rids
+import planes, quats, rect2, rect3, rids
 import transforms, transform2d, vector2
 import vector3, colors
 
@@ -135,7 +135,7 @@ proc newVariant*(obj: ptr GodotObject): Variant {.inline.} =
   new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, obj)
 
-import arrays
+import arrays, poolarrays
 
 proc newVariant*(arr: Array): Variant {.inline.} =
   new(result, variantFinalizer)
@@ -162,12 +162,6 @@ proc newVariant*(pv3a: PoolVector3Array): Variant {.inline.} =
 
 proc newVariant*(pca: PoolColorArray): Variant {.inline.} =
   initGodotVariant(result.godotVariant, pca.godotPoolColorArray[])
-
-import dictionaries
-
-proc newVariant*(dict: Dictionary): Variant {.inline.} =
-  new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant, dict.godotDictionary[])
 
 proc asBool*(self: Variant): bool {.inline.} =
   self.godotVariant.asBool()
@@ -248,9 +242,6 @@ proc asPoolVector3Array*(self: Variant): PoolVector3Array =
 
 proc asPoolColorArray*(self: Variant): PoolColorArray =
   newPoolColorArray(self.godotVariant.asGodotPoolColorArray())
-
-proc asDictionary*(self: Variant): Dictionary {.inline.} =
-  newDictionary(self.godotVariant.asGodotDictionary)
 
 proc hasMethod*(self: Variant; meth: string): bool =
   var s = meth.toGodotString()
