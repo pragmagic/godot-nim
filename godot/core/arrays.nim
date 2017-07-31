@@ -1,7 +1,7 @@
 # Copyright 2017 Xored Software, Inc.
 
 import hashes
-import "../internal/godotinternaltypes.nim", "../internal/godotarrays.nim"
+import internal.godotinternaltypes, internal.godotarrays
 
 type
   Array* = ref object

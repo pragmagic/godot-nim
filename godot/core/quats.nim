@@ -1,7 +1,7 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
 import vector3
-import "../internal/godotstrings.nim"
+import internal.godotstrings
 
 type
   Quat* {.byref.} = object

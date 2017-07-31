@@ -48,11 +48,11 @@ type
 import godotinternaltypes, godotpoolarrays, godotstrings, godotnodepaths,
        godotdictionaries
 
-import "../core/vector2.nim", "../core/rect2.nim",
-       "../core/vector3.nim", "../core/transform2d.nim", "../core/planes.nim",
-       "../core/quats.nim", "../core/rect3.nim", "../core/basis.nim",
-       "../core/transforms.nim", "../core/colors.nim", "../core/rids.nim",
-       "../core/rect2.nim"
+import core.vector2, core.rect2,
+       core.vector3, core.transform2d, core.planes,
+       core.quats, core.rect3, core.basis,
+       core.transforms, core.colors, core.rids,
+       core.rect2
 
 proc getType*(p: GodotVariant): VariantType {.
     importc: "godot_variant_get_type".}

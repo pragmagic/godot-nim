@@ -1,6 +1,6 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import "../internal/godotstrings.nim"
+import internal.godotstrings
 
 type
   Vector2* {.byref.} = object

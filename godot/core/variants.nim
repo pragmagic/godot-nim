@@ -1,9 +1,9 @@
 import tables
 
-import "../internal/godotinternaltypes.nim"
-import "../internal/godotvariants.nim"
-import "../internal/godotpoolarrays.nim", "../internal/godotstrings.nim",
-       "../internal/godotnodepaths.nim"
+import internal.godotinternaltypes
+import internal.godotvariants
+import internal.godotpoolarrays, internal.godotstrings,
+       internal.godotnodepaths
 
 type
   Variant* = ref object

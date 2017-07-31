@@ -1,7 +1,7 @@
 # Copyright 2017 Xored Software, Inc.
 
 import vector2, vector3, colors
-import "../internal/godotpoolarrays.nim", "../internal/godotstrings.nim"
+import internal.godotpoolarrays, internal.godotstrings
 
 type
   PoolByteArray* = ref object

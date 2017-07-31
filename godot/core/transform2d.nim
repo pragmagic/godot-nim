@@ -2,7 +2,7 @@
 
 import vector2, rect2
 
-import "../internal/godotstrings.nim"
+import internal.godotstrings
 
 type
   Transform2D* {.byref.} = object

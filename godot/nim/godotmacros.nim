@@ -1,8 +1,8 @@
 # Copyright 2017 Xored Software, Inc.
 
 import macros, tables, typetraits
-import "../godotinternal.nim", "../internal/godotvariants.nim"
-import godotnim, "../core/variants.nim"
+import "../godotinternal.nim", internal.godotvariants
+import godotnim, core.variants
 
 type
   VarDecl = ref object

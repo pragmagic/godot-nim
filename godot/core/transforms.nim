@@ -2,7 +2,7 @@
 
 import basis, vector3, planes, rect3
 
-import "../internal/godotstrings.nim"
+import internal.godotstrings
 
 type
   Transform* {.byref.} = object

@@ -2,7 +2,7 @@
 
 import vector2
 
-import "../internal/godotstrings.nim"
+import internal.godotstrings
 
 type
   Rect2* {.byref.} = object

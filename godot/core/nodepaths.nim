@@ -1,6 +1,6 @@
 # Copyright 2017 Xored Software, Inc.
 
-import "../internal/godotnodepaths.nim", "../internal/godotstrings.nim"
+import internal.godotnodepaths, internal.godotstrings
 
 type
   NodePath* = ref object

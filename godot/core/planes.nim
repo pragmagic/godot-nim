@@ -2,7 +2,7 @@
 
 import vector3
 
-import "../internal/godotstrings.nim"
+import internal.godotstrings
 
 type
   Plane* {.byref.} = object

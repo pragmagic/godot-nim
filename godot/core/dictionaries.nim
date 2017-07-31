@@ -1,8 +1,8 @@
 # Copyright 2017 Xored Software, Inc.
 
 import hashes
-import "../internal/godotinternaltypes.nim", "../internal/godotstrings.nim",
-       "../internal/godotdictionaries.nim", "../internal/godotvariants.nim"
+import internal.godotinternaltypes, internal.godotstrings,
+       internal.godotdictionaries, internal.godotvariants
 
 type
   Dictionary* = ref object

@@ -2,8 +2,8 @@
 
 
 import godotinternaltypes, godotstrings
-import "../core/godotbase.nim", "../core/colors.nim",
-       "../core/vector2.nim", "../core/vector3.nim"
+import core.godotbase, core.colors,
+       core.vector2, core.vector3
 
 type
   GodotPoolByteArray* {.byref.} = object

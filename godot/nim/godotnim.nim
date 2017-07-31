@@ -1,13 +1,13 @@
 # Copyright 2017 Xored Software, Inc.
 
 import tables, typetraits, macros
-import "../core/godotbase.nim"
-import "../core/vector2.nim", "../core/rect2.nim",
-       "../core/vector3.nim", "../core/transform2d.nim",
-       "../core/planes.nim", "../core/quats.nim", "../core/rect3.nim",
-       "../core/basis.nim", "../core/transforms.nim", "../core/colors.nim",
-       "../core/nodepaths.nim", "../core/rids.nim", "../core/dictionaries.nim",
-       "../core/arrays.nim", "../core/poolarrays.nim", "../core/variants.nim"
+import core.godotbase
+import core.vector2, core.rect2,
+       core.vector3, core.transform2d,
+       core.planes, core.quats, core.rect3,
+       core.basis, core.transforms, core.colors,
+       core.nodepaths, core.rids, core.dictionaries,
+       core.arrays, core.poolarrays, core.variants
 import "../godotinternal.nim"
 
 ## Definition of NimGodotObject and converters for built-in types.
