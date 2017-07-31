@@ -1,10 +1,5 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-
-import godotinternaltypes, godotstrings
-import core.godotbase, core.colors,
-       core.vector2, core.vector3
-
 type
   GodotPoolByteArray* {.byref.} = object
     p: pointer
@@ -20,6 +15,9 @@ type
     p: pointer
   GodotPoolColorArray* {.byref.} = object
     p: pointer
+
+import godotstrings, godotarrays
+import core / [godotbase, colors, vector2, vector3]
 
 # byte
 

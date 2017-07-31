@@ -1,7 +1,7 @@
 # Copyright 2017 Xored Software, Inc.
 
 import macros, tables, typetraits
-import "../godotinternal.nim", internal.godotvariants
+import godotinternal, internal.godotvariants
 import godotnim, core.variants
 
 type

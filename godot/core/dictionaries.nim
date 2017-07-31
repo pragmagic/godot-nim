@@ -1,8 +1,7 @@
 # Copyright 2017 Xored Software, Inc.
 
 import hashes
-import internal.godotinternaltypes, internal.godotstrings,
-       internal.godotdictionaries, internal.godotvariants
+import internal / [godotstrings, godotdictionaries, godotvariants]
 
 type
   Dictionary* = ref object

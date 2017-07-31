@@ -1,9 +1,7 @@
 import tables
 
-import internal.godotinternaltypes
-import internal.godotvariants
-import internal.godotpoolarrays, internal.godotstrings,
-       internal.godotnodepaths
+import internal / [godotobjects, godotvariants, godotpoolarrays, godotstrings,
+                   godotnodepaths]
 
 type
   Variant* = ref object

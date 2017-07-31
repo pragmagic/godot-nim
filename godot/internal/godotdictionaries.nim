@@ -4,7 +4,7 @@ type
   GodotDictionary* {.byref.} = object
     p: pointer
 
-import godotinternaltypes, godotarrays, godotvariants, godotstrings
+import godotarrays, godotvariants, godotstrings
 
 proc initGodotDictionary*(dest: var GodotDictionary; src: GodotDictionary) {.
     importc: "godot_dictionary_new_copy".}

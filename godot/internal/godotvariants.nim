@@ -45,8 +45,11 @@ type
     argument*: cint
     expected*: VariantType
 
-import godotinternaltypes, godotpoolarrays, godotstrings, godotnodepaths,
-       godotdictionaries
+  GodotVariant* {.byref.} = object
+    data: array[24, byte]
+
+import godotobjects, godotarrays, godotpoolarrays,
+       godotstrings, godotnodepaths, godotdictionaries
 
 import core.vector2, core.rect2,
        core.vector3, core.transform2d, core.planes,

@@ -1,7 +1,11 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
+type
+  GodotArray* {.byref.} = object
+    p: pointer
+
 import hashes
-import godotinternaltypes, godotpoolarrays, godotvariants, godotstrings
+import godotobjects, godotpoolarrays, godotvariants, godotstrings
 
 proc initGodotArray*(dest: var GodotArray) {.
     importc: "godot_array_new".}

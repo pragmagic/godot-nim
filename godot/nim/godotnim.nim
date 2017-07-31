@@ -8,7 +8,7 @@ import core.vector2, core.rect2,
        core.basis, core.transforms, core.colors,
        core.nodepaths, core.rids, core.dictionaries,
        core.arrays, core.poolarrays, core.variants
-import "../godotinternal.nim"
+import godotinternal
 
 ## Definition of NimGodotObject and converters for built-in types.
 

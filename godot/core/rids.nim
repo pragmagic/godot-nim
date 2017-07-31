@@ -1,4 +1,4 @@
-import internal.godotinternaltypes
+import internal.godotobjects
 
 type
   RID* {.byref.} = object

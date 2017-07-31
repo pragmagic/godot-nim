@@ -1,10 +1,10 @@
 # Copyright 2017 Xored Software, Inc.
 
 import internal / [
-       godotinternaltypes, godotarrays, godotnodepaths, godotpoolarrays,
+       godotobjects, godotarrays, godotnodepaths, godotpoolarrays,
        godotstrings, godotvariants, godotdictionaries]
 
-export godotinternaltypes, godotarrays, godotnodepaths, godotpoolarrays,
+export godotobjects, godotarrays, godotnodepaths, godotpoolarrays,
        godotstrings, godotvariants, godotdictionaries
 
 const MAX_ARG_COUNT* = 128
