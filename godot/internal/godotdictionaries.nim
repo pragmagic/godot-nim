@@ -2,7 +2,7 @@
 
 type
   GodotDictionary* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
 
 import godotarrays, godotvariants, godotstrings
 

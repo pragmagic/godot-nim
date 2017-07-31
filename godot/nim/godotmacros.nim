@@ -32,6 +32,19 @@ type
 
   ParseError = object of Exception
 
+proc godotToNim[T](val: Variant): (T, ConversionResult) =
+  mixin fromVariant
+  result[1] = fromVariant(result[0], val)
+
+proc nimToGodot[T](val: T): Variant =
+  mixin toVariant
+  when compiles(toVariant(val)):
+    result = toVariant(val)
+  else:
+    printError("Failed to convert Nim value of type " & T.name &
+               " into Variant")
+    initNilVariant(result)
+
 template parseError(node: NimNode, msg: string) =
   raise newException(ParseError, lineinfo(node) & ": " & msg)
 
@@ -249,7 +262,7 @@ macro invokeVarArgs(procIdent, objIdent;
 
     if hasReturnValue:
       let theCall = newNimNode(nnkBracketExpr).add(newNimNode(nnkDotExpr).add(
-        newCall("toGodot", invocation), ident("godotVariant")))
+        newCall("toVariant", invocation), ident("godotVariant")))
       branchBody.add(getAst(initGodotVariantCall(ident("result"), theCall)))
     else:
       branchBody.add(invocation)
@@ -291,11 +304,18 @@ proc nimDestroyRefFunc(obj: ptr GodotObject, methData: pointer,
   # so nothing to do here.
   discard
 
-proc refcountIncremented*(obj: NimGodotObject) =
-  GC_ref(obj)
+proc refcountIncremented(obj: ptr GodotObject, methodData: pointer,
+                         userData: pointer, numArgs: cint,
+                         args: var array[MAX_ARG_COUNT, ptr GodotVariant]):
+                      GodotVariant {.noconv.} =
+  GC_ref(cast[NimGodotObject](userData))
 
-proc refcountDecremented*(obj: NimGodotObject): bool =
-  GC_unref(obj)
+proc refcountDecremented(obj: ptr GodotObject, methodData: pointer,
+                         userData: pointer, numArgs: cint,
+                         args: var array[MAX_ARG_COUNT, ptr GodotVariant]):
+                      GodotVariant {.noconv.} =
+  GC_unref(cast[NimGodotObject](userData))
+  initGodotVariant(result, false) # destroy when Nim decides
 
 template registerGodotClass(classNameIdent, classNameLit, isRef,
                             baseNameLit, createFuncIdent; isTool: bool) =
@@ -306,6 +326,8 @@ template registerGodotClass(classNameIdent, classNameLit, isRef,
     nimObj.setGodotObject(obj)
     GC_ref(nimObj)
     result = cast[pointer](nimObj)
+    when compiles(nimObj.init()):
+      nimObj.init()
 
   let createFuncObj = GodotInstanceCreateFunc(
     createFunc: createFuncIdent
@@ -356,19 +378,23 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
     getFunc: getFuncIdent
   )
   {.push warning[ProveInit]: off.} # false warning, Nim bug
-  var attr = GodotPropertyAttributes(
-    typ: ord(godotVariantType(propTypeIdent)),
-    hintString: hintTipLit.toGodotString(),
+  var hintStr = hintTipLit.toGodotString()
+  let attr = GodotPropertyAttributes(
+    typ: ord(variantType(propTypeIdent)),
+    hintString: hintStr,
     hint: GodotPropertyHint.hintIdent,
     usage: GodotPropertyUsageFlags.usageIdent
   )
   {.push warning[ProveInit]: on.}
   when hasDefaultValue:
-    attr.defaultValue = (defaultValueNode).toGodot()
+    attr.defaultValue = (defaultValueNode).toVariant().godotVariant[]
   godotScriptRegisterProperty(getNativeLibHandle(), classNameLit, propNameLit,
-                              attr, setFunc, getFunc)
+                              unsafeAddr attr, setFunc, getFunc)
+  hintStr.deinit()
+
 static:
-  import strutils, sets
+  import strutils, sets, sequtils
+
 proc toGodotStyle(s: string): string {.compileTime.} =
   result = newStringOfCap(s.len + 10)
   for c in s:
@@ -469,7 +495,6 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                       GodotVariant {.noconv.} =
       let self = cast[classNameIdent](userData)
       const isStaticCall = methodNameLit == cstring"_ready" or
-                           methodNameLit == cstring"_init" or
                            methodNameLit == cstring"_enter_tree" or
                            methodNameLit == cstring"_exit_tree" or
                            methodNameLit == cstring"_enter_world" or
@@ -520,25 +545,70 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
 
   if isRef:
     # add ref/unref for types inherited from Reference
-    let noArgs = newSeq[NimNode]()
-    result.add(getAst(
-        registerGodotMethod(classNameLit, classNameIdent, ident("refcountIncremented"),
-                            cstring"_refcount_incremented", 0, 0,
-                            noArgs, genSym(nskProc, "refcount_incremented"),
-                            ident("false"))))
-    result.add(getAst(
-        registerGodotMethod(classNameLit, classNameIdent, ident("refcountDecremented"),
-                            cstring"_refcount_decremented", 0, 0,
-                            noArgs, genSym(nskProc, "refcount_decremented"),
-                            ident("true"))))
+    template registerRefIncDec(classNameLit) =
+      let refInc = GodotInstanceMethod(
+        meth: refcountIncremented
+      )
+      let refDec = GodotInstanceMethod(
+        meth: refcountDecremented
+      )
+      godotScriptRegisterMethod(getNativeLibHandle(), classNameLit,
+                                cstring"_refcount_incremented",
+                                GodotMethodAttributes(), refInc)
+      godotScriptRegisterMethod(getNativeLibHandle(), classNameLit,
+                                cstring"_refcount_decremented",
+                                GodotMethodAttributes(), refDec)
+    result.add(getAst(registerRefIncDec(classNameLit)))
 
 {.push warning[Deprecated]: off.}
-# immediate macros are deprecated, but `untyped` doesnt make it immediate,
+# immediate macros are deprecated, but `untyped` doesn't make it immediate,
 # as the warning and the documentation claim.
 
 macro gdobj*(definition: untyped, body: typed): typed {.immediate.} =
+  ## Generates Godot type. Self-documenting example:
+  ##
+  ## .. code-block:: nim
+  ##   import godot, node
+  ##
+  ##   gdobj MyObj of Node:
+  ##     var myField: int
+  ##       ## Not exported to Godot (i.e. editor will not see this field).
+  ##
+  ##     var myString* {.gdExport, hint: Length, tip: "20".}: string
+  ##       ## Exported to Godot as ``my_string``.
+  ##       ## Editor will limit this string to length 20.
+  ##       ## ``hint` is a value of ``GodotPropertyHint`` enum.
+  ##       ## ``tip`` depends on the value of ``hint``, its format is described
+  ##       ## in ``GodotPropertyHint`` documentation.
+  ##
+  ##     method ready*() =
+  ##       ## Exported methods are exported to Godot by default,
+  ##       ## and their Godot names are prefixed with ``_``
+  ##       ## (in this case ``_ready``)
+  ##       print("I am ready! myString is: " & myString)
+  ##
+  ##     proc myProc*() {.gdExport.} =
+  ##       ## Exported to Godot as ``my_proc``
+  ##       print("myProc is called! Incrementing myField.")
+  ##       inc myField
+  ##
+  ## If parent type is omitted, the type is inherited from ``Object``.
+  ##
+  ## ``tool`` specifier can be added to mark the type as an
+  ## `editor plugin <https://godot.readthedocs.io/en/stable/development/plugins/making_plugins.html>`_:
+  ##
+  ## .. code-block:: nim
+  ##   import godot, editor_plugin
+  ##
+  ##   gdobj(MyTool of EditorPlugin, tool):
+  ##     method enterTree*() =
+  ##       print("MyTool initialized!")
+  ##
+  ## Objects can be instantiated by invoking
+  ## `gdnew <godotnim.html#gdnew>`_ or by using
+  ## `load <godotapi/resource_loader.html#load,string,string,bool>`_ or any other way
+  ## that you can find in `Godot API <index.html#modules-godot-api>`_.
   let typeDef = parseType(definition, callsite())
   result = genType(typeDef)
 
 {.push warning[Deprecated]: on.}
-

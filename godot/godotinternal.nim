@@ -1,8 +1,8 @@
 # Copyright 2017 Xored Software, Inc.
 
-import internal / [
-       godotobjects, godotarrays, godotnodepaths, godotpoolarrays,
-       godotstrings, godotvariants, godotdictionaries]
+import internal.godotobjects, internal.godotarrays, internal.godotnodepaths,
+       internal.godotpoolarrays, internal.godotstrings, internal.godotvariants,
+       internal.godotdictionaries
 
 export godotobjects, godotarrays, godotnodepaths, godotpoolarrays,
        godotstrings, godotvariants, godotdictionaries
@@ -206,7 +206,7 @@ type
 
 proc godotScriptRegisterProperty*(libHandle: pointer;
                                   name: cstring; path: cstring;
-                                  attr: var GodotPropertyAttributes;
+                                  attr: ptr GodotPropertyAttributes;
                                   setFunc: GodotPropertySetFunc;
                                   getFunc: GodotPropertyGetFunc) {.
     importc: "godot_nativescript_register_property".}
@@ -269,6 +269,9 @@ proc getClassName*(o: ptr GodotObject): string =
   if result.len > 2 and result[^2] == 'S' and result[^1] == 'W':
     # There are physics type not known by ClassDB
     result = result[0..result.len-3]
+
+proc getGodotSingleton*(name: cstring): ptr GodotObject {.
+    importc: "godot_global_get_singleton".}
 
 # System Functions
 

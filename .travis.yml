@@ -1,0 +1,54 @@
+sudo: false
+language: c
+os:
+  - osx
+compiler: clang
+env:
+  global:
+    - secure: o+IZkRS6J7bGYkiilm10KDeCTDIVHszZ9dPvb93cdUKX/9hFVRiUjDOvNXqBdyOv43JIAsRTppym4B2pfcp9cwLoVBJNW70GKhp6ChLZm3wFdabScWKemuG2YtAUyGiSmxbVmUZ4baltnADyGFHuYWgHLjx6AKO26SqrXRLJ0I1IzGNKKNIfoyZzm7qdFDGJRnSC7L+y1pOITK7dpy60D1vat4FhOLaz2K7L8T8tZYZFK7yyxKduFUlY3cy4z3TpjxMa9/ksCiPiuPDN5xOrVIw0AtgZ2gYodZJUEnfaRzFkgcZ4OJuTAMNMalu52mVAVAoDt4yc7BnbtfsYJzfIjTeLjjWKWz8mqqp/HpxcfVnmPKxV5zeN8UhbosT8vNjwretWbQcFndzt0ohK7E8uMsnDGER7sGPEhCZCttkId96gi7Ro1awPIKCqLaMqB43Bwo48nnW0oQgrfWe1ZKtREXWI4F1F2GMbU8Jsvv0N5GnPGd4RDieBH5KIkJXcttAwRk8AUQ4U5PVkQ/OK9xm9BH2tB0vrjZ4FZWnFPapKVcPUYw9deyyXOXwSMmDpuwkJIjqi3tRyBWJG9+tUlAJw8zyFkCPeN9kzyVH/PhbacwBMdSxew24VLAWWCUhQHCP+fcjpKio8uDUFQN3javIRV4N3mHJ9v0VAF7Ixzh8AviQ=
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-trusty-3.9
+    packages:
+      - build-essential
+      - scons
+      - pkg-config
+      - libx11-dev
+      - libxcursor-dev
+      - libasound2-dev
+      - libfreetype6-dev
+      - libgl1-mesa-dev
+      - libglu1-mesa-dev
+      - libssl-dev
+      - libxinerama-dev
+      - libxrandr-dev
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install scons ; fi
+
+install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export GODOT_PLATFORM=osx; else export GODOT_PLATFORM=x11; fi
+  - git clone --depth=1 https://github.com/nim-lang/Nim.git
+  - cd Nim
+  - git checkout devel
+  - sh ci/build.sh
+  - export PATH=$PATH:"`pwd`/bin"
+  - ./koch tools -d:release
+  - nimble install -y
+  - cd ..
+  - git clone --depth=1 https://github.com/godotengine/godot.git godotengine
+  - cd godotengine
+  - scons -j 3 platform=$GODOT_PLATFORM
+  - export GODOT_BIN="`pwd`/bin/godot.$GODOT_PLATFORM.tools.64"
+  - cd ..
+
+script:
+  - set -e
+  - mkdir godotapi
+  - nim c -d:release -r godot/godotapigen.nim "$GODOT_BIN" godotapi
+  - nimble install -y
+  - nim c -c godotapi/godotall.nim
+  - nim c -d:release -r docs/docpublish.nim

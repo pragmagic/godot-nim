@@ -2,22 +2,22 @@
 
 type
   GodotPoolByteArray* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
   GodotPoolIntArray* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
   GodotPoolRealArray* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
   GodotPoolStringArray* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
   GodotPoolVector2Array* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
   GodotPoolVector3Array* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
   GodotPoolColorArray* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
 
 import godotstrings, godotarrays
-import core / [godotbase, colors, vector2, vector3]
+import core.godotbase, core.colors, core.vector2, core.vector3
 
 # byte
 

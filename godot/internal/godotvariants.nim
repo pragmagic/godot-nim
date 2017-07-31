@@ -46,7 +46,7 @@ type
     expected*: VariantType
 
   GodotVariant* {.byref.} = object
-    data: array[16 + sizeof(int), byte]
+    data: array[4 + sizeof(int) div 4, float32]
 
 import godotobjects, godotarrays, godotpoolarrays,
        godotstrings, godotnodepaths, godotdictionaries

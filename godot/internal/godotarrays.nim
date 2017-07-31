@@ -2,7 +2,7 @@
 
 type
   GodotArray* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
 
 import hashes
 import godotobjects, godotpoolarrays, godotvariants, godotstrings

@@ -2,7 +2,7 @@
 
 type
   GodotString* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
 
 proc initGodotString(dest: var GodotString) {.
     importc: "godot_string_new".}

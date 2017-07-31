@@ -10,15 +10,28 @@ import core.vector2, core.rect2,
        core.arrays, core.poolarrays, core.variants
 import godotinternal
 
-## Definition of NimGodotObject and converters for built-in types.
+## This module defines ``NimGodotObject`` and ``toVariant``/``fromVariant``
+## converters for Nim types. The converters are used by
+## `gdobj <godotmacros.html#gdobj.m,untyped,typed>`_ macro to import/export
+## values from/to Godot (editor, GDScript).
+##
+## You can also allow conversion of any custom type ``MyType`` by implementing:
+##
+## .. code-block:: nim
+##   proc variantType*(T: typedesc[MyType]): VariantType
+##   proc toVariant*(self: MyType): Variant
+##   proc fromVariant*(self: var MyType, val: Variant): ConversionResult
 
 type
   NimGodotObject* = ref object of RootObj
+    ## The base type all Godot types inherit from.
+    ## Manages lifecycle of the wrapped GodotObject.
     godotObject: ptr GodotObject
     isExternalRef: bool
     isOwn: bool
 
   ConversionResult* {.pure.} = enum
+    ## Conversion result to return from ``fromVariant`` procedure.
     OK,
     TypeError,
       ## Type mismatch
@@ -41,7 +54,11 @@ type
   SomeGodotOrNum = SomeGodot or SomeSignedInt or SomeUnsignedInt or SomeFloat
 
   CallError* = object of Exception
+    ## Raised by wrappers in case of an incorrect dynamic invocation.
+    ## For example, if incorrect number of arguments were passed or they had
+    ## unexpected types.
     err*: VariantCallError
+      ## The error as returned by Godot
 
   ObjectInfo = object
     constructor: proc(): NimGodotObject {.gcsafe, nimcall.}
@@ -49,20 +66,24 @@ type
     isNative: bool
     isRef: bool
 
-template printWarning*(warn: typed) =
+template printWarning*(warning: typed) =
+  ## Prints ``warning`` to Godot log, adding filename and line information.
   let (filename, line) = instantiationInfo()
-  godotPrintWarning(cstring($warn), nil, cstring(filename), line.cint)
+  godotPrintWarning(cstring($warning), nil, cstring(filename), line.cint)
 
-template printError*(err: typed) =
+template printError*(error: typed) =
+  ## Prints ``error`` to Godot log, adding filename and line information.
   let (filename, line) = instantiationInfo()
-  godotPrintError(cstring($err), nil, cstring(filename), line.cint)
+  godotPrintError(cstring($error), nil, cstring(filename), line.cint)
 
 proc print*(message: string) {.inline.} =
+  ## Prints ``message`` to Godot log.
   var s = message.toGodotString()
   godotPrint(s)
   s.deinit()
 
 proc print*(message: cstring) {.inline.} =
+  ## Prints ``message`` to Godot log.
   var s = message.toGodotString()
   godotPrint(s)
   s.deinit()
@@ -141,7 +162,9 @@ macro isReference(T: typedesc): bool =
            else: ident("false")
 
 template registerClass*(T: typedesc; godotClassName: cstring,
-                        isNativeParam: bool) =
+                        native: bool) =
+  ## Registers the specified Godot type.
+  ## Used by ``gdobj`` macro and `godotapigen <godotapigen.html>`_.
   if classRegistry.isNil:
     classRegistry = newTable[cstring, ObjectInfo]()
   let constructor = proc(): NimGodotObject =
@@ -154,21 +177,21 @@ template registerClass*(T: typedesc; godotClassName: cstring,
   let objInfo = ObjectInfo(
     constructor: constructor,
     baseNativeClass: base,
-    isNative: isNativeParam,
+    isNative: native,
     isRef: isRef
   )
   classRegistry[godotClassName] = objInfo
   static:
     let objInfoStatic = ObjectInfo(
       baseNativeClass: base,
-      isNative: isNativeParam,
-      isRef: isRef
+      isNative: native,
+      isRef: isRef,
     )
     classRegistryStatic[godotClassName] = objInfoStatic
   when isRef:
     static:
       refClasses.add(T.name)
-  when isNativeParam:
+  when native:
     static:
       nativeClasses.add(T.name)
 
@@ -187,6 +210,9 @@ proc newNimGodotObject[T: NimGodotObject](
       result.godotObject.reference()
 
 proc asNimGodotObject*[T: NimGodotObject](godotObject: ptr GodotObject): T =
+  ## Wraps ``godotObject`` into Nim type ``T``.
+  ## This is used by `godotapigen <godotapigen.html>`_ and should rarely be
+  ## used by anything else.
   if godotObject.isNil: return nil
   let userDataPtr = godotObject.getUserData()
   if not userDataPtr.isNil:
@@ -202,15 +228,24 @@ proc newVariant*(obj: NimGodotObject): Variant {.inline.} =
   newVariant(obj.godotObject)
 
 proc asObject*[T: NimGodotObject](v: Variant): T {.inline.} =
+  ## Converts ``v`` to object of type ``T``.
+  ## Returns ``nil`` if the conversion cannot be performed
+  ## (``v``'s type is not an Object or it's an object of an incompatible type)
   asNimGodotObject[T](v.asGodotObject())
 
 proc asObject*(v: Variant, T: typedesc[NimGodotObject]): T {.inline.} =
+  ## Converts ``v`` to object of type ``T``.
+  ## Returns ``nil`` if the conversion cannot be performed
+  ## (``v``'s type is not an Object or it's an object of an incompatible type)
   asNimGodotObject[T](v.asGodotObject())
 
 proc `as`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): T =
   ## Converts the ``obj`` into the specified type.
   ## Returns ``nil`` if the conversion cannot be performed
   ## (the ``obj`` is not of the type ``T``)
+  ##
+  ## This can be used either in dot notation (``node.as(Button)``) or
+  ## infix notation (``node as Button``).
   if obj.isNil or not (obj of T):
     when not defined(release):
       if not obj.isNil:
@@ -219,9 +254,6 @@ proc `as`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): T =
     result = nil
   else:
     result = T(obj)
-
-proc getSingletonGodot*(name: cstring): ptr GodotObject {.
-    importc: "godot_global_get_singleton".}
 
 proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
@@ -241,8 +273,11 @@ macro toGodotName(T: typedesc): cstring =
              ident("cstring"), newRStrLit(godotName))
 
 proc getSingleton*[T: NimGodotObject](): T =
+  ## Returns singleton of type ``T``. Normally, this should not be used,
+  ## because `godotapigen <godotapigen.html>`_ wraps singleton methods so that
+  ## singleton objects don't have to be provided as parameters.
   const godotName = toGodotName(T)
-  let singleton = getSingletonGodot(godotName)
+  let singleton = getGodotSingleton(godotName)
   if singleton.isNil:
     printError("Tried to get non-existing singleton of type " & $godotName)
   else:
@@ -285,6 +320,7 @@ proc newOwnObj[T: NimGodotObject](name: cstring): T =
   ret.deinit()
 
 proc gdnew*[T: NimGodotObject](): T =
+  ## Instantiates new object of type ``T``.
   const godotName = toGodotName(T)
   const objInfo = classRegistryStatic[godotName]
   result = when objInfo.isNative:
@@ -292,6 +328,7 @@ proc gdnew*[T: NimGodotObject](): T =
            else: newOwnObj[T](godotName)
 
 proc newCallError*(err: VariantCallError): ref CallError =
+  ## Instantiates ``CallError`` from Godot ``err``.
   let msg = case err.error:
   of VariantCallErrorType.OK,
      VariantCallErrorType.InvalidMethod,
@@ -307,6 +344,8 @@ proc newCallError*(err: VariantCallError): ref CallError =
   result.err = err
 
 proc newConversionError*(err: ConversionResult): ref ValueError =
+  ## Instantiates error raised by `godotapigen <godotapigen.html>`_
+  ## generated code in case of a conversion error.
   let msg = case err:
     of ConversionResult.TypeError:
       "Failed to convert the return value into Nim type"
@@ -317,28 +356,32 @@ proc newConversionError*(err: ConversionResult): ref ValueError =
 
   result = newException(ValueError, msg)
 
-proc removeGodotObject*(nimObj: NimGodotObject) {.inline.} =
-  ## Used from destructor
-  nimObj.godotObject = nil
-
 proc setGodotObject*(nimObj: NimGodotObject, obj: ptr GodotObject) {.inline.} =
+  ## Used from Godot constructor. Don't call this.
   assert(not obj.isNil)
   assert(nimObj.godotObject.isNil) # reassignment is not allowed
   nimObj.godotObject = obj
 
 proc setOwn*(nimObj: NimGodotObject) {.inline.} =
+  ## Used from Godot constructor. Don't call this.
   nimObj.isOwn = true
 
+proc removeGodotObject*(nimObj: NimGodotObject) {.inline.} =
+  ## Used from Godot destructor. Don't call this.
+  nimObj.godotObject = nil
+
 proc godotObject*(nimObj: NimGodotObject): ptr GodotObject {.inline.} =
+  ## Returns internal poitner to ``GodotObject``. Use only if you know what
+  ## you are doing.
   nimObj.godotObject
 
-proc godotVariantType*(T: typedesc[NimGodotObject]): VariantType {.inline.} =
+proc variantType*(T: typedesc[NimGodotObject]): VariantType {.inline.} =
   VariantType.Object
 
-proc toGodot*(self: NimGodotObject): Variant {.inline.} =
+proc toVariant*(self: NimGodotObject): Variant {.inline.} =
   newVariant(self.godotObject)
 
-proc fromGodot*[T: NimGodotObject](self: var T,
+proc fromVariant*[T: NimGodotObject](self: var T,
                                    val: Variant): ConversionResult =
   if val.getType() == VariantType.Object:
     let objPtr = val.asGodotObject()
@@ -350,27 +393,27 @@ proc fromGodot*[T: NimGodotObject](self: var T,
   else:
     result = ConversionResult.TypeError
 
-proc godotVariantType*(T: typedesc[enum]): VariantType {.inline.} =
+proc variantType*(T: typedesc[enum]): VariantType {.inline.} =
   VariantType.Int
 
-proc toGodot*[T: enum](self: T): Variant {.inline.} =
+proc toVariant*[T: enum](self: T): Variant {.inline.} =
   newVariant(int64(ord(self)))
 
-proc fromGodot*[T: enum](self: var T,
+proc fromVariant*[T: enum](self: var T,
                          val: Variant): ConversionResult {.inline.} =
   if val.getType() == VariantType.Int:
     self = T(val.asInt())
   else:
     result = ConversionResult.TypeError
 
-proc toGodot*(self: Variant): Variant {.inline.} =
+proc toVariant*(self: Variant): Variant {.inline.} =
   self
 
-proc fromGodot*(self: var Variant,
+proc fromVariant*(self: var Variant,
                 val: Variant): ConversionResult {.inline.} =
   self = newVariant(val)
 
-proc godotVariantType*(T: typedesc[SomeGodotOrNum]): VariantType {.inline.} =
+proc variantType*(T: typedesc[SomeGodotOrNum]): VariantType {.inline.} =
   when T is SomeSignedInt or T is SomeUnsignedInt:
     VariantType.Int
   elif T is bool:
@@ -426,10 +469,10 @@ proc godotVariantType*(T: typedesc[SomeGodotOrNum]): VariantType {.inline.} =
   else:
     VariantType.Nil
 
-proc toGodot*[T: SomeGodotOrNum](val: T): Variant {.inline.} =
+proc toVariant*[T: SomeGodotOrNum](val: T): Variant {.inline.} =
   newVariant(val)
 
-proc fromGodot*[T: SomeSignedInt or SomeUnsignedInt](
+proc fromVariant*[T: SomeSignedInt or SomeUnsignedInt](
     self: var T, val: Variant): ConversionResult =
   if val.getType() != VariantType.Int:
     result = ConversionResult.TypeError
@@ -443,7 +486,7 @@ proc fromGodot*[T: SomeSignedInt or SomeUnsignedInt](
     else:
       self = T(intVal)
 
-proc fromGodot*[T: SomeFloat](self: var T, val: Variant): ConversionResult =
+proc fromVariant*[T: SomeFloat](self: var T, val: Variant): ConversionResult =
   if val.getType() == VariantType.Real:
     self = T(val.asReal())
   elif val.getType() == VariantType.Int:
@@ -451,8 +494,8 @@ proc fromGodot*[T: SomeFloat](self: var T, val: Variant): ConversionResult =
   else:
     result = ConversionResult.TypeError
 
-proc fromGodot*[T: SomeGodot](self: var T, val: Variant): ConversionResult =
-  if godotVariantType(T) != val.getType():
+proc fromVariant*[T: SomeGodot](self: var T, val: Variant): ConversionResult =
+  if variantType(T) != val.getType():
     return ConversionResult.TypeError
   when self is bool:
     self = val.asBool()
@@ -506,13 +549,13 @@ proc fromGodot*[T: SomeGodot](self: var T, val: Variant): ConversionResult =
     # mustn't reach this
     result = ConversionError.TypeError
 
-proc godotVariantType*(T: typedesc[string]): VariantType  {.inline.} =
+proc variantType*(T: typedesc[string]): VariantType  {.inline.} =
   VariantType.String
 
-proc toGodot*(s: string): Variant {.inline.} =
+proc toVariant*(s: string): Variant {.inline.} =
   newVariant(s)
 
-proc fromGodot*(s: var string, val: Variant): ConversionResult =
+proc fromVariant*(s: var string, val: Variant): ConversionResult =
   if val.getType() == VariantType.String:
     s = val.asString()
   elif val.getType() == VariantType.Nil:
@@ -520,20 +563,20 @@ proc fromGodot*(s: var string, val: Variant): ConversionResult =
   else:
     result = ConversionResult.TypeError
 
-proc godotVariantType*(T: typedesc[seq]): VariantType =
+proc variantType*(T: typedesc[seq]): VariantType =
   VariantType.Array
 
-proc godotVariantType*(T: typedesc[array]): VariantType =
+proc variantType*(T: typedesc[array]): VariantType =
   VariantType.Array
 
-proc toGodot*[T](s: openarray[T]): Variant =
+proc toVariant*[T](s: openarray[T]): Variant =
   var arr = newArray()
   mixin toGodot
   for item in s:
-    arr.add(toGodot(item))
+    arr.add(toVariant(item))
   result = newVariant(arr)
 
-proc fromGodot*[T](s: var seq[T], val: Variant): ConversionResult =
+proc fromVariant*[T](s: var seq[T], val: Variant): ConversionResult =
   if val.getType() != VariantType.Array:
     result = ConversionResult.TypeError
   else:
@@ -541,12 +584,12 @@ proc fromGodot*[T](s: var seq[T], val: Variant): ConversionResult =
     s = newSeq[T](arr.len)
     for idx, item in arr:
       mixin fromGodot
-      let convResult = fromGodot(s[idx], item)
+      let convResult = fromVariant(s[idx], item)
       if convResult != ConversionResult.OK:
         s = nil
         return convResult
 
-proc fromGodot*[T: array](s: var T, val: Variant): ConversionResult =
+proc fromVariant*[T: array](s: var T, val: Variant): ConversionResult =
   if val.getType() != VariantType.Array:
     result = ConversionResult.TypeError
   else:
@@ -555,21 +598,21 @@ proc fromGodot*[T: array](s: var T, val: Variant): ConversionResult =
       return ConversionResult.TypeError
     for idx, item in arr:
       mixin fromGodot
-      let convResult = fromGodot(s[idx], item)
+      let convResult = fromVariant(s[idx], item)
       if convResult != ConversionResult.OK:
         return convResult
 
-proc godotVariantType*(T: typedesc[Table|TableRef]): VariantType {.inline.} =
+proc variantType*(T: typedesc[Table|TableRef]): VariantType {.inline.} =
   VariantType.Dictionary
 
-proc toGodot*[T: Table or TableRef](t: T): Variant =
+proc toVariant*[T: Table or TableRef](t: T): Variant =
   var dict = newDictionary()
   mixin toGodot
   for k, v in t.pairs():
-    dict[toGodot(k)] = toGodot(v)
+    dict[toVariant(k)] = toVariant(v)
   result = newVariant(dict)
 
-proc fromGodot*[T: Table or TableRef](t: var T, val: Variant): ConversionResult =
+proc fromVariant*[T: Table or TableRef](t: var T, val: Variant): ConversionResult =
   if val.getType() != VariantType.Dictionary:
     result = ConversionResult.TypeError
   else:
@@ -582,30 +625,17 @@ proc fromGodot*[T: Table or TableRef](t: var T, val: Variant): ConversionResult 
     for k, v in dict:
       var nimKey: type(t.keys())
       var nimVal: type(t.values())
-      let keyResult = fromGodot(nimKey, k)
+      let keyResult = fromVariant(nimKey, k)
       if keyResult != ConversionResult.OK:
         when t is ref:
           t = nil
         return keyResult
-      let valResult = fromGodot(nimVal, v)
+      let valResult = fromVariant(nimVal, v)
       if valResult != ConversionResult.OK:
         when t is ref:
           t = nil
         return valResult
       t[nimKey] = nimVal
-
-proc godotToNim*[T](val: Variant): (T, ConversionResult) =
-  mixin fromGodot
-  result[1] = fromGodot(result[0], val)
-
-proc nimToGodot*[T](val: T): Variant =
-  mixin toGodot
-  when compiles(toGodot(val)):
-    result = toGodot(val)
-  else:
-    printError("Failed to convert Nim value of type " & T.name &
-               " into Variant")
-    initNilVariant(result)
 
 {.emit: """/*TYPESECTION*/
 void NimMain(void);
@@ -614,6 +644,8 @@ N_NOINLINE(void, setStackBottom)(void* thestackbottom);
 
 var nativeLibHandle: pointer
 proc getNativeLibHandle*(): pointer =
+  ## Returns NativeScript library handle used to register type information
+  ## in Godot. Use only if you know what you are doing.
   return nativeLibHandle
 
 proc godot_nativescript_init(handle: pointer) {.

@@ -2,7 +2,7 @@ import internal.godotobjects
 
 type
   RID* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
 
 proc initRID(dest: var RID) {.
     importc: "godot_rid_new".}

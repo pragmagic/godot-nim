@@ -4,7 +4,7 @@ import godotstrings
 
 type
   GodotNodePath* {.byref.} = object
-    p: pointer
+    data: array[sizeof(int), byte]
 
 proc initGodotNodePath*(dest: var GodotNodePath; s: GodotString) {.
     importc: "godot_node_path_new".}

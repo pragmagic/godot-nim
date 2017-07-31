@@ -5,4 +5,10 @@ nimcache/
 /godot/godotapigen
 /godot/godotapigen.exe
 
+/docgen
+/docs/docbuild
+/docs/docbuild.exe
+/docs/docpublish
+/docs/docpublish.exe
+
 .DS_Store
