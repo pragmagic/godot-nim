@@ -191,7 +191,7 @@ proc parseType(definition, callSite: NimNode): ObjectDecl =
 macro invokeVarArgs(procIdent, objIdent;
                     minArgs, maxArgs: static[int], numArgsIdent,
                     argSeqIdent; argTypes: seq[NimNode],
-                    hasReturnValue: static[bool]): typed =
+                    hasReturnValue, isStaticCall: static[bool]): typed =
   ## Produces statement in form:
   ##
   ## .. code-block:: nim
@@ -233,7 +233,7 @@ macro invokeVarArgs(procIdent, objIdent;
   for i in minArgs..maxArgs:
     let branch = newNimNode(nnkOfBranch).add(newIntLitNode(i))
     let branchBody = newStmtList()
-    let invocation = newNimNode(nnkCall)
+    var invocation = newNimNode(nnkCall)
     invocation.add(procIdent)
     invocation.add(objIdent) # self
     for idx in 0..<i:
@@ -243,6 +243,10 @@ macro invokeVarArgs(procIdent, objIdent;
       branchBody.add(getAst(conv($procIdent, argT,
                                  argSeqIdent, idx, argIdent, errIdent)))
       invocation.add(argIdent)
+
+    if isStaticCall:
+      invocation = newNimNode(nnkCall).add(ident("procCall"), invocation)
+
     if hasReturnValue:
       let theCall = newNimNode(nnkBracketExpr).add(newNimNode(nnkDotExpr).add(
         newCall("toGodot", invocation), ident("godotVariant")))
@@ -462,13 +466,20 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                        args: var array[MAX_ARG_COUNT, ptr GodotVariant]):
                       GodotVariant {.noconv.} =
       let self = cast[classNameIdent](userData)
+      const isStaticCall = methodNameLit == cstring"_ready" or
+                           methodNameLit == cstring"_init" or
+                           methodNameLit == cstring"_enter_tree" or
+                           methodNameLit == cstring"_exit_tree" or
+                           methodNameLit == cstring"_enter_world" or
+                           methodNameLit == cstring"_exit_world" or
+                           methodNameLit == cstring"_draw"
       when defined(release):
         invokeVarArgs(methodNameIdent, self, minArgs, maxArgs, numArgs,
-                      args, argTypes, hasReturnValue)
+                      args, argTypes, hasReturnValue, isStaticCall)
       else:
         try:
           invokeVarArgs(methodNameIdent, self, minArgs, maxArgs, numArgs,
-                        args, argTypes, hasReturnValue)
+                        args, argTypes, hasReturnValue, isStaticCall)
         except:
           let ex = getCurrentException()
           printError("Unhandled Nim exception (" & $ex.name & "): " &
