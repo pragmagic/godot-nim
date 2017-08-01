@@ -355,12 +355,14 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
   let getFunc = GodotPropertyGetFunc(
     getFunc: getFuncIdent
   )
+  {.push warning[ProveInit]: off.} # false warning, Nim bug
   var attr = GodotPropertyAttributes(
     typ: ord(godotVariantType(propTypeIdent)),
     hintString: hintTipLit.toGodotString(),
     hint: GodotPropertyHint.hintIdent,
     usage: GodotPropertyUsageFlags.usageIdent
   )
+  {.push warning[ProveInit]: on.}
   when hasDefaultValue:
     attr.defaultValue = (defaultValueNode).toGodot()
   godotScriptRegisterProperty(getNativeLibHandle(), classNameLit, propNameLit,
