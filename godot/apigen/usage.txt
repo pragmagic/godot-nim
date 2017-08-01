@@ -1,3 +1,0 @@
-Tool for wrapping Godot API into Nim
-
-    apigen [godot binary path] [target directory]
