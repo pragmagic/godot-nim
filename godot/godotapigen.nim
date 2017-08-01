@@ -780,6 +780,8 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
       isSingleton: obj["singleton"].bval
     )
   for typ in types.values():
+    let moduleName = typeNameToModuleName(typ.name)
+    echo "Generating ", moduleName, ".nim..."
     let tree = newNode(nkStmtList)
     let importStmt = newNode(nkImportStmt)
     importStmt.add(ident("godot"))
@@ -829,7 +831,6 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
       makeMethod(types, tree, methodBindRegsitry, typ, meth,
                  withImplementation = true)
 
-    let moduleName = typeNameToModuleName(typ.name)
     renderModule(tree, targetDir / moduleName & ".nim")
 
     megaImport.add("import \"" & moduleName & "\"\n")
