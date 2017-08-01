@@ -28,6 +28,7 @@ type
     parentName: string
     fields: seq[VarDecl]
     methods: seq[MethodDecl]
+    isTool: bool
 
   ParseError = object of Exception
 
@@ -161,6 +162,18 @@ proc parseType(definition, callSite: NimNode): ObjectDecl =
     methods: newSeq[MethodDecl]()
   )
   (result.name, result.parentName) = extractNames(definition)
+
+  var isTool = false
+  for i in 2..(callSite.len - 2):
+    let option = callSite[i]
+    if option.kind != nnkIdent:
+      parseError(option, "type specifier expected")
+    if option.ident == !"tool":
+      isTool = true
+    else:
+      parseError(option, "valid type specifier expected")
+  result.isTool = isTool
+
   if result.parentName.isNil: result.parentName = "Object"
   for statement in body:
     case statement.kind:
@@ -281,7 +294,7 @@ proc refcountDecremented*(obj: NimGodotObject): bool =
   GC_unref(obj)
 
 template registerGodotClass(classNameIdent, classNameLit, isRef,
-                            baseNameLit, createFuncIdent) =
+                            baseNameLit, createFuncIdent; isTool: bool) =
   proc createFuncIdent(obj: ptr GodotObject,
                        methData: pointer): pointer {.noconv.} =
     let nimObj = new(classNameIdent)
@@ -297,8 +310,12 @@ template registerGodotClass(classNameIdent, classNameLit, isRef,
     destroyFunc: when isRef: nimDestroyRefFunc else: nimDestroyFunc
   )
   registerClass(classNameIdent, classNameLit, false)
-  godotScriptRegisterClass(getNativeLibHandle(), classNameLit, baseNameLit,
-                           createFuncObj, destroyFuncObj)
+  when isTool:
+    godotScriptRegisterToolClass(getNativeLibHandle(), classNameLit, baseNameLit,
+                                 createFuncObj, destroyFuncObj)
+  else:
+    godotScriptRegisterClass(getNativeLibHandle(), classNameLit, baseNameLit,
+                            createFuncObj, destroyFuncObj)
 
 template registerGodotField(classNameLit, classNameIdent, propNameLit,
                             propNameIdent, propTypeLit, propTypeIdent,
@@ -412,7 +429,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                     else: obj.parentName in refClasses
   result.add(getAst(
     registerGodotClass(classNameIdent, classNameLit, isRef, parentName,
-                       genSym(nskProc, "createFunc"))))
+                       genSym(nskProc, "createFunc"), obj.isTool)))
 
   # 5. Register fields (properties)
   for field in obj.fields:
@@ -502,6 +519,13 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                             noArgs, genSym(nskProc, "refcount_decremented"),
                             ident("true"))))
 
-macro gdobj*(definition: untyped, body: untyped): typed =
+{.push warning[Deprecated]: off.}
+# immediate macros are deprecated, but `untyped` doesnt make it immediate,
+# as the warning and the documentation claim.
+
+macro gdobj*(definition: untyped, body: typed): typed {.immediate.} =
   let typeDef = parseType(definition, callsite())
   result = genType(typeDef)
+
+{.push warning[Deprecated]: on.}
+
