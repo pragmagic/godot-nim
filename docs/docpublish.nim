@@ -69,7 +69,8 @@ when isMainModule:
       echo "Expected environment variable: " & key
       quit(1)
 
-  if getEnv("TRAVIS_PULL_REQUEST").len > 0:
+  let pr = getEnv("TRAVIS_PULL_REQUEST")
+  if pr.len > 0 and pr != "false":
     echo "This is a PR build. Skipping."
     quit(0)
 
