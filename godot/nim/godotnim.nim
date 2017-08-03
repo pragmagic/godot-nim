@@ -1,6 +1,6 @@
 # Copyright 2017 Xored Software, Inc.
 
-import tables, typetraits, macros
+import tables, typetraits, macros, asyncdispatch
 import core.godotbase
 import core.vector2, core.rect2,
        core.vector3, core.transform2d,
@@ -668,14 +668,22 @@ proc godot_gdnative_terminate(options: ptr GodotNativeTerminateOptions) {.
     cdecl, exportc, dynlib.} =
   deallocHeap(runFinalizers = not options[].inEditor, allowGcAfterwards = false)
 
-proc godot_nativescript_thread_enter() {.
-    cdecl, exportc, dynlib.} =
+const nimGcStepLengthUs {.intdefine.} = 2000
+proc godot_nativescript_frame() {.cdecl, exportc, dynlib.} =
+  if asyncdispatch.hasPendingOperations():
+    poll(0)
+  GC_step(nimGcStepLengthUs, false, 0)
+
+when not defined(release):
+  onUnhandledException = proc(errorMsg: string) =
+    printError("Unhandled Nim exception: " & errorMsg)
+
+proc godot_nativescript_thread_enter() {.cdecl, exportc, dynlib.} =
   when compileOption("threads"):
     setupForeignThreadGc()
   else:
     print(cstring"A foreign thread is created, but app is compiled without --threads:on. Bad things will happen if Nim code is invoked from this thread.")
 
-proc godot_nativescript_thread_exit() {.
-    cdecl, exportc, dynlib.} =
+proc godot_nativescript_thread_exit() {.cdecl, exportc, dynlib.} =
   when compileOption("threads"):
     teardownForeignThreadGc()

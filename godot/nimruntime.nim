@@ -3,6 +3,9 @@
 import asyncdispatch
 import godot, node
 
+{.warning: ("NimRuntime is deprecated - it is no longer necessary to add it " &
+            "as an AutoLoad class. It will be removed in v0.5.0.").}
+
 gdobj NimRuntime of Node:
   method enterTree*() =
     discard getTree().connect("idle_frame", self, "idle", newArray())

@@ -95,15 +95,6 @@ If you would like to use Nim in an existing project:
    GDNative library resource that contains paths to dynamic libraries
    compiled by Nim.
 
-3. Add ``NimRuntime`` as an `AutoLoad singleton <https://godot.readthedocs.io/en/stable/learning/step_by_step/singletons_autoload.html>`_
-   to your project. To do this, copy ``project/scripts/NimRuntime.gdns`` into
-   your project and add these lines to ``project.godot``, adjusting path to
-   ``NimRuntime.gdns`` as necessary:
-.. code-block:: cfg
-   [autoload]
-     NimRuntime="*res://scripts/NimRuntime.gdns"
-
-
 Next Steps
 ----------
 
