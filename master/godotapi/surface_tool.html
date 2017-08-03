@@ -1243,20 +1243,28 @@ function main() {
     title="addTriangleFan*(self: SurfaceTool; vertexes: PoolVector3Array;
                 uvs: PoolVector2Array; colors: PoolColorArray;
                 uv2s: PoolVector2Array; normals: PoolVector3Array; tangents: Array)"><wbr />add<wbr />Triangle<wbr />Fan<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setMaterial,SurfaceTool,Material"
-    title="setMaterial*(self: SurfaceTool; material: Material)"><wbr />set<wbr />Material<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#addIndex,SurfaceTool,int64"
+    title="addIndex*(self: SurfaceTool; index: int64)"><wbr />add<wbr />Index<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#index,SurfaceTool"
     title="index*(self: SurfaceTool)"><wbr />index<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#deindex,SurfaceTool"
     title="deindex*(self: SurfaceTool)"><wbr />deindex<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#generateNormals,SurfaceTool"
     title="generateNormals*(self: SurfaceTool)"><wbr />generate<wbr />Normals<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#addIndex,SurfaceTool,int64"
-    title="addIndex*(self: SurfaceTool; index: int64)"><wbr />add<wbr />Index<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#commit,SurfaceTool,Mesh"
-    title="commit*(self: SurfaceTool; existing: Mesh = nil): Mesh"><wbr />commit<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#generateTangents,SurfaceTool"
+    title="generateTangents*(self: SurfaceTool)"><wbr />generate<wbr />Tangents<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#addToFormat,SurfaceTool,int64"
+    title="addToFormat*(self: SurfaceTool; flags: int64)"><wbr />add<wbr />To<wbr />Format<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setMaterial,SurfaceTool,Material"
+    title="setMaterial*(self: SurfaceTool; material: Material)"><wbr />set<wbr />Material<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#clear,SurfaceTool"
     title="clear*(self: SurfaceTool)"><wbr />clear<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#createFrom,SurfaceTool,Mesh,int64"
+    title="createFrom*(self: SurfaceTool; existing: Mesh; surface: int64)"><wbr />create<wbr />From<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#appendFrom,SurfaceTool,Mesh,int64,Transform"
+    title="appendFrom*(self: SurfaceTool; existing: Mesh; surface: int64; transform: Transform)"><wbr />append<wbr />From<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#commit,SurfaceTool,Mesh"
+    title="commit*(self: SurfaceTool; existing: Mesh = nil): Mesh"><wbr />commit<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1278,51 +1286,91 @@ function main() {
 <dt id="begin"><a name="begin,SurfaceTool,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">begin</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">primitive</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L7"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L7" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addVertex"><a name="addVertex,SurfaceTool,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addVertex</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">vertex</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L8"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L8" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addColor"><a name="addColor,SurfaceTool,Color"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addColor</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">color</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L9"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addNormal"><a name="addNormal,SurfaceTool,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addNormal</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">normal</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L10"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addTangent"><a name="addTangent,SurfaceTool,Plane"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addTangent</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">tangent</span><span class="Other">:</span> <span class="Identifier">Plane</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L11"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addUv"><a name="addUv,SurfaceTool,Vector2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addUv</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">uv</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L12"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addUv2"><a name="addUv2,SurfaceTool,Vector2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addUv2</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">uv2</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L13"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addBones"><a name="addBones,SurfaceTool,PoolIntArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addBones</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">bones</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L14"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addWeights"><a name="addWeights,SurfaceTool,PoolRealArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addWeights</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">weights</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L15"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addSmoothGroup"><a name="addSmoothGroup,SurfaceTool,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addSmoothGroup</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">smooth</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L16"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addTriangleFan"><a name="addTriangleFan,SurfaceTool,PoolVector3Array,PoolVector2Array,PoolColorArray,PoolVector2Array,PoolVector3Array,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addTriangleFan</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">vertexes</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span><span class="Other">;</span>
@@ -1331,41 +1379,110 @@ function main() {
                     <span class="Identifier">tangents</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-
-</dd>
-<dt id="setMaterial"><a name="setMaterial,SurfaceTool,Material"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setMaterial</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">material</span><span class="Other">:</span> <span class="Identifier">Material</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="index"><a name="index,SurfaceTool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">index</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="deindex"><a name="deindex,SurfaceTool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">deindex</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="generateNormals"><a name="generateNormals,SurfaceTool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">generateNormals</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L17"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addIndex"><a name="addIndex,SurfaceTool,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addIndex</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">index</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L21"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="commit"><a name="commit,SurfaceTool,Mesh"></a><pre><span class="Keyword">proc</span> <span class="Identifier">commit</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">existing</span><span class="Other">:</span> <span class="Identifier">Mesh</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mesh</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="index"><a name="index,SurfaceTool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">index</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L22"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="deindex"><a name="deindex,SurfaceTool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">deindex</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L23"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="generateNormals"><a name="generateNormals,SurfaceTool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">generateNormals</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L24"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="generateTangents"><a name="generateTangents,SurfaceTool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">generateTangents</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L25"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="addToFormat"><a name="addToFormat,SurfaceTool,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addToFormat</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L26"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="setMaterial"><a name="setMaterial,SurfaceTool,Material"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setMaterial</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">material</span><span class="Other">:</span> <span class="Identifier">Material</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L27"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="clear"><a name="clear,SurfaceTool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">clear</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L28"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="createFrom"><a name="createFrom,SurfaceTool,Mesh,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createFrom</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">existing</span><span class="Other">:</span> <span class="Identifier">Mesh</span><span class="Other">;</span> <span class="Identifier">surface</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L29"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="appendFrom"><a name="appendFrom,SurfaceTool,Mesh,int64,Transform"></a><pre><span class="Keyword">proc</span> <span class="Identifier">appendFrom</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">existing</span><span class="Other">:</span> <span class="Identifier">Mesh</span><span class="Other">;</span> <span class="Identifier">surface</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span>
+                <span class="Identifier">transform</span><span class="Other">:</span> <span class="Identifier">Transform</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L30"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="commit"><a name="commit,SurfaceTool,Mesh"></a><pre><span class="Keyword">proc</span> <span class="Identifier">commit</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SurfaceTool</span><span class="Other">;</span> <span class="Identifier">existing</span><span class="Other">:</span> <span class="Identifier">Mesh</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mesh</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="/tree/master/docgen/godotapi/surface_tool.nim#L32"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/docgen/godotapi/surface_tool.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1378,7 +1495,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-01 12:16:00 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-03 04:45:42 UTC</small>
       </div>
     </div>
   </div>
