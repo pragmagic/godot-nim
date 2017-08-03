@@ -70,6 +70,7 @@ when isMainModule:
       quit(1)
 
   if getEnv("TRAVIS_PULL_REQUEST").len > 0:
+    echo "This is a PR build. Skipping."
     quit(0)
 
   let repoSlug = getEnvOrQuit("TRAVIS_REPO_SLUG")
@@ -85,6 +86,7 @@ when isMainModule:
   let gitHubToken = getEnvOrQuit("GITHUB_TOKEN")
 
   if branch != "master" and not (tag =~ peg"^ 'v' \d+ '.' \d+ '.' \d+ $"):
+    echo "This is not master or tagged changeset. Skipping."
     quit(0)
 
   let godotBin = getEnvOrQuit("GODOT_BIN")
