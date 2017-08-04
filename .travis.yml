@@ -50,5 +50,5 @@ script:
   - mkdir godotapi
   - nim c -d:release -r godot/godotapigen.nim "$GODOT_BIN" godotapi
   - nimble install -y
-  - nim c -c godotapi/godotall.nim
+  - nim c -d:useRealtimeGc -c godotapi/godotall.nim
   - nim c -d:release -r docs/docpublish.nim
