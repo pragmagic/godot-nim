@@ -16,7 +16,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>Module input_event_mouse_motion</title>
+<title>Module arvr_anchor</title>
 <style type="text/css" >
 /*
 Stylesheet for use with Docutils/rst2html.
@@ -1195,7 +1195,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">Module input_event_mouse_motion</h1>
+    <h1 class="title">Module arvr_anchor</h1>
     <div class="row">
   <div class="three columns">
   <div>
@@ -1219,14 +1219,16 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#relative,InputEventMouseMotion"
-    title="relative*(self: InputEventMouseMotion): Vector2"><wbr />relative<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,InputEventMouseMotion,Vector2"
-    title="`relative =`*(self: InputEventMouseMotion; val: Vector2)">`<wbr />relative<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#speed,InputEventMouseMotion"
-    title="speed*(self: InputEventMouseMotion): Vector2"><wbr />speed<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,InputEventMouseMotion,Vector2_2"
-    title="`speed =`*(self: InputEventMouseMotion; val: Vector2)">`<wbr />speed<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#anchorId,ARVRAnchor"
+    title="anchorId*(self: ARVRAnchor): int64"><wbr />anchor<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#=,ARVRAnchor,int64"
+    title="`anchorId =`*(self: ARVRAnchor; val: int64)">`<wbr />anchor<wbr />Id<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getAnchorName,ARVRAnchor"
+    title="getAnchorName*(self: ARVRAnchor): string"><wbr />get<wbr />Anchor<wbr />Name<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getIsActive,ARVRAnchor"
+    title="getIsActive*(self: ARVRAnchor): bool"><wbr />get<wbr />Is<wbr />Active<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getSize,ARVRAnchor"
+    title="getSize*(self: ARVRAnchor): Vector3"><wbr />get<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1240,27 +1242,32 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="../godot.html">godot</a>, <a class="reference external" href="godottypes.html">godottypes</a>, <a class="reference external" href="../godotinternal.html">godotinternal</a>, <a class="reference external" href="input_event_mouse.html">input_event_mouse</a>
+<a class="reference external" href="../godot.html">godot</a>, <a class="reference external" href="godottypes.html">godottypes</a>, <a class="reference external" href="../godotinternal.html">godotinternal</a>, <a class="reference external" href="spatial.html">spatial</a>
 </dl></div>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="relative"><a name="relative,InputEventMouseMotion"></a><pre><span class="Keyword">proc</span> <span class="Identifier">relative</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">InputEventMouseMotion</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector2</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="anchorId"><a name="anchorId,ARVRAnchor"></a><pre><span class="Keyword">proc</span> <span class="Identifier">anchorId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRAnchor</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="="><a name="=,InputEventMouseMotion,Vector2"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">relative</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">InputEventMouseMotion</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,ARVRAnchor,int64"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">anchorId</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRAnchor</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="speed"><a name="speed,InputEventMouseMotion"></a><pre><span class="Keyword">proc</span> <span class="Identifier">speed</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">InputEventMouseMotion</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector2</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getAnchorName"><a name="getAnchorName,ARVRAnchor"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getAnchorName</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRAnchor</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="="><a name="=,InputEventMouseMotion,Vector2_2"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">speed</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">InputEventMouseMotion</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getIsActive"><a name="getIsActive,ARVRAnchor"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getIsActive</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRAnchor</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="getSize"><a name="getSize,ARVRAnchor"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSize</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRAnchor</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1275,7 +1282,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-04 06:45:29 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-04 06:45:27 UTC</small>
       </div>
     </div>
   </div>

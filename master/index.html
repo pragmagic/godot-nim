@@ -1220,7 +1220,7 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   <p class="module-desc"><table class="docinfo" frame="void" rules="none"><col class="docinfo-name" /><col class="docinfo-content" /><tbody valign="top"><tr><th class="docinfo-name">Author:</th><td> Ruslan Mustakov</td></tr>
-<tr><th class="docinfo-name">Version:</th><td> 0.4.0</td></tr>
+<tr><th class="docinfo-name">Version:</th><td> 0.4.1</td></tr>
 <tr><th class="docinfo-name">GitHub:</th><td> <a class="reference external" href="https://github.com/pragmagic/godot-nim">https://github.com/pragmagic/godot-nim</a></td></tr>
 </tbody></table><p><tt class="docutils literal"><span class="pre">godot-nim</span></tt> library allows to create games on <a class="reference external" href="https://godotengine.org/">Godot Engine</a> with <a class="reference external" href="https://nim-lang.org/">Nim programming language</a>. Nim is a statically typed language with an elegant Python-like syntax that compiles to native code. It is garbage-collected, but its GC supports real-time mode which this library makes use of. It means the GC will never run during game frames and will use fixed amount of frame idle time to collect garbage. This leads to no stalls and close to zero compromise on performance comparing to native languages with manual memory management.</p>
 <p>If you are not familiar with Nim yet, it is recommended to go through the <a class="reference external" href="https://nim-lang.org/docs/tut1.html">official tutorial</a>.</p>
@@ -1241,10 +1241,8 @@ scons platform=&lt;your_platform&gt;</pre><p>where <tt class="docutils literal">
 <h2><a class="toc-backref" id="getting-started-adding-nim-to-existing-project" href="#getting-started-adding-nim-to-existing-project">Adding Nim to Existing Project</a></h2><p>If you would like to use Nim in an existing project:</p>
 <ol class="simple"><li>Copy <tt class="docutils literal"><span class="pre">nakefile.nim</span></tt> file and <tt class="docutils literal"><span class="pre">src</span></tt> directory from the stub described in the previous section above your Godot project folder. Adjust paths in build scripts (<tt class="docutils literal"><span class="pre">nakefile.nim</span></tt>, <tt class="docutils literal"><span class="pre">src/stub.nimble</span></tt>) according to your own project structure.</li>
 <li>Copy <tt class="docutils literal"><span class="pre">project/nimlib.tres</span></tt> to your Godot project folder. It is a GDNative library resource that contains paths to dynamic libraries compiled by Nim.</li>
-<li>Add <tt class="docutils literal"><span class="pre">NimRuntime</span></tt> as an <a class="reference external" href="https://godot.readthedocs.io/en/stable/learning/step_by_step/singletons_autoload.html">AutoLoad singleton</a> to your project. To do this, copy <tt class="docutils literal"><span class="pre">project/scripts/NimRuntime.gdns</span></tt> into your project and add these lines to <tt class="docutils literal"><span class="pre">project.godot</span></tt>, adjusting path to <tt class="docutils literal"><span class="pre">NimRuntime.gdns</span></tt> as necessary:</li>
 </ol>
-<pre class="listing">[autoload]
-  NimRuntime=&quot;*res://scripts/NimRuntime.gdns&quot;</pre>
+
 <h2><a class="toc-backref" id="getting-started-next-steps" href="#getting-started-next-steps">Next Steps</a></h2><p>Once you are familiarized with the build process (it's as simple as running <tt class="docutils literal"><span class="pre">nake build</span></tt> after you are set up), it is recommended to go through <a class="reference external" href="godotmacros.html">godotmacros</a> and <a class="reference external" href="godotnim.html">godotnim</a> module documentations. They describe special macros and procedures needed to define or instantiate Godot objects. After you learned that, the rest is similar to using any Nim library. These bindings do not limit any of Nim's capabilities, and you can use any Nim types as fields or parameters of Godot objects and their procedures (but, obviously, you may not be able to export some of them to Godot editor or GDScript, unless you define your own converters).</p>
 
 <h1><a class="toc-backref" id="modules" href="#modules">Modules</a></h1><p>The binding library consists of three major modules:</p>
@@ -1275,7 +1273,7 @@ scons platform=&lt;your_platform&gt;</pre><p>where <tt class="docutils literal">
 <li><a class="reference external" href="godotbase.html">godotbase</a> Defines <tt class="docutils literal"><span class="pre">Error</span></tt> type and few common math procedures missing in Nim's standard library.</li>
 </ul>
 
-<h2><a class="toc-backref" id="modules-godot-api" href="#modules-godot-api">Godot API</a></h2><p>This is an auto-generated list of Godot API modules. It's built from Godot changeset <a class="reference external" href="https://github.com/godotengine/godot/commit/aef974e7a8577f857be8cf89f02844575d0839bb">aef974e7a8577f857be8cf89f02844575d0839bb</a>.</p>
+<h2><a class="toc-backref" id="modules-godot-api" href="#modules-godot-api">Godot API</a></h2><p>This is an auto-generated list of Godot API modules. It's built from Godot changeset <a class="reference external" href="https://github.com/godotengine/godot/commit/211dfa6602cff8605acfd29986dcf33f3c3176cc">211dfa6602cff8605acfd29986dcf33f3c3176cc</a>.</p>
 <ul class="simple"><li><a class="reference external" href="godotapi/a_star.html">a_star</a></li>
 <li><a class="reference external" href="godotapi/accept_dialog.html">accept_dialog</a></li>
 <li><a class="reference external" href="godotapi/animated_sprite.html">animated_sprite</a></li>
@@ -1286,6 +1284,7 @@ scons platform=&lt;your_platform&gt;</pre><p>where <tt class="docutils literal">
 <li><a class="reference external" href="godotapi/area.html">area</a></li>
 <li><a class="reference external" href="godotapi/area_2d.html">area_2d</a></li>
 <li><a class="reference external" href="godotapi/array_mesh.html">array_mesh</a></li>
+<li><a class="reference external" href="godotapi/arvr_anchor.html">arvr_anchor</a></li>
 <li><a class="reference external" href="godotapi/arvr_camera.html">arvr_camera</a></li>
 <li><a class="reference external" href="godotapi/arvr_controller.html">arvr_controller</a></li>
 <li><a class="reference external" href="godotapi/arvr_interface.html">arvr_interface</a></li>
@@ -1727,7 +1726,7 @@ scons platform=&lt;your_platform&gt;</pre><p>where <tt class="docutils literal">
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-03 05:36:03 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-04 06:45:34 UTC</small>
       </div>
     </div>
   </div>

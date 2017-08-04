@@ -1278,130 +1278,74 @@ function main() {
 <dt id="getAvailablePointId"><a name="getAvailablePointId,AStar"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getAvailablePointId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L9"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addPoint"><a name="addPoint,AStar,int64,Vector3,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addPoint</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">pos</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span> <span class="Identifier">weightScale</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other">=</span> <span class="FloatNumber">1.0</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L10"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPointPos"><a name="getPointPos,AStar,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPointPos</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L12"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPointWeightScale"><a name="getPointWeightScale,AStar,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPointWeightScale</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L13"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="removePoint"><a name="removePoint,AStar,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">removePoint</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L14"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="hasPoint"><a name="hasPoint,AStar,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hasPoint</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L15"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="connectPoints"><a name="connectPoints,AStar,int64,int64,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connectPoints</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">toId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">bidirectional</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L16"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="disconnectPoints"><a name="disconnectPoints,AStar,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">disconnectPoints</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">toId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L18"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="arePointsConnected"><a name="arePointsConnected,AStar,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">arePointsConnected</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">toId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L19"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="clear"><a name="clear,AStar"></a><pre><span class="Keyword">proc</span> <span class="Identifier">clear</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L20"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getClosestPoint"><a name="getClosestPoint,AStar,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getClosestPoint</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">toPos</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L21"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getClosestPosInSegment"><a name="getClosestPosInSegment,AStar,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getClosestPosInSegment</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">toPos</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L22"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPointPath"><a name="getPointPath,AStar,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPointPath</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">fromId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">toId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L23"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getIdPath"><a name="getIdPath,AStar,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getIdPath</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">fromId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">toId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L25"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1412,19 +1356,11 @@ class="link-seesrc" target="_blank">Source</a>
 <dt id="estimateCost"><a name="estimateCost.e,AStar,int64,int64"></a><pre><span class="Keyword">method</span> <span class="Identifier">estimateCost</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">fromId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">toId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L7"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L7" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="computeCost"><a name="computeCost.e,AStar,int64,int64"></a><pre><span class="Keyword">method</span> <span class="Identifier">computeCost</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AStar</span><span class="Other">;</span> <span class="Identifier">fromId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">toId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/a_star.nim#L8"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/a_star.nim#L8" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1437,7 +1373,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-03 05:35:56 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-04 06:45:26 UTC</small>
       </div>
     </div>
   </div>

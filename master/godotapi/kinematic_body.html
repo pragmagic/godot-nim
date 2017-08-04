@@ -1285,28 +1285,16 @@ function main() {
 <dt id="collisionsafeMargin"><a name="collisionsafeMargin,KinematicBody"></a><pre><span class="Keyword">proc</span> <span class="Identifier">collisionsafeMargin</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L7"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L7" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="="><a name="=,KinematicBody,float64"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">collisionsafeMargin</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L8"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L8" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="move"><a name="move,KinematicBody,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">move</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">relVec</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Dictionary</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L9"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="moveAndSlide"><a name="moveAndSlide,KinematicBody,Vector3,Vector3,float64,int64,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">moveAndSlide</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">linearVelocity</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span>
@@ -1315,175 +1303,103 @@ class="link-seesrc" target="_blank">Source</a>
                   <span class="Identifier">floorMaxAngle</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other">=</span> <span class="FloatNumber">0.785398</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L10"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="testMove"><a name="testMove,KinematicBody,Transform,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">testMove</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">fromm</span><span class="Other">:</span> <span class="Identifier">Transform</span><span class="Other">;</span> <span class="Identifier">relVec</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L14"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isOnFloor"><a name="isOnFloor,KinematicBody"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isOnFloor</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L16"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isOnCeiling"><a name="isOnCeiling,KinematicBody"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isOnCeiling</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L17"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isOnWall"><a name="isOnWall,KinematicBody"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isOnWall</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L18"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getFloorVelocity"><a name="getFloorVelocity,KinematicBody"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getFloorVelocity</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L19"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionCount"><a name="getCollisionCount,KinematicBody"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionCount</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L20"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionPosition"><a name="getCollisionPosition,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionPosition</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L21"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionNormal"><a name="getCollisionNormal,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionNormal</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L23"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionTravel"><a name="getCollisionTravel,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionTravel</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L25"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionRemainder"><a name="getCollisionRemainder,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionRemainder</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L27"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionLocalShape"><a name="getCollisionLocalShape,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionLocalShape</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Object</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L29"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionCollider"><a name="getCollisionCollider,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionCollider</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Object</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L31"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionColliderId"><a name="getCollisionColliderId,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionColliderId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L33"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionColliderShape"><a name="getCollisionColliderShape,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionColliderShape</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Object</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L35"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionColliderShapeIndex"><a name="getCollisionColliderShapeIndex,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionColliderShapeIndex</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L37"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionColliderVelocity"><a name="getCollisionColliderVelocity,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionColliderVelocity</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L39"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCollisionColliderMetadata"><a name="getCollisionColliderMetadata,KinematicBody,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCollisionColliderMetadata</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">KinematicBody</span><span class="Other">;</span> <span class="Identifier">collision</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/kinematic_body.nim#L41"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/kinematic_body.nim#L41" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1496,7 +1412,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-03 05:35:58 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-04 06:45:29 UTC</small>
       </div>
     </div>
   </div>

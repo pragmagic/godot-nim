@@ -1306,302 +1306,170 @@ function main() {
 <dt id="setBusCount"><a name="setBusCount,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBusCount</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">amount</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L17"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBusCount"><a name="getBusCount,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBusCount</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L18"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="removeBus"><a name="removeBus,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">removeBus</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">index</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L19"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addBus"><a name="addBus,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addBus</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">atPos</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="Operator">-</span> <span class="DecNumber">1'i64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L20"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="moveBus"><a name="moveBus,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">moveBus</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">index</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">toIndex</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L21"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBusName"><a name="setBusName,int64,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBusName</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L22"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBusName"><a name="getBusName,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBusName</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L23"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBusIndex"><a name="getBusIndex,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBusIndex</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L24"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBusVolumeDb"><a name="setBusVolumeDb,int64,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBusVolumeDb</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">volumeDb</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L25"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBusVolumeDb"><a name="getBusVolumeDb,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBusVolumeDb</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L26"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBusSend"><a name="setBusSend,int64,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBusSend</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">send</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L27"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBusSend"><a name="getBusSend,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBusSend</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L28"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBusSolo"><a name="setBusSolo,int64,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBusSolo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L29"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isBusSolo"><a name="isBusSolo,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isBusSolo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L30"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBusMute"><a name="setBusMute,int64,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBusMute</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L31"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isBusMute"><a name="isBusMute,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isBusMute</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L32"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBusBypassEffects"><a name="setBusBypassEffects,int64,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBusBypassEffects</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L33"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isBusBypassingEffects"><a name="isBusBypassingEffects,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isBusBypassingEffects</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L34"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addBusEffect"><a name="addBusEffect,int64,AudioEffect,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addBusEffect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">effect</span><span class="Other">:</span> <span class="Identifier">AudioEffect</span><span class="Other">;</span> <span class="Identifier">atPos</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="Operator">-</span> <span class="DecNumber">1'i64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L35"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="removeBusEffect"><a name="removeBusEffect,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">removeBusEffect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">effectIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L37"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBusEffectCount"><a name="getBusEffectCount,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBusEffectCount</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L38"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L38" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBusEffect"><a name="getBusEffect,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBusEffect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">effectIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">AudioEffect</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L39"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="swapBusEffects"><a name="swapBusEffects,int64,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">swapBusEffects</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">effectIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">byEffectIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L40"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBusEffectEnabled"><a name="setBusEffectEnabled,int64,int64,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBusEffectEnabled</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">effectIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">enabled</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L42"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isBusEffectEnabled"><a name="isBusEffectEnabled,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isBusEffectEnabled</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">effectIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L44"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBusPeakVolumeLeftDb"><a name="getBusPeakVolumeLeftDb,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBusPeakVolumeLeftDb</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">channel</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L45"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBusPeakVolumeRightDb"><a name="getBusPeakVolumeRightDb,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBusPeakVolumeRightDb</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">channel</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L46"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="lock"><a name="lock,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">lock</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L48"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="unlock"><a name="unlock,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">unlock</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L49"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getSpeakerMode"><a name="getSpeakerMode,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSpeakerMode</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L50"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L50" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getMixRate"><a name="getMixRate,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getMixRate</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L51"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBusLayout"><a name="setBusLayout,AudioBusLayout"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBusLayout</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">busLayout</span><span class="Other">:</span> <span class="Identifier">AudioBusLayout</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L52"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="generateBusLayout"><a name="generateBusLayout,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">generateBusLayout</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">AudioBusLayout</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/audio_server.nim#L53"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/audio_server.nim#L53" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1614,7 +1482,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-03 05:35:56 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-04 06:45:27 UTC</small>
       </div>
     </div>
   </div>

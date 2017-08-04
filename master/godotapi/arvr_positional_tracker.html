@@ -1238,6 +1238,22 @@ function main() {
 
   </ul>
 </li>
+<li>
+  <a class="reference reference-toplevel" href="#13" id="63">Methods</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#setType.e,ARVRPositionalTracker,int64"
+    title="setType*(self: ARVRPositionalTracker; typee: int64)"><wbr />set<wbr />Type<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setName.e,ARVRPositionalTracker,string"
+    title="setName*(self: ARVRPositionalTracker; name: string)"><wbr />set<wbr />Name<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setJoyId.e,ARVRPositionalTracker,int64"
+    title="setJoyId*(self: ARVRPositionalTracker; joyId: int64)"><wbr />set<wbr />Joy<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setOrientation.e,ARVRPositionalTracker,Basis"
+    title="setOrientation*(self: ARVRPositionalTracker; orientation: Basis)"><wbr />set<wbr />Orientation<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setRwPosition.e,ARVRPositionalTracker,Vector3"
+    title="setRwPosition*(self: ARVRPositionalTracker; rwPosition: Vector3)"><wbr />set<wbr />Rw<wbr />Position<span class="attachedType" style="visibility:hidden"></span></a></li>
+
+  </ul>
+</li>
 
 </ul>
 
@@ -1256,74 +1272,74 @@ function main() {
 <dt id="getType"><a name="getType,ARVRPositionalTracker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getType</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/arvr_positional_tracker.nim#L7"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/arvr_positional_tracker.nim#L7" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getName"><a name="getName,ARVRPositionalTracker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getName</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/arvr_positional_tracker.nim#L8"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/arvr_positional_tracker.nim#L8" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getJoyId"><a name="getJoyId,ARVRPositionalTracker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getJoyId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/arvr_positional_tracker.nim#L9"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/arvr_positional_tracker.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getTracksOrientation"><a name="getTracksOrientation,ARVRPositionalTracker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getTracksOrientation</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/arvr_positional_tracker.nim#L10"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/arvr_positional_tracker.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getOrientation"><a name="getOrientation,ARVRPositionalTracker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getOrientation</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Basis</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/arvr_positional_tracker.nim#L11"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/arvr_positional_tracker.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getTracksPosition"><a name="getTracksPosition,ARVRPositionalTracker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getTracksPosition</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/arvr_positional_tracker.nim#L12"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/arvr_positional_tracker.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPosition"><a name="getPosition,ARVRPositionalTracker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPosition</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/arvr_positional_tracker.nim#L13"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/arvr_positional_tracker.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getTransform"><a name="getTransform,ARVRPositionalTracker,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getTransform</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">;</span> <span class="Identifier">adjustByReferenceFrame</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Transform</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/arvr_positional_tracker.nim#L14"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/arvr_positional_tracker.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+
+</dl></div>
+<div class="section" id="13">
+<h1><a class="toc-backref" href="#13">Methods</a></h1>
+<dl class="item">
+<dt id="setType"><a name="setType.e,ARVRPositionalTracker,int64"></a><pre><span class="Keyword">method</span> <span class="Identifier">setType</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">;</span> <span class="Identifier">typee</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="setName"><a name="setName.e,ARVRPositionalTracker,string"></a><pre><span class="Keyword">method</span> <span class="Identifier">setName</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="setJoyId"><a name="setJoyId.e,ARVRPositionalTracker,int64"></a><pre><span class="Keyword">method</span> <span class="Identifier">setJoyId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">;</span> <span class="Identifier">joyId</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="setOrientation"><a name="setOrientation.e,ARVRPositionalTracker,Basis"></a><pre><span class="Keyword">method</span> <span class="Identifier">setOrientation</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">;</span> <span class="Identifier">orientation</span><span class="Other">:</span> <span class="Identifier">Basis</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="setRwPosition"><a name="setRwPosition.e,ARVRPositionalTracker,Vector3"></a><pre><span class="Keyword">method</span> <span class="Identifier">setRwPosition</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ARVRPositionalTracker</span><span class="Other">;</span> <span class="Identifier">rwPosition</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
 
 </dd>
 
@@ -1336,7 +1352,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-03 05:35:56 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-04 06:45:27 UTC</small>
       </div>
     </div>
   </div>

@@ -1345,46 +1345,26 @@ function main() {
 <dt id="NOTIFICATION_POSTINITIALIZE"><a name="NOTIFICATION_POSTINITIALIZE"></a><pre><span class="Identifier">NOTIFICATION_POSTINITIALIZE</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L8"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L8" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="NOTIFICATION_PREDELETE"><a name="NOTIFICATION_PREDELETE"></a><pre><span class="Identifier">NOTIFICATION_PREDELETE</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">1'i64</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L9"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="CONNECT_DEFERRED"><a name="CONNECT_DEFERRED"></a><pre><span class="Identifier">CONNECT_DEFERRED</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">1'i64</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L10"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="CONNECT_PERSIST"><a name="CONNECT_PERSIST"></a><pre><span class="Identifier">CONNECT_PERSIST</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">2'i64</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L11"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="CONNECT_ONESHOT"><a name="CONNECT_ONESHOT"></a><pre><span class="Identifier">CONNECT_ONESHOT</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">4'i64</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L12"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1395,332 +1375,188 @@ class="link-seesrc" target="_blank">Source</a>
 <dt id="free"><a name="free,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">free</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L14"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getClass"><a name="getClass,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getClass</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L20"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isClass"><a name="isClass,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isClass</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">typee</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L21"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setImpl"><a name="setImpl,Object,string,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setImpl</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">property</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L22"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getImpl"><a name="getImpl,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getImpl</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">property</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L23"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPropertyListImpl"><a name="getPropertyListImpl,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPropertyListImpl</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L24"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getMethodList"><a name="getMethodList,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getMethodList</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L25"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="notificationImpl"><a name="notificationImpl,Object,int64,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">notificationImpl</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">what</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">reversed</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L26"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getInstanceID"><a name="getInstanceID,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getInstanceID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L28"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setScript"><a name="setScript,Object,Script"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setScript</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">script</span><span class="Other">:</span> <span class="Identifier">Script</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L29"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getScript"><a name="getScript,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getScript</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Script</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L30"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setMeta"><a name="setMeta,Object,string,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setMeta</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L31"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getMeta"><a name="getMeta,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getMeta</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L32"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="hasMeta"><a name="hasMeta,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hasMeta</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L33"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getMetaList"><a name="getMetaList,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getMetaList</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L34"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="addUserSignal"><a name="addUserSignal,Object,string,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addUserSignal</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">arguments</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L35"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="hasUserSignal"><a name="hasUserSignal,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hasUserSignal</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L36"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="emitSignal"><a name="emitSignal,Object,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">emitSignal</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L37"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="call"><a name="call,Object,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">call</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L39"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="callDeferred"><a name="callDeferred,Object,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">callDeferred</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L41"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L41" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="callv"><a name="callv,Object,string,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">callv</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">argArray</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L43"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="hasMethod"><a name="hasMethod,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hasMethod</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L44"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getSignalList"><a name="getSignalList,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSignalList</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L45"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getSignalConnectionList"><a name="getSignalConnectionList,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSignalConnectionList</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L46"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getIncomingConnections"><a name="getIncomingConnections,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getIncomingConnections</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L47"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L47" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="connect"><a name="connect,Object,string,Object,string,Array,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">target</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
              <span class="Identifier">binds</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L48"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="disconnect"><a name="disconnect,Object,string,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">disconnect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">target</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L50"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L50" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isConnected"><a name="isConnected,Object,string,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isConnected</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">target</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L52"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBlockSignals"><a name="setBlockSignals,Object,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBlockSignals</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L54"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L54" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isBlockingSignals"><a name="isBlockingSignals,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isBlockingSignals</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L55"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setMessageTranslation"><a name="setMessageTranslation,Object,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setMessageTranslation</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L56"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L56" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="canTranslateMessages"><a name="canTranslateMessages,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">canTranslateMessages</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L57"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="propertyListChangedNotify"><a name="propertyListChangedNotify,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">propertyListChangedNotify</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L58"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="XLMESSAGE"><a name="XLMESSAGE,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">XLMESSAGE</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">message</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L59"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L59" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="tr"><a name="tr,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">tr</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">message</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L60"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isQueuedForDeletion"><a name="isQueuedForDeletion,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isQueuedForDeletion</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L61"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1731,46 +1567,26 @@ class="link-seesrc" target="_blank">Source</a>
 <dt id="notification"><a name="notification.e,Object,int64"></a><pre><span class="Keyword">method</span> <span class="Identifier">notification</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">what</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L15"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="set"><a name="set.e,Object,string,Variant"></a><pre><span class="Keyword">method</span> <span class="Identifier">set</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">property</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L16"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="get"><a name="get.e,Object,string"></a><pre><span class="Keyword">method</span> <span class="Identifier">get</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">property</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L17"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPropertyList"><a name="getPropertyList.e,Object"></a><pre><span class="Keyword">method</span> <span class="Identifier">getPropertyList</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L18"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="init"><a name="init.e,Object"></a><pre><span class="Keyword">method</span> <span class="Identifier">init</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/docgen/godotapi/objects.nim#L19"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/docgen/godotapi/objects.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1783,7 +1599,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-03 05:35:59 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-04 06:45:29 UTC</small>
       </div>
     </div>
   </div>
