@@ -15,13 +15,22 @@ proc godotArray*(arr: Array): ptr GodotArray {.inline.} =
 proc arrayFinalizer(arr: Array) =
   arr.godotArray.deinit()
 
-proc newArray*(): Array {.inline.} =
-  new(result, arrayFinalizer)
-  initGodotArray(result.godotArray)
-
 proc newArray*(arr: GodotArray): Array {.inline.} =
   new(result, arrayFinalizer)
   result.godotArray = arr
+
+import variants
+
+proc newArray*(s: varargs[Variant]): Array =
+  new(result, arrayFinalizer)
+  initGodotArray(result.godotArray)
+  for v in s:
+    result.godotArray.add(v.godotVariant[])
+
+proc newArray*(s: openarray[Variant]): Array =
+  result = newArray()
+  for v in s:
+    result.godotArray.add(v.godotVariant[])
 
 import poolarrays
 
@@ -52,8 +61,6 @@ proc newArray*(pia: PoolIntArray): Array {.inline.} =
 proc newArray*(pba: PoolByteArray): Array {.inline.} =
   new(result, arrayFinalizer)
   initGodotArray(result.godotArray, pba.godotPoolByteArray[])
-
-import variants
 
 proc `[]=`*(self: var Array; idx: int; value: Variant) {.inline.} =
   self.godotArray[idx.cint] = value.godotVariant[]
