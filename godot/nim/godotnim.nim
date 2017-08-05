@@ -89,15 +89,12 @@ template printError*(error: typed) =
   let (filename, line) = instantiationInfo()
   godotPrintError(cstring($error), nil, cstring(filename), line.cint)
 
-proc print*(message: string) {.inline.} =
-  ## Prints ``message`` to Godot log.
-  var s = message.toGodotString()
-  godotPrint(s)
-  s.deinit()
-
-proc print*(message: cstring) {.inline.} =
-  ## Prints ``message`` to Godot log.
-  var s = message.toGodotString()
+proc print*(parts: varargs[string, `$`]) =
+  ## Prints concatenated ``parts`` to Godot log.
+  var combined = ""
+  for v in parts:
+    combined.add(v)
+  var s = combined.toGodotString()
   godotPrint(s)
   s.deinit()
 
