@@ -11,7 +11,7 @@ type
     defaultValue: NimNode
     isNoGodot: bool
     hint: string
-    hintTip: string
+    hintStr: string
     usage: string
     isExported: bool
 
@@ -122,7 +122,7 @@ proc identDefsToVarDecls(identDefs: NimNode): seq[VarDecl] =
   for i in 0..<(identDefs.len - 2):
     let nameNode = identDefs[i].copyNimTree()
     let hint = removeStrPragma(nameNode, "hint")
-    let hintTip = removeStrPragma(nameNode, "tip")
+    let hintStr = removeStrPragma(nameNode, "hintStr")
     let usage = removeStrPragma(nameNode, "usage")
     let isGdExport = removePragma(nameNode, "gdExport")
     if not nameNode.isExported() and isGdExport:
@@ -136,7 +136,7 @@ proc identDefsToVarDecls(identDefs: NimNode): seq[VarDecl] =
       typ: identDefs[identDefs.len - 2],
       defaultValue: identDefs[identDefs.len - 1],
       hint: hint,
-      hintTip: hintTip,
+      hintStr: hintStr,
       isNoGodot: isNoGodot,
       usage: usage,
       isExported: nameNode.isExported()
@@ -279,13 +279,13 @@ macro invokeVarArgs(procIdent, objIdent;
   result.add(newNimNode(nnkElse).add(getAst(
     printInvokeErr($procIdent.ident, minArgs, maxArgs, numArgsIdent))))
 
-proc typeError(nimType: cstring, value: string, godotType: VariantType,
+proc typeError(nimType: string, value: string, godotType: VariantType,
                className: cstring, propertyName: cstring): string =
   result = "Tried to assign incompatible value " & value & " (" & $godotType &
             ") to field \"" & $propertyName & "\" (" & $nimType & ") of " &
             $className
 
-proc rangeError(nimType: cstring, value: string, className: cstring,
+proc rangeError(nimType: string, value: string, className: cstring,
                 propertyName: cstring): string =
   result = "Tried to assign the out-of-range value " & value &
             " to field \"" & $propertyName & "\" (" & $nimType & ") of " &
@@ -345,7 +345,7 @@ template registerGodotClass(classNameIdent, classNameLit, isRef,
 
 template registerGodotField(classNameLit, classNameIdent, propNameLit,
                             propNameIdent, propTypeLit, propTypeIdent,
-                            setFuncIdent, getFuncIdent, hintTipLit,
+                            setFuncIdent, getFuncIdent, hintStrLit,
                             hintIdent, usageIdent, hasDefaultValue,
                             defaultValueNode) =
   proc setFuncIdent(obj: ptr GodotObject, methData: pointer,
@@ -377,12 +377,27 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
   let getFunc = GodotPropertyGetFunc(
     getFunc: getFuncIdent
   )
+  mixin godotTypeInfo
+  static:
+    var typeInfo: GodotTypeInfo
+    when compiles(godotTypeInfo(propTypeIdent)):
+      typeInfo = godotTypeInfo(propTypeIdent)
+  const hintStr = when hintStrLit != "NIM":
+                    hintStrLit
+                  else:
+                    typeInfo.hintStr
+  const hint = when astToStr(hintIdent) != "NIM":
+                 GodotPropertyHint.hintIdent
+               else:
+                 typeInfo.hint
+  const variantType = typeInfo.variantType
+
+  var hintStrGodot = hintStr.toGodotString()
   {.push warning[ProveInit]: off.} # false warning, Nim bug
-  var hintStr = hintTipLit.toGodotString()
   let attr = GodotPropertyAttributes(
-    typ: ord(variantType(propTypeIdent)),
-    hintString: hintStr,
-    hint: GodotPropertyHint.hintIdent,
+    typ: ord(variantType),
+    hint: hint,
+    hintString: hintStrGodot,
     usage: GodotPropertyUsageFlags.usageIdent
   )
   {.push warning[ProveInit]: on.}
@@ -390,7 +405,7 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
     attr.defaultValue = (defaultValueNode).toVariant().godotVariant[]
   godotScriptRegisterProperty(getNativeLibHandle(), classNameLit, propNameLit,
                               unsafeAddr attr, setFunc, getFunc)
-  hintStr.deinit()
+  hintStrGodot.deinit()
 
 static:
   import strutils, sets, sequtils
@@ -466,9 +481,9 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   # 5. Register fields (properties)
   for field in obj.fields:
     if field.isNoGodot: continue
-    let hintTip = if field.hintTip.isNil: ""
-                  else: field.hintTip
-    let hint = if field.hint.isNil: "None"
+    let hintStr = if field.hintStr.isNil: "NIM"
+                  else: field.hintStr
+    let hint = if field.hint.isNil: "NIM"
                else: field.hint
     let usage = if field.usage.isNil: "Default"
                 else: field.usage
@@ -476,13 +491,14 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                           field.defaultValue.kind != nnkEmpty
     let hintIdent = ident(hint)
     let usageIdent = ident(usage)
+    let nimType = repr field.typ
     result.add(getAst(
       registerGodotField(classNameLit, classNameIdent,
                          newCStringLit(toGodotStyle($field.name.basename())),
-                         ident(field.name), newCStringLit($field.typ),
+                         ident(field.name), nimType,
                          field.typ, genSym(nskProc, "setFunc"),
                          genSym(nskProc, "getFunc"),
-                         newStrLitNode(hintTip), hintIdent, usageIdent,
+                         newStrLitNode(hintStr), hintIdent, usageIdent,
                          ident($hasDefaultValue), field.defaultValue)))
 
   # 6. Register methods
@@ -574,12 +590,12 @@ macro gdobj*(definition: untyped, body: typed): typed {.immediate.} =
   ##     var myField: int
   ##       ## Not exported to Godot (i.e. editor will not see this field).
   ##
-  ##     var myString* {.gdExport, hint: Length, tip: "20".}: string
+  ##     var myString* {.gdExport, hint: Length, hintStr: "20".}: string
   ##       ## Exported to Godot as ``my_string``.
   ##       ## Editor will limit this string to length 20.
   ##       ## ``hint` is a value of ``GodotPropertyHint`` enum.
-  ##       ## ``tip`` depends on the value of ``hint``, its format is described
-  ##       ## in ``GodotPropertyHint`` documentation.
+  ##       ## ``hintStr`` depends on the value of ``hint``, its format is
+  ##       ## described in ``GodotPropertyHint`` documentation.
   ##
   ##     method ready*() =
   ##       ## Exported methods are exported to Godot by default,
