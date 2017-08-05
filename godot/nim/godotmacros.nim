@@ -125,10 +125,6 @@ proc identDefsToVarDecls(identDefs: NimNode): seq[VarDecl] =
     let hintStr = removeStrPragma(nameNode, "hintStr")
     let usage = removeStrPragma(nameNode, "usage")
     let isGdExport = removePragma(nameNode, "gdExport")
-    if not nameNode.isExported() and isGdExport:
-      parseError(nameNode, "gdExport is not applicable for private fields")
-
-    let isNoGodot = not nameNode.isExported() or not isGdExport
 
     result.add(VarDecl(
       name: if nameNode.kind == nnkPragmaExpr: nameNode[0].basename()
@@ -137,21 +133,16 @@ proc identDefsToVarDecls(identDefs: NimNode): seq[VarDecl] =
       defaultValue: identDefs[identDefs.len - 1],
       hint: hint,
       hintStr: hintStr,
-      isNoGodot: isNoGodot,
+      isNoGodot: not isGdExport,
       usage: usage,
       isExported: nameNode.isExported()
     ))
 
 proc parseMethod(meth: NimNode): MethodDecl =
   assert(meth.kind in {nnkProcDef, nnkMethodDef})
-  let methName = meth[0]
   let isGdExport = removePragma(meth, "gdExport")
-  if not methName.isExported() and isGdExport:
-    parseError(meth, "gdExport is not applicable for private procs/methods")
-  let isNoGodot = meth.kind != nnkMethodDef and (
-                    not methName.isExported() or
-                    not isGdExport
-                  ) or removePragma(meth, "noExport")
+  let isNoGodot = (meth.kind != nnkMethodDef and not isGdExport) or
+                  removePragma(meth, "noExport")
   result = MethodDecl(
     name: $meth[0].basename,
     args: newSeq[VarDecl](),
