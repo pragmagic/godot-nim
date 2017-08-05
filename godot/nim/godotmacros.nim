@@ -394,7 +394,7 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
 
   var hintStrGodot = hintStr.toGodotString()
   {.push warning[ProveInit]: off.} # false warning, Nim bug
-  let attr = GodotPropertyAttributes(
+  var attr = GodotPropertyAttributes(
     typ: ord(variantType),
     hint: hint,
     hintString: hintStrGodot,
@@ -422,7 +422,7 @@ proc toGodotStyle(s: string): string {.compileTime.} =
 proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   result = newNimNode(nnkStmtList)
 
-  # 1. Nim type definition
+  # Nim type definition
   let typeDef = newNimNode(nnkTypeDef)
   result.add(newNimNode(nnkTypeSection).add(typeDef))
   typeDef.add(postfix(ident(obj.name), "*"))
@@ -437,20 +437,40 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
 
   let recList = newNimNode(nnkRecList)
   objTy.add(recList)
+  let initBody = newStmtList()
   for decl in obj.fields:
     if not decl.defaultValue.isNil and decl.defaultValue.kind != nnkEmpty:
-      parseError(decl.defaultValue,
-                 "Default values are not supported for fields for now.")
+      initBody.add(newNimNode(nnkAsgn).add(decl.name, decl.defaultValue))
     let name = if not decl.isExported: decl.name
                else: postfix(decl.name, "*")
     recList.add(newIdentDefs(name, decl.typ))
 
-  # 2. {.this: self.} for convenience
+  # Add default values to init method
+  if initBody.len > 0:
+    var initMethod: NimNode
+    for meth in obj.methods:
+      if meth.name == "init" and meth.nimNode[3].len == 1:
+        initMethod = meth.nimNode
+        break
+    if initMethod.isNil:
+      obj.methods.add(MethodDecl(
+        name: "init",
+        args: newSeq[VarDecl](),
+        returnType: newEmptyNode(),
+        isVirtual: true,
+        isNoGodot: false,
+        nimNode: newProc(ident("init"), body = initBody,
+                         procType = nnkMethodDef)
+      ))
+    else:
+      initMethod.body.insert(0, initBody)
+
+  # {.this: self.} for convenience
   result.add(newNimNode(nnkPragma).add(newNimNode(nnkExprColonExpr).add(
     ident("this"), ident("self")
   )))
 
-  # 3. Nim proc defintions
+  # Nim proc defintions
   var decls = newSeqOfCap[NimNode](obj.methods.len)
   for meth in obj.methods:
     let selfArg = newIdentDefs(ident("self"), ident(obj.name))
@@ -467,7 +487,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   for meth in obj.methods:
     result.add(meth.nimNode)
 
-  # 4. Register Godot object
+  # Register Godot object
   let parentName = if obj.parentName.isNil: newStrLitNode("Object")
                    else: newStrLitNode(obj.parentName)
   let classNameLit = newCStringLit(obj.name)
@@ -478,7 +498,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     registerGodotClass(classNameIdent, classNameLit, isRef, parentName,
                        genSym(nskProc, "createFunc"), obj.isTool)))
 
-  # 5. Register fields (properties)
+  # Register fields (properties)
   for field in obj.fields:
     if field.isNoGodot: continue
     let hintStr = if field.hintStr.isNil: "NIM"
@@ -501,7 +521,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                          newStrLitNode(hintStr), hintIdent, usageIdent,
                          ident($hasDefaultValue), field.defaultValue)))
 
-  # 6. Register methods
+  # Register methods
   template registerGodotMethod(classNameLit, classNameIdent, methodNameIdent,
                                methodNameLit, minArgs, maxArgs,
                                argTypes, methFuncIdent, hasReturnValue) =
