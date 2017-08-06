@@ -41,9 +41,9 @@ proc nimToGodot[T](val: T): Variant =
   when compiles(toVariant(val)):
     result = toVariant(val)
   else:
-    printError("Failed to convert Nim value of type " & T.name &
-               " into Variant")
-    initNilVariant(result)
+    const err = "Cannot convert Nim value of type " & T.name &
+                " into Variant"
+    {.error: err.}
 
 template parseError(node: NimNode, msg: string) =
   raise newException(ParseError, lineinfo(node) & ": " & msg)
@@ -62,9 +62,10 @@ proc extractNames(definition: NimNode):
       else:
         parseError(definition[2], "parent type expected")
 
-proc newRStrLit(s: string): NimNode {.compileTime.} =
-  result = newNimNode(nnkRStrLit)
-  result.strVal = s
+when not declared(newRStrLit):
+  proc newRStrLit(s: string): NimNode {.compileTime.} =
+    result = newNimNode(nnkRStrLit)
+    result.strVal = s
 
 proc newCStringLit(s: string): NimNode {.compileTime.} =
   newNimNode(nnkCallStrLit).add(ident("cstring"), newRStrLit(s))
@@ -318,9 +319,10 @@ template registerGodotClass(classNameIdent, classNameLit, isRef,
                             baseNameLit, createFuncIdent; isTool: bool) =
   proc createFuncIdent(obj: ptr GodotObject,
                        methData: pointer): pointer {.noconv.} =
-    let nimObj = new(classNameIdent)
-    nimObj.setOwn()
+    var nimObj: classNameIdent
+    new(nimObj, nimGodotObjectFinalizer[classNameIdent])
     nimObj.setGodotObject(obj)
+    nimObj.setNativeObject(asNimGodotObject[NimGodotObject](obj, noRef = true))
     GC_ref(nimObj)
     result = cast[pointer](nimObj)
     when compiles(nimObj.init()):

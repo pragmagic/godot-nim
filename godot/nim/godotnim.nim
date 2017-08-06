@@ -28,10 +28,17 @@ import godotinternal
 type
   NimGodotObject* = ref object of RootObj
     ## The base type all Godot types inherit from.
-    ## Manages lifecycle of the wrapped GodotObject.
+    ## Manages lifecycle of the wrapped ``GodotObject``.
     godotObject: ptr GodotObject
+    linkedObject: NimGodotObject
+      ## Wrapper around native object that is the container of the Nim "script"
+      ## This is needed for `of` checks and `as` conversions to work as
+      ## expected. For example, Nim type may inherit from ``Spatial``, but the
+      ## script is attached to ``Particles``. In this case conversion to
+      ## ``Particles`` is valid, but Nim type system is not aware of that.
+      ## This works in both directions - for linked native object this
+      ## reference points to Nim object.
     isExternalRef: bool
-    isOwn: bool
 
   ConversionResult* {.pure.} = enum
     ## Conversion result to return from ``fromVariant`` procedure.
@@ -133,12 +140,14 @@ proc deinit*(obj: NimGodotObject) =
   assert(not obj.godotObject.isNil)
   obj.godotObject.deinit()
   obj.godotObject = nil
+  # linked object internal pointer should be unset from destructor
+  assert(obj.linkedObject.isNil or obj.linkedObject.godotObject.isNil)
 
-proc godotFinalizer[T: NimGodotObject](obj: T) =
+proc nimGodotObjectFinalizer*[T: NimGodotObject](obj: T) =
   if obj.godotObject.isNil: return
   if obj.isExternalRef and obj.godotObject.unreference():
     obj.deinit()
-  elif obj.isOwn:
+  elif not obj.linkedObject.isNil:
     obj.deinit()
 
 macro baseNativeType(T: typedesc): cstring =
@@ -181,7 +190,7 @@ template registerClass*(T: typedesc; godotClassName: cstring,
     classRegistry = newTable[cstring, ObjectInfo]()
   let constructor = proc(): NimGodotObject =
     var t: T
-    new(t, godotFinalizer[T])
+    new(t, nimGodotObjectFinalizer[T])
     result = t
 
   const base = baseNativeType(T)
@@ -208,7 +217,7 @@ template registerClass*(T: typedesc; godotClassName: cstring,
       nativeClasses.add(T.name)
 
 proc newNimGodotObject[T: NimGodotObject](
-    godotObject: ptr GodotObject, godotClassName: cstring): T =
+    godotObject: ptr GodotObject, godotClassName: cstring, noRef: bool): T =
   assert(not classRegistry.isNil)
   assert(not godotObject.isNil)
   let objInfo = classRegistry.getOrDefault(godotClassName)
@@ -217,11 +226,12 @@ proc newNimGodotObject[T: NimGodotObject](
   else:
     result = T(objInfo.constructor())
     result.godotObject = godotObject
-    if objInfo.isRef:
+    if not noRef and objInfo.isRef:
       result.isExternalRef = true
       result.godotObject.reference()
 
-proc asNimGodotObject*[T: NimGodotObject](godotObject: ptr GodotObject): T =
+proc asNimGodotObject*[T: NimGodotObject](
+    godotObject: ptr GodotObject, noRef: bool = false): T =
   ## Wraps ``godotObject`` into Nim type ``T``.
   ## This is used by `godotapigen <godotapigen.html>`_ and should rarely be
   ## used by anything else.
@@ -234,7 +244,7 @@ proc asNimGodotObject*[T: NimGodotObject](godotObject: ptr GodotObject): T =
       result = nil
   if result.isNil:
     result = newNimGodotObject[T](
-      godotObject, cstring(godotObject.getClassName()))
+      godotObject, cstring(godotObject.getClassName()), noRef)
 
 proc newVariant*(obj: NimGodotObject): Variant {.inline.} =
   newVariant(obj.godotObject)
@@ -258,14 +268,27 @@ proc `as`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): T =
   ##
   ## This can be used either in dot notation (``node.as(Button)``) or
   ## infix notation (``node as Button``).
-  if obj.isNil or not (obj of T):
-    when not defined(release):
-      if not obj.isNil:
-        printError("Failed to cast object to " &
-                   t.name & "\n" & getStackTrace())
-    result = nil
-  else:
+  if obj.isNil: return nil
+  if obj of T:
     result = T(obj)
+  elif not obj.linkedObject.isNil and obj.linkedObject of T:
+    result = T(obj.linkedObject)
+  else:
+    when not defined(release):
+      printError("Failed to cast object to " &
+                  T.name & "\n" & getStackTrace())
+    result = nil
+
+proc `~`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): bool =
+  ## Godot-specific inheritance check. You must use this over Nim's standard
+  ## ``of`` operator, because Nim does not know which object your script is
+  ## attached to in runtime. For example, if you create a
+  ## ``gdobj Bullet of Spatial`` and the ``Bullet`` is attached to a
+  ## ``MeshInstance``, ``myBullet of MeshInstance`` will return ``false``, but
+  ## ``myBullet ~ MeshInstance`` will return ``true``.
+  ## This is going to be changed to ``of`` in later versions, when Nim starts
+  ## supporting overloading ``of`` operator.
+  obj of T or obj.linkedObject of T
 
 proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
@@ -378,21 +401,28 @@ proc newConversionError*(err: ConversionResult): ref ValueError =
   result = newException(ValueError, msg)
 
 proc setGodotObject*(nimObj: NimGodotObject, obj: ptr GodotObject) {.inline.} =
-  ## Used from Godot constructor. Don't call this.
+  ## Used from Godot constructor produced by ``gdobj`` macro. Do not call.
   assert(not obj.isNil)
   assert(nimObj.godotObject.isNil) # reassignment is not allowed
   nimObj.godotObject = obj
 
-proc setOwn*(nimObj: NimGodotObject) {.inline.} =
-  ## Used from Godot constructor. Don't call this.
-  nimObj.isOwn = true
+proc setNativeObject*(nimObj: NimGodotObject,
+                      nativeObj: NimGodotObject) {.inline.} =
+  ## Used from Godot constructor produced by ``gdobj`` macro. Do not call.
+  nimObj.linkedObject = nativeObj
+  nativeObj.linkedObject = nimObj
 
 proc removeGodotObject*(nimObj: NimGodotObject) {.inline.} =
-  ## Used from Godot destructor. Don't call this.
+  ## Used from Godot destructor produced by ``gdobj`` macro. Do not call.
   nimObj.godotObject = nil
+  nimObj.linkedObject.godotObject = nil
+
+proc `==`*(self, other: NimGodotObject): bool {.inline.} =
+  ## Compares objects by referential equality.
+  self.godotObject == other.godotObject
 
 proc godotObject*(nimObj: NimGodotObject): ptr GodotObject {.inline.} =
-  ## Returns internal poitner to ``GodotObject``. Use only if you know what
+  ## Returns raw poitner to ``GodotObject``. Use only if you know what
   ## you are doing.
   nimObj.godotObject
 
@@ -719,7 +749,7 @@ N_NOINLINE(void, setStackBottom)(void* thestackbottom);
 var nativeLibHandle: pointer
 proc getNativeLibHandle*(): pointer =
   ## Returns NativeScript library handle used to register type information
-  ## in Godot. Use only if you know what you are doing.
+  ## in Godot.
   return nativeLibHandle
 
 proc godot_nativescript_init(handle: pointer) {.
@@ -746,7 +776,7 @@ const nimGcStepLengthUs {.intdefine.} = 2000
 proc godot_nativescript_frame() {.cdecl, exportc, dynlib.} =
   if asyncdispatch.hasPendingOperations():
     poll(0)
-  GC_step(nimGcStepLengthUs, false, 0)
+  GC_step(nimGcStepLengthUs, true, 0)
 
 when not defined(release):
   onUnhandledException = proc(errorMsg: string) =
