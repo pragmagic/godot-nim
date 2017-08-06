@@ -418,29 +418,6 @@ proc fromVariant*[T: NimGodotObject](self: var T,
   else:
     result = ConversionResult.TypeError
 
-proc godotTypeInfo*(T: typedesc[enum]): GodotTypeInfo =
-  result = GodotTypeInfo(
-    variantType: VariantType.Int,
-    hint: GodotPropertyHint.Enum,
-    hintStr: ""
-  )
-  for val in T:
-    if result.hintStr.len > 0:
-      result.hintStr.add(',')
-    result.hintStr.add($val)
-
-proc toVariant*[T: enum](self: T): Variant {.inline.} =
-  newVariant(int64(ord(self)))
-
-proc fromVariant*[T: enum](self: var T,
-                           val: Variant): ConversionResult {.inline.} =
-  if val.getType() == VariantType.Nil:
-    discard
-  elif val.getType() == VariantType.Int:
-    self = T(val.asInt())
-  else:
-    result = ConversionResult.TypeError
-
 proc toVariant*(self: Variant): Variant {.inline.} =
   self
 
@@ -519,7 +496,8 @@ proc fromVariant*[T: SomeSignedInt or SomeUnsignedInt](
     self: var T, val: Variant): ConversionResult =
   if val.getType() == VariantType.Nil:
     self = 0
-  elif val.getType() == VariantType.Int:
+  elif val.getType() == VariantType.Int or val.getType() == VariantType.Real:
+    # Real is allowed, because that's what the editor sets for Int values
     var intVal: (when T is SomeSignedInt: int64
                  else: uint64)
     intVal = when T is SomeSignedInt: val.asInt()
@@ -531,13 +509,32 @@ proc fromVariant*[T: SomeSignedInt or SomeUnsignedInt](
   else:
     result = ConversionResult.TypeError
 
+proc godotTypeInfo*(T: typedesc[enum]): GodotTypeInfo =
+  result = GodotTypeInfo(
+    variantType: VariantType.Int,
+    hint: GodotPropertyHint.Enum,
+    hintStr: ""
+  )
+  for val in T:
+    if result.hintStr.len > 0:
+      result.hintStr.add(',')
+    result.hintStr.add($val)
+
+proc toVariant*[T: enum](self: T): Variant {.inline.} =
+  newVariant(int64(ord(self)))
+
+proc fromVariant*[T: enum](self: var T,
+                           val: Variant): ConversionResult {.inline.} =
+  var intConv: int64
+  result = fromVariant(intConv, val)
+  if result == ConversionResult.OK:
+    self = T(intConv)
+
 proc fromVariant*[T: SomeFloat](self: var T, val: Variant): ConversionResult =
   if val.getType() == VariantType.Nil:
     self = 0
-  elif val.getType() == VariantType.Real:
+  elif val.getType() == VariantType.Real or val.getType() == VariantType.Int:
     self = T(val.asReal())
-  elif val.getType() == VariantType.Int:
-    self = T(val.asInt())
   else:
     result = ConversionResult.TypeError
 
@@ -647,13 +644,13 @@ proc fromVariant*[T](s: var seq[T], val: Variant): ConversionResult =
     s = nil
   elif val.getType() == VariantType.Array:
     let arr = val.asArray()
-    s = newSeq[T](arr.len)
+    var newS = newSeq[T](arr.len)
     for idx, item in arr:
       mixin fromVariant
-      let convResult = fromVariant(s[idx], item)
+      let convResult = fromVariant(newS[idx], item)
       if convResult != ConversionResult.OK:
-        s = nil
         return convResult
+    shallowCopy(s, newS)
   else:
     result = ConversionResult.TypeError
 
@@ -670,7 +667,8 @@ proc fromVariant*[T: array](s: var T, val: Variant): ConversionResult =
       let convResult = fromVariant(s[nimIdx], item)
       if convResult != ConversionResult.OK:
         return convResult
-      inc nimIdx
+      if nimIdx != high(s):
+        inc nimIdx
   else:
     result = ConversionResult.TypeError
 
