@@ -191,3 +191,8 @@ proc hashCompare*(self, other: GodotVariant): bool {.
     importc: "godot_variant_hash_compare".}
 proc booleanize*(self: GodotVariant; isValid: var bool): bool {.
     importc: "godot_variant_booleanize".}
+
+proc `$`*(self: GodotVariant): string =
+  var s = self.asGodotString()
+  result = $s
+  s.deinit()

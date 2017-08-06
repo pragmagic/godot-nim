@@ -134,10 +134,13 @@ proc len*(self: Array): int {.inline.} =
 proc sort*(self: var Array) {.inline.} =
   self.godotArray.sort()
 
-iterator items*(arr: Array): Variant =
-  for i in 0..<arr.len:
-    yield arr[i]
+iterator items*(self: Array): Variant =
+  for i in 0..<self.len:
+    yield self[i]
 
-iterator pairs*(arr: Array): tuple[key: int, val: Variant] =
-  for i in 0..<arr.len:
-    yield (i, arr[i])
+iterator pairs*(self: Array): tuple[key: int, val: Variant] =
+  for i in 0..<self.len:
+    yield (i, self[i])
+
+proc `$`*(self: Array): string =
+  $self.godotArray

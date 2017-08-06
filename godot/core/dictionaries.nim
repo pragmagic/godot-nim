@@ -97,3 +97,14 @@ iterator values*(dict: Dictionary): Variant =
 iterator pairs*(dict: Dictionary): tuple[key, val: Variant] =
   for key in keys(dict):
     yield (key, dict[key])
+
+proc `$`*(self: Dictionary): string =
+  result = newStringOfCap(32)
+  result.add('{')
+  for k, v in self:
+    if result.len > 1:
+      result.add(", ")
+    result.add($k)
+    result.add(": ")
+    result.add($v)
+  result.add('}')

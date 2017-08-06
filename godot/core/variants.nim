@@ -27,6 +27,9 @@ proc variantFinalizer*(v: Variant) =
   if not v.noDeinit:
     v.godotVariant.deinit()
 
+proc `$`*(self: Variant): string {.inline.} =
+  $self.godotVariant
+
 proc newVariant*(): Variant {.inline.} =
   new(result, variantFinalizer)
   initGodotVariant(result.godotVariant)
@@ -174,9 +177,7 @@ proc asReal*(self: Variant): cdouble =
   self.godotVariant.asReal()
 
 proc asString*(self: Variant): string =
-  var s = self.godotVariant.asGodotString()
-  result = $s
-  s.deinit()
+  $self
 
 proc asVector2*(self: Variant): Vector2 =
   self.godotVariant.asVector2()

@@ -4,6 +4,10 @@ type
   GodotArray* {.byref.} = object
     data: array[sizeof(int), byte]
 
+proc len*(self: GodotArray): cint {.
+    noSideEffect,
+    importc: "godot_array_size".}
+
 import hashes
 import godotobjects, godotpoolarrays, godotvariants, godotstrings
 
@@ -94,26 +98,33 @@ proc rfind*(self: GodotArray; what: GodotVariant;
             f: cint): cint {.
     noSideEffect,
     importc: "godot_array_rfind".}
-proc len*(self: GodotArray): cint {.
-    noSideEffect,
-    importc: "godot_array_size".}
 proc sort*(self: var GodotArray) {.importc: "godot_array_sort".}
 proc sortCustom*(self: var GodotArray; obj: var GodotObject;
                  funcName: GodotString) {.
     importc: "godot_array_sort_custom".}
 
-iterator items*(arr: GodotArray): GodotVariant =
-  for i in 0..<arr.len:
-    yield arr[i]
+iterator items*(self: GodotArray): GodotVariant =
+  for i in 0..<self.len:
+    yield self[i]
 
-iterator mitems*(arr: var GodotArray): var GodotVariant =
-  for i in 0..<arr.len:
-    yield arr.mget(i)[]
+iterator mitems*(self: var GodotArray): var GodotVariant =
+  for i in 0..<self.len:
+    yield self.mget(i)[]
 
-iterator pairs*(arr: GodotArray): tuple[key: cint, val: GodotVariant] =
-  for i in 0..<arr.len:
-    yield (i, arr[i])
+iterator pairs*(self: GodotArray): tuple[key: cint, val: GodotVariant] =
+  for i in 0..<self.len:
+    yield (i, self[i])
 
-iterator mpairs*(arr: var GodotArray): tuple[key: cint, val: var GodotVariant] =
-  for i in 0..<arr.len:
-    yield (i, arr.mget(i)[])
+iterator mpairs*(self: var GodotArray): tuple[key: cint,
+                                              val: var GodotVariant] =
+  for i in 0..<self.len:
+    yield (i, self.mget(i)[])
+
+proc `$`*(self: GodotArray): string =
+  result = newStringOfCap(32)
+  result.add('[')
+  for item in self:
+    if result.len > 1:
+      result.add(", ")
+    result.add($item)
+  result.add(']')
