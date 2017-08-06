@@ -1237,6 +1237,8 @@ function main() {
     title="getType*(v: Variant): VariantType"><wbr />get<wbr />Type<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#variantFinalizer,Variant"
     title="variantFinalizer*(v: Variant)"><wbr />variant<wbr />Finalizer<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#$,Variant"
+    title="`$`*(self: Variant): string">`<wbr />$`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#newVariant,"
     title="newVariant*(): Variant"><wbr />new<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#newVariant,Variant"
@@ -1380,7 +1382,7 @@ function main() {
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L7"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L7"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L7" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1394,7 +1396,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Makes it so that internal GodotVariant object will not be destroyed when the reference is gone. Use only if you know what you are doing.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L13"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L13"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1403,7 +1405,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 WARNING: do not keep the returned value for longer than the lifetime of <tt class="docutils literal"><span class="pre">v</span></tt>
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L18"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1412,7 +1414,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L23"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1421,540 +1423,549 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L26"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L26"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="$"><a name="$,Variant"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">$</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L30"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L30"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L33"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Makes a copy
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L34"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L37"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,GodotVariant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">GodotVariant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L39"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L42"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L43"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L46"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,cdouble"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <span class="Identifier">cdouble</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L65"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L68"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L65" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L69"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L72"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Vector2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">v2</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L80"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L83"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L80" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L83" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Rect2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">rect2</span><span class="Other">:</span> <span class="Identifier">Rect2</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L84"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L87"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L84" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L87" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">v3</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L88"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L91"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L88" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L91" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Transform2D"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">t2d</span><span class="Other">:</span> <span class="Identifier">Transform2D</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L92"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L95"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L92" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L95" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Plane"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">plane</span><span class="Other">:</span> <span class="Identifier">Plane</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L96"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L99"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L96" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L99" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Quat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">quat</span><span class="Other">:</span> <span class="Identifier">Quat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L100"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L103"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L100" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L103" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Rect3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">rect3</span><span class="Other">:</span> <span class="Identifier">Rect3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L104"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L107"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L104" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L107" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Basis"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">basis</span><span class="Other">:</span> <span class="Identifier">Basis</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L108"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L111"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L108" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L111" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Transform"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">trans</span><span class="Other">:</span> <span class="Identifier">Transform</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L112"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L115"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L112" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L115" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Color"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">color</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L116"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L119"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L116" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L119" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,NodePath"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">nodePath</span><span class="Other">:</span> <span class="Identifier">NodePath</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L120"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L123"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L120" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L123" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,GodotNodePath"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">godotNodePath</span><span class="Other">:</span> <span class="Identifier">GodotNodePath</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L124"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L127"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L124" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L127" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,RID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">rid</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L128"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L131"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L128" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L131" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,ptr.GodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L132"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L135"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L132" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L135" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">arr</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L138"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L141"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L138" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L141" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">pba</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L142"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L145"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L142" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L145" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,PoolIntArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">pia</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L146"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L149"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L146" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L149" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,PoolRealArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">pra</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L149"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L152"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L149" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L152" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,PoolStringArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">psa</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L152"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L155"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L152" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L155" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,PoolVector2Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">pv2a</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L155"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L158"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L155" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L158" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,PoolVector3Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">pv3a</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L158"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L161"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L158" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L161" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="newVariant"><a name="newVariant,PoolColorArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">pca</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L161"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L164"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L161" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L164" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asBool"><a name="asBool,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asBool</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L164"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L167"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L164" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L167" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asUInt"><a name="asUInt,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asUInt</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">uint64</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L167"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L170"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L167" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L170" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asInt"><a name="asInt,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asInt</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L170"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L173"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L170" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L173" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asReal"><a name="asReal,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asReal</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cdouble</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L173"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L176"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L173" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L176" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asString"><a name="asString,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asString</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L176"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L179"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L176" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L179" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asVector2"><a name="asVector2,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asVector2</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector2</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L181"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L182"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L181" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L182" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asRect2"><a name="asRect2,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asRect2</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Rect2</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L184"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L185"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L184" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L185" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asVector3"><a name="asVector3,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asVector3</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L187"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L188"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L187" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L188" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asTransform2D"><a name="asTransform2D,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asTransform2D</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Transform2D</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L190"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L191"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L190" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L191" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asPlane"><a name="asPlane,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asPlane</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Plane</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L193"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L194"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L193" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L194" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asQuat"><a name="asQuat,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asQuat</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Quat</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L196"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L197"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L196" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L197" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asRect3"><a name="asRect3,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asRect3</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Rect3</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L199"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L200"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L199" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L200" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asBasis"><a name="asBasis,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asBasis</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Basis</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L202"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L203"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L202" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L203" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asTransform"><a name="asTransform,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asTransform</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Transform</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L205"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L206"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L205" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L206" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asColor"><a name="asColor,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asColor</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Color</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L208"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L209"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L208" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L209" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asNodePath"><a name="asNodePath,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asNodePath</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">NodePath</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L211"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L212"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L211" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L212" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asRID"><a name="asRID,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asRID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RID</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L214"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L215"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L214" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L215" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asGodotObject"><a name="asGodotObject,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asGodotObject</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L217"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L218"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L217" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L218" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asArray"><a name="asArray,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asArray</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Array</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L220"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L221"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L220" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L221" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asPoolByteArray"><a name="asPoolByteArray,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asPoolByteArray</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L223"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L224"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L223" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L224" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asPoolIntArray"><a name="asPoolIntArray,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asPoolIntArray</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L226"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L227"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L226" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L227" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asPoolRealArray"><a name="asPoolRealArray,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asPoolRealArray</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L229"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L230"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L229" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L230" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asPoolStringArray"><a name="asPoolStringArray,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asPoolStringArray</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L232"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L233"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L232" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L233" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asPoolVector2Array"><a name="asPoolVector2Array,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asPoolVector2Array</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L235"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L236"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L235" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L236" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asPoolVector3Array"><a name="asPoolVector3Array,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asPoolVector3Array</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L238"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L239"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L238" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L239" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="asPoolColorArray"><a name="asPoolColorArray,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asPoolColorArray</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L241"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L242"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L241" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L242" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="hasMethod"><a name="hasMethod,Variant,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hasMethod</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">;</span> <span class="Identifier">meth</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L244"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L245"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L244" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L245" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="=="><a name="==,Variant,Variant"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">==</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">other</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L249"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L250"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L249" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L250" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="<"><a name="<,Variant,Variant"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">&lt;</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">other</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L254"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L255"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L254" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L255" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="hashCompare"><a name="hashCompare,Variant,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hashCompare</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">other</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L257"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L258"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L257" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L258" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="booleanize"><a name="booleanize,Variant,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">booleanize</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">;</span> <span class="Identifier">isValid</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/core/variants.nim#L260"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/core/variants.nim#L261"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L260" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/variants.nim#L261" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1967,7 +1978,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-04 06:45:23 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-06 12:49:55 UTC</small>
       </div>
     </div>
   </div>

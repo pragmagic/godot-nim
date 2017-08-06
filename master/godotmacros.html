@@ -1247,12 +1247,12 @@ Generates Godot type. Self-documenting example:<pre class="listing"><span class=
   <span class="Keyword">var</span> <span class="Identifier">myField</span><span class="Punctuation">:</span> <span class="Identifier">int</span>
     <span class="Comment">## Not exported to Godot (i.e. editor will not see this field).</span>
   
-  <span class="Keyword">var</span> <span class="Identifier">myString</span><span class="Operator">*</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">gdExport</span><span class="Punctuation">,</span> <span class="Identifier">hint</span><span class="Punctuation">:</span> <span class="Identifier">Length</span><span class="Punctuation">,</span> <span class="Identifier">tip</span><span class="Punctuation">:</span> <span class="StringLit">&quot;20&quot;</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span> <span class="Identifier">string</span>
+  <span class="Keyword">var</span> <span class="Identifier">myString</span><span class="Operator">*</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">gdExport</span><span class="Punctuation">,</span> <span class="Identifier">hint</span><span class="Punctuation">:</span> <span class="Identifier">Length</span><span class="Punctuation">,</span> <span class="Identifier">hintStr</span><span class="Punctuation">:</span> <span class="StringLit">&quot;20&quot;</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span> <span class="Identifier">string</span>
     <span class="Comment">## Exported to Godot as ``my_string``.</span>
     <span class="Comment">## Editor will limit this string to length 20.</span>
     <span class="Comment">## ``hint` is a value of ``GodotPropertyHint`` enum.</span>
-    <span class="Comment">## ``tip`` depends on the value of ``hint``, its format is described</span>
-    <span class="Comment">## in ``GodotPropertyHint`` documentation.</span>
+    <span class="Comment">## ``hintStr`` depends on the value of ``hint``, its format is</span>
+    <span class="Comment">## described in ``GodotPropertyHint`` documentation.</span>
   
   <span class="Keyword">method</span> <span class="Identifier">ready</span><span class="Operator">*</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Operator">=</span>
     <span class="Comment">## Exported methods are exported to Godot by default,</span>
@@ -1272,9 +1272,9 @@ Generates Godot type. Self-documenting example:<pre class="listing"><span class=
     <span class="Identifier">print</span><span class="Punctuation">(</span><span class="StringLit">&quot;MyTool initialized!&quot;</span><span class="Punctuation">)</span></pre><p>Objects can be instantiated by invoking <a class="reference external" href="godotnim.html#gdnew">gdnew</a> or by using <a class="reference external" href="godotapi/resource_loader.html#load,string,string,bool">load</a> or any other way that you can find in <a class="reference external" href="index.html#modules-godot-api">Godot API</a>.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/afa48455f6ee1871068adc6c2e948ed4b1cdccdf/godot/nim/godotmacros.nim#L567"
+href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/nim/godotmacros.nim#L602"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotmacros.nim#L567" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotmacros.nim#L602" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1287,7 +1287,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-04 06:45:23 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-06 12:49:55 UTC</small>
       </div>
     </div>
   </div>
