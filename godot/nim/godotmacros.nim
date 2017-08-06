@@ -119,6 +119,12 @@ proc identDefsToVarDecls(identDefs: NimNode): seq[VarDecl] =
   assert(identDefs.kind == nnkIdentDefs)
   result = newSeqOfCap[VarDecl](identDefs.len - 2)
 
+  var typ = identDefs[identDefs.len - 2]
+  if typ.kind == nnkEmpty:
+    let defaultValue = identDefs[identDefs.len - 1]
+    if defaultValue.kind != nnkEmpty:
+      typ = newCall("type", defaultValue)
+
   for i in 0..<(identDefs.len - 2):
     let nameNode = identDefs[i].copyNimTree()
     let hint = removeStrPragma(nameNode, "hint")
@@ -129,7 +135,7 @@ proc identDefsToVarDecls(identDefs: NimNode): seq[VarDecl] =
     result.add(VarDecl(
       name: if nameNode.kind == nnkPragmaExpr: nameNode[0].basename()
             else: nameNode.basename(),
-      typ: identDefs[identDefs.len - 2],
+      typ: typ,
       defaultValue: identDefs[identDefs.len - 1],
       hint: hint,
       hintStr: hintStr,
@@ -273,13 +279,13 @@ macro invokeVarArgs(procIdent, objIdent;
 proc typeError(nimType: string, value: string, godotType: VariantType,
                className: cstring, propertyName: cstring): string =
   result = "Tried to assign incompatible value " & value & " (" & $godotType &
-            ") to field \"" & $propertyName & "\" (" & $nimType & ") of " &
+            ") to field \"" & $propertyName & ": " & $nimType & "\" of " &
             $className
 
 proc rangeError(nimType: string, value: string, className: cstring,
                 propertyName: cstring): string =
   result = "Tried to assign the out-of-range value " & value &
-            " to field \"" & $propertyName & "\" (" & $nimType & ") of " &
+            " to field \"" & $propertyName & ": " & $nimType & "\" of " &
             $className
 
 
@@ -637,5 +643,7 @@ macro gdobj*(definition: untyped, body: typed): typed {.immediate.} =
   ## that you can find in `Godot API <index.html#modules-godot-api>`_.
   let typeDef = parseType(definition, callsite())
   result = genType(typeDef)
+  if typeDef.name == "MyObj":
+    echo repr result
 
 {.push warning[Deprecated]: on.}

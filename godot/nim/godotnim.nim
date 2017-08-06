@@ -664,11 +664,13 @@ proc fromVariant*[T: array](s: var T, val: Variant): ConversionResult =
     let arr = val.asArray()
     if s.len != arr.len:
       return ConversionResult.TypeError
-    for idx, item in arr:
+    var nimIdx = low(s) # may not start from 0 and may even be an enum
+    for item in arr:
       mixin fromVariant
-      let convResult = fromVariant(s[idx], item)
+      let convResult = fromVariant(s[nimIdx], item)
       if convResult != ConversionResult.OK:
         return convResult
+      inc nimIdx
   else:
     result = ConversionResult.TypeError
 
