@@ -420,7 +420,9 @@ proc removeGodotObject*(nimObj: NimGodotObject) {.inline.} =
 
 proc `==`*(self, other: NimGodotObject): bool {.inline.} =
   ## Compares objects by referential equality.
-  self.godotObject == other.godotObject
+  if self.isNil and other.isNil: return true
+  if self.isNil != other.isNil: return false
+  result = (self.godotObject == other.godotObject)
 
 proc godotObject*(nimObj: NimGodotObject): ptr GodotObject {.inline.} =
   ## Returns raw poitner to ``GodotObject``. Use only if you know what
