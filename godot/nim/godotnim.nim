@@ -279,7 +279,8 @@ proc `as`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): T =
                   T.name & "\n" & getStackTrace())
     result = nil
 
-proc `~`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): bool =
+proc `~`*[T: NimGodotObject](obj: NimGodotObject,
+                             t: typedesc[T]): bool {.inline.} =
   ## Godot-specific inheritance check. You must use this over Nim's standard
   ## ``of`` operator, because Nim does not know which object your script is
   ## attached to in runtime. For example, if you create a
@@ -288,7 +289,7 @@ proc `~`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): bool =
   ## ``myBullet ~ MeshInstance`` will return ``true``.
   ## This is going to be changed to ``of`` in later versions, when Nim starts
   ## supporting overloading ``of`` operator.
-  obj of T or obj.linkedObject of T
+  not obj.isNil and (obj of T or obj.linkedObject of T)
 
 proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
