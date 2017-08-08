@@ -10,7 +10,7 @@ type
     origin*: Vector3
 
 proc initTransform*(): Transform {.inline.} =
-  discard
+  result.basis = initBasis()
 
 proc initTransform*(xAxis, yAxis, zAxis,
                     origin: Vector3): Transform {.inline.} =
