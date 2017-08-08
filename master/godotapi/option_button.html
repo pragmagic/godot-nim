@@ -1237,16 +1237,16 @@ function main() {
     title="setItemIcon*(self: OptionButton; idx: int64; texture: Texture)"><wbr />set<wbr />Item<wbr />Icon<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setItemDisabled,OptionButton,int64,bool"
     title="setItemDisabled*(self: OptionButton; idx: int64; disabled: bool)"><wbr />set<wbr />Item<wbr />Disabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setItemID,OptionButton,int64,int64"
-    title="setItemID*(self: OptionButton; idx: int64; id: int64)"><wbr />set<wbr />Item<wbr />ID<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setItemId,OptionButton,int64,int64"
+    title="setItemId*(self: OptionButton; idx: int64; id: int64)"><wbr />set<wbr />Item<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setItemMetadata,OptionButton,int64,Variant"
     title="setItemMetadata*(self: OptionButton; idx: int64; metadata: Variant)"><wbr />set<wbr />Item<wbr />Metadata<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getItemText,OptionButton,int64"
     title="getItemText*(self: OptionButton; idx: int64): string"><wbr />get<wbr />Item<wbr />Text<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getItemIcon,OptionButton,int64"
     title="getItemIcon*(self: OptionButton; idx: int64): Texture"><wbr />get<wbr />Item<wbr />Icon<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getItemID,OptionButton,int64"
-    title="getItemID*(self: OptionButton; idx: int64): int64"><wbr />get<wbr />Item<wbr />ID<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getItemId,OptionButton,int64"
+    title="getItemId*(self: OptionButton; idx: int64): int64"><wbr />get<wbr />Item<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getItemMetadata,OptionButton,int64"
     title="getItemMetadata*(self: OptionButton; idx: int64): Variant"><wbr />get<wbr />Item<wbr />Metadata<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#isItemDisabled,OptionButton,int64"
@@ -1259,8 +1259,8 @@ function main() {
     title="clear*(self: OptionButton)"><wbr />clear<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#select,OptionButton,int64"
     title="select*(self: OptionButton; idx: int64)"><wbr />select<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getSelectedID,OptionButton"
-    title="getSelectedID*(self: OptionButton): int64"><wbr />get<wbr />Selected<wbr />ID<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getSelectedId,OptionButton"
+    title="getSelectedId*(self: OptionButton): int64"><wbr />get<wbr />Selected<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getSelectedMetadata,OptionButton"
     title="getSelectedMetadata*(self: OptionButton): Variant"><wbr />get<wbr />Selected<wbr />Metadata<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#removeItem,OptionButton,int64"
@@ -1337,7 +1337,7 @@ function main() {
 
 
 </dd>
-<dt id="setItemID"><a name="setItemID,OptionButton,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setItemID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">OptionButton</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setItemId"><a name="setItemId,OptionButton,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setItemId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">OptionButton</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1358,7 +1358,7 @@ function main() {
 
 
 </dd>
-<dt id="getItemID"><a name="getItemID,OptionButton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getItemID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">OptionButton</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getItemId"><a name="getItemId,OptionButton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getItemId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">OptionButton</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1393,7 +1393,7 @@ function main() {
 
 
 </dd>
-<dt id="getSelectedID"><a name="getSelectedID,OptionButton"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSelectedID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">OptionButton</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getSelectedId"><a name="getSelectedId,OptionButton"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSelectedId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">OptionButton</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1428,7 +1428,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-06 12:50:02 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-08 15:43:56 UTC</small>
       </div>
     </div>
   </div>

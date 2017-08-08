@@ -1270,8 +1270,8 @@ function main() {
   PropertyOfInstance,         ## a property of an instance
   PropertyOfScript,           ## a property of a script &amp; base
   PropertyHintMax"><wbr />Godot<wbr />Property<wbr />Hint<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#GodotPropertyUsageFlags"
-    title="GodotPropertyUsageFlags* = enum
+  <li><a class="reference" href="#GodotPropertyUsage"
+    title="GodotPropertyUsage* = enum
   Storage = GODOT_PROPERTY_USAGE_STORAGE_VALUE,
   Editor = GODOT_PROPERTY_USAGE_EDITOR_VALUE,
   Network = GODOT_PROPERTY_USAGE_NETWORK_VALUE,
@@ -1288,14 +1288,14 @@ function main() {
   ScriptVariable = GODOT_PROPERTY_USAGE_SCRIPT_VARIABLE_VALUE,
   StoreIfNull = GODOT_PROPERTY_USAGE_STORE_IF_NULL_VALUE,
   AnimateAsTrigger = GODOT_PROPERTY_USAGE_ANIMATE_AS_TRIGGER_VALUE,
-  UpdateAllIfModified = GODOT_PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED_VALUE"><wbr />Godot<wbr />Property<wbr />Usage<wbr />Flags<span class="attachedType" style="visibility:hidden"></span></a></li>
+  UpdateAllIfModified = GODOT_PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED_VALUE"><wbr />Godot<wbr />Property<wbr />Usage<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotPropertyAttributes"
     title="GodotPropertyAttributes* = object
   rsetType*: GodotMethodRPCMode
   typ*: cint
   hint*: GodotPropertyHint
   hintString*: GodotString
-  usage*: GodotPropertyUsageFlags
+  usage*: cint
   defaultValue*: GodotVariant"><wbr />Godot<wbr />Property<wbr />Attributes<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotInstanceCreateFunc"
     title="GodotInstanceCreateFunc* = object
@@ -1330,7 +1330,7 @@ function main() {
   typ*: cint
   hint*: GodotPropertyHint
   hintString*: GodotString
-  usage*: GodotPropertyUsageFlags
+  usage*: cint
   defaultValue*: GodotVariant"><wbr />Godot<wbr />Signal<wbr />Argument<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotSignal"
     title="GodotSignal* = object
@@ -1427,7 +1427,7 @@ function main() {
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L14"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L14"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1442,7 +1442,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L32"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L32"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1453,7 +1453,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L39"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L39"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1463,7 +1463,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L42"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L42"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1474,7 +1474,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L49"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L49"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1514,12 +1514,12 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L52"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L52"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="GodotPropertyUsageFlags"><a name="GodotPropertyUsageFlags"></a><pre><span class="Identifier">GodotPropertyUsageFlags</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">sizeof</span><span class="Other">(</span><span class="Identifier">cint</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">pure</span></div><span class="Other pragmaend">.}</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+<dt id="GodotPropertyUsage"><a name="GodotPropertyUsage"></a><pre><span class="Identifier">GodotPropertyUsage</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">sizeof</span><span class="Other">(</span><span class="Identifier">cint</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">pure</span></div><span class="Other pragmaend">.}</span> <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">Storage</span> <span class="Other">=</span> <span class="Identifier">GODOT_PROPERTY_USAGE_STORAGE_VALUE</span><span class="Other">,</span>
   <span class="Identifier">Editor</span> <span class="Other">=</span> <span class="Identifier">GODOT_PROPERTY_USAGE_EDITOR_VALUE</span><span class="Other">,</span>
   <span class="Identifier">Network</span> <span class="Other">=</span> <span class="Identifier">GODOT_PROPERTY_USAGE_NETWORK_VALUE</span><span class="Other">,</span>
@@ -1540,7 +1540,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L121"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L121"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L121" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1550,13 +1550,13 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Identifier">typ</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span>
   <span class="Identifier">hint</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">GodotPropertyHint</span>
   <span class="Identifier">hintString</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">GodotString</span>
-  <span class="Identifier">usage</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">GodotPropertyUsageFlags</span>
+  <span class="Identifier">usage</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span>
   <span class="Identifier">defaultValue</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">GodotVariant</span>
 </pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L149"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L149"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L149" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1569,7 +1569,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 returns user data
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L157"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L157"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L157" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1583,7 +1583,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L164"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L164"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L164" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1598,7 +1598,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L180"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L180"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L180" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1612,7 +1612,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L195"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L195"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L195" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1626,7 +1626,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L201"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L201"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L201" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1636,13 +1636,13 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Identifier">typ</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span>
   <span class="Identifier">hint</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">GodotPropertyHint</span>
   <span class="Identifier">hintString</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">GodotString</span>
-  <span class="Identifier">usage</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">GodotPropertyUsageFlags</span>
+  <span class="Identifier">usage</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span>
   <span class="Identifier">defaultValue</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">GodotVariant</span>
 </pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L215"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L215"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L215" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1657,7 +1657,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L223"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L223"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L223" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1671,7 +1671,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L10"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L10"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1686,7 +1686,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L16"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1697,7 +1697,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L18"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1709,7 +1709,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L23"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1721,7 +1721,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L171"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L171"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L171" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1733,7 +1733,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L175"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L175"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L175" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1746,7 +1746,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L189"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L189"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L189" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1759,7 +1759,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L207"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L207"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L207" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1770,7 +1770,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L231"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L231"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L231" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1780,7 +1780,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L235"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L235"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L235" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1790,7 +1790,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L239"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L239"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L239" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1799,7 +1799,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L242"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L242"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L242" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1808,7 +1808,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L245"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L245"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L245" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1818,7 +1818,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L250"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L250"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L250" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1828,7 +1828,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L254"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L254"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L254" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1837,7 +1837,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L258"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L258"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L258" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1846,7 +1846,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L262"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L262"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L262" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1856,7 +1856,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L273"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L273"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L273" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1865,7 +1865,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Allocates the specified number of bytes. Using this instead of stdlib proc will help Godot track how much memory is in use in debug mode.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L278"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L278"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L278" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1874,7 +1874,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Reallocates the pointer for the specified number of bytes. Using this instead of stdlib proc will help Godot track how much memory is in use in debug mode.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L283"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L283"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L283" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1883,7 +1883,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Frees the memory pointed to by the pointer. Using this instead of stdlib proc will help Godot track how much memory is in use in debug mode.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/327cd0e18fa5112909daa5f2b7d73565c46a1b0a/godot/godotinternal.nim#L288"
+href="https://github.com/pragmagic/godot-nim/tree/fcc10071fb89e7363c937aff0256f86dde1f598e/godot/godotinternal.nim#L288"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/godotinternal.nim#L288" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1898,7 +1898,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-06 12:49:55 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-08 15:43:48 UTC</small>
       </div>
     </div>
   </div>

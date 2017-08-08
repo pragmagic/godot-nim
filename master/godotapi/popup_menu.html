@@ -1261,8 +1261,8 @@ function main() {
     title="setItemIcon*(self: PopupMenu; idx: int64; icon: Texture)"><wbr />set<wbr />Item<wbr />Icon<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setItemChecked,PopupMenu,int64,bool"
     title="setItemChecked*(self: PopupMenu; idx: int64; checked: bool)"><wbr />set<wbr />Item<wbr />Checked<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setItemID,PopupMenu,int64,int64"
-    title="setItemID*(self: PopupMenu; idx: int64; id: int64)"><wbr />set<wbr />Item<wbr />ID<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setItemId,PopupMenu,int64,int64"
+    title="setItemId*(self: PopupMenu; idx: int64; id: int64)"><wbr />set<wbr />Item<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setItemAccelerator,PopupMenu,int64,int64"
     title="setItemAccelerator*(self: PopupMenu; idx: int64; accel: int64)"><wbr />set<wbr />Item<wbr />Accelerator<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setItemMetadata,PopupMenu,int64,Variant"
@@ -1287,8 +1287,8 @@ function main() {
     title="getItemIcon*(self: PopupMenu; idx: int64): Texture"><wbr />get<wbr />Item<wbr />Icon<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#isItemChecked,PopupMenu,int64"
     title="isItemChecked*(self: PopupMenu; idx: int64): bool"><wbr />is<wbr />Item<wbr />Checked<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getItemID,PopupMenu,int64"
-    title="getItemID*(self: PopupMenu; idx: int64): int64"><wbr />get<wbr />Item<wbr />ID<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getItemId,PopupMenu,int64"
+    title="getItemId*(self: PopupMenu; idx: int64): int64"><wbr />get<wbr />Item<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getItemIndex,PopupMenu,int64"
     title="getItemIndex*(self: PopupMenu; id: int64): int64"><wbr />get<wbr />Item<wbr />Index<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getItemAccelerator,PopupMenu,int64"
@@ -1442,7 +1442,7 @@ function main() {
 
 
 </dd>
-<dt id="setItemID"><a name="setItemID,PopupMenu,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setItemID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PopupMenu</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setItemId"><a name="setItemId,PopupMenu,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setItemId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PopupMenu</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1508,7 +1508,7 @@ function main() {
 
 
 </dd>
-<dt id="getItemID"><a name="getItemID,PopupMenu,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getItemID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PopupMenu</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getItemId"><a name="getItemId,PopupMenu,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getItemId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PopupMenu</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1603,7 +1603,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-06 12:50:03 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-08 15:43:57 UTC</small>
       </div>
     </div>
   </div>

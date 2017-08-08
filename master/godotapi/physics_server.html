@@ -1495,10 +1495,10 @@ function main() {
     title="areaGetParam*(area: RID; param: int64)"><wbr />area<wbr />Get<wbr />Param<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#areaGetTransform,RID"
     title="areaGetTransform*(area: RID): Transform"><wbr />area<wbr />Get<wbr />Transform<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#areaAttachObjectInstanceID,RID,int64"
-    title="areaAttachObjectInstanceID*(area: RID; id: int64)"><wbr />area<wbr />Attach<wbr />Object<wbr />Instance<wbr />ID<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#areaGetObjectInstanceID,RID"
-    title="areaGetObjectInstanceID*(area: RID): int64"><wbr />area<wbr />Get<wbr />Object<wbr />Instance<wbr />ID<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#areaAttachObjectInstanceId,RID,int64"
+    title="areaAttachObjectInstanceId*(area: RID; id: int64)"><wbr />area<wbr />Attach<wbr />Object<wbr />Instance<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#areaGetObjectInstanceId,RID"
+    title="areaGetObjectInstanceId*(area: RID): int64"><wbr />area<wbr />Get<wbr />Object<wbr />Instance<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#areaSetMonitorCallback,RID,Object,string"
     title="areaSetMonitorCallback*(area: RID; receiver: Object; methodd: string)"><wbr />area<wbr />Set<wbr />Monitor<wbr />Callback<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#areaSetRayPickable,RID,bool"
@@ -1539,10 +1539,10 @@ function main() {
     title="bodyRemoveShape*(body: RID; shapeIdx: int64)"><wbr />body<wbr />Remove<wbr />Shape<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bodyClearShapes,RID"
     title="bodyClearShapes*(body: RID)"><wbr />body<wbr />Clear<wbr />Shapes<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#bodyAttachObjectInstanceID,RID,int64"
-    title="bodyAttachObjectInstanceID*(body: RID; id: int64)"><wbr />body<wbr />Attach<wbr />Object<wbr />Instance<wbr />ID<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#bodyGetObjectInstanceID,RID"
-    title="bodyGetObjectInstanceID*(body: RID): int64"><wbr />body<wbr />Get<wbr />Object<wbr />Instance<wbr />ID<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#bodyAttachObjectInstanceId,RID,int64"
+    title="bodyAttachObjectInstanceId*(body: RID; id: int64)"><wbr />body<wbr />Attach<wbr />Object<wbr />Instance<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#bodyGetObjectInstanceId,RID"
+    title="bodyGetObjectInstanceId*(body: RID): int64"><wbr />body<wbr />Get<wbr />Object<wbr />Instance<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bodySetEnableContinuousCollisionDetection,RID,bool"
     title="bodySetEnableContinuousCollisionDetection*(body: RID; enable: bool)"><wbr />body<wbr />Set<wbr />Enable<wbr />Continuous<wbr />Collision<wbr />Detection<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bodyIsContinuousCollisionDetectionEnabled,RID"
@@ -2343,12 +2343,12 @@ function main() {
 
 
 </dd>
-<dt id="areaAttachObjectInstanceID"><a name="areaAttachObjectInstanceID,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">areaAttachObjectInstanceID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">area</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="areaAttachObjectInstanceId"><a name="areaAttachObjectInstanceId,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">areaAttachObjectInstanceId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">area</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="areaGetObjectInstanceID"><a name="areaGetObjectInstanceID,RID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">areaGetObjectInstanceID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">area</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="areaGetObjectInstanceId"><a name="areaGetObjectInstanceId,RID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">areaGetObjectInstanceId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">area</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2455,12 +2455,12 @@ function main() {
 
 
 </dd>
-<dt id="bodyAttachObjectInstanceID"><a name="bodyAttachObjectInstanceID,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bodyAttachObjectInstanceID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="bodyAttachObjectInstanceId"><a name="bodyAttachObjectInstanceId,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bodyAttachObjectInstanceId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="bodyGetObjectInstanceID"><a name="bodyGetObjectInstanceID,RID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bodyGetObjectInstanceID</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="bodyGetObjectInstanceId"><a name="bodyGetObjectInstanceId,RID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bodyGetObjectInstanceId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2733,7 +2733,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-06 12:50:03 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-08 15:43:57 UTC</small>
       </div>
     </div>
   </div>
