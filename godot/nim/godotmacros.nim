@@ -12,7 +12,7 @@ type
     isNoGodot: bool
     hint: string
     hintStr: string
-    usage: string
+    usage: NimNode
     isExported: bool
 
   MethodDecl = ref object
@@ -71,14 +71,30 @@ proc newCStringLit(s: string): NimNode {.compileTime.} =
   newNimNode(nnkCallStrLit).add(ident("cstring"), newRStrLit(s))
 
 iterator pragmas(node: NimNode):
-      tuple[key: NimIdent, value: string, index: int] =
+      tuple[key: NimIdent, value: NimNode, index: int] =
   assert node.kind in {nnkPragma, nnkEmpty}
   for index in countdown(node.len - 1, 0):
     if node[index].kind == nnkExprColonExpr:
-      let val = $(node[index][1])
-      yield (node[index][0].ident, val, index)
+      yield (node[index][0].ident, node[index][1], index)
     elif node[index].kind == nnkIdent:
       yield (node[index].ident, nil, index)
+
+proc removePragmaNode(statement: NimNode,
+                      pname: string): NimNode {.compileTime.} =
+  ## Removes the pragma from the node and returns value of the pragma
+  ## Works for routine nodes or nnkPragmaExpr
+  if not (RoutineNodes.contains(statement.kind) or
+          statement.kind == nnkPragmaExpr):
+    return nil
+
+  result = nil
+  var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
+                else: statement[1]
+  let pnameIdent = !pname
+  for ident, val, i in pragmas(pragmas):
+    if ident == pnameIdent:
+      pragmas.del(i)
+      return val
 
 proc removePragma(statement: NimNode, pname: string): bool =
   ## Removes the pragma from the node and returns whether pragma was removed
@@ -97,18 +113,9 @@ proc removeStrPragma(statement: NimNode,
                      pname: string): string {.compileTime.} =
   ## Removes the pragma from the node and returns value of the pragma
   ## Works for routine nodes or nnkPragmaExpr
-  if not (RoutineNodes.contains(statement.kind) or
-          statement.kind == nnkPragmaExpr):
-    return nil
-
-  result = nil
-  var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
-                else: statement[1]
-  let pnameIdent = !pname
-  for ident, val, i in pragmas(pragmas):
-    if ident == pnameIdent:
-      pragmas.del(i)
-      return (if val.isNil: "" else: val)
+  let node = removePragmaNode(statement, pname)
+  result = if node.isNil: nil
+           else: $node
 
 proc isExported(node: NimNode): bool {.compileTime.} =
   if node.kind == nnkPragmaExpr:
@@ -130,7 +137,7 @@ proc identDefsToVarDecls(identDefs: NimNode): seq[VarDecl] =
     let nameNode = identDefs[i].copyNimTree()
     let hint = removeStrPragma(nameNode, "hint")
     let hintStr = removeStrPragma(nameNode, "hintStr")
-    let usage = removeStrPragma(nameNode, "usage")
+    let usage = removePragmaNode(nameNode, "usage")
     let isGdExport = removePragma(nameNode, "gdExport")
 
     result.add(VarDecl(
@@ -345,7 +352,7 @@ template registerGodotClass(classNameIdent, classNameLit, isRef,
 template registerGodotField(classNameLit, classNameIdent, propNameLit,
                             propNameIdent, propTypeLit, propTypeIdent,
                             setFuncIdent, getFuncIdent, hintStrLit,
-                            hintIdent, usageIdent, hasDefaultValue,
+                            hintIdent, usageExpr, hasDefaultValue,
                             defaultValueNode) =
   proc setFuncIdent(obj: ptr GodotObject, methData: pointer,
                     nimPtr: pointer, val: GodotVariant) {.noconv.} =
@@ -397,7 +404,7 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
     typ: ord(variantType),
     hint: hint,
     hintString: hintStrGodot,
-    usage: GodotPropertyUsageFlags.usageIdent
+    usage: usageExpr
   )
   {.push warning[ProveInit]: on.}
   when hasDefaultValue:
@@ -504,12 +511,14 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                   else: field.hintStr
     let hint = if field.hint.isNil: "NIM"
                else: field.hint
-    let usage = if field.usage.isNil: "Default"
-                else: field.usage
+    let usage =
+      if field.usage.isNil:
+        newLit(ord(GodotPropertyUsage.Default) or
+               ord(GodotPropertyUsage.ScriptVariable))
+      else: field.usage
     let hasDefaultValue = not field.defaultValue.isNil and
                           field.defaultValue.kind != nnkEmpty
     let hintIdent = ident(hint)
-    let usageIdent = ident(usage)
     let nimType = repr field.typ
     result.add(getAst(
       registerGodotField(classNameLit, classNameIdent,
@@ -517,7 +526,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                          ident(field.name), nimType,
                          field.typ, genSym(nskProc, "setFunc"),
                          genSym(nskProc, "getFunc"),
-                         newStrLitNode(hintStr), hintIdent, usageIdent,
+                         newStrLitNode(hintStr), hintIdent, usage,
                          ident($hasDefaultValue), field.defaultValue)))
 
   # Register methods

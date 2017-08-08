@@ -118,7 +118,7 @@ const
       GODOT_PROPERTY_USAGE_STORAGE_VALUE or GODOT_PROPERTY_USAGE_NETWORK_VALUE
 
 type
-  GodotPropertyUsageFlags* {.size: sizeof(cint), pure.} = enum
+  GodotPropertyUsage* {.size: sizeof(cint), pure.} = enum
     Storage = GODOT_PROPERTY_USAGE_STORAGE_VALUE
     Editor = GODOT_PROPERTY_USAGE_EDITOR_VALUE
     Network = GODOT_PROPERTY_USAGE_NETWORK_VALUE
@@ -151,7 +151,7 @@ type
     typ*: cint
     hint*: GodotPropertyHint
     hintString*: GodotString
-    usage*: GodotPropertyUsageFlags
+    usage*: cint
     defaultValue*: GodotVariant
 
   GodotInstanceCreateFunc* {.bycopy.} = object
@@ -217,7 +217,7 @@ type
     typ*: cint
     hint*: GodotPropertyHint
     hintString*: GodotString
-    usage*: GodotPropertyUsageFlags
+    usage*: cint
     defaultValue*: GodotVariant
 
   GodotSignal* = object

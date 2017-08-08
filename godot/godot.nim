@@ -14,4 +14,4 @@ export godotbase, vector2, rect2, vector3, transform2d, planes, quats,
        poolarrays, variants
 export godotmacros, godotnim
 
-export GodotPropertyHint, GodotPropertyUsageFlags
+export GodotPropertyHint, GodotPropertyUsage

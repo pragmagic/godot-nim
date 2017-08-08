@@ -168,18 +168,22 @@ macro baseNativeType(T: typedesc): cstring =
     rStr.strVal = baseT
     result = newNimNode(nnkCallStrLit).add(ident("cstring"), rStr)
 
-macro isReference(T: typedesc): bool =
-  var isRef = false
-  var t = getType(T)
+proc inherits(t: NimNode, parent: string): bool {.compileTime.} =
+  var curT = t
   while true:
-    let typeName = ($t[1][1]).split(':')[0]
-    if typeName == "Reference":
-      isRef = true
-      break
+    let typeName = ($curT[1][1]).split(':')[0]
+    if typeName == parent:
+      return true
     if typeName == "NimGodotObject":
       break
-    t = getType(t[1][1])
-  result = if isRef: ident("true")
+    curT = getType(curT[1][1])
+
+macro isReference(T: typedesc): bool =
+  result = if inherits(getType(T), "Reference"): ident("true")
+           else: ident("false")
+
+macro isResource(T: typedesc): bool =
+  result = if inherits(getType(T), "Resource"): ident("true")
            else: ident("false")
 
 template registerClass*(T: typedesc; godotClassName: cstring,
@@ -298,7 +302,7 @@ proc newRStrLit(s: string): NimNode {.compileTime.} =
 static:
   import strutils
 
-macro toGodotName(T: typedesc): cstring =
+macro toGodotName(T: typedesc): string =
   var godotName: string
   if T is GodotString or T is string:
     godotName = "String"
@@ -314,14 +318,17 @@ macro toGodotName(T: typedesc): cstring =
     else:
       nameStr
 
+  result = newLit(godotName)
+
+macro asCString(s: static[string]): cstring =
   result = newNimNode(nnkCallStrLit).add(
-             ident("cstring"), newRStrLit(godotName))
+             ident("cstring"), newRStrLit(s))
 
 proc getSingleton*[T: NimGodotObject](): T =
   ## Returns singleton of type ``T``. Normally, this should not be used,
   ## because `godotapigen <godotapigen.html>`_ wraps singleton methods so that
   ## singleton objects don't have to be provided as parameters.
-  const godotName = toGodotName(T)
+  const godotName = asCString(toGodotName(T))
   let singleton = getGodotSingleton(godotName)
   if singleton.isNil:
     printError("Tried to get non-existing singleton of type " & $godotName)
@@ -366,7 +373,7 @@ proc newOwnObj[T: NimGodotObject](name: cstring): T =
 
 proc gdnew*[T: NimGodotObject](): T =
   ## Instantiates new object of type ``T``.
-  const godotName = toGodotName(T)
+  const godotName = asCString(toGodotName(T))
   const objInfo = classRegistryStatic[godotName]
   result = when objInfo.isNative:
              asNimGodotObject[T](getClassConstructor(godotName)())
@@ -432,7 +439,8 @@ proc godotObject*(nimObj: NimGodotObject): ptr GodotObject {.inline.} =
 proc godotTypeInfo*(T: typedesc[NimGodotObject]): GodotTypeInfo {.inline.} =
   GodotTypeInfo(
     variantType: VariantType.Object,
-    hint: GodotPropertyHint.None,
+    hint: when isResource(T): GodotPropertyHint.ResourceType
+          else: GodotPropertyHint.None,
     hintStr: toGodotName(T)
   )
 
