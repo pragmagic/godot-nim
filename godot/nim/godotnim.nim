@@ -445,7 +445,10 @@ proc godotTypeInfo*(T: typedesc[NimGodotObject]): GodotTypeInfo {.inline.} =
   )
 
 proc toVariant*(self: NimGodotObject): Variant {.inline.} =
-  newVariant(self.godotObject)
+  if self.isNil:
+    newVariant()
+  else:
+    newVariant(self.godotObject)
 
 proc fromVariant*[T: NimGodotObject](self: var T,
                                      val: Variant): ConversionResult =
@@ -460,7 +463,10 @@ proc fromVariant*[T: NimGodotObject](self: var T,
     result = ConversionResult.TypeError
 
 proc toVariant*(self: Variant): Variant {.inline.} =
-  self
+  if self.isNil:
+    newVariant()
+  else:
+    self
 
 proc fromVariant*(self: var Variant,
                   val: Variant): ConversionResult {.inline.} =
@@ -531,7 +537,13 @@ proc godotTypeInfo*(T: typedesc[range]): VariantType {.inline.} =
   )
 
 proc toVariant*[T: SomeGodotOrNum](val: T): Variant {.inline.} =
-  newVariant(val)
+  when val is ref:
+    if val.isNil:
+      newVariant()
+    else:
+      newVariant(val)
+  else:
+    newVariant(val)
 
 proc fromVariant*[T: SomeSignedInt or SomeUnsignedInt](
     self: var T, val: Variant): ConversionResult =
@@ -717,6 +729,9 @@ proc godotTypeInfo*(T: typedesc[Table|TableRef]): GodotTypeInfo {.inline.} =
   result.variantType = VariantType.Dictionary
 
 proc toVariant*[T: Table or TableRef](t: T): Variant =
+  when t is ref:
+    if t.isNil:
+      return newVariant()
   var dict = newDictionary()
   mixin toVariant
   for k, v in t.pairs():
