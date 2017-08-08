@@ -603,7 +603,8 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
     pragma.add(ident("gcsafe"))
     pragma.add(newNode(nkExprColonExpr).addChain(ident("locks"),
                                                 newIntLit(0)))
-    if isVirtual and isBase:
+    if isVirtual and isBase and typ.name != "PhysicsBody":
+      # Nim doesn't like `base` on PhysicsBody methods - wtf
       pragma.add(ident("base"))
     procDecl.sons[4] = pragma
   tree.add(procDecl)
