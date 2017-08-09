@@ -93,7 +93,7 @@ proc newCommand(left, right: PNode): PNode =
   result.add(left)
   result.add(right)
 
-proc newInfix(left, op, right: PNode): PNode =
+proc infix(left, op, right: PNode): PNode =
   result = newNode(nkInfix)
   result.add(op)
   result.add(left)
@@ -103,6 +103,11 @@ proc postfix(left: PNode, op: string): PNode =
   result = newNode(nkPostfix)
   result.add(ident(op))
   result.add(left)
+
+proc prefix(op: string, right: PNode): PNode =
+  result = newNode(nkPrefix)
+  result.add(ident(op))
+  result.add(right)
 
 proc newBracketExpr(first, bracket: PNode): PNode =
   newNode(nkBracketExpr).addChain(first, bracket)
@@ -387,10 +392,10 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
                       else: args.len - 1
       if not varargsName.isNil:
         argLenNode = newCall("cint",
-                      newInfix(newIntLit(staticArgsLen),
-                                ident("+"),
-                                newDotExpr(ident(varargsName), ident("len"))))
-        argsAlloc.add(newCall("godotAlloc", newCall("cint", newInfix(
+                      infix(newIntLit(staticArgsLen),
+                            ident("+"),
+                            newDotExpr(ident(varargsName), ident("len"))))
+        argsAlloc.add(newCall("godotAlloc", newCall("cint", infix(
           newCall("sizeof", ident("Variant")), ident("*"),
           newNode(nkPar).addChain(argLenNode))))
         )
@@ -410,7 +415,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
       if arg.isVarargs:
         argName = newNode(nkBracketExpr).addChain(
           ident(varargsName),
-          newInfix(ident("idx"), ident("-"), newIntLit(staticArgsLen)))
+          infix(ident("idx"), ident("-"), newIntLit(staticArgsLen)))
       let argIdx = if arg.isVarargs: ident("idx") else: newIntLit(idx)
       let isStandardType = arg.typ in standardTypes
       let isWrappedType = arg.typ in wrapperTypes
@@ -449,7 +454,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
                        newIntLit(staticArgsLen))))
         let argLoop = newNode(nkWhileStmt)
         argConversions.add(argLoop)
-        argLoop.add(newInfix(ident("idx"), ident("<"), argLenNode)
+        argLoop.add(infix(ident("idx"), ident("<"), argLenNode)
         )
         argLoop.add(newNode(nkStmtList).addChain(
           argAsgn,
@@ -541,7 +546,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
       body.add(freeCall)
     if not varargsName.isNil:
       let errCheck = newIfStmt(
-        newInfix(newDotExpr(ident("callError"), ident("error")), ident("!="),
+        infix(newDotExpr(ident("callError"), ident("error")), ident("!="),
                  newDotExpr(ident("VariantCallErrorType"), ident("OK"))),
         newNode(nkRaiseStmt).addChain(
           newCall("newCallError", ident("callError")))
@@ -553,7 +558,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
               newCall("fromVariant", ident("result"),
                       newCall("newVariant", retValIdent))))
       let convCheck = newIfStmt(
-        newInfix(ident("convErr"), ident("!="),
+        infix(ident("convErr"), ident("!="),
                  newDotExpr(ident("ConversionResult"), ident("OK"))),
         newNode(nkRaiseStmt).addChain(
           newCall("newConversionError", ident("convErr")))
@@ -561,6 +566,8 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
       body.add(convErrDef)
       body.add(convCheck)
     if isStringRet:
+      body.add(newNode(nkAsgn).addChain(
+        ident("result"), prefix("$", retValIdent)))
       body.add(newCall("deinit", retValIdent))
     elif isConversionRet:
       body.add(newNode(nkAsgn).addChain(
