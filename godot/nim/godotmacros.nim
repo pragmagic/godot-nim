@@ -156,7 +156,7 @@ proc parseMethod(meth: NimNode): MethodDecl =
   assert(meth.kind in {nnkProcDef, nnkMethodDef})
   let isGdExport = removePragma(meth, "gdExport")
   let isNoGodot = (meth.kind != nnkMethodDef and not isGdExport) or
-                  removePragma(meth, "noExport")
+                  removePragma(meth, "noGdExport")
   result = MethodDecl(
     name: $meth[0].basename,
     args: newSeq[VarDecl](),
