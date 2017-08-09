@@ -1221,6 +1221,10 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#setStreamPeer,PacketPeerStream,StreamPeer"
     title="setStreamPeer*(self: PacketPeerStream; peer: StreamPeer)"><wbr />set<wbr />Stream<wbr />Peer<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setInputBufferMaxSize,PacketPeerStream,int64"
+    title="setInputBufferMaxSize*(self: PacketPeerStream; maxSizeBytes: int64)"><wbr />set<wbr />Input<wbr />Buffer<wbr />Max<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setOutputBufferMaxSize,PacketPeerStream,int64"
+    title="setOutputBufferMaxSize*(self: PacketPeerStream; maxSizeBytes: int64)"><wbr />set<wbr />Output<wbr />Buffer<wbr />Max<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1244,6 +1248,18 @@ function main() {
 
 
 </dd>
+<dt id="setInputBufferMaxSize"><a name="setInputBufferMaxSize,PacketPeerStream,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setInputBufferMaxSize</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeerStream</span><span class="Other">;</span> <span class="Identifier">maxSizeBytes</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="setOutputBufferMaxSize"><a name="setOutputBufferMaxSize,PacketPeerStream,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setOutputBufferMaxSize</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeerStream</span><span class="Other">;</span> <span class="Identifier">maxSizeBytes</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 
 </dl></div>
 
@@ -1254,7 +1270,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-08 15:43:56 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-09 10:07:56 UTC</small>
       </div>
     </div>
   </div>

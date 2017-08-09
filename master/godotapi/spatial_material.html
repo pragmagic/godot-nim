@@ -1315,8 +1315,16 @@ function main() {
     title="FLAG_USE_POINT_SIZE* = 5&#x27;i64"><wbr />FLAG_<wbr />USE_<wbr />POINT_<wbr />SIZE<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#FLAG_FIXED_SIZE"
     title="FLAG_FIXED_SIZE* = 6&#x27;i64"><wbr />FLAG_<wbr />FIXED_<wbr />SIZE<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#FLAG_UV1_USE_TRIPLANAR"
+    title="FLAG_UV1_USE_TRIPLANAR* = 7&#x27;i64"><wbr />FLAG_<wbr />UV1_<wbr />USE_<wbr />TRIPLANAR<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#FLAG_UV2_USE_TRIPLANAR"
+    title="FLAG_UV2_USE_TRIPLANAR* = 8&#x27;i64"><wbr />FLAG_<wbr />UV2_<wbr />USE_<wbr />TRIPLANAR<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#FLAG_AO_ON_UV2"
+    title="FLAG_AO_ON_UV2* = 9&#x27;i64"><wbr />FLAG_<wbr />AO_<wbr />ON_<wbr />UV2<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#FLAG_USE_ALPHA_SCISSOR"
+    title="FLAG_USE_ALPHA_SCISSOR* = 10&#x27;i64"><wbr />FLAG_<wbr />USE_<wbr />ALPHA_<wbr />SCISSOR<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#FLAG_MAX"
-    title="FLAG_MAX* = 10&#x27;i64"><wbr />FLAG_<wbr />MAX<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="FLAG_MAX* = 11&#x27;i64"><wbr />FLAG_<wbr />MAX<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#DIFFUSE_LAMBERT"
     title="DIFFUSE_LAMBERT* = 0&#x27;i64"><wbr />DIFFUSE_<wbr />LAMBERT<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#DIFFUSE_HALF_LAMBERT"
@@ -1433,6 +1441,14 @@ function main() {
     title="paramsGrowAmount*(self: SpatialMaterial): float64"><wbr />params<wbr />Grow<wbr />Amount<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#=,SpatialMaterial,float64_3"
     title="`paramsGrowAmount =`*(self: SpatialMaterial; val: float64)">`<wbr />params<wbr />Grow<wbr />Amount<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#paramsUseAlphaScissor,SpatialMaterial"
+    title="paramsUseAlphaScissor*(self: SpatialMaterial): bool"><wbr />params<wbr />Use<wbr />Alpha<wbr />Scissor<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#=,SpatialMaterial,bool_10"
+    title="`paramsUseAlphaScissor =`*(self: SpatialMaterial; val: bool)">`<wbr />params<wbr />Use<wbr />Alpha<wbr />Scissor<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#paramsAlphaScissorThreshold,SpatialMaterial"
+    title="paramsAlphaScissorThreshold*(self: SpatialMaterial): float64"><wbr />params<wbr />Alpha<wbr />Scissor<wbr />Threshold<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#=,SpatialMaterial,float64_4"
+    title="`paramsAlphaScissorThreshold =`*(self: SpatialMaterial; val: float64)">`<wbr />params<wbr />Alpha<wbr />Scissor<wbr />Threshold<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#particlesAnimHFrames,SpatialMaterial"
     title="particlesAnimHFrames*(self: SpatialMaterial): int64"><wbr />particles<wbr />Anim<wbr />HFrames<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#=,SpatialMaterial,int64_7"
@@ -1443,7 +1459,7 @@ function main() {
     title="`particlesAnimVFrames =`*(self: SpatialMaterial; val: int64)">`<wbr />particles<wbr />Anim<wbr />VFrames<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#particlesAnimLoop,SpatialMaterial"
     title="particlesAnimLoop*(self: SpatialMaterial): bool"><wbr />particles<wbr />Anim<wbr />Loop<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_10"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_11"
     title="`particlesAnimLoop =`*(self: SpatialMaterial; val: bool)">`<wbr />particles<wbr />Anim<wbr />Loop<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#albedoColor,SpatialMaterial"
     title="albedoColor*(self: SpatialMaterial): Color"><wbr />albedo<wbr />Color<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1455,11 +1471,11 @@ function main() {
     title="`albedoTexture =`*(self: SpatialMaterial; val: Texture)">`<wbr />albedo<wbr />Texture<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#metallic,SpatialMaterial"
     title="metallic*(self: SpatialMaterial): float64"><wbr />metallic<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_4"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_5"
     title="`metallic =`*(self: SpatialMaterial; val: float64)">`<wbr />metallic<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#metallicSpecular,SpatialMaterial"
     title="metallicSpecular*(self: SpatialMaterial): float64"><wbr />metallic<wbr />Specular<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_5"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_6"
     title="`metallicSpecular =`*(self: SpatialMaterial; val: float64)">`<wbr />metallic<wbr />Specular<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#metallicTexture,SpatialMaterial"
     title="metallicTexture*(self: SpatialMaterial): Texture"><wbr />metallic<wbr />Texture<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1471,7 +1487,7 @@ function main() {
     title="`metallicTextureChannel =`*(self: SpatialMaterial; val: int64)">`<wbr />metallic<wbr />Texture<wbr />Channel<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#roughness,SpatialMaterial"
     title="roughness*(self: SpatialMaterial): float64"><wbr />roughness<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_6"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_7"
     title="`roughness =`*(self: SpatialMaterial; val: float64)">`<wbr />roughness<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#roughnessTexture,SpatialMaterial"
     title="roughnessTexture*(self: SpatialMaterial): Texture"><wbr />roughness<wbr />Texture<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1483,7 +1499,7 @@ function main() {
     title="`roughnessTextureChannel =`*(self: SpatialMaterial; val: int64)">`<wbr />roughness<wbr />Texture<wbr />Channel<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#emissionEnabled,SpatialMaterial"
     title="emissionEnabled*(self: SpatialMaterial): bool"><wbr />emission<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_11"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_12"
     title="`emissionEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />emission<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#emission,SpatialMaterial"
     title="emission*(self: SpatialMaterial): Color"><wbr />emission<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1491,7 +1507,7 @@ function main() {
     title="`emission =`*(self: SpatialMaterial; val: Color)">`<wbr />emission<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#emissionEnergy,SpatialMaterial"
     title="emissionEnergy*(self: SpatialMaterial): float64"><wbr />emission<wbr />Energy<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_7"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_8"
     title="`emissionEnergy =`*(self: SpatialMaterial; val: float64)">`<wbr />emission<wbr />Energy<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#emissionTexture,SpatialMaterial"
     title="emissionTexture*(self: SpatialMaterial): Texture"><wbr />emission<wbr />Texture<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1499,11 +1515,11 @@ function main() {
     title="`emissionTexture =`*(self: SpatialMaterial; val: Texture)">`<wbr />emission<wbr />Texture<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#normalEnabled,SpatialMaterial"
     title="normalEnabled*(self: SpatialMaterial): bool"><wbr />normal<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_12"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_13"
     title="`normalEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />normal<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#normalScale,SpatialMaterial"
     title="normalScale*(self: SpatialMaterial): float64"><wbr />normal<wbr />Scale<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_8"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_9"
     title="`normalScale =`*(self: SpatialMaterial; val: float64)">`<wbr />normal<wbr />Scale<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#normalTexture,SpatialMaterial"
     title="normalTexture*(self: SpatialMaterial): Texture"><wbr />normal<wbr />Texture<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1511,15 +1527,15 @@ function main() {
     title="`normalTexture =`*(self: SpatialMaterial; val: Texture)">`<wbr />normal<wbr />Texture<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#rimEnabled,SpatialMaterial"
     title="rimEnabled*(self: SpatialMaterial): bool"><wbr />rim<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_13"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_14"
     title="`rimEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />rim<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#rim,SpatialMaterial"
     title="rim*(self: SpatialMaterial): float64"><wbr />rim<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_9"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_10"
     title="`rim =`*(self: SpatialMaterial; val: float64)">`<wbr />rim<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#rimTint,SpatialMaterial"
     title="rimTint*(self: SpatialMaterial): float64"><wbr />rim<wbr />Tint<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_10"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_11"
     title="`rimTint =`*(self: SpatialMaterial; val: float64)">`<wbr />rim<wbr />Tint<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#rimTexture,SpatialMaterial"
     title="rimTexture*(self: SpatialMaterial): Texture"><wbr />rim<wbr />Texture<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1527,15 +1543,15 @@ function main() {
     title="`rimTexture =`*(self: SpatialMaterial; val: Texture)">`<wbr />rim<wbr />Texture<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#clearcoatEnabled,SpatialMaterial"
     title="clearcoatEnabled*(self: SpatialMaterial): bool"><wbr />clearcoat<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_14"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_15"
     title="`clearcoatEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />clearcoat<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#clearcoat,SpatialMaterial"
     title="clearcoat*(self: SpatialMaterial): float64"><wbr />clearcoat<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_11"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_12"
     title="`clearcoat =`*(self: SpatialMaterial; val: float64)">`<wbr />clearcoat<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#clearcoatGloss,SpatialMaterial"
     title="clearcoatGloss*(self: SpatialMaterial): float64"><wbr />clearcoat<wbr />Gloss<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_12"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_13"
     title="`clearcoatGloss =`*(self: SpatialMaterial; val: float64)">`<wbr />clearcoat<wbr />Gloss<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#clearcoatTexture,SpatialMaterial"
     title="clearcoatTexture*(self: SpatialMaterial): Texture"><wbr />clearcoat<wbr />Texture<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1543,11 +1559,11 @@ function main() {
     title="`clearcoatTexture =`*(self: SpatialMaterial; val: Texture)">`<wbr />clearcoat<wbr />Texture<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#anisotropyEnabled,SpatialMaterial"
     title="anisotropyEnabled*(self: SpatialMaterial): bool"><wbr />anisotropy<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_15"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_16"
     title="`anisotropyEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />anisotropy<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#anisotropy,SpatialMaterial"
     title="anisotropy*(self: SpatialMaterial): float64"><wbr />anisotropy<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_13"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_14"
     title="`anisotropy =`*(self: SpatialMaterial; val: float64)">`<wbr />anisotropy<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#anisotropyFlowmap,SpatialMaterial"
     title="anisotropyFlowmap*(self: SpatialMaterial): Texture"><wbr />anisotropy<wbr />Flowmap<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1555,7 +1571,7 @@ function main() {
     title="`anisotropyFlowmap =`*(self: SpatialMaterial; val: Texture)">`<wbr />anisotropy<wbr />Flowmap<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#aoEnabled,SpatialMaterial"
     title="aoEnabled*(self: SpatialMaterial): bool"><wbr />ao<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_16"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_17"
     title="`aoEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />ao<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#aoTexture,SpatialMaterial"
     title="aoTexture*(self: SpatialMaterial): Texture"><wbr />ao<wbr />Texture<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1563,7 +1579,7 @@ function main() {
     title="`aoTexture =`*(self: SpatialMaterial; val: Texture)">`<wbr />ao<wbr />Texture<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#aoOnUv2,SpatialMaterial"
     title="aoOnUv2*(self: SpatialMaterial): bool"><wbr />ao<wbr />On<wbr />Uv2<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_17"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_18"
     title="`aoOnUv2 =`*(self: SpatialMaterial; val: bool)">`<wbr />ao<wbr />On<wbr />Uv2<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#aoTextureChannel,SpatialMaterial"
     title="aoTextureChannel*(self: SpatialMaterial): int64"><wbr />ao<wbr />Texture<wbr />Channel<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1571,15 +1587,15 @@ function main() {
     title="`aoTextureChannel =`*(self: SpatialMaterial; val: int64)">`<wbr />ao<wbr />Texture<wbr />Channel<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#depthEnabled,SpatialMaterial"
     title="depthEnabled*(self: SpatialMaterial): bool"><wbr />depth<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_18"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_19"
     title="`depthEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />depth<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#depthScale,SpatialMaterial"
     title="depthScale*(self: SpatialMaterial): float64"><wbr />depth<wbr />Scale<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_14"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_15"
     title="`depthScale =`*(self: SpatialMaterial; val: float64)">`<wbr />depth<wbr />Scale<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#depthDeepParallax,SpatialMaterial"
     title="depthDeepParallax*(self: SpatialMaterial): bool"><wbr />depth<wbr />Deep<wbr />Parallax<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_19"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_20"
     title="`depthDeepParallax =`*(self: SpatialMaterial; val: bool)">`<wbr />depth<wbr />Deep<wbr />Parallax<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#depthMinLayers,SpatialMaterial"
     title="depthMinLayers*(self: SpatialMaterial): int64"><wbr />depth<wbr />Min<wbr />Layers<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1595,11 +1611,11 @@ function main() {
     title="`depthTexture =`*(self: SpatialMaterial; val: Texture)">`<wbr />depth<wbr />Texture<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#subsurfScatterEnabled,SpatialMaterial"
     title="subsurfScatterEnabled*(self: SpatialMaterial): bool"><wbr />subsurf<wbr />Scatter<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_20"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_21"
     title="`subsurfScatterEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />subsurf<wbr />Scatter<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#subsurfScatterStrength,SpatialMaterial"
     title="subsurfScatterStrength*(self: SpatialMaterial): float64"><wbr />subsurf<wbr />Scatter<wbr />Strength<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_15"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_16"
     title="`subsurfScatterStrength =`*(self: SpatialMaterial; val: float64)">`<wbr />subsurf<wbr />Scatter<wbr />Strength<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#subsurfScatterTexture,SpatialMaterial"
     title="subsurfScatterTexture*(self: SpatialMaterial): Texture"><wbr />subsurf<wbr />Scatter<wbr />Texture<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1607,11 +1623,11 @@ function main() {
     title="`subsurfScatterTexture =`*(self: SpatialMaterial; val: Texture)">`<wbr />subsurf<wbr />Scatter<wbr />Texture<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#refractionEnabled,SpatialMaterial"
     title="refractionEnabled*(self: SpatialMaterial): bool"><wbr />refraction<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_21"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_22"
     title="`refractionEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />refraction<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#refractionScale,SpatialMaterial"
     title="refractionScale*(self: SpatialMaterial): float64"><wbr />refraction<wbr />Scale<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_16"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_17"
     title="`refractionScale =`*(self: SpatialMaterial; val: float64)">`<wbr />refraction<wbr />Scale<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#refractionTexture,SpatialMaterial"
     title="refractionTexture*(self: SpatialMaterial): Texture"><wbr />refraction<wbr />Texture<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1623,7 +1639,7 @@ function main() {
     title="`refractionTextureChannel =`*(self: SpatialMaterial; val: int64)">`<wbr />refraction<wbr />Texture<wbr />Channel<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#detailEnabled,SpatialMaterial"
     title="detailEnabled*(self: SpatialMaterial): bool"><wbr />detail<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_22"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_23"
     title="`detailEnabled =`*(self: SpatialMaterial; val: bool)">`<wbr />detail<wbr />Enabled<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#detailMask,SpatialMaterial"
     title="detailMask*(self: SpatialMaterial): Texture"><wbr />detail<wbr />Mask<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1655,11 +1671,11 @@ function main() {
     title="`uv1Offset =`*(self: SpatialMaterial; val: Vector3)">`<wbr />uv1Offset<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#uv1Triplanar,SpatialMaterial"
     title="uv1Triplanar*(self: SpatialMaterial): bool"><wbr />uv1Triplanar<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_23"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_24"
     title="`uv1Triplanar =`*(self: SpatialMaterial; val: bool)">`<wbr />uv1Triplanar<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#uv1TriplanarSharpness,SpatialMaterial"
     title="uv1TriplanarSharpness*(self: SpatialMaterial): float64"><wbr />uv1Triplanar<wbr />Sharpness<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_17"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_18"
     title="`uv1TriplanarSharpness =`*(self: SpatialMaterial; val: float64)">`<wbr />uv1Triplanar<wbr />Sharpness<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#uv2Scale,SpatialMaterial"
     title="uv2Scale*(self: SpatialMaterial): Vector3"><wbr />uv2Scale<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1671,11 +1687,11 @@ function main() {
     title="`uv2Offset =`*(self: SpatialMaterial; val: Vector3)">`<wbr />uv2Offset<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#uv2Triplanar,SpatialMaterial"
     title="uv2Triplanar*(self: SpatialMaterial): bool"><wbr />uv2Triplanar<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,bool_24"
+  <li><a class="reference" href="#=,SpatialMaterial,bool_25"
     title="`uv2Triplanar =`*(self: SpatialMaterial; val: bool)">`<wbr />uv2Triplanar<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#uv2TriplanarSharpness,SpatialMaterial"
     title="uv2TriplanarSharpness*(self: SpatialMaterial): float64"><wbr />uv2Triplanar<wbr />Sharpness<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,SpatialMaterial,float64_18"
+  <li><a class="reference" href="#=,SpatialMaterial,float64_19"
     title="`uv2TriplanarSharpness =`*(self: SpatialMaterial; val: float64)">`<wbr />uv2Triplanar<wbr />Sharpness<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
@@ -1935,7 +1951,27 @@ function main() {
 
 
 </dd>
-<dt id="FLAG_MAX"><a name="FLAG_MAX"></a><pre><span class="Identifier">FLAG_MAX</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">10'i64</span></pre></dt>
+<dt id="FLAG_UV1_USE_TRIPLANAR"><a name="FLAG_UV1_USE_TRIPLANAR"></a><pre><span class="Identifier">FLAG_UV1_USE_TRIPLANAR</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">7'i64</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="FLAG_UV2_USE_TRIPLANAR"><a name="FLAG_UV2_USE_TRIPLANAR"></a><pre><span class="Identifier">FLAG_UV2_USE_TRIPLANAR</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">8'i64</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="FLAG_AO_ON_UV2"><a name="FLAG_AO_ON_UV2"></a><pre><span class="Identifier">FLAG_AO_ON_UV2</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">9'i64</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="FLAG_USE_ALPHA_SCISSOR"><a name="FLAG_USE_ALPHA_SCISSOR"></a><pre><span class="Identifier">FLAG_USE_ALPHA_SCISSOR</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">10'i64</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="FLAG_MAX"><a name="FLAG_MAX"></a><pre><span class="Identifier">FLAG_MAX</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">11'i64</span></pre></dt>
 <dd>
 
 
@@ -2220,6 +2256,27 @@ function main() {
 
 
 </dd>
+<dt id="paramsUseAlphaScissor"><a name="paramsUseAlphaScissor,SpatialMaterial"></a><pre><span class="Keyword">proc</span> <span class="Identifier">paramsUseAlphaScissor</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="="><a name="=,SpatialMaterial,bool_10"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">paramsUseAlphaScissor</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="paramsAlphaScissorThreshold"><a name="paramsAlphaScissorThreshold,SpatialMaterial"></a><pre><span class="Keyword">proc</span> <span class="Identifier">paramsAlphaScissorThreshold</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="="><a name="=,SpatialMaterial,float64_4"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">paramsAlphaScissorThreshold</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 <dt id="particlesAnimHFrames"><a name="particlesAnimHFrames,SpatialMaterial"></a><pre><span class="Keyword">proc</span> <span class="Identifier">particlesAnimHFrames</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -2245,7 +2302,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_10"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">particlesAnimLoop</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_11"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">particlesAnimLoop</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2275,7 +2332,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_4"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">metallic</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_5"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">metallic</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2285,7 +2342,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_5"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">metallicSpecular</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_6"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">metallicSpecular</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2315,7 +2372,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_6"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">roughness</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_7"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">roughness</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2345,7 +2402,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_11"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">emissionEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_12"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">emissionEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2365,7 +2422,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_7"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">emissionEnergy</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_8"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">emissionEnergy</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2385,7 +2442,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_12"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">normalEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_13"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">normalEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2395,7 +2452,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_8"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">normalScale</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_9"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">normalScale</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2415,7 +2472,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_13"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">rimEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_14"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">rimEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2425,7 +2482,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_9"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">rim</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_10"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">rim</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2435,7 +2492,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_10"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">rimTint</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_11"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">rimTint</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2455,7 +2512,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_14"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">clearcoatEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_15"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">clearcoatEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2465,7 +2522,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_11"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">clearcoat</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_12"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">clearcoat</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2475,7 +2532,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_12"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">clearcoatGloss</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_13"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">clearcoatGloss</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2495,7 +2552,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_15"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">anisotropyEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_16"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">anisotropyEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2505,7 +2562,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_13"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">anisotropy</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_14"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">anisotropy</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2525,7 +2582,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_16"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">aoEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_17"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">aoEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2545,7 +2602,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_17"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">aoOnUv2</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_18"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">aoOnUv2</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2565,7 +2622,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_18"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">depthEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_19"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">depthEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2575,7 +2632,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_14"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">depthScale</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_15"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">depthScale</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2585,7 +2642,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_19"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">depthDeepParallax</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_20"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">depthDeepParallax</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2625,7 +2682,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_20"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">subsurfScatterEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_21"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">subsurfScatterEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2635,7 +2692,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_15"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">subsurfScatterStrength</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+<dt id="="><a name="=,SpatialMaterial,float64_16"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">subsurfScatterStrength</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -2656,7 +2713,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_21"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">refractionEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_22"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">refractionEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2666,7 +2723,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_16"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">refractionScale</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_17"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">refractionScale</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2697,7 +2754,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_22"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">detailEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_23"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">detailEnabled</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2777,7 +2834,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_23"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">uv1Triplanar</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_24"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">uv1Triplanar</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2787,7 +2844,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_17"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">uv1TriplanarSharpness</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_18"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">uv1TriplanarSharpness</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2817,7 +2874,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,bool_24"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">uv2Triplanar</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,bool_25"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">uv2Triplanar</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2827,7 +2884,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,SpatialMaterial,float64_18"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">uv2TriplanarSharpness</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,SpatialMaterial,float64_19"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">uv2TriplanarSharpness</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SpatialMaterial</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2842,7 +2899,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-08 15:43:58 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-09 10:07:59 UTC</small>
       </div>
     </div>
   </div>
