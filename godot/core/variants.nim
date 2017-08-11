@@ -150,21 +150,27 @@ proc newVariant*(pba: PoolByteArray): Variant {.inline.} =
   initGodotVariant(result.godotVariant, pba.godotPoolByteArray[])
 
 proc newVariant*(pia: PoolIntArray): Variant {.inline.} =
+  new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, pia.godotPoolIntArray[])
 
 proc newVariant*(pra: PoolRealArray): Variant {.inline.} =
+  new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, pra.godotPoolRealArray[])
 
 proc newVariant*(psa: PoolStringArray): Variant {.inline.} =
+  new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, psa.godotPoolStringArray[])
 
 proc newVariant*(pv2a: PoolVector2Array): Variant {.inline.} =
+  new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, pv2a.godotPoolVector2Array[])
 
 proc newVariant*(pv3a: PoolVector3Array): Variant {.inline.} =
+  new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, pv3a.godotPoolVector3Array[])
 
 proc newVariant*(pca: PoolColorArray): Variant {.inline.} =
+  new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, pca.godotPoolColorArray[])
 
 proc asBool*(self: Variant): bool {.inline.} =
