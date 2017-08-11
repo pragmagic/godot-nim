@@ -654,7 +654,5 @@ macro gdobj*(definition: untyped, body: typed): typed {.immediate.} =
   ## that you can find in `Godot API <index.html#modules-godot-api>`_.
   let typeDef = parseType(definition, callsite())
   result = genType(typeDef)
-  if typeDef.name == "MyObj":
-    echo repr result
 
 {.push warning[Deprecated]: on.}
