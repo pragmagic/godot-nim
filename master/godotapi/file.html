@@ -1295,9 +1295,9 @@ function main() {
   <li><a class="reference" href="#setEndianSwap,,bool"
     title="setEndianSwap*(self: godottypes.File; enable: bool)"><wbr />set<wbr />Endian<wbr />Swap<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getError,"
-    title="getError*(self: godottypes.File): Error"><wbr />get<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getError*(self: godottypes.File): int64"><wbr />get<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getVar,"
-    title="getVar*(self: godottypes.File)"><wbr />get<wbr />Var<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getVar*(self: godottypes.File): Variant"><wbr />get<wbr />Var<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getCsvLine,,string"
     title="getCsvLine*(self: godottypes.File; delim: string = &quot;,&quot;): PoolStringArray"><wbr />get<wbr />Csv<wbr />Line<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#store8,,int64"
@@ -1521,12 +1521,12 @@ function main() {
 
 
 </dd>
-<dt id="getError"><a name="getError,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getError</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">godottypes</span><span class="Other">.</span><span class="Identifier">File</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getError"><a name="getError,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getError</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">godottypes</span><span class="Other">.</span><span class="Identifier">File</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="getVar"><a name="getVar,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getVar</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">godottypes</span><span class="Other">.</span><span class="Identifier">File</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getVar"><a name="getVar,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getVar</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">godottypes</span><span class="Other">.</span><span class="Identifier">File</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1622,7 +1622,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:47 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:18 UTC</small>
       </div>
     </div>
   </div>

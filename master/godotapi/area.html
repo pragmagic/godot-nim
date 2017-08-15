@@ -1303,10 +1303,10 @@ function main() {
     title="getOverlappingBodies*(self: Area): Array"><wbr />get<wbr />Overlapping<wbr />Bodies<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getOverlappingAreas,Area"
     title="getOverlappingAreas*(self: Area): Array"><wbr />get<wbr />Overlapping<wbr />Areas<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#overlapsBody,Area,Object"
-    title="overlapsBody*(self: Area; body: Object): bool"><wbr />overlaps<wbr />Body<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#overlapsArea,Area,Object"
-    title="overlapsArea*(self: Area; area: Object): bool"><wbr />overlaps<wbr />Area<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#overlapsBody,Area,Node"
+    title="overlapsBody*(self: Area; body: Node): bool"><wbr />overlaps<wbr />Body<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#overlapsArea,Area,Node"
+    title="overlapsArea*(self: Area; area: Node): bool"><wbr />overlaps<wbr />Area<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1553,12 +1553,12 @@ function main() {
 
 
 </dd>
-<dt id="overlapsBody"><a name="overlapsBody,Area,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">overlapsBody</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Area</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="overlapsBody"><a name="overlapsBody,Area,Node"></a><pre><span class="Keyword">proc</span> <span class="Identifier">overlapsBody</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Area</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="overlapsArea"><a name="overlapsArea,Area,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">overlapsArea</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Area</span><span class="Other">;</span> <span class="Identifier">area</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="overlapsArea"><a name="overlapsArea,Area,Node"></a><pre><span class="Keyword">proc</span> <span class="Identifier">overlapsArea</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Area</span><span class="Other">;</span> <span class="Identifier">area</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1610,7 +1610,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:46 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:16 UTC</small>
       </div>
     </div>
   </div>

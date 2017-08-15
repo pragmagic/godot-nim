@@ -1350,7 +1350,7 @@ function main() {
   <li><a class="reference" href="#shapeGetType,RID"
     title="shapeGetType*(shape: RID): int64"><wbr />shape<wbr />Get<wbr />Type<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#shapeGetData,RID"
-    title="shapeGetData*(shape: RID)"><wbr />shape<wbr />Get<wbr />Data<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="shapeGetData*(shape: RID): Variant"><wbr />shape<wbr />Get<wbr />Data<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#spaceCreate,"
     title="spaceCreate*(): RID"><wbr />space<wbr />Create<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#spaceSetActive,RID,bool"
@@ -1400,7 +1400,7 @@ function main() {
   <li><a class="reference" href="#areaSetTransform,RID,Transform2D"
     title="areaSetTransform*(area: RID; transform: Transform2D)"><wbr />area<wbr />Set<wbr />Transform<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#areaGetParam,RID,int64"
-    title="areaGetParam*(area: RID; param: int64)"><wbr />area<wbr />Get<wbr />Param<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="areaGetParam*(area: RID; param: int64): Variant"><wbr />area<wbr />Get<wbr />Param<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#areaGetTransform,RID"
     title="areaGetTransform*(area: RID): Transform2D"><wbr />area<wbr />Get<wbr />Transform<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#areaAttachObjectInstanceId,RID,int64"
@@ -1434,7 +1434,7 @@ function main() {
   <li><a class="reference" href="#bodyGetShapeTransform,RID,int64"
     title="bodyGetShapeTransform*(body: RID; shapeIdx: int64): Transform2D"><wbr />body<wbr />Get<wbr />Shape<wbr />Transform<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bodyGetShapeMetadata,RID,int64"
-    title="bodyGetShapeMetadata*(body: RID; shapeIdx: int64)"><wbr />body<wbr />Get<wbr />Shape<wbr />Metadata<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="bodyGetShapeMetadata*(body: RID; shapeIdx: int64): Variant"><wbr />body<wbr />Get<wbr />Shape<wbr />Metadata<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bodyRemoveShape,RID,int64"
     title="bodyRemoveShape*(body: RID; shapeIdx: int64)"><wbr />body<wbr />Remove<wbr />Shape<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bodyClearShapes,RID"
@@ -1466,7 +1466,7 @@ function main() {
   <li><a class="reference" href="#bodySetState,RID,int64,Variant"
     title="bodySetState*(body: RID; state: int64; value: Variant)"><wbr />body<wbr />Set<wbr />State<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bodyGetState,RID,int64"
-    title="bodyGetState*(body: RID; state: int64)"><wbr />body<wbr />Get<wbr />State<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="bodyGetState*(body: RID; state: int64): Variant"><wbr />body<wbr />Get<wbr />State<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bodyApplyImpulse,RID,Vector2,Vector2"
     title="bodyApplyImpulse*(body: RID; pos: Vector2; impulse: Vector2)"><wbr />body<wbr />Apply<wbr />Impulse<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bodyAddForce,RID,Vector2,Vector2"
@@ -1848,7 +1848,7 @@ function main() {
 
 
 </dd>
-<dt id="shapeGetData"><a name="shapeGetData,RID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">shapeGetData</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">shape</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="shapeGetData"><a name="shapeGetData,RID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">shapeGetData</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">shape</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1974,7 +1974,7 @@ function main() {
 
 
 </dd>
-<dt id="areaGetParam"><a name="areaGetParam,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">areaGetParam</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">area</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">param</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="areaGetParam"><a name="areaGetParam,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">areaGetParam</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">area</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">param</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2062,7 +2062,7 @@ function main() {
 
 
 </dd>
-<dt id="bodyGetShapeMetadata"><a name="bodyGetShapeMetadata,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bodyGetShapeMetadata</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">shapeIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="bodyGetShapeMetadata"><a name="bodyGetShapeMetadata,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bodyGetShapeMetadata</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">shapeIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2144,7 +2144,7 @@ function main() {
 
 
 </dd>
-<dt id="bodyGetState"><a name="bodyGetState,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bodyGetState</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">state</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="bodyGetState"><a name="bodyGetState,RID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bodyGetState</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">RID</span><span class="Other">;</span> <span class="Identifier">state</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -2279,7 +2279,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:49 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:20 UTC</small>
       </div>
     </div>
   </div>

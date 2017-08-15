@@ -1228,15 +1228,15 @@ function main() {
   <li><a class="reference" href="#=,AcceptDialog,bool"
     title="`dialogHideOnOk =`*(self: AcceptDialog; val: bool)">`<wbr />dialog<wbr />Hide<wbr />On<wbr />Ok<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getOk,AcceptDialog"
-    title="getOk*(self: AcceptDialog): Object"><wbr />get<wbr />Ok<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getOk*(self: AcceptDialog): Button"><wbr />get<wbr />Ok<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getLabel,AcceptDialog"
-    title="getLabel*(self: AcceptDialog): Object"><wbr />get<wbr />Label<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getLabel*(self: AcceptDialog): Label"><wbr />get<wbr />Label<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#addButton,AcceptDialog,string,bool,string"
     title="addButton*(self: AcceptDialog; text: string; right: bool = false; action: string = &quot;&quot;): Button"><wbr />add<wbr />Button<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#addCancel,AcceptDialog,string"
     title="addCancel*(self: AcceptDialog; name: string): Button"><wbr />add<wbr />Cancel<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#registerTextEnter,AcceptDialog,Object"
-    title="registerTextEnter*(self: AcceptDialog; lineEdit: Object): LineEdit"><wbr />register<wbr />Text<wbr />Enter<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#registerTextEnter,AcceptDialog,Node"
+    title="registerTextEnter*(self: AcceptDialog; lineEdit: Node)"><wbr />register<wbr />Text<wbr />Enter<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1287,12 +1287,12 @@ function main() {
 
 
 </dd>
-<dt id="getOk"><a name="getOk,AcceptDialog"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getOk</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AcceptDialog</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Object</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getOk"><a name="getOk,AcceptDialog"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getOk</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AcceptDialog</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Button</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="getLabel"><a name="getLabel,AcceptDialog"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getLabel</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AcceptDialog</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Object</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getLabel"><a name="getLabel,AcceptDialog"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getLabel</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AcceptDialog</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Label</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1308,8 +1308,7 @@ function main() {
 
 
 </dd>
-<dt id="registerTextEnter"><a name="registerTextEnter,AcceptDialog,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">registerTextEnter</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AcceptDialog</span><span class="Other">;</span> <span class="Identifier">lineEdit</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">LineEdit</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
-    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="registerTextEnter"><a name="registerTextEnter,AcceptDialog,Node"></a><pre><span class="Keyword">proc</span> <span class="Identifier">registerTextEnter</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AcceptDialog</span><span class="Other">;</span> <span class="Identifier">lineEdit</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1344,7 +1343,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:45 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:16 UTC</small>
       </div>
     </div>
   </div>

@@ -1227,8 +1227,8 @@ function main() {
     title="initialize*(self: GDNative): bool"><wbr />initialize<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#terminate,GDNative"
     title="terminate*(self: GDNative): bool"><wbr />terminate<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#callNative,GDNative,string,Array,Array"
-    title="callNative*(self: GDNative; procedureName: string; arguments: Array; arg2: Array): Variant"><wbr />call<wbr />Native<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#callNative,GDNative,string,string,Array"
+    title="callNative*(self: GDNative; procedureName: string; arguments: string; arg2: Array): Variant"><wbr />call<wbr />Native<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1267,7 +1267,7 @@ function main() {
 
 
 </dd>
-<dt id="callNative"><a name="callNative,GDNative,string,Array,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">callNative</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">GDNative</span><span class="Other">;</span> <span class="Identifier">procedureName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">arguments</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">;</span> <span class="Identifier">arg2</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+<dt id="callNative"><a name="callNative,GDNative,string,string,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">callNative</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">GDNative</span><span class="Other">;</span> <span class="Identifier">procedureName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">arguments</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">arg2</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -1283,7 +1283,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:47 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:18 UTC</small>
       </div>
     </div>
   </div>

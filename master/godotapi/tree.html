@@ -1239,8 +1239,8 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#clear,Tree"
     title="clear*(self: Tree)"><wbr />clear<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#createItem,Tree,TreeItem"
-    title="createItem*(self: Tree; parent: TreeItem = nil): TreeItem"><wbr />create<wbr />Item<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#createItem,Tree,Object"
+    title="createItem*(self: Tree; parent: Object = nil): Object"><wbr />create<wbr />Item<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getRoot,Tree"
     title="getRoot*(self: Tree): TreeItem"><wbr />get<wbr />Root<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setColumnMinWidth,Tree,int64,int64"
@@ -1251,8 +1251,8 @@ function main() {
     title="getColumnWidth*(self: Tree; column: int64): int64"><wbr />get<wbr />Column<wbr />Width<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setHideRoot,Tree,bool"
     title="setHideRoot*(self: Tree; enable: bool)"><wbr />set<wbr />Hide<wbr />Root<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getNextSelected,Tree,TreeItem"
-    title="getNextSelected*(self: Tree; fromm: TreeItem): TreeItem"><wbr />get<wbr />Next<wbr />Selected<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getNextSelected,Tree,Object"
+    title="getNextSelected*(self: Tree; fromm: Object): TreeItem"><wbr />get<wbr />Next<wbr />Selected<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getSelected,Tree"
     title="getSelected*(self: Tree): TreeItem"><wbr />get<wbr />Selected<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getSelectedColumn,Tree"
@@ -1271,8 +1271,8 @@ function main() {
     title="getEditedColumn*(self: Tree): int64"><wbr />get<wbr />Edited<wbr />Column<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getCustomPopupRect,Tree"
     title="getCustomPopupRect*(self: Tree): Rect2"><wbr />get<wbr />Custom<wbr />Popup<wbr />Rect<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getItemAreaRect,Tree,TreeItem,int64"
-    title="getItemAreaRect*(self: Tree; item: TreeItem; column: int64 = - 1&#x27;i64): Rect2"><wbr />get<wbr />Item<wbr />Area<wbr />Rect<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getItemAreaRect,Tree,Object,int64"
+    title="getItemAreaRect*(self: Tree; item: Object; column: int64 = - 1&#x27;i64): Rect2"><wbr />get<wbr />Item<wbr />Area<wbr />Rect<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getItemAtPos,Tree,Vector2"
     title="getItemAtPos*(self: Tree; pos: Vector2): TreeItem"><wbr />get<wbr />Item<wbr />At<wbr />Pos<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getColumnAtPos,Tree,Vector2"
@@ -1383,7 +1383,7 @@ function main() {
 
 
 </dd>
-<dt id="createItem"><a name="createItem,Tree,TreeItem"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createItem</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">;</span> <span class="Identifier">parent</span><span class="Other">:</span> <span class="Identifier">TreeItem</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TreeItem</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="createItem"><a name="createItem,Tree,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createItem</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">;</span> <span class="Identifier">parent</span><span class="Other">:</span> <span class="Identifier">Object</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Object</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1413,7 +1413,7 @@ function main() {
 
 
 </dd>
-<dt id="getNextSelected"><a name="getNextSelected,Tree,TreeItem"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getNextSelected</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">;</span> <span class="Identifier">fromm</span><span class="Other">:</span> <span class="Identifier">TreeItem</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TreeItem</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getNextSelected"><a name="getNextSelected,Tree,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getNextSelected</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">;</span> <span class="Identifier">fromm</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TreeItem</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1463,7 +1463,7 @@ function main() {
 
 
 </dd>
-<dt id="getItemAreaRect"><a name="getItemAreaRect,Tree,TreeItem,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getItemAreaRect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">;</span> <span class="Identifier">item</span><span class="Other">:</span> <span class="Identifier">TreeItem</span><span class="Other">;</span> <span class="Identifier">column</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="Operator">-</span> <span class="DecNumber">1'i64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Rect2</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+<dt id="getItemAreaRect"><a name="getItemAreaRect,Tree,Object,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getItemAreaRect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">;</span> <span class="Identifier">item</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">column</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="Operator">-</span> <span class="DecNumber">1'i64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Rect2</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -1601,7 +1601,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:52 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:22 UTC</small>
       </div>
     </div>
   </div>

@@ -1329,10 +1329,10 @@ function main() {
     title="getCameraPos*(self: Camera2D): Vector2"><wbr />get<wbr />Camera<wbr />Pos<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getCameraScreenCenter,Camera2D"
     title="getCameraScreenCenter*(self: Camera2D): Vector2"><wbr />get<wbr />Camera<wbr />Screen<wbr />Center<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setCustomViewport,Camera2D,Viewport"
-    title="setCustomViewport*(self: Camera2D; viewport: Viewport)"><wbr />set<wbr />Custom<wbr />Viewport<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setCustomViewport,Camera2D,Node"
+    title="setCustomViewport*(self: Camera2D; viewport: Node)"><wbr />set<wbr />Custom<wbr />Viewport<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getCustomViewport,Camera2D"
-    title="getCustomViewport*(self: Camera2D): Viewport"><wbr />get<wbr />Custom<wbr />Viewport<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getCustomViewport*(self: Camera2D): Node"><wbr />get<wbr />Custom<wbr />Viewport<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#forceUpdateScroll,Camera2D"
     title="forceUpdateScroll*(self: Camera2D)"><wbr />force<wbr />Update<wbr />Scroll<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#resetSmoothing,Camera2D"
@@ -1634,12 +1634,12 @@ function main() {
 
 
 </dd>
-<dt id="setCustomViewport"><a name="setCustomViewport,Camera2D,Viewport"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setCustomViewport</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Camera2D</span><span class="Other">;</span> <span class="Identifier">viewport</span><span class="Other">:</span> <span class="Identifier">Viewport</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setCustomViewport"><a name="setCustomViewport,Camera2D,Node"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setCustomViewport</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Camera2D</span><span class="Other">;</span> <span class="Identifier">viewport</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="getCustomViewport"><a name="getCustomViewport,Camera2D"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCustomViewport</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Camera2D</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Viewport</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getCustomViewport"><a name="getCustomViewport,Camera2D"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCustomViewport</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Camera2D</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Node</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1690,7 +1690,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:46 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:17 UTC</small>
       </div>
     </div>
   </div>

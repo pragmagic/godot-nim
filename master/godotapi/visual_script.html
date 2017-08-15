@@ -1278,7 +1278,7 @@ function main() {
   <li><a class="reference" href="#setVariableDefaultValue,VisualScript,string,Variant"
     title="setVariableDefaultValue*(self: VisualScript; name: string; value: Variant)"><wbr />set<wbr />Variable<wbr />Default<wbr />Value<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getVariableDefaultValue,VisualScript,string"
-    title="getVariableDefaultValue*(self: VisualScript; name: string)"><wbr />get<wbr />Variable<wbr />Default<wbr />Value<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getVariableDefaultValue*(self: VisualScript; name: string): Variant"><wbr />get<wbr />Variable<wbr />Default<wbr />Value<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setVariableInfo,VisualScript,string,Dictionary"
     title="setVariableInfo*(self: VisualScript; name: string; value: Dictionary)"><wbr />set<wbr />Variable<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getVariableInfo,VisualScript,string"
@@ -1486,7 +1486,8 @@ function main() {
 
 
 </dd>
-<dt id="getVariableDefaultValue"><a name="getVariableDefaultValue,VisualScript,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getVariableDefaultValue</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">VisualScript</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getVariableDefaultValue"><a name="getVariableDefaultValue,VisualScript,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getVariableDefaultValue</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">VisualScript</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1613,7 +1614,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:52 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:23 UTC</small>
       </div>
     </div>
   </div>

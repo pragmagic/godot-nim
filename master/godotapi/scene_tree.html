@@ -1292,7 +1292,7 @@ function main() {
     title="queueDelete*(self: SceneTree; obj: Object)"><wbr />queue<wbr />Delete<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#callGroupFlags,SceneTree,int64,string,string,varargs[Variant]"
     title="callGroupFlags*(self: SceneTree; flags: int64; group: string; methodd: string;
-                variantArgs: varargs[Variant])"><wbr />call<wbr />Group<wbr />Flags<span class="attachedType" style="visibility:hidden"></span></a></li>
+                variantArgs: varargs[Variant]): Variant"><wbr />call<wbr />Group<wbr />Flags<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#notifyGroupFlags,SceneTree,int64,string,int64"
     title="notifyGroupFlags*(self: SceneTree; callFlags: int64; group: string;
                   notification: int64)"><wbr />notify<wbr />Group<wbr />Flags<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1301,11 +1301,11 @@ function main() {
                value: Variant)"><wbr />set<wbr />Group<wbr />Flags<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#callGroup,SceneTree,string,string,varargs[Variant]"
     title="callGroup*(self: SceneTree; group: string; methodd: string;
-           variantArgs: varargs[Variant])"><wbr />call<wbr />Group<span class="attachedType" style="visibility:hidden"></span></a></li>
+           variantArgs: varargs[Variant]): Variant"><wbr />call<wbr />Group<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#notifyGroup,SceneTree,string,int64"
-    title="notifyGroup*(self: SceneTree; callFlags: string; group: int64)"><wbr />notify<wbr />Group<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="notifyGroup*(self: SceneTree; group: string; notification: int64)"><wbr />notify<wbr />Group<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setGroup,SceneTree,string,string,Variant"
-    title="setGroup*(self: SceneTree; callFlags: string; group: string; property: Variant)"><wbr />set<wbr />Group<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="setGroup*(self: SceneTree; group: string; property: string; value: Variant)"><wbr />set<wbr />Group<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getNodesInGroup,SceneTree,string"
     title="getNodesInGroup*(self: SceneTree; group: string): Array"><wbr />get<wbr />Nodes<wbr />In<wbr />Group<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setCurrentScene,SceneTree,Node"
@@ -1338,8 +1338,8 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#13" id="63">Methods</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#changeScene.e,SceneTree,Object"
-    title="changeScene*(self: SceneTree; arg0: Object)"><wbr />change<wbr />Scene<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#changeScene.e,SceneTree,Node"
+    title="changeScene*(self: SceneTree; arg0: Node)"><wbr />change<wbr />Scene<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#networkPeerConnected.e,SceneTree,int64"
     title="networkPeerConnected*(self: SceneTree; arg0: int64)"><wbr />network<wbr />Peer<wbr />Connected<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#networkPeerDisconnected.e,SceneTree,int64"
@@ -1536,7 +1536,7 @@ function main() {
 
 </dd>
 <dt id="callGroupFlags"><a name="callGroupFlags,SceneTree,int64,string,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">callGroupFlags</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">group</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
-                    <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                    <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1554,17 +1554,18 @@ function main() {
 
 </dd>
 <dt id="callGroup"><a name="callGroup,SceneTree,string,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">callGroup</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">group</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
-               <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+               <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="notifyGroup"><a name="notifyGroup,SceneTree,string,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">notifyGroup</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">callFlags</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">group</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="notifyGroup"><a name="notifyGroup,SceneTree,string,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">notifyGroup</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">group</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">notification</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="setGroup"><a name="setGroup,SceneTree,string,string,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setGroup</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">callFlags</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">group</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">property</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+<dt id="setGroup"><a name="setGroup,SceneTree,string,string,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setGroup</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">group</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">property</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -1642,7 +1643,7 @@ function main() {
 <div class="section" id="13">
 <h1><a class="toc-backref" href="#13">Methods</a></h1>
 <dl class="item">
-<dt id="changeScene"><a name="changeScene.e,SceneTree,Object"></a><pre><span class="Keyword">method</span> <span class="Identifier">changeScene</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="changeScene"><a name="changeScene.e,SceneTree,Node"></a><pre><span class="Keyword">method</span> <span class="Identifier">changeScene</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1682,7 +1683,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:50 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:21 UTC</small>
       </div>
     </div>
   </div>

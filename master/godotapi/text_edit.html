@@ -1319,7 +1319,7 @@ function main() {
   <li><a class="reference" href="#getWordUnderCursor,TextEdit"
     title="getWordUnderCursor*(self: TextEdit): string"><wbr />get<wbr />Word<wbr />Under<wbr />Cursor<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#search,TextEdit,string,int64,int64,int64"
-    title="search*(self: TextEdit; flags: string; fromLine: int64; fromColumn: int64; toLine: int64): PoolIntArray"><wbr />search<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="search*(self: TextEdit; key: string; flags: int64; fromLine: int64; fromColumn: int64): PoolIntArray"><wbr />search<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#undo,TextEdit"
     title="undo*(self: TextEdit)"><wbr />undo<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#redo,TextEdit"
@@ -1613,8 +1613,8 @@ function main() {
 
 
 </dd>
-<dt id="search"><a name="search,TextEdit,string,int64,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">search</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">fromLine</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">fromColumn</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span>
-            <span class="Identifier">toLine</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="search"><a name="search,TextEdit,string,int64,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">search</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">fromLine</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span>
+            <span class="Identifier">fromColumn</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1710,7 +1710,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:51 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:22 UTC</small>
       </div>
     </div>
   </div>

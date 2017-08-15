@@ -1253,10 +1253,10 @@ function main() {
     title="notificationImpl*(self: Object; what: int64; reversed: bool = false)"><wbr />notification<wbr />Impl<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getInstanceId,Object"
     title="getInstanceId*(self: Object): int64"><wbr />get<wbr />Instance<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setScript,Object,Script"
-    title="setScript*(self: Object; script: Script)"><wbr />set<wbr />Script<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setScript,Object,Reference"
+    title="setScript*(self: Object; script: Reference)"><wbr />set<wbr />Script<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getScript,Object"
-    title="getScript*(self: Object): Script"><wbr />get<wbr />Script<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getScript*(self: Object): Reference"><wbr />get<wbr />Script<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setMeta,Object,string,Variant"
     title="setMeta*(self: Object; name: string; value: Variant)"><wbr />set<wbr />Meta<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getMeta,Object,string"
@@ -1270,11 +1270,11 @@ function main() {
   <li><a class="reference" href="#hasUserSignal,Object,string"
     title="hasUserSignal*(self: Object; signal: string): bool"><wbr />has<wbr />User<wbr />Signal<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#emitSignal,Object,string,varargs[Variant]"
-    title="emitSignal*(self: Object; signal: string; variantArgs: varargs[Variant])"><wbr />emit<wbr />Signal<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="emitSignal*(self: Object; signal: string; variantArgs: varargs[Variant]): Variant"><wbr />emit<wbr />Signal<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#call,Object,string,varargs[Variant]"
     title="call*(self: Object; methodd: string; variantArgs: varargs[Variant]): Variant"><wbr />call<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#callDeferred,Object,string,varargs[Variant]"
-    title="callDeferred*(self: Object; methodd: string; variantArgs: varargs[Variant])"><wbr />call<wbr />Deferred<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="callDeferred*(self: Object; methodd: string; variantArgs: varargs[Variant]): Variant"><wbr />call<wbr />Deferred<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#callv,Object,string,Array"
     title="callv*(self: Object; methodd: string; argArray: Array): Variant"><wbr />callv<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#hasMethod,Object,string"
@@ -1317,7 +1317,7 @@ function main() {
       <li><a class="reference" href="#notification.e,Object,int64"
     title="notification*(self: Object; what: int64)"><wbr />notification<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#set.e,Object,string,Variant"
-    title="set*(self: Object; property: string; value: Variant)"><wbr />set<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="set*(self: Object; property: string; value: Variant): bool"><wbr />set<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#get.e,Object,string"
     title="get*(self: Object; property: string): Variant"><wbr />get<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getPropertyList.e,Object"
@@ -1418,12 +1418,12 @@ function main() {
 
 
 </dd>
-<dt id="setScript"><a name="setScript,Object,Script"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setScript</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">script</span><span class="Other">:</span> <span class="Identifier">Script</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setScript"><a name="setScript,Object,Reference"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setScript</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">script</span><span class="Other">:</span> <span class="Identifier">Reference</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="getScript"><a name="getScript,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getScript</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Script</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getScript"><a name="getScript,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getScript</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Reference</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1458,8 +1458,8 @@ function main() {
 
 
 </dd>
-<dt id="emitSignal"><a name="emitSignal,Object,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">emitSignal</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
-    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="emitSignal"><a name="emitSignal,Object,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">emitSignal</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">discardable</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1470,7 +1470,7 @@ function main() {
 
 
 </dd>
-<dt id="callDeferred"><a name="callDeferred,Object,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">callDeferred</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+<dt id="callDeferred"><a name="callDeferred,Object,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">callDeferred</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -1569,7 +1569,7 @@ function main() {
 
 
 </dd>
-<dt id="set"><a name="set.e,Object,string,Variant"></a><pre><span class="Keyword">method</span> <span class="Identifier">set</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">property</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="set"><a name="set.e,Object,string,Variant"></a><pre><span class="Keyword">method</span> <span class="Identifier">set</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">property</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1599,7 +1599,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:49 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:19 UTC</small>
       </div>
     </div>
   </div>

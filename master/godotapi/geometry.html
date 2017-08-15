@@ -1231,7 +1231,7 @@ function main() {
     title="segmentIntersectsCircle*(segmentFrom: Vector2; segmentTo: Vector2;
                          circlePos: Vector2; circleRadius: float64): float64"><wbr />segment<wbr />Intersects<wbr />Circle<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#segmentIntersectsSegment2d,Vector2,Vector2,Vector2,Vector2"
-    title="segmentIntersectsSegment2d*(fromA: Vector2; toA: Vector2; fromB: Vector2; toB: Vector2)"><wbr />segment<wbr />Intersects<wbr />Segment2d<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="segmentIntersectsSegment2d*(fromA: Vector2; toA: Vector2; fromB: Vector2; toB: Vector2): Variant"><wbr />segment<wbr />Intersects<wbr />Segment2d<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getClosestPointsBetweenSegments2d,Vector2,Vector2,Vector2,Vector2"
     title="getClosestPointsBetweenSegments2d*(p1: Vector2; q1: Vector2; p2: Vector2; q2: Vector2): PoolVector2Array"><wbr />get<wbr />Closest<wbr />Points<wbr />Between<wbr />Segments2d<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getClosestPointsBetweenSegments,Vector3,Vector3,Vector3,Vector3"
@@ -1247,10 +1247,10 @@ function main() {
   <li><a class="reference" href="#getUv84NormalBit,Vector3"
     title="getUv84NormalBit*(normal: Vector3): int64"><wbr />get<wbr />Uv84Normal<wbr />Bit<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#rayIntersectsTriangle,Vector3,Vector3,Vector3,Vector3,Vector3"
-    title="rayIntersectsTriangle*(fromm: Vector3; dir: Vector3; a: Vector3; b: Vector3; c: Vector3)"><wbr />ray<wbr />Intersects<wbr />Triangle<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="rayIntersectsTriangle*(fromm: Vector3; dir: Vector3; a: Vector3; b: Vector3; c: Vector3): Variant"><wbr />ray<wbr />Intersects<wbr />Triangle<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#segmentIntersectsTriangle,Vector3,Vector3,Vector3,Vector3,Vector3"
     title="segmentIntersectsTriangle*(fromm: Vector3; to: Vector3; a: Vector3; b: Vector3;
-                           c: Vector3)"><wbr />segment<wbr />Intersects<wbr />Triangle<span class="attachedType" style="visibility:hidden"></span></a></li>
+                           c: Vector3): Variant"><wbr />segment<wbr />Intersects<wbr />Triangle<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#segmentIntersectsSphere,Vector3,Vector3,Vector3,float64"
     title="segmentIntersectsSphere*(fromm: Vector3; to: Vector3; spos: Vector3; sradius: float64): PoolVector3Array"><wbr />segment<wbr />Intersects<wbr />Sphere<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#segmentIntersectsCylinder,Vector3,Vector3,float64,float64"
@@ -1307,7 +1307,7 @@ function main() {
 
 </dd>
 <dt id="segmentIntersectsSegment2d"><a name="segmentIntersectsSegment2d,Vector2,Vector2,Vector2,Vector2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">segmentIntersectsSegment2d</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">fromA</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">;</span> <span class="Identifier">toA</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">;</span> <span class="Identifier">fromB</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">;</span>
-                                <span class="Identifier">toB</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                                <span class="Identifier">toB</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1356,13 +1356,13 @@ function main() {
 
 </dd>
 <dt id="rayIntersectsTriangle"><a name="rayIntersectsTriangle,Vector3,Vector3,Vector3,Vector3,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">rayIntersectsTriangle</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">fromm</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span> <span class="Identifier">dir</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span>
-                           <span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                           <span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
 <dt id="segmentIntersectsTriangle"><a name="segmentIntersectsTriangle,Vector3,Vector3,Vector3,Vector3,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">segmentIntersectsTriangle</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">fromm</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span> <span class="Identifier">to</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">;</span>
-                               <span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                               <span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1411,7 +1411,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:47 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:18 UTC</small>
       </div>
     </div>
   </div>

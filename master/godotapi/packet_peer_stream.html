@@ -1219,8 +1219,8 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#setStreamPeer,PacketPeerStream,StreamPeer"
-    title="setStreamPeer*(self: PacketPeerStream; peer: StreamPeer)"><wbr />set<wbr />Stream<wbr />Peer<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#setStreamPeer,PacketPeerStream,Reference"
+    title="setStreamPeer*(self: PacketPeerStream; peer: Reference)"><wbr />set<wbr />Stream<wbr />Peer<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setInputBufferMaxSize,PacketPeerStream,int64"
     title="setInputBufferMaxSize*(self: PacketPeerStream; maxSizeBytes: int64)"><wbr />set<wbr />Input<wbr />Buffer<wbr />Max<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setOutputBufferMaxSize,PacketPeerStream,int64"
@@ -1243,7 +1243,7 @@ function main() {
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="setStreamPeer"><a name="setStreamPeer,PacketPeerStream,StreamPeer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setStreamPeer</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeerStream</span><span class="Other">;</span> <span class="Identifier">peer</span><span class="Other">:</span> <span class="Identifier">StreamPeer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setStreamPeer"><a name="setStreamPeer,PacketPeerStream,Reference"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setStreamPeer</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeerStream</span><span class="Other">;</span> <span class="Identifier">peer</span><span class="Other">:</span> <span class="Identifier">Reference</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1270,7 +1270,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:49 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:20 UTC</small>
       </div>
     </div>
   </div>

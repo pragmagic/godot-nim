@@ -1222,8 +1222,8 @@ function main() {
       <li><a class="reference" href="#addLines,EditorSpatialGizmo,PoolVector3Array,Material,bool"
     title="addLines*(self: EditorSpatialGizmo; lines: PoolVector3Array; material: Material;
           billboard: bool = false)"><wbr />add<wbr />Lines<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#addMesh,EditorSpatialGizmo,Mesh,bool,RID"
-    title="addMesh*(self: EditorSpatialGizmo; mesh: Mesh; billboard: bool = false;
+  <li><a class="reference" href="#addMesh,EditorSpatialGizmo,ArrayMesh,bool,RID"
+    title="addMesh*(self: EditorSpatialGizmo; mesh: ArrayMesh; billboard: bool = false;
          skeleton: RID = initRID())"><wbr />add<wbr />Mesh<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#addCollisionSegments,EditorSpatialGizmo,PoolVector3Array"
     title="addCollisionSegments*(self: EditorSpatialGizmo; segments: PoolVector3Array)"><wbr />add<wbr />Collision<wbr />Segments<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1235,8 +1235,8 @@ function main() {
   <li><a class="reference" href="#addHandles,EditorSpatialGizmo,PoolVector3Array,bool,bool"
     title="addHandles*(self: EditorSpatialGizmo; handles: PoolVector3Array;
             billboard: bool = false; secondary: bool = false)"><wbr />add<wbr />Handles<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setSpatialNode,EditorSpatialGizmo,Spatial"
-    title="setSpatialNode*(self: EditorSpatialGizmo; node: Spatial)"><wbr />set<wbr />Spatial<wbr />Node<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setSpatialNode,EditorSpatialGizmo,Node"
+    title="setSpatialNode*(self: EditorSpatialGizmo; node: Node)"><wbr />set<wbr />Spatial<wbr />Node<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#clear,EditorSpatialGizmo"
     title="clear*(self: EditorSpatialGizmo)"><wbr />clear<span class="attachedType" style="visibility:hidden"></span></a></li>
 
@@ -1279,7 +1279,7 @@ function main() {
 
 
 </dd>
-<dt id="addMesh"><a name="addMesh,EditorSpatialGizmo,Mesh,bool,RID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addMesh</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">EditorSpatialGizmo</span><span class="Other">;</span> <span class="Identifier">mesh</span><span class="Other">:</span> <span class="Identifier">Mesh</span><span class="Other">;</span> <span class="Identifier">billboard</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span>
+<dt id="addMesh"><a name="addMesh,EditorSpatialGizmo,ArrayMesh,bool,RID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addMesh</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">EditorSpatialGizmo</span><span class="Other">;</span> <span class="Identifier">mesh</span><span class="Other">:</span> <span class="Identifier">ArrayMesh</span><span class="Other">;</span> <span class="Identifier">billboard</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span>
              <span class="Identifier">skeleton</span><span class="Other">:</span> <span class="Identifier">RID</span> <span class="Other">=</span> <span class="Identifier">initRID</span><span class="Other">(</span><span class="Other">)</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -1309,7 +1309,7 @@ function main() {
 
 
 </dd>
-<dt id="setSpatialNode"><a name="setSpatialNode,EditorSpatialGizmo,Spatial"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setSpatialNode</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">EditorSpatialGizmo</span><span class="Other">;</span> <span class="Identifier">node</span><span class="Other">:</span> <span class="Identifier">Spatial</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setSpatialNode"><a name="setSpatialNode,EditorSpatialGizmo,Node"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setSpatialNode</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">EditorSpatialGizmo</span><span class="Other">;</span> <span class="Identifier">node</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1363,7 +1363,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:47 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:18 UTC</small>
       </div>
     </div>
   </div>

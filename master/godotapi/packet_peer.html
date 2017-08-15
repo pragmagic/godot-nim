@@ -1226,11 +1226,15 @@ function main() {
   <li><a class="reference" href="#getPacket,PacketPeer"
     title="getPacket*(self: PacketPeer): PoolByteArray"><wbr />get<wbr />Packet<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#putPacket,PacketPeer,PoolByteArray"
-    title="putPacket*(self: PacketPeer; buffer: PoolByteArray): Error"><wbr />put<wbr />Packet<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="putPacket*(self: PacketPeer; buffer: PoolByteArray): int64"><wbr />put<wbr />Packet<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getPacketError,PacketPeer"
-    title="getPacketError*(self: PacketPeer): Error"><wbr />get<wbr />Packet<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getPacketError*(self: PacketPeer): int64"><wbr />get<wbr />Packet<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getAvailablePacketCount,PacketPeer"
     title="getAvailablePacketCount*(self: PacketPeer): int64"><wbr />get<wbr />Available<wbr />Packet<wbr />Count<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setAllowObjectDecoding,PacketPeer,bool"
+    title="setAllowObjectDecoding*(self: PacketPeer; enable: bool)"><wbr />set<wbr />Allow<wbr />Object<wbr />Decoding<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#isObjectDecodingAllowed,PacketPeer"
+    title="isObjectDecodingAllowed*(self: PacketPeer): bool"><wbr />is<wbr />Object<wbr />Decoding<wbr />Allowed<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1264,17 +1268,27 @@ function main() {
 
 
 </dd>
-<dt id="putPacket"><a name="putPacket,PacketPeer,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">putPacket</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeer</span><span class="Other">;</span> <span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="putPacket"><a name="putPacket,PacketPeer,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">putPacket</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeer</span><span class="Other">;</span> <span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="getPacketError"><a name="getPacketError,PacketPeer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPacketError</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeer</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getPacketError"><a name="getPacketError,PacketPeer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPacketError</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeer</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
 <dt id="getAvailablePacketCount"><a name="getAvailablePacketCount,PacketPeer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getAvailablePacketCount</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeer</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="setAllowObjectDecoding"><a name="setAllowObjectDecoding,PacketPeer,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setAllowObjectDecoding</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeer</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="isObjectDecodingAllowed"><a name="isObjectDecodingAllowed,PacketPeer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isObjectDecodingAllowed</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeer</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1289,7 +1303,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:49 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:20 UTC</small>
       </div>
     </div>
   </div>

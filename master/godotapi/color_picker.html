@@ -1251,16 +1251,16 @@ function main() {
     title="screenPickPressed*(self: ColorPicker)"><wbr />screen<wbr />Pick<wbr />Pressed<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#sampleDraw.e,ColorPicker"
     title="sampleDraw*(self: ColorPicker)"><wbr />sample<wbr />Draw<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#hsvDraw.e,ColorPicker,int64,Object"
-    title="hsvDraw*(self: ColorPicker; arg0: int64; arg1: Object)"><wbr />hsv<wbr />Draw<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#uvInput.e,ColorPicker,Object"
-    title="uvInput*(self: ColorPicker; arg0: Object)"><wbr />uv<wbr />Input<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#wInput.e,ColorPicker,Object"
-    title="wInput*(self: ColorPicker; arg0: Object)"><wbr />w<wbr />Input<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#presetInput.e,ColorPicker,Object"
-    title="presetInput*(self: ColorPicker; arg0: Object)"><wbr />preset<wbr />Input<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#screenInput.e,ColorPicker,Object"
-    title="screenInput*(self: ColorPicker; arg0: Object)"><wbr />screen<wbr />Input<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#hsvDraw.e,ColorPicker,int64,Control"
+    title="hsvDraw*(self: ColorPicker; arg0: int64; arg1: Control)"><wbr />hsv<wbr />Draw<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#uvInput.e,ColorPicker,InputEvent"
+    title="uvInput*(self: ColorPicker; arg0: InputEvent)"><wbr />uv<wbr />Input<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#wInput.e,ColorPicker,InputEvent"
+    title="wInput*(self: ColorPicker; arg0: InputEvent)"><wbr />w<wbr />Input<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#presetInput.e,ColorPicker,InputEvent"
+    title="presetInput*(self: ColorPicker; arg0: InputEvent)"><wbr />preset<wbr />Input<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#screenInput.e,ColorPicker,InputEvent"
+    title="screenInput*(self: ColorPicker; arg0: InputEvent)"><wbr />screen<wbr />Input<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1349,27 +1349,27 @@ function main() {
 
 
 </dd>
-<dt id="hsvDraw"><a name="hsvDraw.e,ColorPicker,int64,Object"></a><pre><span class="Keyword">method</span> <span class="Identifier">hsvDraw</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">arg1</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="hsvDraw"><a name="hsvDraw.e,ColorPicker,int64,Control"></a><pre><span class="Keyword">method</span> <span class="Identifier">hsvDraw</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">arg1</span><span class="Other">:</span> <span class="Identifier">Control</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="uvInput"><a name="uvInput.e,ColorPicker,Object"></a><pre><span class="Keyword">method</span> <span class="Identifier">uvInput</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="uvInput"><a name="uvInput.e,ColorPicker,InputEvent"></a><pre><span class="Keyword">method</span> <span class="Identifier">uvInput</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">InputEvent</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="wInput"><a name="wInput.e,ColorPicker,Object"></a><pre><span class="Keyword">method</span> <span class="Identifier">wInput</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="wInput"><a name="wInput.e,ColorPicker,InputEvent"></a><pre><span class="Keyword">method</span> <span class="Identifier">wInput</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">InputEvent</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="presetInput"><a name="presetInput.e,ColorPicker,Object"></a><pre><span class="Keyword">method</span> <span class="Identifier">presetInput</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="presetInput"><a name="presetInput.e,ColorPicker,InputEvent"></a><pre><span class="Keyword">method</span> <span class="Identifier">presetInput</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">InputEvent</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="screenInput"><a name="screenInput.e,ColorPicker,Object"></a><pre><span class="Keyword">method</span> <span class="Identifier">screenInput</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="screenInput"><a name="screenInput.e,ColorPicker,InputEvent"></a><pre><span class="Keyword">method</span> <span class="Identifier">screenInput</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ColorPicker</span><span class="Other">;</span> <span class="Identifier">arg0</span><span class="Other">:</span> <span class="Identifier">InputEvent</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1384,7 +1384,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:47 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:17 UTC</small>
       </div>
     </div>
   </div>

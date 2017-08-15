@@ -1237,10 +1237,10 @@ function main() {
     title="commitAction*(self: UndoRedo)"><wbr />commit<wbr />Action<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#addDoMethod,UndoRedo,Object,string,varargs[Variant]"
     title="addDoMethod*(self: UndoRedo; objectt: Object; methodd: string;
-             variantArgs: varargs[Variant])"><wbr />add<wbr />Do<wbr />Method<span class="attachedType" style="visibility:hidden"></span></a></li>
+             variantArgs: varargs[Variant]): Variant"><wbr />add<wbr />Do<wbr />Method<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#addUndoMethod,UndoRedo,Object,string,varargs[Variant]"
     title="addUndoMethod*(self: UndoRedo; objectt: Object; methodd: string;
-               variantArgs: varargs[Variant])"><wbr />add<wbr />Undo<wbr />Method<span class="attachedType" style="visibility:hidden"></span></a></li>
+               variantArgs: varargs[Variant]): Variant"><wbr />add<wbr />Undo<wbr />Method<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#addDoProperty,UndoRedo,Object,string,Variant"
     title="addDoProperty*(self: UndoRedo; objectt: Object; property: string; value: Variant)"><wbr />add<wbr />Do<wbr />Property<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#addUndoProperty,UndoRedo,Object,string,Variant"
@@ -1305,13 +1305,13 @@ function main() {
 
 </dd>
 <dt id="addDoMethod"><a name="addDoMethod,UndoRedo,Object,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addDoMethod</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">UndoRedo</span><span class="Other">;</span> <span class="Identifier">objectt</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
-                 <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                 <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
 <dt id="addUndoMethod"><a name="addUndoMethod,UndoRedo,Object,string,varargs[Variant]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addUndoMethod</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">UndoRedo</span><span class="Other">;</span> <span class="Identifier">objectt</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
-                   <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                   <span class="Identifier">variantArgs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">Variant</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1363,7 +1363,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-11 05:54:52 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-15 04:07:22 UTC</small>
       </div>
     </div>
   </div>
