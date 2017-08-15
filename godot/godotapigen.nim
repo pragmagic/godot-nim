@@ -765,13 +765,13 @@ proc shouldExport(typ: GodotType, types: Table[string, GodotType]): bool =
     curTyp = types.getOrDefault(curTyp.baseName)
   result = curTyp.isNil
 
-proc genTypeFile(types: var Table[string, GodotType], targetDir: string) =
-  for typ in types.values():
-    types.incDerivedCount(typ.baseName)
-
-  var sortedTypes = toSeq(types.values())
-  sortedTypes.sort do (x, y: GodotType) -> int:
+proc sortByDerivedCount(types: Table[string, GodotType]): seq[GodotType] =
+  result = toSeq(types.values())
+  result.sort do (x, y: GodotType) -> int:
     cmp(y.derivedCount, x.derivedCount)
+
+proc genTypeFile(types: Table[string, GodotType], targetDir: string) =
+  let sortedTypes = sortByDerivedCount(types)
 
   let godotApiTypesTree = newNode(nkStmtList)
   godotApiTypesTree.add(newNode(nkImportStmt).addChain(ident("godot")))
@@ -792,6 +792,28 @@ proc genTypeFile(types: var Table[string, GodotType], targetDir: string) =
     godotApiTypesTree.add(regNode)
 
   renderModule(godotApiTypesTree, targetDir / "godottypes.nim")
+
+proc genSingletonWithDerived(tree: PNode, typ: GodotType,
+                             types: Table[string, GodotType]) =
+  let sortedTypes = sortByDerivedCount(types)
+
+  var parents = initSet[string]()
+  parents.incl(typ.name)
+
+  let typeDecl = newNode(nkTypeSection)
+  tree.add(typeDecl)
+  proc genDecl(typ: GodotType) =
+    newRefTypeNode(typeDecl, typ.name, typ.baseName, typ.doc,
+                   isExported = false)
+    tree.add(newRegisterClassNode(typ))
+
+  genDecl(typ)
+  for otherType in sortedTypes:
+    if otherType.baseName in parents:
+      parents.incl(otherType.baseName)
+      genDecl(otherType)
+
+  tree.add(genSingletonDecl(typ.name))
 
 proc genApi*(targetDir: string, apiJsonFile: string) =
   ## Generates .nim files in the ``targetDir`` based on the ``apiJsonFile``.
@@ -821,6 +843,10 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
       jsonNode: obj,
       isSingleton: obj["singleton"].bval
     )
+
+  for typ in types.values():
+    types.incDerivedCount(typ.baseName)
+
   for typ in types.values():
     let moduleName = typeNameToModuleName(typ.name)
     echo "Generating ", moduleName, ".nim..."
@@ -850,12 +876,7 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
       tree.add(makeConstSection(obj["constants"]))
 
     if typ.isSingleton:
-      let typeDecl = newNode(nkTypeSection)
-      newRefTypeNode(typeDecl, typ.name, typ.baseName, typ.doc,
-                     isExported = false)
-      tree.add(typeDecl)
-      tree.add(newRegisterClassNode(typ))
-      tree.add(genSingletonDecl(typ.name))
+      genSingletonWithDerived(tree, typ, types)
 
     # first, generate declarations only for ease of
     # human readability of the file
