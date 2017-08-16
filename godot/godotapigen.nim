@@ -810,7 +810,7 @@ proc genSingletonWithDerived(tree: PNode, typ: GodotType,
   genDecl(typ)
   for otherType in sortedTypes:
     if otherType.baseName in parents:
-      parents.incl(otherType.baseName)
+      parents.incl(otherType.name)
       genDecl(otherType)
 
   tree.add(genSingletonDecl(typ.name))
