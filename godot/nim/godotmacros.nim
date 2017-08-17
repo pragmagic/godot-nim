@@ -539,6 +539,8 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                       GodotVariant {.noconv.} =
       let self = cast[classNameIdent](userData)
       const isStaticCall = methodNameLit == cstring"_ready" or
+                           methodNameLit == cstring"_process" or
+                           methodNameLit == cstring"_fixed_process" or
                            methodNameLit == cstring"_enter_tree" or
                            methodNameLit == cstring"_exit_tree" or
                            methodNameLit == cstring"_enter_world" or
