@@ -140,8 +140,6 @@ proc deinit*(obj: NimGodotObject) =
   assert(not obj.godotObject.isNil)
   obj.godotObject.deinit()
   obj.godotObject = nil
-  # linked object internal pointer should be unset from destructor
-  assert(obj.linkedObject.isNil or obj.linkedObject.godotObject.isNil)
 
 proc nimGodotObjectFinalizer*[T: NimGodotObject](obj: T) =
   if obj.godotObject.isNil: return
