@@ -164,12 +164,15 @@ proc incDerivedCount(types: var Table[string, GodotType],
     types.incDerivedCount(typ.baseName)
 
 proc toNimType(godotType: string): string =
-  case godotType:
+  result = case godotType:
   of "float": "float64"
   of "int": "int64"
   of "String": "string"
   of "File": "godottypes.File"
   else: godotType
+
+  if result.startsWith("enum."):
+    result = if result == "enum.Error": "Error" else: "int64"
 
 proc toNimType(types: Table[string, GodotType], godotType: string): string =
   let origType =
@@ -877,6 +880,18 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
 
     if typ.isSingleton:
       genSingletonWithDerived(tree, typ, types)
+
+    if "enums" in obj:
+      # Quite often Godot enums are flags that need to be bitwise ORed
+      # Nim's enums don't serve well for that purpose, so we just generate
+      # integer constants. The only enum used in API is Error.
+      for enumDef in obj["enums"]:
+        let uniqueConstants = newJObject()
+        for k, v in enumDef["values"]:
+          if k notin obj["constants"]:
+            uniqueConstants[k] = v
+        if uniqueConstants.len > 0:
+          tree.add(makeConstSection(uniqueConstants))
 
     # first, generate declarations only for ease of
     # human readability of the file
