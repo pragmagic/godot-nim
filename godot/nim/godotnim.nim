@@ -780,10 +780,10 @@ proc godot_nativescript_init(handle: pointer) {.
     cdecl, exportc, dynlib.} =
   nativeLibHandle = handle
 
-  let stackBottom = godotStackBottom()
+  var stackBottom {.volatile.}: pointer
   {.emit: """
     NimMain();
-    setStackBottom(`stackBottom`);
+    setStackBottom((void*)(&`stackBottom`));
   """.}
   GC_fullCollect()
   GC_disable()
@@ -798,6 +798,10 @@ proc godot_gdnative_terminate(options: ptr GodotNativeTerminateOptions) {.
 
 const nimGcStepLengthUs {.intdefine.} = 2000
 proc godot_nativescript_frame() {.cdecl, exportc, dynlib.} =
+  var stackBottom {.volatile.}: pointer
+  {.emit: """
+  setStackBottom((void*)(&`stackBottom`));
+  """.}
   if asyncdispatch.hasPendingOperations():
     poll(0)
   GC_step(nimGcStepLengthUs, true, 0)

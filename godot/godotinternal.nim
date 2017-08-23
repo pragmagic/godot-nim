@@ -239,9 +239,6 @@ type ClassConstructor = proc (): ptr GodotObject {.noconv.}
 proc getClassConstructor*(className: cstring): ClassConstructor {.
   importc: "godot_get_class_constructor".}
 
-proc godotStackBottom*(): pointer {.
-  importc: "godot_get_stack_bottom".}
-
 proc deinit*(o: ptr GodotObject) {.
     importc: "godot_object_destroy".}
 
