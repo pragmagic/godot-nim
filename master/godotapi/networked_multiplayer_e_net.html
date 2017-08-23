@@ -1238,10 +1238,10 @@ function main() {
       <li><a class="reference" href="#createServer,NetworkedMultiplayerENet,int64,int64,int64,int64"
     title="createServer*(self: NetworkedMultiplayerENet; port: int64;
               maxClients: int64 = 32&#x27;i64; inBandwidth: int64 = 0&#x27;i64;
-              outBandwidth: int64 = 0&#x27;i64): int64"><wbr />create<wbr />Server<span class="attachedType" style="visibility:hidden"></span></a></li>
+              outBandwidth: int64 = 0&#x27;i64): Error"><wbr />create<wbr />Server<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#createClient,NetworkedMultiplayerENet,string,int64,int64,int64"
     title="createClient*(self: NetworkedMultiplayerENet; ip: string; port: int64;
-              inBandwidth: int64 = 0&#x27;i64; outBandwidth: int64 = 0&#x27;i64): int64"><wbr />create<wbr />Client<span class="attachedType" style="visibility:hidden"></span></a></li>
+              inBandwidth: int64 = 0&#x27;i64; outBandwidth: int64 = 0&#x27;i64): Error"><wbr />create<wbr />Client<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#closeConnection,NetworkedMultiplayerENet"
     title="closeConnection*(self: NetworkedMultiplayerENet)"><wbr />close<wbr />Connection<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setCompressionMode,NetworkedMultiplayerENet,int64"
@@ -1300,13 +1300,13 @@ function main() {
 <dl class="item">
 <dt id="createServer"><a name="createServer,NetworkedMultiplayerENet,int64,int64,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createServer</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">NetworkedMultiplayerENet</span><span class="Other">;</span> <span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span>
                   <span class="Identifier">maxClients</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">32'i64</span><span class="Other">;</span> <span class="Identifier">inBandwidth</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">;</span>
-                  <span class="Identifier">outBandwidth</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                  <span class="Identifier">outBandwidth</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
 <dt id="createClient"><a name="createClient,NetworkedMultiplayerENet,string,int64,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createClient</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">NetworkedMultiplayerENet</span><span class="Other">;</span> <span class="Identifier">ip</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span>
-                  <span class="Identifier">inBandwidth</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">;</span> <span class="Identifier">outBandwidth</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+                  <span class="Identifier">inBandwidth</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">;</span> <span class="Identifier">outBandwidth</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -1343,7 +1343,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:00 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:03 UTC</small>
       </div>
     </div>
   </div>

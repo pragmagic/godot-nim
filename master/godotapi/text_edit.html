@@ -1257,17 +1257,25 @@ function main() {
     title="highlightAllOccurrences*(self: TextEdit): bool"><wbr />highlight<wbr />All<wbr />Occurrences<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#=,TextEdit,bool_3"
     title="`highlightAllOccurrences =`*(self: TextEdit; val: bool)">`<wbr />highlight<wbr />All<wbr />Occurrences<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#smoothScrolling,TextEdit"
+    title="smoothScrolling*(self: TextEdit): bool"><wbr />smooth<wbr />Scrolling<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#=,TextEdit,bool_4"
+    title="`smoothScrolling =`*(self: TextEdit; val: bool)">`<wbr />smooth<wbr />Scrolling<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#vScrollSpeed,TextEdit"
+    title="vScrollSpeed*(self: TextEdit): float64"><wbr />v<wbr />Scroll<wbr />Speed<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#=,TextEdit,float64"
+    title="`vScrollSpeed =`*(self: TextEdit; val: float64)">`<wbr />v<wbr />Scroll<wbr />Speed<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#caretBlockMode,TextEdit"
     title="caretBlockMode*(self: TextEdit): bool"><wbr />caret<wbr />Block<wbr />Mode<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,TextEdit,bool_4"
+  <li><a class="reference" href="#=,TextEdit,bool_5"
     title="`caretBlockMode =`*(self: TextEdit; val: bool)">`<wbr />caret<wbr />Block<wbr />Mode<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#caretBlink,TextEdit"
     title="caretBlink*(self: TextEdit): bool"><wbr />caret<wbr />Blink<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,TextEdit,bool_5"
+  <li><a class="reference" href="#=,TextEdit,bool_6"
     title="`caretBlink =`*(self: TextEdit; val: bool)">`<wbr />caret<wbr />Blink<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#caretBlinkSpeed,TextEdit"
     title="caretBlinkSpeed*(self: TextEdit): float64"><wbr />caret<wbr />Blink<wbr />Speed<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,TextEdit,float64"
+  <li><a class="reference" href="#=,TextEdit,float64_2"
     title="`caretBlinkSpeed =`*(self: TextEdit; val: float64)">`<wbr />caret<wbr />Blink<wbr />Speed<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setText,TextEdit,string"
     title="setText*(self: TextEdit; text: string)"><wbr />set<wbr />Text<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1357,6 +1365,8 @@ function main() {
     title="clickSelectionHeld*(self: TextEdit)"><wbr />click<wbr />Selection<wbr />Held<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#toggleDrawCaret.e,TextEdit"
     title="toggleDrawCaret*(self: TextEdit)"><wbr />toggle<wbr />Draw<wbr />Caret<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#vScrollInput.e,TextEdit"
+    title="vScrollInput*(self: TextEdit)"><wbr />v<wbr />Scroll<wbr />Input<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1460,12 +1470,32 @@ function main() {
 
 
 </dd>
+<dt id="smoothScrolling"><a name="smoothScrolling,TextEdit"></a><pre><span class="Keyword">proc</span> <span class="Identifier">smoothScrolling</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="="><a name="=,TextEdit,bool_4"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">smoothScrolling</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="vScrollSpeed"><a name="vScrollSpeed,TextEdit"></a><pre><span class="Keyword">proc</span> <span class="Identifier">vScrollSpeed</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="="><a name="=,TextEdit,float64"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">vScrollSpeed</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 <dt id="caretBlockMode"><a name="caretBlockMode,TextEdit"></a><pre><span class="Keyword">proc</span> <span class="Identifier">caretBlockMode</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="="><a name="=,TextEdit,bool_4"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">caretBlockMode</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,TextEdit,bool_5"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">caretBlockMode</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1475,7 +1505,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,TextEdit,bool_5"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">caretBlink</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,TextEdit,bool_6"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">caretBlink</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1485,7 +1515,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,TextEdit,float64"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">caretBlinkSpeed</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,TextEdit,float64_2"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">caretBlinkSpeed</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1700,6 +1730,11 @@ function main() {
 
 
 </dd>
+<dt id="vScrollInput"><a name="vScrollInput.e,TextEdit"></a><pre><span class="Keyword">method</span> <span class="Identifier">vScrollInput</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">TextEdit</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">base</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 
 </dl></div>
 
@@ -1710,7 +1745,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:03 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:07 UTC</small>
       </div>
     </div>
   </div>

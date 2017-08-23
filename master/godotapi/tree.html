@@ -1301,10 +1301,10 @@ function main() {
     title="setAllowRmbSelect*(self: Tree; allow: bool)"><wbr />set<wbr />Allow<wbr />Rmb<wbr />Select<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getAllowRmbSelect,Tree"
     title="getAllowRmbSelect*(self: Tree): bool"><wbr />get<wbr />Allow<wbr />Rmb<wbr />Select<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setSingleSelectCellEditingOnlyWhenAlreadySelected,Tree,bool"
-    title="setSingleSelectCellEditingOnlyWhenAlreadySelected*(self: Tree; enable: bool)"><wbr />set<wbr />Single<wbr />Select<wbr />Cell<wbr />Editing<wbr />Only<wbr />When<wbr />Already<wbr />Selected<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getSingleSelectCellEditingOnlyWhenAlreadySelected,Tree"
-    title="getSingleSelectCellEditingOnlyWhenAlreadySelected*(self: Tree): bool"><wbr />get<wbr />Single<wbr />Select<wbr />Cell<wbr />Editing<wbr />Only<wbr />When<wbr />Already<wbr />Selected<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setAllowReselect,Tree,bool"
+    title="setAllowReselect*(self: Tree; allow: bool)"><wbr />set<wbr />Allow<wbr />Reselect<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getAllowReselect,Tree"
+    title="getAllowReselect*(self: Tree): bool"><wbr />get<wbr />Allow<wbr />Reselect<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1539,14 +1539,12 @@ function main() {
 
 
 </dd>
-<dt id="setSingleSelectCellEditingOnlyWhenAlreadySelected"><a name="setSingleSelectCellEditingOnlyWhenAlreadySelected,Tree,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setSingleSelectCellEditingOnlyWhenAlreadySelected</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setAllowReselect"><a name="setAllowReselect,Tree,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setAllowReselect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">;</span> <span class="Identifier">allow</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="getSingleSelectCellEditingOnlyWhenAlreadySelected"><a name="getSingleSelectCellEditingOnlyWhenAlreadySelected,Tree"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSingleSelectCellEditingOnlyWhenAlreadySelected</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
-    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getAllowReselect"><a name="getAllowReselect,Tree"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getAllowReselect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Tree</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1601,7 +1599,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:04 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:07 UTC</small>
       </div>
     </div>
   </div>

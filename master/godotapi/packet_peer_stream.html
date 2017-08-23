@@ -1225,6 +1225,10 @@ function main() {
     title="setInputBufferMaxSize*(self: PacketPeerStream; maxSizeBytes: int64)"><wbr />set<wbr />Input<wbr />Buffer<wbr />Max<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setOutputBufferMaxSize,PacketPeerStream,int64"
     title="setOutputBufferMaxSize*(self: PacketPeerStream; maxSizeBytes: int64)"><wbr />set<wbr />Output<wbr />Buffer<wbr />Max<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getInputBufferMaxSize,PacketPeerStream"
+    title="getInputBufferMaxSize*(self: PacketPeerStream): int64"><wbr />get<wbr />Input<wbr />Buffer<wbr />Max<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getOutputBufferMaxSize,PacketPeerStream"
+    title="getOutputBufferMaxSize*(self: PacketPeerStream): int64"><wbr />get<wbr />Output<wbr />Buffer<wbr />Max<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1260,6 +1264,16 @@ function main() {
 
 
 </dd>
+<dt id="getInputBufferMaxSize"><a name="getInputBufferMaxSize,PacketPeerStream"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getInputBufferMaxSize</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeerStream</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="getOutputBufferMaxSize"><a name="getOutputBufferMaxSize,PacketPeerStream"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getOutputBufferMaxSize</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PacketPeerStream</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 
 </dl></div>
 
@@ -1270,7 +1284,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:00 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:03 UTC</small>
       </div>
     </div>
   </div>

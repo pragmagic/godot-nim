@@ -1224,7 +1224,7 @@ function main() {
   <li><a class="reference" href="#=,PackedDataContainer,PoolByteArray"
     title="`data =`*(self: PackedDataContainer; val: PoolByteArray)">`<wbr />data<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#pack,PackedDataContainer,Variant"
-    title="pack*(self: PackedDataContainer; value: Variant): int64"><wbr />pack<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="pack*(self: PackedDataContainer; value: Variant): Error"><wbr />pack<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#size,PackedDataContainer"
     title="size*(self: PackedDataContainer): int64"><wbr />size<span class="attachedType" style="visibility:hidden"></span></a></li>
 
@@ -1267,7 +1267,7 @@ function main() {
 
 
 </dd>
-<dt id="pack"><a name="pack,PackedDataContainer,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pack</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PackedDataContainer</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="pack"><a name="pack,PackedDataContainer,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pack</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PackedDataContainer</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1310,7 +1310,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:00 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:03 UTC</small>
       </div>
     </div>
   </div>

@@ -1222,9 +1222,9 @@ function main() {
       <li><a class="reference" href="#clear,MeshDataTool"
     title="clear*(self: MeshDataTool)"><wbr />clear<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#createFromSurface,MeshDataTool,ArrayMesh,int64"
-    title="createFromSurface*(self: MeshDataTool; mesh: ArrayMesh; surface: int64): int64"><wbr />create<wbr />From<wbr />Surface<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="createFromSurface*(self: MeshDataTool; mesh: ArrayMesh; surface: int64): Error"><wbr />create<wbr />From<wbr />Surface<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#commitToSurface,MeshDataTool,ArrayMesh"
-    title="commitToSurface*(self: MeshDataTool; mesh: ArrayMesh): int64"><wbr />commit<wbr />To<wbr />Surface<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="commitToSurface*(self: MeshDataTool; mesh: ArrayMesh): Error"><wbr />commit<wbr />To<wbr />Surface<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getFormat,MeshDataTool"
     title="getFormat*(self: MeshDataTool): int64"><wbr />get<wbr />Format<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getVertexCount,MeshDataTool"
@@ -1318,13 +1318,13 @@ function main() {
 
 
 </dd>
-<dt id="createFromSurface"><a name="createFromSurface,MeshDataTool,ArrayMesh,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createFromSurface</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">MeshDataTool</span><span class="Other">;</span> <span class="Identifier">mesh</span><span class="Other">:</span> <span class="Identifier">ArrayMesh</span><span class="Other">;</span> <span class="Identifier">surface</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+<dt id="createFromSurface"><a name="createFromSurface,MeshDataTool,ArrayMesh,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createFromSurface</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">MeshDataTool</span><span class="Other">;</span> <span class="Identifier">mesh</span><span class="Other">:</span> <span class="Identifier">ArrayMesh</span><span class="Other">;</span> <span class="Identifier">surface</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="commitToSurface"><a name="commitToSurface,MeshDataTool,ArrayMesh"></a><pre><span class="Keyword">proc</span> <span class="Identifier">commitToSurface</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">MeshDataTool</span><span class="Other">;</span> <span class="Identifier">mesh</span><span class="Other">:</span> <span class="Identifier">ArrayMesh</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="commitToSurface"><a name="commitToSurface,MeshDataTool,ArrayMesh"></a><pre><span class="Keyword">proc</span> <span class="Identifier">commitToSurface</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">MeshDataTool</span><span class="Other">;</span> <span class="Identifier">mesh</span><span class="Other">:</span> <span class="Identifier">ArrayMesh</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1521,7 +1521,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:00 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:03 UTC</small>
       </div>
     </div>
   </div>

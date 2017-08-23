@@ -1359,6 +1359,8 @@ function main() {
     title="getFilename*(self: Node): string"><wbr />get<wbr />Filename<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#propagateNotification,Node,int64"
     title="propagateNotification*(self: Node; what: int64)"><wbr />propagate<wbr />Notification<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#propagateCall,Node,string,Array,bool"
+    title="propagateCall*(self: Node; methodd: string; args: Array; parentFirst: bool = false)"><wbr />propagate<wbr />Call<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setFixedProcess,Node,bool"
     title="setFixedProcess*(self: Node; enable: bool)"><wbr />set<wbr />Fixed<wbr />Process<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getFixedProcessDeltaTime,Node"
@@ -1824,6 +1826,12 @@ function main() {
 
 
 </dd>
+<dt id="propagateCall"><a name="propagateCall,Node,string,Array,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">propagateCall</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">;</span> <span class="Identifier">parentFirst</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 <dt id="setFixedProcess"><a name="setFixedProcess,Node,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setFixedProcess</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -2092,7 +2100,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:00 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:03 UTC</small>
       </div>
     </div>
   </div>

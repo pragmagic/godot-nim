@@ -1235,9 +1235,9 @@ function main() {
   <li><a class="reference" href="#eraseSection,ConfigFile,string"
     title="eraseSection*(self: ConfigFile; section: string)"><wbr />erase<wbr />Section<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#load,ConfigFile,string"
-    title="load*(self: ConfigFile; path: string): int64"><wbr />load<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="load*(self: ConfigFile; path: string): Error"><wbr />load<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#save,ConfigFile,string"
-    title="save*(self: ConfigFile; path: string): int64"><wbr />save<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="save*(self: ConfigFile; path: string): Error"><wbr />save<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1295,12 +1295,12 @@ function main() {
 
 
 </dd>
-<dt id="load"><a name="load,ConfigFile,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">load</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ConfigFile</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="load"><a name="load,ConfigFile,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">load</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ConfigFile</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="save"><a name="save,ConfigFile,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">save</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ConfigFile</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="save"><a name="save,ConfigFile,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">save</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">ConfigFile</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1315,7 +1315,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:07:58 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:01 UTC</small>
       </div>
     </div>
   </div>

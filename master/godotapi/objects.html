@@ -1287,7 +1287,7 @@ function main() {
     title="getIncomingConnections*(self: Object): Array"><wbr />get<wbr />Incoming<wbr />Connections<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#connect,Object,string,Object,string,Array,int64"
     title="connect*(self: Object; signal: string; target: Object; methodd: string; binds: Array;
-         flags: int64 = 0&#x27;i64): int64"><wbr />connect<span class="attachedType" style="visibility:hidden"></span></a></li>
+         flags: int64 = 0&#x27;i64): Error"><wbr />connect<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#disconnect,Object,string,Object,string"
     title="disconnect*(self: Object; signal: string; target: Object; methodd: string)"><wbr />disconnect<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#isConnected,Object,string,Object,string"
@@ -1296,14 +1296,12 @@ function main() {
     title="setBlockSignals*(self: Object; enable: bool)"><wbr />set<wbr />Block<wbr />Signals<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#isBlockingSignals,Object"
     title="isBlockingSignals*(self: Object): bool"><wbr />is<wbr />Blocking<wbr />Signals<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#propertyListChangedNotify,Object"
+    title="propertyListChangedNotify*(self: Object)"><wbr />property<wbr />List<wbr />Changed<wbr />Notify<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setMessageTranslation,Object,bool"
     title="setMessageTranslation*(self: Object; enable: bool)"><wbr />set<wbr />Message<wbr />Translation<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#canTranslateMessages,Object"
     title="canTranslateMessages*(self: Object): bool"><wbr />can<wbr />Translate<wbr />Messages<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#propertyListChangedNotify,Object"
-    title="propertyListChangedNotify*(self: Object)"><wbr />property<wbr />List<wbr />Changed<wbr />Notify<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#XLMESSAGE,Object,string"
-    title="XLMESSAGE*(self: Object; message: string): string"><wbr />XLMESSAGE<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#tr,Object,string"
     title="tr*(self: Object; message: string): string"><wbr />tr<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#isQueuedForDeletion,Object"
@@ -1502,7 +1500,7 @@ function main() {
 
 </dd>
 <dt id="connect"><a name="connect,Object,string,Object,string,Array,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connect</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">target</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
-             <span class="Identifier">binds</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+             <span class="Identifier">binds</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1529,22 +1527,17 @@ function main() {
 
 
 </dd>
+<dt id="propertyListChangedNotify"><a name="propertyListChangedNotify,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">propertyListChangedNotify</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 <dt id="setMessageTranslation"><a name="setMessageTranslation,Object,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setMessageTranslation</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
 <dt id="canTranslateMessages"><a name="canTranslateMessages,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">canTranslateMessages</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="propertyListChangedNotify"><a name="propertyListChangedNotify,Object"></a><pre><span class="Keyword">proc</span> <span class="Identifier">propertyListChangedNotify</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="XLMESSAGE"><a name="XLMESSAGE,Object,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">XLMESSAGE</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Object</span><span class="Other">;</span> <span class="Identifier">message</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1599,7 +1592,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:00 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:03 UTC</small>
       </div>
     </div>
   </div>

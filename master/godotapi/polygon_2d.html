@@ -1239,6 +1239,10 @@ function main() {
     title="offset*(self: Polygon2D): Vector2"><wbr />offset<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#=,Polygon2D,Vector2"
     title="`offset =`*(self: Polygon2D; val: Vector2)">`<wbr />offset<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#antialiased,Polygon2D"
+    title="antialiased*(self: Polygon2D): bool"><wbr />antialiased<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#=,Polygon2D,bool"
+    title="`antialiased =`*(self: Polygon2D; val: bool)">`<wbr />antialiased<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#texture,Polygon2D"
     title="texture*(self: Polygon2D): Texture"><wbr />texture<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#=,Polygon2D,Texture"
@@ -1257,7 +1261,7 @@ function main() {
     title="`textureRotation =`*(self: Polygon2D; val: float64)">`<wbr />texture<wbr />Rotation<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#invertEnable,Polygon2D"
     title="invertEnable*(self: Polygon2D): bool"><wbr />invert<wbr />Enable<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,Polygon2D,bool"
+  <li><a class="reference" href="#=,Polygon2D,bool_2"
     title="`invertEnable =`*(self: Polygon2D; val: bool)">`<wbr />invert<wbr />Enable<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#invertBorder,Polygon2D"
     title="invertBorder*(self: Polygon2D): float64"><wbr />invert<wbr />Border<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1335,6 +1339,16 @@ function main() {
 
 
 </dd>
+<dt id="antialiased"><a name="antialiased,Polygon2D"></a><pre><span class="Keyword">proc</span> <span class="Identifier">antialiased</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Polygon2D</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="="><a name="=,Polygon2D,bool"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">antialiased</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Polygon2D</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 <dt id="texture"><a name="texture,Polygon2D"></a><pre><span class="Keyword">proc</span> <span class="Identifier">texture</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Polygon2D</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Texture</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -1380,7 +1394,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,Polygon2D,bool"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">invertEnable</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Polygon2D</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,Polygon2D,bool_2"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">invertEnable</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Polygon2D</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1415,7 +1429,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:01 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:05 UTC</small>
       </div>
     </div>
   </div>

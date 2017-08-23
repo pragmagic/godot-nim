@@ -1336,13 +1336,14 @@ function main() {
     title="drawPrimitive*(self: CanvasItem; points: PoolVector2Array; colors: PoolColorArray;
                uvs: PoolVector2Array; texture: Texture = nil; width: float64 = 1.0;
                normalMap: Texture = nil)"><wbr />draw<wbr />Primitive<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#drawPolygon,CanvasItem,PoolVector2Array,PoolColorArray,PoolVector2Array,Texture,Texture"
+  <li><a class="reference" href="#drawPolygon,CanvasItem,PoolVector2Array,PoolColorArray,PoolVector2Array,Texture,Texture,bool"
     title="drawPolygon*(self: CanvasItem; points: PoolVector2Array; colors: PoolColorArray;
-             uvs: PoolVector2Array; texture: Texture = nil; normalMap: Texture = nil)"><wbr />draw<wbr />Polygon<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#drawColoredPolygon,CanvasItem,PoolVector2Array,Color,PoolVector2Array,Texture,Texture"
+             uvs: PoolVector2Array; texture: Texture = nil; normalMap: Texture = nil;
+             antialiased: bool = false)"><wbr />draw<wbr />Polygon<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#drawColoredPolygon,CanvasItem,PoolVector2Array,Color,PoolVector2Array,Texture,Texture,bool"
     title="drawColoredPolygon*(self: CanvasItem; points: PoolVector2Array; color: Color;
                     uvs: PoolVector2Array; texture: Texture = nil;
-                    normalMap: Texture = nil)"><wbr />draw<wbr />Colored<wbr />Polygon<span class="attachedType" style="visibility:hidden"></span></a></li>
+                    normalMap: Texture = nil; antialiased: bool = false)"><wbr />draw<wbr />Colored<wbr />Polygon<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#drawString,CanvasItem,Font,Vector2,string,Color,int64"
     title="drawString*(self: CanvasItem; font: Font; pos: Vector2; text: string;
             modulate: Color = initColor(1.0, 1.0, 1.0, 1.0); clipW: int64 = - 1&#x27;i64)"><wbr />draw<wbr />String<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1683,16 +1684,17 @@ function main() {
 
 
 </dd>
-<dt id="drawPolygon"><a name="drawPolygon,CanvasItem,PoolVector2Array,PoolColorArray,PoolVector2Array,Texture,Texture"></a><pre><span class="Keyword">proc</span> <span class="Identifier">drawPolygon</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">CanvasItem</span><span class="Other">;</span> <span class="Identifier">points</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">colors</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span><span class="Other">;</span>
+<dt id="drawPolygon"><a name="drawPolygon,CanvasItem,PoolVector2Array,PoolColorArray,PoolVector2Array,Texture,Texture,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">drawPolygon</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">CanvasItem</span><span class="Other">;</span> <span class="Identifier">points</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">colors</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span><span class="Other">;</span>
                  <span class="Identifier">uvs</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">texture</span><span class="Other">:</span> <span class="Identifier">Texture</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span>
-                 <span class="Identifier">normalMap</span><span class="Other">:</span> <span class="Identifier">Texture</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                 <span class="Identifier">normalMap</span><span class="Other">:</span> <span class="Identifier">Texture</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span> <span class="Identifier">antialiased</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="drawColoredPolygon"><a name="drawColoredPolygon,CanvasItem,PoolVector2Array,Color,PoolVector2Array,Texture,Texture"></a><pre><span class="Keyword">proc</span> <span class="Identifier">drawColoredPolygon</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">CanvasItem</span><span class="Other">;</span> <span class="Identifier">points</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">color</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">;</span>
+<dt id="drawColoredPolygon"><a name="drawColoredPolygon,CanvasItem,PoolVector2Array,Color,PoolVector2Array,Texture,Texture,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">drawColoredPolygon</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">CanvasItem</span><span class="Other">;</span> <span class="Identifier">points</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">color</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">;</span>
                         <span class="Identifier">uvs</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">texture</span><span class="Other">:</span> <span class="Identifier">Texture</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span>
-                        <span class="Identifier">normalMap</span><span class="Other">:</span> <span class="Identifier">Texture</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                        <span class="Identifier">normalMap</span><span class="Other">:</span> <span class="Identifier">Texture</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span> <span class="Identifier">antialiased</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1834,7 +1836,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:07:58 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:01 UTC</small>
       </div>
     </div>
   </div>

@@ -1253,10 +1253,6 @@ function main() {
     title="hasGroup*(self: SceneTree; name: string): bool"><wbr />has<wbr />Group<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setAutoAcceptQuit,SceneTree,bool"
     title="setAutoAcceptQuit*(self: SceneTree; enabled: bool)"><wbr />set<wbr />Auto<wbr />Accept<wbr />Quit<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setEditorHint,SceneTree,bool"
-    title="setEditorHint*(self: SceneTree; enable: bool)"><wbr />set<wbr />Editor<wbr />Hint<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#isEditorHint,SceneTree"
-    title="isEditorHint*(self: SceneTree): bool"><wbr />is<wbr />Editor<wbr />Hint<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setDebugCollisionsHint,SceneTree,bool"
     title="setDebugCollisionsHint*(self: SceneTree; enable: bool)"><wbr />set<wbr />Debug<wbr />Collisions<wbr />Hint<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#isDebuggingCollisionsHint,SceneTree"
@@ -1313,11 +1309,11 @@ function main() {
   <li><a class="reference" href="#getCurrentScene,SceneTree"
     title="getCurrentScene*(self: SceneTree): Node"><wbr />get<wbr />Current<wbr />Scene<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#changeSceneImpl,SceneTree,string"
-    title="changeSceneImpl*(self: SceneTree; path: string): int64"><wbr />change<wbr />Scene<wbr />Impl<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="changeSceneImpl*(self: SceneTree; path: string): Error"><wbr />change<wbr />Scene<wbr />Impl<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#changeSceneTo,SceneTree,PackedScene"
-    title="changeSceneTo*(self: SceneTree; packedScene: PackedScene): int64"><wbr />change<wbr />Scene<wbr />To<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="changeSceneTo*(self: SceneTree; packedScene: PackedScene): Error"><wbr />change<wbr />Scene<wbr />To<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#reloadCurrentScene,SceneTree"
-    title="reloadCurrentScene*(self: SceneTree): int64"><wbr />reload<wbr />Current<wbr />Scene<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="reloadCurrentScene*(self: SceneTree): Error"><wbr />reload<wbr />Current<wbr />Scene<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setNetworkPeer,SceneTree,NetworkedMultiplayerPeer"
     title="setNetworkPeer*(self: SceneTree; peer: NetworkedMultiplayerPeer)"><wbr />set<wbr />Network<wbr />Peer<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#isNetworkServer,SceneTree"
@@ -1439,16 +1435,6 @@ function main() {
 
 </dd>
 <dt id="setAutoAcceptQuit"><a name="setAutoAcceptQuit,SceneTree,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setAutoAcceptQuit</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">enabled</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="setEditorHint"><a name="setEditorHint,SceneTree,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setEditorHint</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="isEditorHint"><a name="isEditorHint,SceneTree"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isEditorHint</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1586,18 +1572,18 @@ function main() {
 
 
 </dd>
-<dt id="changeSceneImpl"><a name="changeSceneImpl,SceneTree,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">changeSceneImpl</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="changeSceneImpl"><a name="changeSceneImpl,SceneTree,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">changeSceneImpl</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="changeSceneTo"><a name="changeSceneTo,SceneTree,PackedScene"></a><pre><span class="Keyword">proc</span> <span class="Identifier">changeSceneTo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">packedScene</span><span class="Other">:</span> <span class="Identifier">PackedScene</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+<dt id="changeSceneTo"><a name="changeSceneTo,SceneTree,PackedScene"></a><pre><span class="Keyword">proc</span> <span class="Identifier">changeSceneTo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">;</span> <span class="Identifier">packedScene</span><span class="Other">:</span> <span class="Identifier">PackedScene</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="reloadCurrentScene"><a name="reloadCurrentScene,SceneTree"></a><pre><span class="Keyword">proc</span> <span class="Identifier">reloadCurrentScene</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="reloadCurrentScene"><a name="reloadCurrentScene,SceneTree"></a><pre><span class="Keyword">proc</span> <span class="Identifier">reloadCurrentScene</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">SceneTree</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1683,7 +1669,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:02 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:06 UTC</small>
       </div>
     </div>
   </div>

@@ -1254,7 +1254,7 @@ function main() {
   <li><a class="reference" href="#nodeExists,AnimationTreePlayer,string"
     title="nodeExists*(self: AnimationTreePlayer; node: string): bool"><wbr />node<wbr />Exists<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#nodeRename,AnimationTreePlayer,string,string"
-    title="nodeRename*(self: AnimationTreePlayer; node: string; newName: string): int64"><wbr />node<wbr />Rename<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="nodeRename*(self: AnimationTreePlayer; node: string; newName: string): Error"><wbr />node<wbr />Rename<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#nodeGetType,AnimationTreePlayer,string"
     title="nodeGetType*(self: AnimationTreePlayer; id: string): int64"><wbr />node<wbr />Get<wbr />Type<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#nodeGetInputCount,AnimationTreePlayer,string"
@@ -1357,7 +1357,7 @@ function main() {
   <li><a class="reference" href="#removeNode,AnimationTreePlayer,string"
     title="removeNode*(self: AnimationTreePlayer; id: string)"><wbr />remove<wbr />Node<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#connectNodes,AnimationTreePlayer,string,string,int64"
-    title="connectNodes*(self: AnimationTreePlayer; id: string; dstId: string; dstInputIdx: int64): int64"><wbr />connect<wbr />Nodes<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="connectNodes*(self: AnimationTreePlayer; id: string; dstId: string; dstInputIdx: int64): Error"><wbr />connect<wbr />Nodes<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#areNodesConnected,AnimationTreePlayer,string,string,int64"
     title="areNodesConnected*(self: AnimationTreePlayer; id: string; dstId: string;
                    dstInputIdx: int64): bool"><wbr />are<wbr />Nodes<wbr />Connected<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1476,7 +1476,7 @@ function main() {
 
 
 </dd>
-<dt id="nodeRename"><a name="nodeRename,AnimationTreePlayer,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">nodeRename</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AnimationTreePlayer</span><span class="Other">;</span> <span class="Identifier">node</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">newName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+<dt id="nodeRename"><a name="nodeRename,AnimationTreePlayer,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">nodeRename</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AnimationTreePlayer</span><span class="Other">;</span> <span class="Identifier">node</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">newName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma">
     <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -1755,7 +1755,7 @@ function main() {
 
 </dd>
 <dt id="connectNodes"><a name="connectNodes,AnimationTreePlayer,string,string,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connectNodes</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AnimationTreePlayer</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">dstId</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
-                  <span class="Identifier">dstInputIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                  <span class="Identifier">dstInputIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1833,7 +1833,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:07:56 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:00 UTC</small>
       </div>
     </div>
   </div>

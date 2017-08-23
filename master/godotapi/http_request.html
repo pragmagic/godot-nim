@@ -1264,7 +1264,7 @@ function main() {
   <li><a class="reference" href="#request,HTTPRequest,string,PoolStringArray,bool,int64,string"
     title="request*(self: HTTPRequest; url: string; customHeaders: PoolStringArray;
          sslValidateDomain: bool = true; methodd: int64 = 0&#x27;i64;
-         requestData: string = &quot;&quot;): int64"><wbr />request<span class="attachedType" style="visibility:hidden"></span></a></li>
+         requestData: string = &quot;&quot;): Error"><wbr />request<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#cancelRequest,HTTPRequest"
     title="cancelRequest*(self: HTTPRequest)"><wbr />cancel<wbr />Request<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getHttpClientStatus,HTTPRequest"
@@ -1403,7 +1403,7 @@ function main() {
 </dd>
 <dt id="request"><a name="request,HTTPRequest,string,PoolStringArray,bool,int64,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">request</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPRequest</span><span class="Other">;</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">customHeaders</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span>
              <span class="Identifier">sslValidateDomain</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other">=</span> <span class="DecNumber">0'i64</span><span class="Other">;</span>
-             <span class="Identifier">requestData</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+             <span class="Identifier">requestData</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1464,7 +1464,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:07:59 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:02 UTC</small>
       </div>
     </div>
   </div>

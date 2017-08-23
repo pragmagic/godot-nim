@@ -1338,9 +1338,9 @@ function main() {
   <li><a class="reference" href="#isSelectionEnabled,RichTextLabel"
     title="isSelectionEnabled*(self: RichTextLabel): bool"><wbr />is<wbr />Selection<wbr />Enabled<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#parseBbcode,RichTextLabel,string"
-    title="parseBbcode*(self: RichTextLabel; bbcode: string): int64"><wbr />parse<wbr />Bbcode<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="parseBbcode*(self: RichTextLabel; bbcode: string): Error"><wbr />parse<wbr />Bbcode<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#appendBbcode,RichTextLabel,string"
-    title="appendBbcode*(self: RichTextLabel; bbcode: string): int64"><wbr />append<wbr />Bbcode<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="appendBbcode*(self: RichTextLabel; bbcode: string): Error"><wbr />append<wbr />Bbcode<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getTotalCharacterCount,RichTextLabel"
     title="getTotalCharacterCount*(self: RichTextLabel): int64"><wbr />get<wbr />Total<wbr />Character<wbr />Count<span class="attachedType" style="visibility:hidden"></span></a></li>
 
@@ -1657,12 +1657,12 @@ function main() {
 
 
 </dd>
-<dt id="parseBbcode"><a name="parseBbcode,RichTextLabel,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseBbcode</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">RichTextLabel</span><span class="Other">;</span> <span class="Identifier">bbcode</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="parseBbcode"><a name="parseBbcode,RichTextLabel,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseBbcode</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">RichTextLabel</span><span class="Other">;</span> <span class="Identifier">bbcode</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="appendBbcode"><a name="appendBbcode,RichTextLabel,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">appendBbcode</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">RichTextLabel</span><span class="Other">;</span> <span class="Identifier">bbcode</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="appendBbcode"><a name="appendBbcode,RichTextLabel,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">appendBbcode</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">RichTextLabel</span><span class="Other">;</span> <span class="Identifier">bbcode</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1697,7 +1697,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:02 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:05 UTC</small>
       </div>
     </div>
   </div>

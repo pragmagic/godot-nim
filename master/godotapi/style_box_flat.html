@@ -1243,6 +1243,10 @@ function main() {
     title="borderWidthBottom*(self: StyleBoxFlat): int64"><wbr />border<wbr />Width<wbr />Bottom<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#=,StyleBoxFlat,int64_4"
     title="`borderWidthBottom =`*(self: StyleBoxFlat; val: int64)">`<wbr />border<wbr />Width<wbr />Bottom<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#borderColor,StyleBoxFlat"
+    title="borderColor*(self: StyleBoxFlat): Color"><wbr />border<wbr />Color<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#=,StyleBoxFlat,Color_2"
+    title="`borderColor =`*(self: StyleBoxFlat; val: Color)">`<wbr />border<wbr />Color<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#borderBlend,StyleBoxFlat"
     title="borderBlend*(self: StyleBoxFlat): bool"><wbr />border<wbr />Blend<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#=,StyleBoxFlat,bool_2"
@@ -1285,7 +1289,7 @@ function main() {
     title="`expandMarginBottom =`*(self: StyleBoxFlat; val: float64)">`<wbr />expand<wbr />Margin<wbr />Bottom<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#shadowColor,StyleBoxFlat"
     title="shadowColor*(self: StyleBoxFlat): Color"><wbr />shadow<wbr />Color<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#=,StyleBoxFlat,Color_2"
+  <li><a class="reference" href="#=,StyleBoxFlat,Color_3"
     title="`shadowColor =`*(self: StyleBoxFlat; val: Color)">`<wbr />shadow<wbr />Color<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#shadowSize,StyleBoxFlat"
     title="shadowSize*(self: StyleBoxFlat): int64"><wbr />shadow<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1299,8 +1303,6 @@ function main() {
     title="antiAliasingSize*(self: StyleBoxFlat): int64"><wbr />anti<wbr />Aliasing<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#=,StyleBoxFlat,int64_11"
     title="`antiAliasingSize =`*(self: StyleBoxFlat; val: int64)">`<wbr />anti<wbr />Aliasing<wbr />Size<wbr />=`<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setBorderColor,StyleBoxFlat,Color"
-    title="setBorderColor*(self: StyleBoxFlat; color: Color)"><wbr />set<wbr />Border<wbr />Color<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setBorderWidthAll,StyleBoxFlat,int64"
     title="setBorderWidthAll*(self: StyleBoxFlat; width: int64)"><wbr />set<wbr />Border<wbr />Width<wbr />All<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getBorderWidthMin,StyleBoxFlat"
@@ -1311,6 +1313,11 @@ function main() {
                            radiusBottomLeft: int64)"><wbr />set<wbr />Corner<wbr />Radius<wbr />Individual<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setCornerRadiusAll,StyleBoxFlat,int64"
     title="setCornerRadiusAll*(self: StyleBoxFlat; radius: int64)"><wbr />set<wbr />Corner<wbr />Radius<wbr />All<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setExpandMarginAll,StyleBoxFlat,float64"
+    title="setExpandMarginAll*(self: StyleBoxFlat; size: float64)"><wbr />set<wbr />Expand<wbr />Margin<wbr />All<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#setExpandMarginIndividual,StyleBoxFlat,float64,float64,float64,float64"
+    title="setExpandMarginIndividual*(self: StyleBoxFlat; sizeLeft: float64; sizeTop: float64;
+                           sizeRight: float64; sizeBottom: float64)"><wbr />set<wbr />Expand<wbr />Margin<wbr />Individual<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1385,6 +1392,16 @@ function main() {
 
 </dd>
 <dt id="="><a name="=,StyleBoxFlat,int64_4"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">borderWidthBottom</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">StyleBoxFlat</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="borderColor"><a name="borderColor,StyleBoxFlat"></a><pre><span class="Keyword">proc</span> <span class="Identifier">borderColor</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">StyleBoxFlat</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Color</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="="><a name="=,StyleBoxFlat,Color_2"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">borderColor</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">StyleBoxFlat</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1494,7 +1511,7 @@ function main() {
 
 
 </dd>
-<dt id="="><a name="=,StyleBoxFlat,Color_2"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">shadowColor</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">StyleBoxFlat</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="="><a name="=,StyleBoxFlat,Color_3"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Identifier">shadowColor</span> <span class="Operator">=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">StyleBoxFlat</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1529,11 +1546,6 @@ function main() {
 
 
 </dd>
-<dt id="setBorderColor"><a name="setBorderColor,StyleBoxFlat,Color"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBorderColor</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">StyleBoxFlat</span><span class="Other">;</span> <span class="Identifier">color</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
 <dt id="setBorderWidthAll"><a name="setBorderWidthAll,StyleBoxFlat,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBorderWidthAll</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">StyleBoxFlat</span><span class="Other">;</span> <span class="Identifier">width</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
@@ -1556,6 +1568,18 @@ function main() {
 
 
 </dd>
+<dt id="setExpandMarginAll"><a name="setExpandMarginAll,StyleBoxFlat,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setExpandMarginAll</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">StyleBoxFlat</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
+<dt id="setExpandMarginIndividual"><a name="setExpandMarginIndividual,StyleBoxFlat,float64,float64,float64,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setExpandMarginIndividual</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">StyleBoxFlat</span><span class="Other">;</span> <span class="Identifier">sizeLeft</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">;</span>
+                               <span class="Identifier">sizeTop</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">;</span> <span class="Identifier">sizeRight</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">;</span>
+                               <span class="Identifier">sizeBottom</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+
+</dd>
 
 </dl></div>
 
@@ -1566,7 +1590,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:08:03 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:07 UTC</small>
       </div>
     </div>
   </div>

@@ -16,7 +16,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>Module skeleton</title>
+<title>Module encoded_object_as_id</title>
 <style type="text/css" >
 /*
 Stylesheet for use with Docutils/rst2html.
@@ -1195,7 +1195,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">Module skeleton</h1>
+    <h1 class="title">Module encoded_object_as_id</h1>
     <div class="row">
   <div class="three columns">
   <div>
@@ -1217,60 +1217,12 @@ function main() {
   </ul>
 </li>
 <li>
-  <a class="reference reference-toplevel" href="#10" id="60">Consts</a>
-  <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#NOTIFICATION_UPDATE_SKELETON"
-    title="NOTIFICATION_UPDATE_SKELETON* = 50&#x27;i64"><wbr />NOTIFICATION_<wbr />UPDATE_<wbr />SKELETON<span class="attachedType" style="visibility:hidden"></span></a></li>
-
-  </ul>
-</li>
-<li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#addBone,Skeleton,string"
-    title="addBone*(self: Skeleton; name: string)"><wbr />add<wbr />Bone<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#findBone,Skeleton,string"
-    title="findBone*(self: Skeleton; name: string): int64"><wbr />find<wbr />Bone<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getBoneName,Skeleton,int64"
-    title="getBoneName*(self: Skeleton; boneIdx: int64): string"><wbr />get<wbr />Bone<wbr />Name<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getBoneParent,Skeleton,int64"
-    title="getBoneParent*(self: Skeleton; boneIdx: int64): int64"><wbr />get<wbr />Bone<wbr />Parent<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setBoneParent,Skeleton,int64,int64"
-    title="setBoneParent*(self: Skeleton; boneIdx: int64; parentIdx: int64)"><wbr />set<wbr />Bone<wbr />Parent<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getBoneCount,Skeleton"
-    title="getBoneCount*(self: Skeleton): int64"><wbr />get<wbr />Bone<wbr />Count<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#unparentBoneAndRest,Skeleton,int64"
-    title="unparentBoneAndRest*(self: Skeleton; boneIdx: int64)"><wbr />unparent<wbr />Bone<wbr />And<wbr />Rest<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getBoneRest,Skeleton,int64"
-    title="getBoneRest*(self: Skeleton; boneIdx: int64): Transform"><wbr />get<wbr />Bone<wbr />Rest<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setBoneRest,Skeleton,int64,Transform"
-    title="setBoneRest*(self: Skeleton; boneIdx: int64; rest: Transform)"><wbr />set<wbr />Bone<wbr />Rest<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setBoneDisableRest,Skeleton,int64,bool"
-    title="setBoneDisableRest*(self: Skeleton; boneIdx: int64; disable: bool)"><wbr />set<wbr />Bone<wbr />Disable<wbr />Rest<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#isBoneRestDisabled,Skeleton,int64"
-    title="isBoneRestDisabled*(self: Skeleton; boneIdx: int64): bool"><wbr />is<wbr />Bone<wbr />Rest<wbr />Disabled<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#bindChildNodeToBone,Skeleton,int64,Node"
-    title="bindChildNodeToBone*(self: Skeleton; boneIdx: int64; node: Node)"><wbr />bind<wbr />Child<wbr />Node<wbr />To<wbr />Bone<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#unbindChildNodeFromBone,Skeleton,int64,Node"
-    title="unbindChildNodeFromBone*(self: Skeleton; boneIdx: int64; node: Node)"><wbr />unbind<wbr />Child<wbr />Node<wbr />From<wbr />Bone<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getBoundChildNodesToBone,Skeleton,int64"
-    title="getBoundChildNodesToBone*(self: Skeleton; boneIdx: int64): Array"><wbr />get<wbr />Bound<wbr />Child<wbr />Nodes<wbr />To<wbr />Bone<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#clearBones,Skeleton"
-    title="clearBones*(self: Skeleton)"><wbr />clear<wbr />Bones<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getBonePose,Skeleton,int64"
-    title="getBonePose*(self: Skeleton; boneIdx: int64): Transform"><wbr />get<wbr />Bone<wbr />Pose<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setBonePose,Skeleton,int64,Transform"
-    title="setBonePose*(self: Skeleton; boneIdx: int64; pose: Transform)"><wbr />set<wbr />Bone<wbr />Pose<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setBoneGlobalPose,Skeleton,int64,Transform"
-    title="setBoneGlobalPose*(self: Skeleton; boneIdx: int64; pose: Transform)"><wbr />set<wbr />Bone<wbr />Global<wbr />Pose<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getBoneGlobalPose,Skeleton,int64"
-    title="getBoneGlobalPose*(self: Skeleton; boneIdx: int64): Transform"><wbr />get<wbr />Bone<wbr />Global<wbr />Pose<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getBoneCustomPose,Skeleton,int64"
-    title="getBoneCustomPose*(self: Skeleton; boneIdx: int64): Transform"><wbr />get<wbr />Bone<wbr />Custom<wbr />Pose<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#setBoneCustomPose,Skeleton,int64,Transform"
-    title="setBoneCustomPose*(self: Skeleton; boneIdx: int64; customPose: Transform)"><wbr />set<wbr />Bone<wbr />Custom<wbr />Pose<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getBoneTransform,Skeleton,int64"
-    title="getBoneTransform*(self: Skeleton; boneIdx: int64): Transform"><wbr />get<wbr />Bone<wbr />Transform<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#setObjectId,EncodedObjectAsID,int64"
+    title="setObjectId*(self: EncodedObjectAsID; id: int64)"><wbr />set<wbr />Object<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#getObjectId,EncodedObjectAsID"
+    title="getObjectId*(self: EncodedObjectAsID): int64"><wbr />get<wbr />Object<wbr />Id<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1284,132 +1236,17 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="../godot.html">godot</a>, <a class="reference external" href="godottypes.html">godottypes</a>, <a class="reference external" href="../godotinternal.html">godotinternal</a>, <a class="reference external" href="spatial.html">spatial</a>
-</dl></div>
-<div class="section" id="10">
-<h1><a class="toc-backref" href="#10">Consts</a></h1>
-<dl class="item">
-<dt id="NOTIFICATION_UPDATE_SKELETON"><a name="NOTIFICATION_UPDATE_SKELETON"></a><pre><span class="Identifier">NOTIFICATION_UPDATE_SKELETON</span><span class="Operator">*</span> <span class="Other">=</span> <span class="DecNumber">50'i64</span></pre></dt>
-<dd>
-
-
-</dd>
-
+<a class="reference external" href="../godot.html">godot</a>, <a class="reference external" href="godottypes.html">godottypes</a>, <a class="reference external" href="../godotinternal.html">godotinternal</a>, <a class="reference external" href="reference.html">reference</a>
 </dl></div>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="addBone"><a name="addBone,Skeleton,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addBone</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setObjectId"><a name="setObjectId,EncodedObjectAsID,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setObjectId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">EncodedObjectAsID</span><span class="Other">;</span> <span class="Identifier">id</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="findBone"><a name="findBone,Skeleton,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">findBone</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="getBoneName"><a name="getBoneName,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBoneName</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="getBoneParent"><a name="getBoneParent,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBoneParent</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="setBoneParent"><a name="setBoneParent,Skeleton,int64,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBoneParent</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">parentIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="getBoneCount"><a name="getBoneCount,Skeleton"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBoneCount</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="unparentBoneAndRest"><a name="unparentBoneAndRest,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">unparentBoneAndRest</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="getBoneRest"><a name="getBoneRest,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBoneRest</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Transform</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="setBoneRest"><a name="setBoneRest,Skeleton,int64,Transform"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBoneRest</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">rest</span><span class="Other">:</span> <span class="Identifier">Transform</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="setBoneDisableRest"><a name="setBoneDisableRest,Skeleton,int64,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBoneDisableRest</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">disable</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
-    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="isBoneRestDisabled"><a name="isBoneRestDisabled,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isBoneRestDisabled</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="bindChildNodeToBone"><a name="bindChildNodeToBone,Skeleton,int64,Node"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bindChildNodeToBone</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">node</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="unbindChildNodeFromBone"><a name="unbindChildNodeFromBone,Skeleton,int64,Node"></a><pre><span class="Keyword">proc</span> <span class="Identifier">unbindChildNodeFromBone</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">node</span><span class="Other">:</span> <span class="Identifier">Node</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
-    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="getBoundChildNodesToBone"><a name="getBoundChildNodesToBone,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBoundChildNodesToBone</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
-    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="clearBones"><a name="clearBones,Skeleton"></a><pre><span class="Keyword">proc</span> <span class="Identifier">clearBones</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="getBonePose"><a name="getBonePose,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBonePose</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Transform</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="setBonePose"><a name="setBonePose,Skeleton,int64,Transform"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBonePose</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">pose</span><span class="Other">:</span> <span class="Identifier">Transform</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="setBoneGlobalPose"><a name="setBoneGlobalPose,Skeleton,int64,Transform"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBoneGlobalPose</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">pose</span><span class="Other">:</span> <span class="Identifier">Transform</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
-    <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="getBoneGlobalPose"><a name="getBoneGlobalPose,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBoneGlobalPose</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Transform</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="getBoneCustomPose"><a name="getBoneCustomPose,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBoneCustomPose</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Transform</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="setBoneCustomPose"><a name="setBoneCustomPose,Skeleton,int64,Transform"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBoneCustomPose</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">customPose</span><span class="Other">:</span> <span class="Identifier">Transform</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-
-</dd>
-<dt id="getBoneTransform"><a name="getBoneTransform,Skeleton,int64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBoneTransform</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Skeleton</span><span class="Other">;</span> <span class="Identifier">boneIdx</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Transform</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="getObjectId"><a name="getObjectId,EncodedObjectAsID"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getObjectId</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">EncodedObjectAsID</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1424,7 +1261,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-23 14:54:06 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:02 UTC</small>
       </div>
     </div>
   </div>

@@ -1363,21 +1363,21 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#connectToHost,HTTPClient,string,int64,bool,bool"
     title="connectToHost*(self: HTTPClient; host: string; port: int64; useSsl: bool = false;
-               verifyHost: bool = true): int64"><wbr />connect<wbr />To<wbr />Host<span class="attachedType" style="visibility:hidden"></span></a></li>
+               verifyHost: bool = true): Error"><wbr />connect<wbr />To<wbr />Host<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#setConnection,HTTPClient,StreamPeer"
     title="setConnection*(self: HTTPClient; connection: StreamPeer)"><wbr />set<wbr />Connection<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getConnection,HTTPClient"
     title="getConnection*(self: HTTPClient): StreamPeer"><wbr />get<wbr />Connection<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#requestRaw,HTTPClient,int64,string,PoolStringArray,PoolByteArray"
     title="requestRaw*(self: HTTPClient; methodd: int64; url: string; headers: PoolStringArray;
-            body: PoolByteArray): int64"><wbr />request<wbr />Raw<span class="attachedType" style="visibility:hidden"></span></a></li>
+            body: PoolByteArray): Error"><wbr />request<wbr />Raw<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#request,HTTPClient,int64,string,PoolStringArray,string"
     title="request*(self: HTTPClient; methodd: int64; url: string; headers: PoolStringArray;
-         body: string = &quot;&quot;): int64"><wbr />request<span class="attachedType" style="visibility:hidden"></span></a></li>
+         body: string = &quot;&quot;): Error"><wbr />request<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#sendBodyText,HTTPClient,string"
-    title="sendBodyText*(self: HTTPClient; body: string): int64"><wbr />send<wbr />Body<wbr />Text<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="sendBodyText*(self: HTTPClient; body: string): Error"><wbr />send<wbr />Body<wbr />Text<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#sendBodyData,HTTPClient,PoolByteArray"
-    title="sendBodyData*(self: HTTPClient; body: PoolByteArray): int64"><wbr />send<wbr />Body<wbr />Data<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="sendBodyData*(self: HTTPClient; body: PoolByteArray): Error"><wbr />send<wbr />Body<wbr />Data<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#close,HTTPClient"
     title="close*(self: HTTPClient)"><wbr />close<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#hasResponse,HTTPClient"
@@ -1403,7 +1403,7 @@ function main() {
   <li><a class="reference" href="#getStatus,HTTPClient"
     title="getStatus*(self: HTTPClient): int64"><wbr />get<wbr />Status<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#poll,HTTPClient"
-    title="poll*(self: HTTPClient): int64"><wbr />poll<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="poll*(self: HTTPClient): Error"><wbr />poll<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#queryStringFromDict,HTTPClient,Dictionary"
     title="queryStringFromDict*(self: HTTPClient; fields: Dictionary): string"><wbr />query<wbr />String<wbr />From<wbr />Dict<span class="attachedType" style="visibility:hidden"></span></a></li>
 
@@ -1770,7 +1770,7 @@ function main() {
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
 <dt id="connectToHost"><a name="connectToHost,HTTPClient,string,int64,bool,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connectToHost</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPClient</span><span class="Other">;</span> <span class="Identifier">host</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">useSsl</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span>
-                   <span class="Identifier">verifyHost</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+                   <span class="Identifier">verifyHost</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1786,24 +1786,24 @@ function main() {
 
 </dd>
 <dt id="requestRaw"><a name="requestRaw,HTTPClient,int64,string,PoolStringArray,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">requestRaw</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPClient</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
-                <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
+                <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span>
     <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
 <dt id="request"><a name="request,HTTPClient,int64,string,PoolStringArray,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">request</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPClient</span><span class="Other">;</span> <span class="Identifier">methodd</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">;</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span>
-             <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+             <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="sendBodyText"><a name="sendBodyText,HTTPClient,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">sendBodyText</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPClient</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="sendBodyText"><a name="sendBodyText,HTTPClient,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">sendBodyText</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPClient</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
 </dd>
-<dt id="sendBodyData"><a name="sendBodyData,HTTPClient,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">sendBodyData</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPClient</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="sendBodyData"><a name="sendBodyData,HTTPClient,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">sendBodyData</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPClient</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1868,7 +1868,7 @@ function main() {
 
 
 </dd>
-<dt id="poll"><a name="poll,HTTPClient"></a><pre><span class="Keyword">proc</span> <span class="Identifier">poll</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPClient</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="poll"><a name="poll,HTTPClient"></a><pre><span class="Keyword">proc</span> <span class="Identifier">poll</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">HTTPClient</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 
@@ -1889,7 +1889,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-17 12:07:59 UTC</small>
+        <small>Made with Nim. Generated: 2017-08-23 14:54:02 UTC</small>
       </div>
     </div>
   </div>
