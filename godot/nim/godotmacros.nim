@@ -451,25 +451,26 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                else: postfix(decl.name, "*")
     recList.add(newIdentDefs(name, decl.typ))
 
-  # Add default values to init method
-  if initBody.len > 0:
-    var initMethod: NimNode
-    for meth in obj.methods:
-      if meth.name == "init" and meth.nimNode[3].len == 1:
-        initMethod = meth.nimNode
-        break
-    if initMethod.isNil:
-      obj.methods.add(MethodDecl(
-        name: "init",
-        args: newSeq[VarDecl](),
-        returnType: newEmptyNode(),
-        isVirtual: true,
-        isNoGodot: false,
-        nimNode: newProc(ident("init"), body = initBody,
-                         procType = nnkMethodDef)
-      ))
-    else:
-      initMethod.body.insert(0, initBody)
+  # Add default values and/or super call to init method
+  initBody.insert(0, newNimNode(nnkCommand).add(ident("procCall"),
+    newCall("init", newCall(obj.parentName, ident("self")))))
+  var initMethod: NimNode
+  for meth in obj.methods:
+    if meth.name == "init" and meth.nimNode[3].len == 1:
+      initMethod = meth.nimNode
+      break
+  if initMethod.isNil:
+    obj.methods.add(MethodDecl(
+      name: "init",
+      args: newSeq[VarDecl](),
+      returnType: newEmptyNode(),
+      isVirtual: true,
+      isNoGodot: false,
+      nimNode: newProc(ident("init"), body = initBody,
+                       procType = nnkMethodDef)
+    ))
+  else:
+    initMethod.body.insert(0, initBody)
 
   # {.this: self.} for convenience
   result.add(newNimNode(nnkPragma).add(newNimNode(nnkExprColonExpr).add(
