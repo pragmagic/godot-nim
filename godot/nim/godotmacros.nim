@@ -466,7 +466,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
       returnType: newEmptyNode(),
       isVirtual: true,
       isNoGodot: false,
-      nimNode: newProc(ident("init"), body = initBody,
+      nimNode: newProc(postfix(ident("init"), "*"), body = initBody,
                        procType = nnkMethodDef)
     ))
   else:
