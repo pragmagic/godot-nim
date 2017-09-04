@@ -54,9 +54,9 @@ proc xformVector3*(self: Transform; v: Vector3): Vector3 {.
     importc: "godot_transform_xform_vector3".}
 proc xformInvVector3*(self: Transform; v: Vector3): Vector3 {.
     importc: "godot_transform_xform_inv_vector3".}
-proc xformRect3*(self: Transform; v: Vector3): Rect3 {.
+proc xformRect3*(self: Transform; v: Rect3): Rect3 {.
     importc: "godot_transform_xform_rect3".}
-proc xformInvRect3*(self: Transform; v: Vector3): Vector3 {.
+proc xformInvRect3*(self: Transform; v: Rect3): Rect3 {.
     importc: "godot_transform_xform_inv_rect3".}
 
 proc `==`*(self: Transform; b: Transform): bool {.
