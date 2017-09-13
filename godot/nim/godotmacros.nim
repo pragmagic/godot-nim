@@ -313,23 +313,29 @@ proc refcountIncremented(obj: ptr GodotObject, methodData: pointer,
                          userData: pointer, numArgs: cint,
                          args: var array[MAX_ARG_COUNT, ptr GodotVariant]):
                       GodotVariant {.noconv.} =
-  GC_ref(cast[NimGodotObject](userData))
+  let nimObj = cast[NimGodotObject](userData)
+  if not nimObj.isFinalized:
+    GC_ref(nimObj)
 
 proc refcountDecremented(obj: ptr GodotObject, methodData: pointer,
                          userData: pointer, numArgs: cint,
                          args: var array[MAX_ARG_COUNT, ptr GodotVariant]):
                       GodotVariant {.noconv.} =
-  GC_unref(cast[NimGodotObject](userData))
-  initGodotVariant(result, false) # destroy when Nim decides
+  let nimObj = cast[NimGodotObject](userData)
+  if not nimObj.isFinalized:
+    GC_unref(nimObj)
+  initGodotVariant(result, nimObj.isFinalized)
 
-template registerGodotClass(classNameIdent, classNameLit, isRef,
+template registerGodotClass(classNameIdent, classNameLit; isRefClass: bool;
                             baseNameLit, createFuncIdent; isTool: bool) =
   proc createFuncIdent(obj: ptr GodotObject,
                        methData: pointer): pointer {.noconv.} =
     var nimObj: classNameIdent
     new(nimObj, nimGodotObjectFinalizer[classNameIdent])
     nimObj.setGodotObject(obj)
-    nimObj.setNativeObject(asNimGodotObject[NimGodotObject](obj, noRef = true))
+    nimObj.isRef = when isRefClass: true else: false
+    nimObj.setNativeObject(asNimGodotObject[NimGodotObject](
+      obj, forceNativeObject = true))
     GC_ref(nimObj)
     result = cast[pointer](nimObj)
     when compiles(nimObj.init()):
@@ -339,7 +345,7 @@ template registerGodotClass(classNameIdent, classNameLit, isRef,
     createFunc: createFuncIdent
   )
   let destroyFuncObj = GodotInstanceDestroyFunc(
-    destroyFunc: when isRef: nimDestroyRefFunc else: nimDestroyFunc
+    destroyFunc: when isRefClass: nimDestroyRefFunc else: nimDestroyFunc
   )
   registerClass(classNameIdent, classNameLit, false)
   when isTool:

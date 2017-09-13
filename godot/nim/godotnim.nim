@@ -38,7 +38,9 @@ type
       ## ``Particles`` is valid, but Nim type system is not aware of that.
       ## This works in both directions - for linked native object this
       ## reference points to Nim object.
-    isExternalRef: bool
+    isRef*: bool
+    isFinalized: bool
+    isNative: bool
 
   ConversionResult* {.pure.} = enum
     ## Conversion result to return from ``fromVariant`` procedure.
@@ -86,6 +88,9 @@ type
       ## values.
       ## See documentation of ``GodotPropertyHint`` for description of formats.
 
+proc isFinalized*(obj: NimGodotObject): bool {.inline.} =
+  obj.isFinalized
+
 template printWarning*(warning: typed) =
   ## Prints ``warning`` to Godot log, adding filename and line information.
   let (filename, line) = instantiationInfo()
@@ -128,11 +133,11 @@ proc unreference(o: ptr GodotObject): bool =
   unreferenceMethodBind.ptrCall(o, nil, addr(result))
 
 var referenceMethodBind {.threadvar.}: ptr GodotMethodBind
-proc reference(o: ptr GodotObject) =
+proc reference(o: ptr GodotObject): bool {.discardable.} =
   if isNil(referenceMethodBind):
     referenceMethodBind = getMethod(cstring"Reference",
         cstring"reference")
-  referenceMethodBind.ptrCall(o, nil, nil)
+  referenceMethodBind.ptrCall(o, nil, addr result)
 
 proc deinit*(obj: NimGodotObject) =
   ## Destroy the object. You only need to call this for objects not inherited
@@ -142,10 +147,11 @@ proc deinit*(obj: NimGodotObject) =
   obj.godotObject = nil
 
 proc nimGodotObjectFinalizer*[T: NimGodotObject](obj: T) =
-  if obj.godotObject.isNil: return
-  if obj.isExternalRef and obj.godotObject.unreference():
-    obj.deinit()
-  elif not obj.linkedObject.isNil:
+  if obj.godotObject.isNil or obj.isNative: return
+  # important to set it before so that ``unreference`` is aware
+  obj.isFinalized = true
+  if obj.isRef and obj.godotObject.unreference() or
+     not obj.linkedObject.isNil:
     obj.deinit()
 
 macro baseNativeType(T: typedesc): cstring =
@@ -228,25 +234,25 @@ proc newNimGodotObject[T: NimGodotObject](
   else:
     result = T(objInfo.constructor())
     result.godotObject = godotObject
+    result.isRef = objInfo.isRef
     if not noRef and objInfo.isRef:
-      result.isExternalRef = true
       result.godotObject.reference()
 
 proc asNimGodotObject*[T: NimGodotObject](
-    godotObject: ptr GodotObject, noRef: bool = false): T =
+    godotObject: ptr GodotObject, forceNativeObject: bool = false): T =
   ## Wraps ``godotObject`` into Nim type ``T``.
   ## This is used by `godotapigen <godotapigen.html>`_ and should rarely be
   ## used by anything else.
   if godotObject.isNil: return nil
   let userDataPtr = godotObject.getUserData()
-  if not userDataPtr.isNil:
+  if not userDataPtr.isNil and not forceNativeObject:
     result = cast[T](userDataPtr)
     if result.godotObject != godotObject:
       # Could be data from other bindings
       result = nil
   if result.isNil:
     result = newNimGodotObject[T](
-      godotObject, cstring(godotObject.getClassName()), noRef)
+      godotObject, cstring(godotObject.getClassName()), forceNativeObject)
 
 proc newVariant*(obj: NimGodotObject): Variant {.inline.} =
   newVariant(obj.godotObject)
@@ -367,6 +373,10 @@ proc newOwnObj[T: NimGodotObject](name: cstring): T =
                "but it returned: " & $ret.getType())
   else:
     result = asNimGodotObject[T](ret.asGodotObject())
+    if result.isRef:
+      result.isFinalized = true
+      result.godotObject.reference()
+      result.isFinalized = false
   ret.deinit()
 
 proc gdnew*[T: NimGodotObject](): T =
@@ -417,6 +427,7 @@ proc setNativeObject*(nimObj: NimGodotObject,
   ## Used from Godot constructor produced by ``gdobj`` macro. Do not call.
   nimObj.linkedObject = nativeObj
   nativeObj.linkedObject = nimObj
+  nativeObj.isNative = true
 
 proc removeGodotObject*(nimObj: NimGodotObject) {.inline.} =
   ## Used from Godot destructor produced by ``gdobj`` macro. Do not call.
