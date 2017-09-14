@@ -52,16 +52,13 @@ about compiling Godot can be found in `Godot documentation
 <https://godot.readthedocs.io/en/stable/development/compiling/index.html>`_.
 
 
-Building Nim
+Installing Nim
 -------------
 
-The library requires a not yet released Nim version 0.17.1, which you can
-build yourself by following instructions in the
-`Nim repository <https://github.com/nim-lang/Nim>`_. Make sure to also run
-``./koch tools -d:release`` after the steps described there to build ``nimble``
-(package manager) and ``nimsuggest`` (IDE helper tool,
-used by VSCode Nim plugin)
+The library requires Nim version 0.17.2 or newer, which you can get here:
+https://nim-lang.org/install.html
 
+Make sure you also have ``nimble`` (Nim's package manager) installed.
 
 Creating Project
 ----------------
