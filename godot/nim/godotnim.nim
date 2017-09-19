@@ -689,12 +689,20 @@ proc godotTypeInfo*(T: typedesc[seq]): GodotTypeInfo =
 proc godotTypeInfo*(T: typedesc[array]): GodotTypeInfo =
   arrTypeInfo(T)
 
-proc toVariant*[T](s: openarray[T]): Variant =
+template arrayToVariant(s: untyped): Variant =
   var arr = newArray()
   mixin toVariant
   for item in s:
     arr.add(toVariant(item))
-  result = newVariant(arr)
+  newVariant(arr)
+
+proc toVariant*[T](s: seq[T]): Variant =
+  if s.isNil:
+    return newVariant()
+  result = arrayToVariant(s)
+
+proc toVariant*[I, T](s: array[I, T]): Variant =
+  result = arrayToVariant(s)
 
 proc fromVariant*[T](s: var seq[T], val: Variant): ConversionResult =
   if val.getType() == VariantType.Nil:
