@@ -1,11 +1,6 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-type
-  Color* {.byref.} = object
-    r*: float32
-    g*: float32
-    b*: float32
-    a*: float32
+import godotcoretypes, gdnativeapi
 
 proc initColor*(r, g, b: float32; a: float32 = 1.0'f32): Color {.inline.} =
   Color(
@@ -19,12 +14,14 @@ proc initColor*(): Color {.inline.} =
   ## Initializes black color with 1.0 alpha
   initColor(0, 0, 0)
 
-proc h*(self: Color): float32 {.
-    importc: "godot_color_get_h".}
-proc s*(self: Color): float32 {.
-    importc: "godot_color_get_s".}
-proc v*(self: Color): float32 {.
-    importc: "godot_color_get_v".}
+proc h*(self: Color): float32 {.inline.} =
+  getGDNativeAPI().colorGetH(self)
+
+proc s*(self: Color): float32 {.inline.} =
+  getGDNativeAPI().colorGetS(self)
+
+proc v*(self: Color): float32 {.inline.} =
+  getGDNativeAPI().colorGetV(self)
 
 proc `$`*(self: Color): string {.inline.} =
   result = newStringOfCap(50)
@@ -58,16 +55,20 @@ proc toARGB32*(self: Color): uint32 {.inline.} =
   result = (result shl 8) or uint8(self.g * 255)
   result = (result shl 8) or uint8(self.b * 255)
 
-proc gray*(self: Color): float32 {.
-    importc: "godot_color_gray".}
-proc inverted*(self: Color): Color {.
-    importc: "godot_color_inverted".}
-proc contrasted*(self: Color): Color {.
-    importc: "godot_color_contrasted".}
-proc lerp*(self: Color; b: Color; t: float32): Color {.
-    importc: "godot_color_linear_interpolate".}
-proc blend*(self: Color; over: Color): Color {.
-    importc: "godot_color_blend".}
+proc gray*(self: Color): float32 {.inline.} =
+  getGDNativeAPI().colorGray(self)
+
+proc inverted*(self: Color): Color {.inline.} =
+  getGDNativeAPI().colorInverted(self)
+
+proc contrasted*(self: Color): Color {.inline.} =
+  getGDNativeAPI().colorContrasted(self)
+
+proc lerp*(self: Color; b: Color; t: float32): Color {.inline.} =
+  getGDNativeAPI().colorLinearInterpolate(self, b, t)
+
+proc blend*(self: Color; over: Color): Color {.inline.} =
+  getGDNativeAPI().colorBlend(self, over)
 
 proc `==`*(a, b: Color): bool {.inline.} =
   a.r == b.r and a.g == b.g and a.b == b.b and a.a == b.a

@@ -349,11 +349,11 @@ template registerGodotClass(classNameIdent, classNameLit; isRefClass: bool;
   )
   registerClass(classNameIdent, classNameLit, false)
   when isTool:
-    godotScriptRegisterToolClass(getNativeLibHandle(), classNameLit, baseNameLit,
-                                 createFuncObj, destroyFuncObj)
+    nativeScriptRegisterToolClass(getNativeLibHandle(), classNameLit,
+                                  baseNameLit, createFuncObj, destroyFuncObj)
   else:
-    godotScriptRegisterClass(getNativeLibHandle(), classNameLit, baseNameLit,
-                            createFuncObj, destroyFuncObj)
+    nativeScriptRegisterClass(getNativeLibHandle(), classNameLit,
+                              baseNameLit, createFuncObj, destroyFuncObj)
 
 template registerGodotField(classNameLit, classNameIdent, propNameLit,
                             propNameIdent, propTypeLit, propTypeIdent,
@@ -415,8 +415,8 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
   {.push warning[ProveInit]: on.}
   when hasDefaultValue:
     attr.defaultValue = (defaultValueNode).toVariant().godotVariant[]
-  godotScriptRegisterProperty(getNativeLibHandle(), classNameLit, propNameLit,
-                              unsafeAddr attr, setFunc, getFunc)
+  nativeScriptRegisterProperty(getNativeLibHandle(), classNameLit, propNameLit,
+                               unsafeAddr attr, setFunc, getFunc)
   hintStrGodot.deinit()
 
 static:
@@ -568,8 +568,8 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     let meth = GodotInstanceMethod(
       meth: methFuncIdent
     )
-    godotScriptRegisterMethod(getNativeLibHandle(), classNameLit, methodNameLit,
-                              GodotMethodAttributes(), meth)
+    nativeScriptRegisterMethod(getNativeLibHandle(), classNameLit,
+                               methodNameLit, GodotMethodAttributes(), meth)
 
   for meth in obj.methods:
     if meth.isNoGodot: continue
@@ -605,12 +605,12 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
       let refDec = GodotInstanceMethod(
         meth: refcountDecremented
       )
-      godotScriptRegisterMethod(getNativeLibHandle(), classNameLit,
-                                cstring"_refcount_incremented",
-                                GodotMethodAttributes(), refInc)
-      godotScriptRegisterMethod(getNativeLibHandle(), classNameLit,
-                                cstring"_refcount_decremented",
-                                GodotMethodAttributes(), refDec)
+      nativeScriptRegisterMethod(getNativeLibHandle(), classNameLit,
+                                 cstring"_refcount_incremented",
+                                 GodotMethodAttributes(), refInc)
+      nativeScriptRegisterMethod(getNativeLibHandle(), classNameLit,
+                                 cstring"_refcount_decremented",
+                                 GodotMethodAttributes(), refDec)
     result.add(getAst(registerRefIncDec(classNameLit)))
 
 {.push warning[Deprecated]: off.}

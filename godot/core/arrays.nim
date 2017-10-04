@@ -1,7 +1,7 @@
 # Copyright 2017 Xored Software, Inc.
 
 import hashes
-import internal.godotarrays
+import internal.godotinternaltypes, internal.godotarrays
 
 type
   Array* = ref object
@@ -125,8 +125,8 @@ proc delete*(self: var Array; idx: int) {.inline.} =
 proc setLen*(self: var Array; size: int) {.inline.} =
   self.godotArray.setLen(size.cint)
 
-proc rfind*(self: Array; what: Variant; f: int): int {.inline.} =
-  self.godotArray.rfind(what.godotVariant[], f.cint).int
+proc rfind*(self: Array; what: Variant; fromIdx: int): int {.inline.} =
+  self.godotArray.rfind(what.godotVariant[], fromIdx.cint).int
 
 proc len*(self: Array): int {.inline.} =
   self.godotArray.len.int

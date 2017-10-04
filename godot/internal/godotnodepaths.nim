@@ -1,32 +1,40 @@
 # Copyright 2017 Xored Software, Inc.
 
-import godotstrings
+import godotinternaltypes, gdnativeapi
 
-type
-  GodotNodePath* {.byref.} = object
-    data: array[sizeof(int), byte]
+proc initGodotNodePath*(dest: var GodotNodePath; s: GodotString) {.inline.} =
+  getGDNativeAPI().nodePathNew(dest, s)
 
-proc initGodotNodePath*(dest: var GodotNodePath; s: GodotString) {.
-    importc: "godot_node_path_new".}
-proc deinit*(self: var GodotNodePath) {.
-    importc: "godot_node_path_destroy".}
-proc toGodotString*(self: GodotNodePath): GodotString {.
-    importc: "godot_node_path_as_string".}
+proc initGodotNodePath*(dest: var GodotNodePath;
+                        src: GodotNodePath) {.inline.} =
+  getGDNativeAPI().nodePathNewCopy(dest, src)
 
-proc isAbsolute*(self: GodotNodePath): bool {.
-    noSideEffect, importc: "godot_node_path_is_absolute".}
-proc nameCount*(self: GodotNodePath): cint {.
-    noSideEffect, importc: "godot_node_path_get_name_count".}
-proc getName*(self: GodotNodePath; idx: cint): GodotString {.
-    noSideEffect, importc: "godot_node_path_get_name".}
-proc subnameCount*(self: GodotNodePath): cint {.
-    noSideEffect, importc: "godot_node_path_get_subname_count".}
-proc getSubname*(self: GodotNodePath; idx: cint): GodotString {.
-    noSideEffect, importc: "godot_node_path_get_subname".}
-proc property*(self: GodotNodePath): GodotString {.
-    noSideEffect, importc: "godot_node_path_get_property".}
-proc isEmpty*(self: GodotNodePath): bool {.
-    noSideEffect, importc: "godot_node_path_is_empty".}
+proc deinit*(self: var GodotNodePath) {.inline.} =
+  getGDNativeAPI().nodePathDestroy(self)
 
-proc `==`*(a, b: GodotNodePath): bool {.
-    noSideEffect, importc: "godot_node_path_operator_equal".}
+proc toGodotString*(self: GodotNodePath): GodotString {.inline.} =
+  getGDNativeAPI().nodePathAsString(self)
+
+proc isAbsolute*(self: GodotNodePath): bool {.inline.} =
+  getGDNativeAPI().nodePathIsAbsolute(self)
+
+proc nameCount*(self: GodotNodePath): cint {.inline.} =
+  getGDNativeAPI().nodePathGetNameCount(self)
+
+proc getName*(self: GodotNodePath; idx: cint): GodotString {.inline.} =
+  getGDNativeAPI().nodePathGetName(self, idx)
+
+proc subnameCount*(self: GodotNodePath): cint {.inline.} =
+  getGDNativeAPI().nodePathGetSubnameCount(self)
+
+proc getSubname*(self: GodotNodePath; idx: cint): GodotString {.inline.} =
+  getGDNativeAPI().nodePathGetSubname(self, idx)
+
+proc property*(self: GodotNodePath): GodotString {.inline.} =
+  getGDNativeAPI().nodePathGetProperty(self)
+
+proc isEmpty*(self: GodotNodePath): bool {.inline.} =
+  getGDNativeAPI().nodePathIsEmpty(self)
+
+proc `==`*(a, b: GodotNodePath): bool {.inline.} =
+  getGDNativeAPI().nodePathOperatorEqual(a, b)

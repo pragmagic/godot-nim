@@ -1,91 +1,78 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import vector3
-import internal.godotstrings
-
-type
-  Quat* {.byref.} = object
-    x*: float32
-    y*: float32
-    z*: float32
-    w*: float32
-
-proc initQuat(dest: var Quat; x, y, z, w: float32) {.
-    importc: "godot_quat_new".}
-proc initQuat(dest: var Quat; axis: Vector3; angle: float32) {.
-    importc: "godot_quat_new_with_axis_angle".}
+import internal.godotinternaltypes, godotcoretypes, gdnativeapi
 
 proc initQuat*(x, y, z, w: float32): Quat {.inline.} =
-  initQuat(result, x, y, z, w)
+  result = Quat(
+    x: x,
+    y: y,
+    z: z,
+    w: w
+  )
 
 proc initQuat*(axis: Vector3; angle: float32): Quat {.inline.} =
-  initQuat(result, axis, angle)
-
-proc toGodotString(self: Quat): GodotString {.
-    noSideEffect,
-    importc: "godot_quat_as_string".}
+  getGDNativeAPI().quatNewWithAxisAngle(result, axis, angle)
 
 proc `$`*(self: Quat): string {.inline.} =
-  $self.toGodotString()
+  $getGDNativeAPI().quatAsString(self)
 
-proc length*(self: Quat): float32 {.
-    noSideEffect,
-    importc: "godot_quat_length".}
-proc lengthSquared*(self: Quat): float32 {.
-    noSideEffect,
-    importc: "godot_quat_length_squared".}
-proc normalized*(self: Quat): Quat {.
-    noSideEffect,
-    importc: "godot_quat_normalized".}
-proc isNormalized*(self: Quat): bool {.
-    noSideEffect,
-    importc: "godot_quat_is_normalized".}
-proc inverse*(self: Quat): Quat {.
-    noSideEffect,
-    importc: "godot_quat_inverse".}
-proc dot*(a, b: Quat): float32 {.
-    noSideEffect,
-    importc: "godot_quat_dot".}
-proc xform*(self: Quat; v: Vector3): Vector3 {.
-    noSideEffect,
-    importc: "godot_quat_xform".}
-proc slerp*(self: Quat; b: Quat; t: float32): Quat {.
-    noSideEffect,
-    importc: "godot_quat_slerp".}
-proc slerpni*(self: Quat; b: Quat; t: float32): Quat {.
-    noSideEffect,
-    importc: "godot_quat_slerpni".}
-proc cubicSlerp*(self, b, pre_a, post_b: Quat;
-                 t: float32): Quat {.
-    noSideEffect,
-    importc: "godot_quat_cubic_slerp".}
-proc `*`*(a: Quat, b: float32): Quat {.
-    noSideEffect,
-    importc: "godot_quat_operator_multiply".}
+proc length*(self: Quat): float32 {.inline.} =
+  getGDNativeAPI().quatLength(self)
+
+proc lengthSquared*(self: Quat): float32 {.inline.} =
+  getGDNativeAPI().quatLengthSquared(self)
+
+proc normalized*(self: Quat): Quat {.inline.} =
+  getGDNativeAPI().quatNormalized(self)
+
+proc isNormalized*(self: Quat): bool {.inline.} =
+  getGDNativeAPI().quatIsNormalized(self)
+
+proc inverse*(self: Quat): Quat {.inline.} =
+  getGDNativeAPI().quatInverse(self)
+
+proc dot*(a, b: Quat): float32 {.inline.} =
+  getGDNativeAPI().quatDot(a, b)
+
+proc xform*(self: Quat; v: Vector3): Vector3 {.inline.} =
+  getGDNativeAPI().quatXform(self, v)
+
+proc slerp*(self: Quat; b: Quat; t: float32): Quat {.inline.} =
+  getGDNativeAPI().quatSlerp(self, b, t)
+
+proc slerpni*(self: Quat; b: Quat; t: float32): Quat {.inline.} =
+  getGDNativeAPI().quatSlerpni(self, b, t)
+
+proc cubicSlerp*(self, b, preA, postB: Quat;
+                 t: float32): Quat {.inline.} =
+  getGDNativeAPI().quatCubicSlerp(self, b, preA, postB, t)
+
+proc `*`*(a: Quat, b: float32): Quat {.inline.} =
+  getGDNativeAPI().quatOperatorMultiply(a, b)
+
 proc `*=`*(a: var Quat, b: float32) {.inline.} =
   a = a * b
 
-proc `+`*(a, b: Quat): Quat {.
-    noSideEffect,
-    importc: "godot_quat_operator_add".}
+proc `+`*(a, b: Quat): Quat {.inline.} =
+  getGDNativeAPI().quatOperatorAdd(a, b)
+
 proc `+=`*(a: var Quat, b: Quat) {.inline.} =
   a = a + b
 
-proc `-`*(a, b: Quat): Quat {.
-    noSideEffect,
-    importc: "godot_quat_operator_substract".}
+proc `-`*(a, b: Quat): Quat {.inline.} =
+  getGDNativeAPI().quatOperatorSubtract(a, b)
+
 proc `-=`* (a: var Quat, b: Quat) {.inline.} =
   a = a - b
 
-proc `/`*(self: Quat; b: float32): Quat {.
-    noSideEffect,
-    importc: "godot_quat_operator_divide".}
+proc `/`*(self: Quat; b: float32): Quat {.inline.} =
+  getGDNativeAPI().quatOperatorDivide(self, b)
+
 proc `/=`*(self: var Quat, b: float32) {.inline.} =
   self = self / b
 
-proc `==`*(a, b: Quat): bool {.
-    noSideEffect,
-    importc: "godot_quat_operator_equal".}
-proc `-`*(self: Quat): Quat {.
-    noSideEffect,
-    importc: "godot_quat_operator_neg".}
+proc `==`*(a, b: Quat): bool {.inline.} =
+  getGDNativeAPI().quatOperatorEqual(a, b)
+
+proc `-`*(self: Quat): Quat {.inline.} =
+  getGDNativeAPI().quatOperatorNeg(self)

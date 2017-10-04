@@ -1,13 +1,7 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
 import math
-import godotbase
-
-type
-  Vector3* {.byref.} = object
-    x*: float32
-    y*: float32
-    z*: float32
+import godotbase, godotcoretypes
 
 proc vec3*(): Vector3 {.inline.} =
   Vector3()

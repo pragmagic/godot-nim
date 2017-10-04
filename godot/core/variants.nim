@@ -1,7 +1,8 @@
 import tables
 
-import internal.godotobjects, internal.godotvariants, internal.godotpoolarrays,
-       internal.godotstrings, internal.godotnodepaths
+import godotcoretypes
+import internal.godotinternaltypes, internal.godotvariants,
+       internal.godotstrings
 
 type
   Variant* = ref object
@@ -267,5 +268,5 @@ proc `<`*(self, other: Variant): bool =
 proc hashCompare*(self, other: Variant): bool =
   self.godotVariant.hashCompare(other.godotVariant)
 
-proc booleanize*(self: Variant; isValid: var bool): bool =
-  self.godotVariant.booleanize(isValid)
+proc booleanize*(self: Variant): bool =
+  self.godotVariant.booleanize()

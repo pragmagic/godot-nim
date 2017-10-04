@@ -1,7 +1,8 @@
 # Copyright 2017 Xored Software, Inc.
 
-import vector2, vector3, colors
-import internal.godotpoolarrays, internal.godotstrings
+import godotcoretypes
+import internal.godotinternaltypes, internal.godotpoolarrays,
+       internal.godotstrings
 
 template definePoolArrayBase(T, GodotT, DataT, fieldName, newProcName,
                              initProcName) =
@@ -51,9 +52,6 @@ template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
     proc add*(self: var T; data: DataT) {.inline.} =
       self.fieldName.add(data)
 
-    proc addFirst*(self: var T, data: DataT) {.inline.} =
-      self.fieldName.addFirst(data)
-
     proc insert*(self: var T; idx: int; data: DataT): Error {.inline.} =
       self.fieldName.insert(idx.cint, data)
 
@@ -93,7 +91,7 @@ definePoolArrayBase(PoolStringArray, GodotPoolStringArray, string,
                     godotPoolStringArray, newPoolStringArray,
                     initGodotPoolStringArray)
 
-import godotbase, arrays
+import arrays
 
 definePoolArray(PoolByteArray, GodotPoolByteArray, uint8,
                 godotPoolByteArray, newPoolByteArray,
@@ -120,11 +118,6 @@ definePoolArray(PoolStringArray, GodotPoolStringArray, string,
 proc add*(self: var PoolStringArray; data: string) =
   var s = data.toGodotString()
   self.godotPoolStringArray.add(s)
-  s.deinit()
-
-proc addFirst*(self: var PoolStringArray, data: string) =
-  var s = data.toGodotString()
-  self.godotPoolStringArray.addFirst(s)
   s.deinit()
 
 proc insert*(self: var PoolStringArray; idx: int; data: string): Error =

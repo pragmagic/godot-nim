@@ -1,107 +1,130 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-type
-  GodotArray* {.byref.} = object
-    data: array[sizeof(int), byte]
+import godotinternaltypes, gdnativeapi, core.godotcoretypes
 
-proc len*(self: GodotArray): cint {.
-    noSideEffect,
-    importc: "godot_array_size".}
+proc len*(self: GodotArray): cint {.inline.} =
+  getGDNativeAPI().arraySize(self)
 
 import hashes
-import godotobjects, godotpoolarrays, godotvariants, godotstrings
 
-proc initGodotArray*(dest: var GodotArray) {.
-    importc: "godot_array_new".}
-proc initGodotArray*(dest: var GodotArray; pca: GodotPoolColorArray) {.
-    importc: "godot_array_new_pool_coloarray".}
-proc initGodotArray*(dest: var GodotArray; pv3a: GodotPoolVector3Array) {.
-    importc: "godot_array_new_pool_vector3_array".}
-proc initGodotArray*(dest: var GodotArray; pv2a: GodotPoolVector2Array) {.
-    importc: "godot_array_new_pool_vector2_array".}
-proc initGodotArray*(dest: var GodotArray; psa: GodotPoolStringArray) {.
-    importc: "godot_array_new_pool_string_array".}
-proc initGodotArray*(dest: var GodotArray; pra: GodotPoolRealArray) {.
-    importc: "godot_array_new_pool_real_array".}
-proc initGodotArray*(dest: var GodotArray; pia: GodotPoolIntArray) {.
-    importc: "godot_array_new_pool_int_array".}
-proc initGodotArray*(dest: var GodotArray; pba: GodotPoolByteArray) {.
-    importc: "godot_array_new_pool_byte_array".}
-proc iniGodotArray*(dest: var GodotArray; src: GodotArray) {.
-    importc: "godot_array_new_copy".}
+proc initGodotArray*(dest: var GodotArray) {.inline.} =
+  getGDNativeAPI().arrayNew(dest)
 
-proc deinit*(self: var GodotArray) {.importc: "godot_array_destroy".}
+proc initGodotArray*(dest: var GodotArray;
+                     pca: GodotPoolColorArray) {.inline.} =
+  getGDNativeAPI().arrayNewPoolColorArray(dest, pca)
 
-proc `[]=`*(self: var GodotArray; idx: cint;
-            value: GodotVariant) {.
-    noSideEffect,
-    importc: "godot_array_set".}
-proc `[]`*(self: GodotArray; idx: cint): GodotVariant {.
-    noSideEffect,
-    importc: "godot_array_get".}
-proc mget*(self: var GodotArray; idx: cint): ptr GodotVariant {.
-    importc: "godot_array_operator_index".}
+proc initGodotArray*(dest: var GodotArray;
+                     pv3a: GodotPoolVector3Array) {.inline.} =
+  getGDNativeAPI().arrayNewPoolVector3Array(dest, pv3a)
 
-proc add*(self: var GodotArray; value: GodotVariant) {.
-    noSideEffect,
-    importc: "godot_array_append".}
-proc clear*(self: var GodotArray) {.importc: "godot_array_clear".}
-proc count*(self: GodotArray; value: GodotVariant): cint {.
-    noSideEffect,
-    importc: "godot_array_count".}
-proc isEmpty*(self: GodotArray): bool {.
-    noSideEffect,
-    importc: "godot_array_empty".}
-proc erase*(self: var GodotArray; value: GodotVariant) {.
-    importc: "godot_array_erase".}
-proc first*(self: GodotArray): GodotVariant {.
-    noSideEffect,
-    importc: "godot_array_front".}
-proc last*(self: GodotArray): GodotVariant {.
-    noSideEffect,
-    importc: "godot_array_back".}
+proc initGodotArray*(dest: var GodotArray;
+                     pv2a: GodotPoolVector2Array) {.inline.} =
+  getGDNativeAPI().arrayNewPoolVector2Array(dest, pv2a)
+
+proc initGodotArray*(dest: var GodotArray;
+                     psa: GodotPoolStringArray) {.inline.} =
+  getGDNativeAPI().arrayNewPoolStringArray(dest, psa)
+
+proc initGodotArray*(dest: var GodotArray;
+                     pra: GodotPoolRealArray) {.inline.} =
+  getGDNativeAPI().arrayNewPoolRealArray(dest, pra)
+
+proc initGodotArray*(dest: var GodotArray;
+                     pia: GodotPoolIntArray) {.inline.} =
+  getGDNativeAPI().arrayNewPoolIntArray(dest, pia)
+
+proc initGodotArray*(dest: var GodotArray;
+                     pba: GodotPoolByteArray) {.inline.} =
+  getGDNativeAPI().arrayNewPoolByteArray(dest, pba)
+
+proc initGodotArray*(dest: var GodotArray; src: GodotArray) {.inline.} =
+  getGDNativeAPI().arrayNewCopy(dest, src)
+
+proc deinit*(self: var GodotArray) {.inline.} =
+  getGDNativeAPI().arrayDestroy(self)
+
+proc `[]=`*(self: var GodotArray; idx: cint; value: GodotVariant) {.inline.} =
+  getGDNativeAPI().arraySet(self, idx, value)
+
+proc `[]`*(self: GodotArray; idx: cint): GodotVariant {.inline.} =
+  getGDNativeAPI().arrayGet(self, idx)
+
+proc mget*(self: var GodotArray; idx: cint): ptr GodotVariant {.inline.} =
+  getGDNativeAPI().arrayOperatorIndex(self, idx)
+
+proc add*(self: var GodotArray; value: GodotVariant) {.inline.} =
+  getGDNativeAPI().arrayPushBack(self, value)
+
+proc clear*(self: var GodotArray) {.inline.} =
+  getGDNativeAPI().arrayClear(self)
+
+proc count*(self: GodotArray; value: GodotVariant): cint {.inline.} =
+  getGDNativeAPI().arrayCount(self, value)
+
+proc isEmpty*(self: GodotArray): bool {.inline.} =
+  getGDNativeAPI().arrayEmpty(self)
+
+proc erase*(self: var GodotArray; value: GodotVariant) {.inline.} =
+  getGDNativeAPI().arrayErase(self, value)
+
+proc first*(self: GodotArray): GodotVariant {.inline.} =
+  getGDNativeAPI().arrayFront(self)
+
+proc last*(self: GodotArray): GodotVariant {.inline.} =
+  getGDNativeAPI().arrayBack(self)
+
 proc find*(self: GodotArray; what: GodotVariant;
-           f: cint): cint {.
-    noSideEffect,
-    importc: "godot_array_find".}
-proc findLast*(self: GodotArray; what: GodotVariant): cint {.
-    noSideEffect,
-    importc: "godot_array_find_last".}
-proc contains*(self: GodotArray; value: GodotVariant): bool {.
-    noSideEffect,
-    importc: "godot_array_has".}
+           fromIdx: cint): cint {.inline.} =
+  getGDNativeAPI().arrayFind(self, what, fromIdx)
 
-proc godotHash*(self: GodotArray): cint {.
-    noSideEffect,
-    importc: "godot_array_hash".}
+proc findLast*(self: GodotArray; what: GodotVariant): cint {.inline.} =
+  getGDNativeAPI().arrayFindLast(self, what)
+
+proc contains*(self: GodotArray; value: GodotVariant): bool {.inline.} =
+  getGDNativeAPI().arrayHas(self, value)
+
+proc godotHash*(self: GodotArray): cint {.inline.} =
+  getGDNativeAPI().arrayHash(self)
+
 proc hash*(self: GodotArray): Hash {.inline.} =
   hash(godotHash(self))
 
 proc insert*(self: var GodotArray; pos: cint;
-             value: GodotVariant) {.
-    importc: "godot_array_insert".}
-proc reverse*(self: var GodotArray) {.importc: "godot_array_invert".}
-proc popLast*(self: var GodotArray): GodotVariant {.
-    importc: "godot_array_pop_back".}
-proc popFirst*(self: var GodotArray): GodotVariant {.
-    importc: "godot_array_pop_front".}
-proc addLast*(self: var GodotArray; value: GodotVariant) {.
-    importc: "godot_array_push_back".}
-proc addFirst*(self: var GodotArray; value: GodotVariant) {.
-    importc: "godot_array_push_front".}
+             value: GodotVariant): Error {.discardable, inline.} =
+  getGDNativeAPI().arrayInsert(self, pos, value)
 
-proc delete*(self: var GodotArray; idx: cint) {.
-    importc: "godot_array_remove".}
-proc setLen*(self: var GodotArray; size: cint) {.
-    importc: "godot_array_resize".}
+proc reverse*(self: var GodotArray) {.inline.} =
+  getGDNativeAPI().arrayInvert(self)
+
+proc popLast*(self: var GodotArray): GodotVariant {.inline.} =
+  getGDNativeAPI().arrayPopBack(self)
+
+proc popFirst*(self: var GodotArray): GodotVariant {.inline.} =
+  getGDNativeAPI().arrayPopFront(self)
+
+proc addLast*(self: var GodotArray; value: GodotVariant) {.inline.} =
+  getGDNativeAPI().arrayPushBack(self, value)
+
+proc addFirst*(self: var GodotArray; value: GodotVariant) {.inline.} =
+  getGDNativeAPI().arrayPushFront(self, value)
+
+proc delete*(self: var GodotArray; idx: cint) {.inline.} =
+  getGDNativeAPI().arrayRemove(self, idx)
+
+proc setLen*(self: var GodotArray; size: cint) {.inline.} =
+  getGDNativeAPI().arrayResize(self, size)
+
 proc rfind*(self: GodotArray; what: GodotVariant;
-            f: cint): cint {.
-    noSideEffect,
-    importc: "godot_array_rfind".}
-proc sort*(self: var GodotArray) {.importc: "godot_array_sort".}
-proc sortCustom*(self: var GodotArray; obj: var GodotObject;
-                 funcName: GodotString) {.
-    importc: "godot_array_sort_custom".}
+            fromIdx: cint): cint {.inline.} =
+  getGDNativeAPI().arrayRFind(self, what, fromIdx)
+
+proc sort*(self: var GodotArray) {.inline.} =
+  getGDNativeAPI().arraySort(self)
+
+proc sortCustom*(self: var GodotArray; obj: ptr GodotObject;
+                 funcName: GodotString) {.inline.} =
+  getGDNativeAPI().arraySortCustom(self, obj, funcName)
 
 iterator items*(self: GodotArray): GodotVariant =
   for i in 0..<self.len:

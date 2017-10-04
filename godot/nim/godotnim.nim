@@ -1,7 +1,8 @@
 # Copyright 2017 Xored Software, Inc.
 
 import tables, typetraits, macros, asyncdispatch
-import core.godotbase
+import gdnativeapi
+import core.godotcoretypes
 import core.vector2, core.rect2,
        core.vector3, core.transform2d,
        core.planes, core.quats, core.rect3,
@@ -94,12 +95,12 @@ proc isFinalized*(obj: NimGodotObject): bool {.inline.} =
 template printWarning*(warning: typed) =
   ## Prints ``warning`` to Godot log, adding filename and line information.
   let (filename, line) = instantiationInfo()
-  godotPrintWarning(cstring($warning), nil, cstring(filename), line.cint)
+  godotPrintWarning(cstring($warning), cstring"", cstring(filename), line.cint)
 
 template printError*(error: typed) =
   ## Prints ``error`` to Godot log, adding filename and line information.
   let (filename, line) = instantiationInfo()
-  godotPrintError(cstring($error), nil, cstring(filename), line.cint)
+  godotPrintError(cstring($error), cstring"", cstring(filename), line.cint)
 
 proc print*(parts: varargs[string, `$`]) =
   ## Prints concatenated ``parts`` to Godot log.
@@ -291,8 +292,6 @@ proc `of`*[T: NimGodotObject](obj: NimGodotObject,
                               t: typedesc[T]): bool {.inline.} =
   ## Godot-specific inheritance check.
   not obj.isNil and (system.`of`(obj, T) or system.`of`(obj.linkedObject, T))
-
-{.deprecated: [`~`: `of`].}
 
 proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
@@ -805,6 +804,7 @@ proc godot_nativescript_init(handle: pointer) {.
 proc godot_gdnative_init(options: ptr GodotNativeInitOptions) {.
     cdecl, exportc, dynlib.} =
   gdNativeLibraryObj = options.gdNativeLibrary
+  setGDNativeAPI(options.gdNativeAPIStruct)
 
 proc godot_gdnative_terminate(options: ptr GodotNativeTerminateOptions) {.
     cdecl, exportc, dynlib.} =

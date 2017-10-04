@@ -1,31 +1,21 @@
-import internal.godotobjects
+# Copyright (c) 2017 Xored Software, Inc.
 
-type
-  RID* {.byref.} = object
-    data: array[sizeof(int), byte]
-
-proc initRID(dest: var RID) {.
-    importc: "godot_rid_new".}
-proc initRID(dest: var RID; obj: ptr GodotObject) {.
-    importc: "godot_rid_new_with_resource".}
+import godotcoretypes, internal.godotinternaltypes, gdnativeapi
 
 proc initRID*(): RID {.inline.} =
-  initRID(result)
+  getGDNativeAPI().ridNew(result)
 
 proc initRID*(obj: ptr GodotObject): RID {.inline.} =
-  initRID(result, obj)
-
-proc idCInt(self: RID): cint {.
-    noSideEffect,
-    importc: "godot_rid_get_id".}
+  getGDNativeAPI().ridNewWithResource(result, obj)
 
 proc id*(self: RID): uint32 {.inline.} =
-  cast[uint32](self.idCInt())
+  cast[uint32](getGDNativeAPI().ridGetId(self))
 
-proc `$`*(self: RID): string =
+proc `$`*(self: RID): string {.inline.} =
   $self.id
 
-proc `==`*(a, b: RID): bool {.
-    importc: "godot_rid_operator_equal".}
-proc `<`*(a, b: RID): bool {.
-    importc: "godot_rid_operator_less".}
+proc `==`*(a, b: RID): bool {.inline.} =
+  getGDNativeAPI().ridOperatorEqual(a, b)
+
+proc `<`*(a, b: RID): bool {.inline.} =
+  getGDNativeAPI().ridOperatorLess(a, b)

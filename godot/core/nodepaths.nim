@@ -1,6 +1,7 @@
 # Copyright 2017 Xored Software, Inc.
 
-import internal.godotnodepaths, internal.godotstrings
+import internal.godotinternaltypes, internal.godotnodepaths,
+       internal.godotstrings
 
 type
   NodePath* = ref object

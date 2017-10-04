@@ -1,48 +1,56 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-type
-  GodotDictionary* {.byref.} = object
-    data: array[sizeof(int), byte]
+import godotinternaltypes, gdnativeapi
 
-import godotarrays, godotvariants, godotstrings
+proc initGodotDictionary*(dest: var GodotDictionary) {.inline.} =
+  getGDNativeAPI().dictionaryNew(dest)
 
-proc initGodotDictionary*(dest: var GodotDictionary; src: GodotDictionary) {.
-    importc: "godot_dictionary_new_copy".}
+proc initGodotDictionary*(dest: var GodotDictionary;
+                          src: GodotDictionary) {.inline.} =
+  getGDNativeAPI().dictionaryNewCopy(dest, src)
 
-proc deinit*(self: var GodotDictionary) {.
-    importc: "godot_dictionary_destroy".}
+proc deinit*(self: var GodotDictionary) {.inline.} =
+  getGDNativeAPI().dictionaryDestroy(self)
 
-proc initGodotDictionary*(dest: var GodotDictionary) {.
-    importc: "godot_dictionary_new".}
+proc len*(self: GodotDictionary): cint {.inline.} =
+  getGDNativeAPI().dictionarySize(self)
 
-proc len*(self: GodotDictionary): cint {.
-    importc: "godot_dictionary_size".}
-proc isEmpty*(self: GodotDictionary): bool {.
-    importc: "godot_dictionary_empty".}
-proc clear*(self: var GodotDictionary) {.
-    importc: "godot_dictionary_clear".}
-proc contains*(self: GodotDictionary; key: GodotVariant): bool {.
-    importc: "godot_dictionary_has".}
-proc contains*(self: GodotDictionary; keys: GodotArray): bool {.
-    importc: "godot_dictionary_has_all".}
-proc del*(self: var GodotDictionary; key: GodotVariant) {.
-    importc: "godot_dictionary_erase".}
+proc isEmpty*(self: GodotDictionary): bool {.inline.} =
+  getGDNativeAPI().dictionaryEmpty(self)
 
-proc godotHash*(self: GodotDictionary): cint {.
-    importc: "godot_dictionary_hash".}
-proc keys*(self: GodotDictionary): GodotArray {.
-    importc: "godot_dictionary_keys".}
-proc values*(self: GodotDictionary): GodotArray {.
-    importc: "godot_dictionary_values".}
-proc `[]`*(self: GodotDictionary; key: GodotVariant): GodotVariant {.
-    importc: "godot_dictionary_get".}
-proc `[]=`*(self: var GodotDictionary; key, value: GodotVariant) {.
-    importc: "godot_dictionary_set".}
-proc mget*(self: var GodotDictionary; key: GodotVariant): ptr GodotVariant {.
-    importc: "godot_dictionary_operator_index".}
+proc clear*(self: var GodotDictionary) {.inline.} =
+  getGDNativeAPI().dictionaryClear(self)
 
-proc `==`*(self, other: GodotDictionary): bool {.
-    importc: "godot_dictionary_operator_equal".}
+proc contains*(self: GodotDictionary; key: GodotVariant): bool {.inline.} =
+  getGDNativeAPI().dictionaryHas(self, key)
 
-proc toJson*(self: GodotDictionary): GodotString {.
-    importc: "godot_dictionary_to_json".}
+proc contains*(self: GodotDictionary; keys: GodotArray): bool {.inline.} =
+  getGDNativeAPI().dictionaryHasAll(self, keys)
+
+proc del*(self: var GodotDictionary; key: GodotVariant) {.inline.} =
+  getGDNativeAPI().dictionaryErase(self, key)
+
+proc godotHash*(self: GodotDictionary): cint {.inline.} =
+  getGDNativeAPI().dictionaryHash(self, )
+
+proc keys*(self: GodotDictionary): GodotArray {.inline.} =
+  getGDNativeAPI().dictionaryKeys(self)
+
+proc values*(self: GodotDictionary): GodotArray {.inline.} =
+  getGDNativeAPI().dictionaryValues(self)
+
+proc `[]`*(self: GodotDictionary; key: GodotVariant): GodotVariant {.inline.} =
+  getGDNativeAPI().dictionaryGet(self, key)
+
+proc `[]=`*(self: var GodotDictionary; key, value: GodotVariant) {.inline.} =
+  getGDNativeAPI().dictionarySet(self, key, value)
+
+proc mget*(self: var GodotDictionary;
+           key: GodotVariant): ptr GodotVariant {.inline.} =
+  getGDNativeAPI().dictionaryOperatorIndex(self, key)
+
+proc `==`*(self, other: GodotDictionary): bool {.inline.} =
+  getGDNativeAPI().dictionaryOperatorEqual(self, other)
+
+proc toJson*(self: GodotDictionary): GodotString {.inline.} =
+  getGDNativeAPI().dictionaryToJson(self)

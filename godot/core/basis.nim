@@ -2,10 +2,7 @@
 
 import math
 import godotbase, vector3, quats
-
-type
-  Basis* {.byref.} = object
-    elements*: array[3, Vector3]
+import godotcoretypes
 
 proc setCells*(basis: var Basis, xx, xy, xz, yx, yy, yz, zx, zy, zz: float32) =
   basis.elements[0].x = xx
