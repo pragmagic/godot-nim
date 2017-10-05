@@ -532,7 +532,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
         body.add(newNode(nkVarSection).addChain(newIdentDefs(
           retValIdent, ident("GodotString"),
         )))
-      else:
+      elif meth.returnType != "void":
         isObjRet = true
         body.add(newNode(nkVarSection).addChain(newIdentDefs(
           retValIdent, newNode(nkPtrTy).addChain(ident("GodotObject")),
