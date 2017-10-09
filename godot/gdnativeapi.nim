@@ -1301,6 +1301,16 @@ type GDNativeAPI* = object
   stringDestroy*: proc (self: var GodotString)
                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
+  # StringName API
+  stringNameNew: pointer
+  stringNameNewData: pointer
+  stringNameGetName: pointer
+  stringNameGetHash: pointer
+  stringNameGetDataUniquePointer: pointer
+  stringNameOperatorEqual: pointer
+  stringNameOperatorLess: pointer
+  stringNameDestroy: pointer
+
   # Misc API
   objectDestroy*: proc (self: ptr GodotObject)
                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
