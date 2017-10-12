@@ -259,4 +259,5 @@ type
     numDefaultArgs*: cint
     defaultArgs*: ptr GodotVariant
 
-  GodotClassConstructor* = proc (): ptr GodotObject {.noconv.}
+  GodotClassConstructor* = proc (): ptr GodotObject {.
+    noconv, gcsafe, locks: 0, raises: [], tags: [].}
