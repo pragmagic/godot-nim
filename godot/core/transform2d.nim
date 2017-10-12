@@ -1,6 +1,7 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotcoretypes, internal.godotinternaltypes, gdnativeapi
+import internal.godotinternaltypes, internal.godotstrings
+import godotcoretypes, gdnativeapi
 
 proc initTransform2D*(): Transform2D {.inline.} =
   getGDNativeAPI().transform2DNewIdentity(result)

@@ -1,6 +1,7 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import internal.godotinternaltypes, godotcoretypes, gdnativeapi
+import internal.godotinternaltypes, internal.godotstrings
+import godotcoretypes, gdnativeapi
 
 proc vec2*(x, y: float32): Vector2 {.inline.} =
   Vector2(x: x, y: y)

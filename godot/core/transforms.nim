@@ -1,6 +1,7 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
-import godotcoretypes, internal.godotinternaltypes, gdnativeapi
+import internal.godotinternaltypes, internal.godotstrings
+import godotcoretypes, gdnativeapi
 import basis
 
 proc initTransform*(): Transform {.inline.} =

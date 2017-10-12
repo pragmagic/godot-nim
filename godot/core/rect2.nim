@@ -1,7 +1,8 @@
 # Copyright (c) 2017 Xored Software, Inc.
 
 import vector2
-import godotcoretypes, internal.godotinternaltypes, gdnativeapi
+import internal.godotinternaltypes, internal.godotstrings
+import godotcoretypes, gdnativeapi
 
 proc initRect2*(pos, size: Vector2): Rect2 {.inline.} =
   Rect2(position: pos, size: size)

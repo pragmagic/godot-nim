@@ -2,7 +2,8 @@
 
 import vector3
 
-import internal.godotinternaltypes, godotcoretypes, gdnativeapi
+import internal.godotinternaltypes, internal.godotstrings
+import godotcoretypes, gdnativeapi
 
 proc initPlane*(a, b, c, d: float32): Plane {.inline.} =
   getGDNativeAPI().planeNewWithReals(result, a, b, c, d)
