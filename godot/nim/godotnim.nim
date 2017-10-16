@@ -828,7 +828,10 @@ proc godot_nativescript_thread_enter() {.cdecl, exportc, dynlib.} =
   when compileOption("threads"):
     setupForeignThreadGc()
   else:
-    print(cstring"A foreign thread is created, but app is compiled without --threads:on. Bad things will happen if Nim code is invoked from this thread.")
+    const err = cstring"A foreign thread is created, but app is compiled without --threads:on. Bad things will happen if Nim code is invoked from this thread."
+    var s = err.toGodotString()
+    godotPrint(s)
+    s.deinit()
 
 proc godot_nativescript_thread_exit() {.cdecl, exportc, dynlib.} =
   when compileOption("threads"):
