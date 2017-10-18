@@ -816,8 +816,8 @@ proc godot_nativescript_frame() {.cdecl, exportc, dynlib.} =
   {.emit: """
   setStackBottom((void*)(&`stackBottom`));
   """.}
-  if asyncdispatch.hasPendingOperations():
-    for i in 1..10:
+  for _ in 1..10:
+    if asyncdispatch.hasPendingOperations():
       poll(0)
   GC_step(nimGcStepLengthUs, true, 0)
 
