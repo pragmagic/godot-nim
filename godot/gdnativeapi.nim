@@ -295,6 +295,8 @@ type GDNativeAPI* = object
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
   poolByteArrayResize*: proc (self: var GodotPoolByteArray, size: cint)
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+  poolByteArrayRead: pointer
+  poolByteArrayWrite: pointer
   poolByteArraySet*: proc (self: var GodotPoolByteArray, idx: cint, data: byte)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
   poolByteArrayGet*: proc (self: GodotPoolByteArray, idx: cint): byte
@@ -330,6 +332,8 @@ type GDNativeAPI* = object
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
   poolIntArrayResize*: proc (self: var GodotPoolIntArray, size: cint)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+  poolIntArrayRead: pointer
+  poolIntArrayWrite: pointer
   poolIntArraySet*: proc (self: var GodotPoolIntArray, idx: cint, data: cint)
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
   poolIntArrayGet*: proc (self: GodotPoolIntArray, idx: cint): cint
@@ -367,6 +371,8 @@ type GDNativeAPI* = object
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
   poolRealArrayResize*: proc (self: var GodotPoolRealArray, size: cint)
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+  poolRealArrayRead: pointer
+  poolRealArrayWrite: pointer
   poolRealArraySet*: proc (self: var GodotPoolRealArray, idx: cint,
                            data: float32)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -413,6 +419,8 @@ type GDNativeAPI* = object
   poolStringArrayResize*: proc (self: var GodotPoolStringArray, size: cint)
                                {.noconv, raises: [], gcsafe, tags: [],
                                  locks: 0.}
+  poolStringArrayRead: pointer
+  poolStringArrayWrite: pointer
   poolStringArraySet*: proc (self: var GodotPoolStringArray, idx: cint,
                              data: GodotString)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -459,6 +467,8 @@ type GDNativeAPI* = object
   poolVector2ArrayResize*: proc (self: var GodotPoolVector2Array, size: cint)
                                 {.noconv, raises: [], gcsafe, tags: [],
                                   locks: 0.}
+  poolVector2ArrayRead: pointer
+  poolVector2ArrayWrite: pointer
   poolVector2ArraySet*: proc (self: var GodotPoolVector2Array, idx: cint,
                               data: Vector2)
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -504,6 +514,8 @@ type GDNativeAPI* = object
   poolVector3ArrayResize*: proc (self: var GodotPoolVector3Array,
                                  size: cint) {.noconv, raises: [], gcsafe,
                                                tags: [], locks: 0.}
+  poolVector3ArrayRead: pointer
+  poolVector3ArrayWrite: pointer
   poolVector3ArraySet*: proc (self: var GodotPoolVector3Array, idx: cint,
                               data: Vector3) {.noconv, raises: [], gcsafe,
                                                tags: [], locks: 0.}
@@ -545,6 +557,8 @@ type GDNativeAPI* = object
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
   poolColorArrayResize*: proc (self: var GodotPoolColorArray, size: cint)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+  poolColorArrayRead: pointer
+  poolColorArrayWrite: pointer
   poolColorArraySet*: proc (self: var GodotPoolColorArray, idx: cint,
                             data: Color)
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -555,6 +569,52 @@ type GDNativeAPI* = object
   poolColorArrayDestroy*: proc (self: GodotPoolColorArray)
                                {.noconv, raises: [], gcsafe, tags: [],
                                  locks: 0.}
+
+  # Pool Array Read Access API
+
+  poolByteArrayReadAccessPtr: pointer
+  poolByteArrayReadAccessOperatorAssign: pointer
+  poolByteArrayReadAccessDestroy: pointer
+  poolIntArrayReadAccessPtr: pointer
+  poolIntArrayReadAccessOperatorAssign: pointer
+  poolIntArrayReadAccessDestroy: pointer
+  poolRealArrayReadAccessPtr: pointer
+  poolRealArrayReadAccessOperatorAssign: pointer
+  poolRealArrayReadAccessDestroy: pointer
+  poolStringArrayReadAccessPtr: pointer
+  poolStringArrayReadAccessOperatorAssign: pointer
+  poolStringArrayReadAccessDestroy: pointer
+  poolVector2ArrayReadAccessPtr: pointer
+  poolVector2ArrayReadAccessOperatorAssign: pointer
+  poolVector2ArrayReadAccessDestroy: pointer
+  poolVector3ArrayReadAccessPtr: pointer
+  poolVector3ArrayReadAccessOperatorAssign: pointer
+  poolVector3ArrayReadAccessDestroy: pointer
+  poolColorArrayReadAccessPtr: pointer
+  poolColorArrayReadAccessOperatorAssign: pointer
+  poolColorArrayReadAccessDestroy: pointer
+
+  poolByteArrayWriteAccessPtr: pointer
+  poolByteArrayWriteAccessOperatorAssign: pointer
+  poolByteArrayWriteAccessDestroy: pointer
+  poolIntArrayWriteAccessPtr: pointer
+  poolIntArrayWriteAccessOperatorAssign: pointer
+  poolIntArrayWriteAccessDestroy: pointer
+  poolRealArrayWriteAccessPtr: pointer
+  poolRealArrayWriteAccessOperatorAssign: pointer
+  poolRealArrayWriteAccessDestroy: pointer
+  poolStringArrayWriteAccessPtr: pointer
+  poolStringArrayWriteAccessOperatorAssign: pointer
+  poolStringArrayWriteAccessDestroy: pointer
+  poolVector2ArrayWriteAccessPtr: pointer
+  poolVector2ArrayWriteAccessOperatorAssign: pointer
+  poolVector2ArrayWriteAccessDestroy: pointer
+  poolVector3ArrayWriteAccessPtr: pointer
+  poolVector3ArrayWriteAccessOperatorAssign: pointer
+  poolVector3ArrayWriteAccessDestroy: pointer
+  poolColorArrayWriteAccessPtr: pointer
+  poolColorArrayWriteAccessOperatorAssign: pointer
+  poolColorArrayWriteAccessDestroy: pointer
 
   # Array API
   arrayNew*: proc (dest: var GodotArray)
@@ -1155,6 +1215,7 @@ type GDNativeAPI* = object
   stringOperatorIndex: pointer
   stringCStr*: proc (self: GodotString): cstring
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+  stringOperatorIndexConst: pointer
   stringUTF16Str: pointer
   stringOperatorEqual*: proc (self, other: GodotString): bool
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1378,6 +1439,8 @@ type GDNativeAPI* = object
   nativeScriptGetUserdata*: proc (obj: ptr GodotObject): pointer
                                  {.noconv, raises: [], gcsafe, tags: [],
                                    locks: 0.}
+
+
 
 var gdNativeAPI: ptr GDNativeAPI
 
