@@ -794,7 +794,7 @@ proc genTypeFile(types: Table[string, GodotType], targetDir: string) =
     )
     godotApiTypesTree.add(regNode)
 
-  renderModule(godotApiTypesTree, targetDir / "godottypes.nim")
+  writeFile(targetDir / "godottypes.nim", renderTree(godotApiTypesTree))
 
 proc genSingletonWithDerived(tree: PNode, typ: GodotType,
                              types: Table[string, GodotType]) =
@@ -909,7 +909,7 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
       makeMethod(types, tree, methodBindRegsitry, typ, meth,
                  withImplementation = true)
 
-    renderModule(tree, targetDir / moduleName & ".nim")
+    writeFile(targetDir / moduleName & ".nim", renderTree(tree))
 
     megaImport.add("import \"" & moduleName & "\"\n")
 
