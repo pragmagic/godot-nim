@@ -910,65 +910,65 @@ type
     rect2SetSize: proc (self: var Rect2, size: Vector2)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
-    # Rect3 API
-    rect3New: proc (dest: var Rect3, pos, size: Vector3)
+    # AABB API
+    aabbNew: proc (dest: var AABB, pos, size: Vector3)
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetPosition: proc (self: Rect3): Vector3
+    aabbGetPosition: proc (self: AABB): Vector3
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3SetPosition: proc (self: var Rect3, pos: Vector3)
+    aabbSetPosition: proc (self: var AABB, pos: Vector3)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetSize: proc (self: Rect3): Vector3
+    aabbGetSize: proc (self: AABB): Vector3
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3SetSize: proc (self: var Rect3, pos: Vector3)
+    aabbSetSize: proc (self: var AABB, pos: Vector3)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3AsString: proc (self: Rect3): GodotString
+    aabbAsString: proc (self: AABB): GodotString
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetArea: proc (self: Rect3): float32
+    aabbGetArea: proc (self: AABB): float32
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3HasNoArea: proc (self: Rect3): bool
+    aabbHasNoArea: proc (self: AABB): bool
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3HasNoSurface: proc (self: Rect3): bool
+    aabbHasNoSurface: proc (self: AABB): bool
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Intersects: proc (self, other: Rect3): bool
+    aabbIntersects: proc (self, other: AABB): bool
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Encloses: proc (self, other: Rect3): bool
+    aabbEncloses: proc (self, other: AABB): bool
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Merge: proc (self, other: Rect3): Rect3
+    aabbMerge: proc (self, other: AABB): AABB
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Intersection: proc (self, other: Rect3): Rect3
+    aabbIntersection: proc (self, other: AABB): AABB
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3IntersectsPlane: proc (self: Rect3, plane: Plane): bool
+    aabbIntersectsPlane: proc (self: AABB, plane: Plane): bool
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3IntersectsSegment: proc (self: Rect3, vFrom, vTo: Vector3): bool
+    aabbIntersectsSegment: proc (self: AABB, vFrom, vTo: Vector3): bool
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    rect3HasPoint: proc (self: Rect3, point: Vector3): bool
+    aabbHasPoint: proc (self: AABB, point: Vector3): bool
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetSupport: proc (self: Rect3, dir: Vector3): Vector3
+    aabbGetSupport: proc (self: AABB, dir: Vector3): Vector3
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetLongestAxis: proc (self: Rect3): Vector3
+    aabbGetLongestAxis: proc (self: AABB): Vector3
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetLongestAxisIndex: proc (self: Rect3): cint
+    aabbGetLongestAxisIndex: proc (self: AABB): cint
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    rect3GetLongestAxisSize: proc (self: Rect3): float32
+    aabbGetLongestAxisSize: proc (self: AABB): float32
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    rect3GetShortestAxis: proc (self: Rect3): Vector3
+    aabbGetShortestAxis: proc (self: AABB): Vector3
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetShortestAxisIndex: proc (self: Rect3): cint
+    aabbGetShortestAxisIndex: proc (self: AABB): cint
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    rect3GetShortestAxisSize: proc (self: Rect3): float32
+    aabbGetShortestAxisSize: proc (self: AABB): float32
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    rect3Expand: proc (self: Rect3, toPoint: Vector3): Rect3
+    aabbExpand: proc (self: AABB, toPoint: Vector3): AABB
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Grow: proc (self: Rect3, by: float32): Rect3
+    aabbGrow: proc (self: AABB, by: float32): AABB
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetEndpoint: proc (self: Rect3, idx: cint): Vector3
+    aabbGetEndpoint: proc (self: AABB, idx: cint): Vector3
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3OperatorEqual: proc (self, other: Rect3): bool
+    aabbOperatorEqual: proc (self, other: AABB): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # RID API
@@ -1036,9 +1036,9 @@ type
     transformXformInvVector3: proc (self: Transform, v: Vector3): Vector3
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    transformXformRect3: proc (self: Transform, v: Rect3): Rect3
+    transformXformAABB: proc (self: Transform, v: AABB): AABB
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformXformInvRect3: proc (self: Transform, v: Rect3): Rect3
+    transformXformInvAABB: proc (self: Transform, v: AABB): AABB
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
 
@@ -1136,7 +1136,7 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantNewQuat: proc (dest: var GodotVariant, val: Quat)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantNewRect3: proc (dest: var GodotVariant, val: Rect3)
+    variantNewAABB: proc (dest: var GodotVariant, val: AABB)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantNewBasis: proc (dest: var GodotVariant, val: Basis)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1203,7 +1203,7 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantAsQuat: proc (self: GodotVariant): Quat
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsRect3: proc (self: GodotVariant): Rect3
+    variantAsAABB: proc (self: GodotVariant): AABB
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantAsBasis: proc (self: GodotVariant): Basis
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2176,65 +2176,65 @@ type
     rect2SetSize*: proc (self: var Rect2, size: Vector2)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
-    # Rect3 API
-    rect3New*: proc (dest: var Rect3, pos, size: Vector3)
+    # AABB API
+    aabbNew*: proc (dest: var AABB, pos, size: Vector3)
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetPosition*: proc (self: Rect3): Vector3
+    aabbGetPosition*: proc (self: AABB): Vector3
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3SetPosition*: proc (self: var Rect3, pos: Vector3)
+    aabbSetPosition*: proc (self: var AABB, pos: Vector3)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetSize*: proc (self: Rect3): Vector3
+    aabbGetSize*: proc (self: AABB): Vector3
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3SetSize*: proc (self: var Rect3, pos: Vector3)
+    aabbSetSize*: proc (self: var AABB, pos: Vector3)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3AsString*: proc (self: Rect3): GodotString
+    aabbAsString*: proc (self: AABB): GodotString
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetArea*: proc (self: Rect3): float32
+    aabbGetArea*: proc (self: AABB): float32
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3HasNoArea*: proc (self: Rect3): bool
+    aabbHasNoArea*: proc (self: AABB): bool
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3HasNoSurface*: proc (self: Rect3): bool
+    aabbHasNoSurface*: proc (self: AABB): bool
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Intersects*: proc (self, other: Rect3): bool
+    aabbIntersects*: proc (self, other: AABB): bool
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Encloses*: proc (self, other: Rect3): bool
+    aabbEncloses*: proc (self, other: AABB): bool
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Merge*: proc (self, other: Rect3): Rect3
+    aabbMerge*: proc (self, other: AABB): AABB
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Intersection*: proc (self, other: Rect3): Rect3
+    aabbIntersection*: proc (self, other: AABB): AABB
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3IntersectsPlane*: proc (self: Rect3, plane: Plane): bool
+    aabbIntersectsPlane*: proc (self: AABB, plane: Plane): bool
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3IntersectsSegment*: proc (self: Rect3, vFrom, vTo: Vector3): bool
+    aabbIntersectsSegment*: proc (self: AABB, vFrom, vTo: Vector3): bool
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    rect3HasPoint*: proc (self: Rect3, point: Vector3): bool
+    aabbHasPoint*: proc (self: AABB, point: Vector3): bool
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetSupport*: proc (self: Rect3, dir: Vector3): Vector3
+    aabbGetSupport*: proc (self: AABB, dir: Vector3): Vector3
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetLongestAxis*: proc (self: Rect3): Vector3
+    aabbGetLongestAxis*: proc (self: AABB): Vector3
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetLongestAxisIndex*: proc (self: Rect3): cint
+    aabbGetLongestAxisIndex*: proc (self: AABB): cint
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    rect3GetLongestAxisSize*: proc (self: Rect3): float32
+    aabbGetLongestAxisSize*: proc (self: AABB): float32
                                    {.noconv, raises: [], gcsafe, tags: [],
                                      locks: 0.}
-    rect3GetShortestAxis*: proc (self: Rect3): Vector3
+    aabbGetShortestAxis*: proc (self: AABB): Vector3
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetShortestAxisIndex*: proc (self: Rect3): cint
+    aabbGetShortestAxisIndex*: proc (self: AABB): cint
                                      {.noconv, raises: [], gcsafe, tags: [],
                                        locks: 0.}
-    rect3GetShortestAxisSize*: proc (self: Rect3): float32
+    aabbGetShortestAxisSize*: proc (self: AABB): float32
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    rect3Expand*: proc (self: Rect3, toPoint: Vector3): Rect3
+    aabbExpand*: proc (self: AABB, toPoint: Vector3): AABB
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3Grow*: proc (self: Rect3, by: float32): Rect3
+    aabbGrow*: proc (self: AABB, by: float32): AABB
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3GetEndpoint*: proc (self: Rect3, idx: cint): Vector3
+    aabbGetEndpoint*: proc (self: AABB, idx: cint): Vector3
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect3OperatorEqual*: proc (self, other: Rect3): bool
+    aabbOperatorEqual*: proc (self, other: AABB): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # RID API
@@ -2302,9 +2302,9 @@ type
     transformXformInvVector3*: proc (self: Transform, v: Vector3): Vector3
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    transformXformRect3*: proc (self: Transform, v: Rect3): Rect3
+    transformXformAABB*: proc (self: Transform, v: AABB): AABB
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformXformInvRect3*: proc (self: Transform, v: Rect3): Rect3
+    transformXformInvAABB*: proc (self: Transform, v: AABB): AABB
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
 
@@ -2402,7 +2402,7 @@ type
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantNewQuat*: proc (dest: var GodotVariant, val: Quat)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantNewRect3*: proc (dest: var GodotVariant, val: Rect3)
+    variantNewAABB*: proc (dest: var GodotVariant, val: AABB)
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantNewBasis*: proc (dest: var GodotVariant, val: Basis)
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2469,7 +2469,7 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantAsQuat*: proc (self: GodotVariant): Quat
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsRect3*: proc (self: GodotVariant): Rect3
+    variantAsAABB*: proc (self: GodotVariant): AABB
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantAsBasis*: proc (self: GodotVariant): Basis
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2953,34 +2953,34 @@ proc setGDNativeAPI*(apiStruct: pointer) {.inline.} =
           rect2SetPosition
           rect2SetSize
 
-          # Rect3 API
-          rect3New
-          rect3GetPosition
-          rect3SetPosition
-          rect3GetSize
-          rect3SetSize
-          rect3AsString
-          rect3GetArea
-          rect3HasNoArea
-          rect3HasNoSurface
-          rect3Intersects
-          rect3Encloses
-          rect3Merge
-          rect3Intersection
-          rect3IntersectsPlane
-          rect3IntersectsSegment
-          rect3HasPoint
-          rect3GetSupport
-          rect3GetLongestAxis
-          rect3GetLongestAxisIndex
-          rect3GetLongestAxisSize
-          rect3GetShortestAxis
-          rect3GetShortestAxisIndex
-          rect3GetShortestAxisSize
-          rect3Expand
-          rect3Grow
-          rect3GetEndpoint
-          rect3OperatorEqual
+          # AABB API
+          aabbNew
+          aabbGetPosition
+          aabbSetPosition
+          aabbGetSize
+          aabbSetSize
+          aabbAsString
+          aabbGetArea
+          aabbHasNoArea
+          aabbHasNoSurface
+          aabbIntersects
+          aabbEncloses
+          aabbMerge
+          aabbIntersection
+          aabbIntersectsPlane
+          aabbIntersectsSegment
+          aabbHasPoint
+          aabbGetSupport
+          aabbGetLongestAxis
+          aabbGetLongestAxisIndex
+          aabbGetLongestAxisSize
+          aabbGetShortestAxis
+          aabbGetShortestAxisIndex
+          aabbGetShortestAxisSize
+          aabbExpand
+          aabbGrow
+          aabbGetEndpoint
+          aabbOperatorEqual
 
           # RID API
           ridNew
@@ -3011,8 +3011,8 @@ proc setGDNativeAPI*(apiStruct: pointer) {.inline.} =
           transformOperatorMultiply
           transformXformVector3
           transformXformInvVector3
-          transformXformRect3
-          transformXformInvRect3
+          transformXformAABB
+          transformXformInvAABB
 
           # Transform2D API
           transform2DNew
@@ -3054,7 +3054,7 @@ proc setGDNativeAPI*(apiStruct: pointer) {.inline.} =
 
           variantNewPlane
           variantNewQuat
-          variantNewRect3
+          variantNewAABB
           variantNewBasis
           variantNewTransform
           variantNewColor
@@ -3081,7 +3081,7 @@ proc setGDNativeAPI*(apiStruct: pointer) {.inline.} =
           variantAsTransform2D
           variantAsPlane
           variantAsQuat
-          variantAsRect3
+          variantAsAABB
           variantAsBasis
           variantAsTransform
           variantAsColor

@@ -274,7 +274,7 @@ const standardTypes = toSet(
   ["bool", "cint", "int", "uint8", "int8", "uint16", "int16", "uint32", "int32",
    "uint64",
    "int64", "float32", "cfloat", "float64", "GodotString", "Vector2", "Rect2",
-   "Vector3", "Transform2D", "Plane", "Quat", "Rect3", "Basis", "Transform",
+   "Vector3", "Transform2D", "Plane", "Quat", "AABB", "Basis", "Transform",
    "Color", "RID", "NodePath", "Dictionary", "Variant", "Array",
    "PoolByteArray", "PoolIntArray", "PoolRealArray", "PoolStringArray",
    "PoolVector2Array", "PoolVector3Array", "PoolColorArray"])

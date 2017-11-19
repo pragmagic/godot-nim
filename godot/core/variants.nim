@@ -80,7 +80,7 @@ proc newVariant*(s: string): Variant {.inline.} =
     godotStr.deinit()
 
 import basis, nodepaths
-import planes, quats, rect2, rect3, rids
+import planes, quats, rect2, aabb, rids
 import transforms, transform2d, vector2
 import vector3, colors
 
@@ -108,9 +108,9 @@ proc newVariant*(quat: Quat): Variant {.inline.} =
   new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, quat)
 
-proc newVariant*(rect3: Rect3): Variant {.inline.} =
+proc newVariant*(aabb: AABB): Variant {.inline.} =
   new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant, rect3)
+  initGodotVariant(result.godotVariant, aabb)
 
 proc newVariant*(basis: Basis): Variant {.inline.} =
   new(result, variantFinalizer)
@@ -207,8 +207,8 @@ proc asPlane*(self: Variant): Plane =
 proc asQuat*(self: Variant): Quat =
   self.godotVariant.asQuat()
 
-proc asRect3*(self: Variant): Rect3 =
-  self.godotVariant.asRect3()
+proc asAABB*(self: Variant): AABB =
+  self.godotVariant.asAABB()
 
 proc asBasis*(self: Variant): Basis =
   self.godotVariant.asBasis()

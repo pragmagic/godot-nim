@@ -5,7 +5,7 @@ import gdnativeapi
 import core.godotcoretypes
 import core.vector2, core.rect2,
        core.vector3, core.transform2d,
-       core.planes, core.quats, core.rect3,
+       core.planes, core.quats, core.aabb,
        core.basis, core.transforms, core.colors,
        core.nodepaths, core.rids, core.dictionaries,
        core.arrays, core.poolarrays, core.variants
@@ -57,7 +57,7 @@ type
   SomeFloat = float32 or float64 or cfloat
 
   SomeGodot = bool or Vector2 or Rect2 or Vector3 or
-              Transform2D or Plane or Quat or Rect3 or
+              Transform2D or Plane or Quat or AABB or
               Basis or Transform or Color or NodePath or
               RID or GodotObject or Dictionary or Array or
               PoolByteArray or PoolIntArray or PoolRealArray or
@@ -497,8 +497,8 @@ proc godotTypeInfo*(T: typedesc[SomeGodotOrNum]): GodotTypeInfo {.inline.} =
       VariantType.Plane
     elif T is Quat:
       VariantType.Quat
-    elif T is Rect3:
-      VariantType.Rect3
+    elif T is AABB:
+      VariantType.AABB
     elif T is Basis:
       VariantType.Basis
     elif T is Transform:
@@ -614,8 +614,8 @@ proc fromVariant*[T: SomeGodot](self: var T, val: Variant): ConversionResult =
     self = val.asPlane()
   elif self is Quat:
     self = val.asQuat()
-  elif self is Rect3:
-    self = val.asRect3()
+  elif self is AABB:
+    self = val.asAABB()
   elif self is Basis:
     self = val.asBasis()
   elif self is Transform:

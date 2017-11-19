@@ -44,8 +44,8 @@ proc initGodotVariant*(dest: var GodotVariant; plane: Plane) {.inline.} =
 proc initGodotVariant*(dest: var GodotVariant; quat: Quat) {.inline.} =
   getGDNativeAPI().variantNewQuat(dest, quat)
 
-proc initGodotVariant*(dest: var GodotVariant; rect3: Rect3) {.inline.} =
-  getGDNativeAPI().variantNewRect3(dest, rect3)
+proc initGodotVariant*(dest: var GodotVariant; aabb: AABB) {.inline.} =
+  getGDNativeAPI().variantNewAABB(dest, aabb)
 
 proc initGodotVariant*(dest: var GodotVariant; basis: Basis) {.inline.} =
   getGDNativeAPI().variantNewBasis(dest, basis)
@@ -138,8 +138,8 @@ proc asPlane*(self: GodotVariant): Plane {.inline.} =
 proc asQuat*(self: GodotVariant): Quat {.inline.} =
   getGDNativeAPI().variantAsQuat(self)
 
-proc asRect3*(self: GodotVariant): Rect3 {.inline.} =
-  getGDNativeAPI().variantAsRect3(self)
+proc asAABB*(self: GodotVariant): AABB {.inline.} =
+  getGDNativeAPI().variantAsAABB(self)
 
 proc asBasis*(self: GodotVariant): Basis {.inline.} =
   getGDNativeAPI().variantAsBasis(self)

@@ -29,7 +29,7 @@ type
     z*: float32
     w*: float32
 
-  Rect3* {.byref.} = object
+  AABB* {.byref.} = object
     position*: Vector3
     size*: Vector3
 

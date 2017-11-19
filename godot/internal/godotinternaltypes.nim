@@ -45,7 +45,7 @@ type
     Transform2D,
     Plane,
     Quat, ##  10
-    Rect3,
+    AABB,
     Basis,
     Transform, ##  misc types
     Color,

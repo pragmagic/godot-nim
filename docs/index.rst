@@ -152,7 +152,7 @@ exported and you don't have to import any of them directly.
 * `quats <quats.html>`_ Defines ``Quat`` (quaternion) describing object
   rotation in 3D space.
 * `rect2 <rect2.html>`_ Defines ``Rect2`` - a 2D rectangle.
-* `rect3 <rect3.html>`_ Defines ``Rect3`` - a 3D box.
+* `aabb <aabb.html>`_ Defines ``AABB`` - a 3D box.
 * `rids <rids.html>`_ Defines ``RID`` - a resource identifier.
 * `transform2d <transform2d.html>`_ Defines ``Transform2D``.
 * `transforms <transforms.html>`_ Defines ``Transform``.

@@ -55,11 +55,11 @@ proc xformVector3*(self: Transform; v: Vector3): Vector3 {.inline.} =
 proc xformInvVector3*(self: Transform; v: Vector3): Vector3 {.inline.} =
   getGDNativeAPI().transformXformInvVector3(self, v)
 
-proc xformRect3*(self: Transform; rect: Rect3): Rect3 {.inline.} =
-  getGDNativeAPI().transformXformRect3(self, rect)
+proc xformAABB*(self: Transform; rect: AABB): AABB {.inline.} =
+  getGDNativeAPI().transformXformAABB(self, rect)
 
-proc xformInvRect3*(self: Transform; rect: Rect3): Rect3 {.inline.} =
-  getGDNativeAPI().transformXformInvRect3(self, rect)
+proc xformInvAABB*(self: Transform; rect: AABB): AABB {.inline.} =
+  getGDNativeAPI().transformXformInvAABB(self, rect)
 
 proc `==`*(self: Transform; b: Transform): bool {.inline.} =
   getGDNativeAPI().transformOperatorEqual(self, b)
