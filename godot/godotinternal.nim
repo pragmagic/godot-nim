@@ -29,8 +29,7 @@ proc nativeScriptRegisterClass*(libHandle: pointer; name, base: cstring;
                                 createFunc: GodotInstanceCreateFunc;
                                 destroyFunc: GodotInstanceDestroyFunc)
                                {.inline.} =
-  let api = getGDNativeAPI()
-  api.nativeScriptRegisterClass(
+  getGDNativeAPI().nativeScriptRegisterClass(
     libHandle, name, base, createFunc, destroyFunc)
 
 proc nativeScriptRegisterToolClass*(libHandle: pointer; name, base: cstring;
@@ -73,8 +72,7 @@ proc deinit*(o: ptr GodotObject) {.inline.} =
 
 proc godotPrintError*(description, function, file: cstring;
                       line: cint) {.inline.} =
-  let api = getGDNativeAPI()
-  api.printError(description, function, file, line)
+  getGDNativeAPI().printError(description, function, file, line)
 
 proc godotPrintWarning*(description, function, file: cstring;
                         line: cint) {.inline.} =

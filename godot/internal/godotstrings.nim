@@ -19,9 +19,6 @@ proc len*(self: GodotString): cint {.inline.} =
   ## Returns the length of string in bytes if it is represented as UTF-8.
   getData(self, nil, result)
 
-proc cstring*(self: GodotString): cstring {.inline.} =
-  getGDNativeAPI().stringCStr(self)
-
 proc `==`*(self, b: GodotString): bool {.inline.} =
   getGDNativeAPI().stringOperatorEqual(self, b)
 

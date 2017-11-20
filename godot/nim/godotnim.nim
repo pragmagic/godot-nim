@@ -801,12 +801,12 @@ proc godot_nativescript_init(handle: pointer) {.
   GC_fullCollect()
   GC_disable()
 
-proc godot_gdnative_init(options: ptr GodotNativeInitOptions) {.
+proc godot_gdnative_init(options: ptr GDNativeInitOptions) {.
     cdecl, exportc, dynlib.} =
   gdNativeLibraryObj = options.gdNativeLibrary
-  setGDNativeAPI(options.gdNativeAPIStruct)
+  setGDNativeAPI(options.gdNativeAPIStruct, options)
 
-proc godot_gdnative_terminate(options: ptr GodotNativeTerminateOptions) {.
+proc godot_gdnative_terminate(options: ptr GDNativeTerminateOptions) {.
     cdecl, exportc, dynlib.} =
   deallocHeap(runFinalizers = not options[].inEditor, allowGcAfterwards = false)
 

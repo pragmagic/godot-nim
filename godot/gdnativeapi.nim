@@ -9,10 +9,6 @@ type
     GDNativeExtPluginScript,
     GDNativeExtNativeARVR
 
-  GDNativeAPIVersion = object
-    major: cuint
-    minor: cuint
-
   GDNativeAPIHeader = object
     typ: cuint
     version: GDNativeAPIVersion
@@ -1271,8 +1267,6 @@ type
     stringGetData: proc (self: GodotString, dest: cstring, size: var cint)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorIndex: pointer
-    stringCStr: proc (self: GodotString): cstring
-                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorIndexConst: pointer
     stringUTF16Str: pointer
     stringOperatorEqual: proc (self, other: GodotString): bool
@@ -1450,7 +1444,10 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     getClassConstructor: proc (className: cstring): GodotClassConstructor
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-
+    registerNativeCallType: proc (callType: cstring,
+                                  cb: proc (procHandle: pointer,
+                                            args: ptr GodotArray): GodotVariant
+                                           {.noconv.}) {.noconv.}
     alloc: proc (bytes: cint): pointer
                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     realloc: proc (p: pointer, bytes: cint): pointer
@@ -2535,8 +2532,6 @@ type
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringGetData*: proc (self: GodotString, dest: cstring, size: var cint)
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    stringCStr*: proc (self: GodotString): cstring
-                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorEqual*: proc (self, other: GodotString): bool
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorLess*: proc (self, other: GodotString): bool
@@ -2627,7 +2622,7 @@ var gdNativeAPI: GDNativeAPI
 proc getGDNativeAPI*(): ptr GDNativeAPI {.inline.} =
   addr gdNativeAPI
 
-proc setGDNativeAPI*(apiStruct: pointer) {.inline.} =
+proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
   let header = cast[ptr GDNativeAPIHeader](apiStruct)
 
   if header.typ >= ord(low(GDNativeAPIType)).cuint and header.typ <= ord(high(GDNativeAPIType)).cuint:
@@ -3110,7 +3105,6 @@ proc setGDNativeAPI*(apiStruct: pointer) {.inline.} =
           stringNewCopy
           stringNewData
           stringGetData
-          stringCStr
           stringOperatorEqual
           stringOperatorLess
           stringOperatorPlus
@@ -3134,7 +3128,11 @@ proc setGDNativeAPI*(apiStruct: pointer) {.inline.} =
           print
 
         for i in 0.cuint..<coreApi.numExtensions:
-          setGDNativeAPI(coreApi.extensions[][i.int])
+          setGDNativeAPI(coreApi.extensions[][i.int], initOptions)
+      else:
+        let want = GDNativeAPIVersion(major: 1, minor: 0)
+        initOptions[].reportVersionMismatch(
+          initOptions[].gdNativeLibrary, cstring"Core", want, coreApi[].version)
     of GDNativeExtNativeScript:
       let nativeScriptApi = cast[ptr GDNativeNativeScriptAPI1](apiStruct)
       if nativeScriptApi[].version.major == 1:
@@ -3145,10 +3143,15 @@ proc setGDNativeAPI*(apiStruct: pointer) {.inline.} =
           nativeScriptRegisterProperty
           nativeScriptRegisterSignal
           nativeScriptGetUserdata
+      else:
+        let want = GDNativeAPIVersion(major: 1, minor: 0)
+        initOptions[].reportVersionMismatch(
+          initOptions[].gdNativeLibrary, cstring"NativeScript",
+          want, nativeScriptApi[].version)
 
     of GDNativeExtPluginScript, GDNativeExtNativeARVR:
       # Not used
       discard
 
   if not header.next.isNil:
-    setGDNativeAPI(header.next)
+    setGDNativeAPI(header.next, initOptions)

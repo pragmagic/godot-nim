@@ -82,16 +82,23 @@ type
 type GodotMethodBind* = object
 
 type
-  GodotNativeInitOptions* = object
+  GDNativeAPIVersion* = object
+    major*: cuint
+    minor*: cuint
+
+  GDNativeInitOptions* = object
     inEditor*: bool
     coreApiHash*: uint64
     editorApiHash*: uint64
     noApiHash*: uint64
+    reportVersionMismatch*: proc (library: ptr GodotObject, extension: cstring,
+                                  want: GDNativeAPIVersion, have: GDNativeAPIVersion) {.noconv.}
+    reportLoadingError*: proc (library: ptr GodotObject, what: cstring) {.noconv.}
     gdNativeLibrary*: ptr GodotObject
     gdNativeAPIStruct*: pointer
     activeLibraryPath*: ptr GodotString
 
-  GodotNativeTerminateOptions* = object
+  GDNativeTerminateOptions* = object
     inEditor*: bool
 
   GodotMethodRPCMode* {.size: sizeof(cint), pure.} = enum
