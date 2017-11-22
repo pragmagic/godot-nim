@@ -27,7 +27,7 @@ addons:
       - libxrandr-dev
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install scons ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm --default use 2.3; brew update; brew install scons ; fi
 
 install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export GODOT_PLATFORM=osx; else export GODOT_PLATFORM=x11; fi
