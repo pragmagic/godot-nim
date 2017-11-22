@@ -49,11 +49,11 @@ template genPoolArrayAPI(ArrayT, initIdent, DataT,
     getGDNativeAPI().sizeProc(self)
 
   iterator items*(arr: ArrayT): DataT =
-    for i in 0..<arr.len:
+    for i in 0.cint..<arr.len:
       yield arr[i]
 
   iterator pairs*(arr: ArrayT): tuple[key: cint, val: DataT] =
-    for i in 0..<arr.len:
+    for i in 0.cint..<arr.len:
       yield (i, arr[i])
 
 genPoolArrayAPI(GodotPoolByteArray, initGodotPoolByteArray, byte,

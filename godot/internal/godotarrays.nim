@@ -136,20 +136,20 @@ proc binarySearchCustom*(self: var GodotArray, val: ptr GodotVariant,
   getGDNativeAPI().arrayBSearchCustom(self, val, obj, funcName, before)
 
 iterator items*(self: GodotArray): GodotVariant =
-  for i in 0..<self.len:
+  for i in 0.cint..<self.len:
     yield self[i]
 
 iterator mitems*(self: var GodotArray): var GodotVariant =
-  for i in 0..<self.len:
+  for i in 0.cint..<self.len:
     yield self.mget(i)[]
 
 iterator pairs*(self: GodotArray): tuple[key: cint, val: GodotVariant] =
-  for i in 0..<self.len:
+  for i in 0.cint..<self.len:
     yield (i, self[i])
 
 iterator mpairs*(self: var GodotArray): tuple[key: cint,
                                               val: var GodotVariant] =
-  for i in 0..<self.len:
+  for i in 0.cint..<self.len:
     yield (i, self.mget(i)[])
 
 proc `$`*(self: GodotArray): string =

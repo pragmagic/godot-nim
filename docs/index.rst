@@ -55,7 +55,7 @@ about compiling Godot can be found in `Godot documentation
 Installing Nim
 -------------
 
-The library requires Nim version 0.17.2 or newer, which you can get here:
+The library requires Nim version 0.18.0 or newer, which you can get here:
 https://nim-lang.org/install.html
 
 Make sure you also have ``nimble`` (Nim's package manager) installed.

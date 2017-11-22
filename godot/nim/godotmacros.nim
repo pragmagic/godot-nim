@@ -53,7 +53,8 @@ proc extractNames(definition: NimNode):
   if definition.kind == nnkIdent:
     result.name = $(definition.ident)
   else:
-    if not (definition.kind == nnkInfix and definition[0].ident == !"of"):
+    if not (definition.kind == nnkInfix and
+            definition[0].ident == toNimIdent("of")):
       parseError(definition, "invalid type definition")
     result.name = $(definition[1].ident)
     case definition[2].kind:
@@ -90,7 +91,7 @@ proc removePragmaNode(statement: NimNode,
   result = nil
   var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
                 else: statement[1]
-  let pnameIdent = !pname
+  let pnameIdent = toNimIdent(pname)
   for ident, val, i in pragmas(pragmas):
     if ident == pnameIdent:
       pragmas.del(i)
@@ -103,7 +104,7 @@ proc removePragma(statement: NimNode, pname: string): bool =
     return false
   var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
                 else: statement[1]
-  let pnameIdent = !pname
+  let pnameIdent = toNimIdent(pname)
   for ident, val, i in pragmas(pragmas):
     if ident == pnameIdent:
       pragmas.del(i)
@@ -186,7 +187,7 @@ proc parseType(definition, callSite: NimNode): ObjectDecl =
     let option = callSite[i]
     if option.kind != nnkIdent:
       parseError(option, "type specifier expected")
-    if option.ident == !"tool":
+    if option.ident == toNimIdent("tool"):
       isTool = true
     else:
       parseError(option, "valid type specifier expected")
@@ -587,7 +588,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     let hasReturnValueBool = not (meth.returnType.isNil or
                          meth.returnType.kind == nnkEmpty or
                          (meth.returnType.kind == nnkIdent and
-                          meth.returnType.ident == !"void"))
+                          meth.returnType.ident == toNimIdent("void")))
     let hasReturnValue = if hasReturnValueBool: ident("true")
                          else: ident("false")
     result.add(getAst(
