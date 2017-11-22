@@ -30,8 +30,8 @@ proc subnameCount*(self: GodotNodePath): cint {.inline.} =
 proc getSubname*(self: GodotNodePath; idx: cint): GodotString {.inline.} =
   getGDNativeAPI().nodePathGetSubname(self, idx)
 
-proc property*(self: GodotNodePath): GodotString {.inline.} =
-  getGDNativeAPI().nodePathGetProperty(self)
+proc getConcatenatedSubnames*(self: GodotNodePath): GodotString {.inline.} =
+  getGDNativeAPI().nodePathGetConcatenatedSubnames(self)
 
 proc isEmpty*(self: GodotNodePath): bool {.inline.} =
   getGDNativeAPI().nodePathIsEmpty(self)

@@ -750,6 +750,13 @@ type
     arraySortCustom: proc (self: var GodotArray, obj: ptr GodotObject,
                             f: GodotString)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    arrayBSearch: proc (self: var GodotArray, val: ptr GodotVariant,
+                        before: bool)
+                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    arrayBSearchCustom: proc (self: var GodotArray, val: ptr GodotVariant,
+                              obj: ptr GodotObject, f: GodotString,
+                              before: bool)
+                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     arrayDestroy: proc (self: var GodotArray)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
@@ -816,8 +823,9 @@ type
                                     locks: 0.}
     nodePathGetSubname: proc (self: GodotNodePath, idx: cint): GodotString
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    nodePathGetProperty: proc (self: GodotNodePath): GodotString
-                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    nodePathGetConcatenatedSubnames: proc (self: GodotNodePath): GodotString
+                                          {.noconv, raises: [], gcsafe,
+                                            tags: [], locks: 0.}
     nodePathIsEmpty: proc (self: GodotNodePath): bool
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     nodePathOperatorEqual: proc (self, other: GodotNodePath): bool
@@ -2018,6 +2026,13 @@ type
     arraySortCustom*: proc (self: var GodotArray, obj: ptr GodotObject,
                             f: GodotString)
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    arrayBSearch*: proc (self: var GodotArray, val: ptr GodotVariant,
+                         before: bool)
+                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    arrayBSearchCustom*: proc (self: var GodotArray, val: ptr GodotVariant,
+                               obj: ptr GodotObject, f: GodotString,
+                               before: bool)
+                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     arrayDestroy*: proc (self: var GodotArray)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
@@ -2083,8 +2098,9 @@ type
                                     locks: 0.}
     nodePathGetSubname*: proc (self: GodotNodePath, idx: cint): GodotString
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    nodePathGetProperty*: proc (self: GodotNodePath): GodotString
-                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    nodePathGetConcatenatedSubnames*: proc (self: GodotNodePath): GodotString
+                                           {.noconv, raises: [], gcsafe,
+                                             tags: [], locks: 0.}
     nodePathIsEmpty*: proc (self: GodotNodePath): bool
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     nodePathOperatorEqual*: proc (self, other: GodotNodePath): bool
@@ -2871,6 +2887,8 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           arraySize
           arraySort
           arraySortCustom
+          arrayBSearch
+          arrayBSearchCustom
           arrayDestroy
 
           # Dictionary API
@@ -2903,7 +2921,7 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           nodePathGetName
           nodePathGetSubnameCount
           nodePathGetSubname
-          nodePathGetProperty
+          nodePathGetConcatenatedSubnames
           nodePathIsEmpty
           nodePathOperatorEqual
 

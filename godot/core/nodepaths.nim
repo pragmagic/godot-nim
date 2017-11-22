@@ -51,8 +51,8 @@ proc getSubname*(self: NodePath; idx: int): string {.inline.} =
   result = $s
   s.deinit()
 
-proc property*(self: NodePath): string {.inline.} =
-  var s = self.path.property()
+proc getConcatenatedSubnames*(self: NodePath): string {.inline.} =
+  var s = self.path.getConcatenatedSubnames()
   result = $s
   s.deinit()
 

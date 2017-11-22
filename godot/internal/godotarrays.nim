@@ -126,6 +126,15 @@ proc sortCustom*(self: var GodotArray; obj: ptr GodotObject;
                  funcName: GodotString) {.inline.} =
   getGDNativeAPI().arraySortCustom(self, obj, funcName)
 
+proc binarySearch*(self: var GodotArray, val: ptr GodotVariant,
+                   before: bool) {.inline.} =
+  getGDNativeAPI().arrayBSearch(self, val, before)
+
+proc binarySearchCustom*(self: var GodotArray, val: ptr GodotVariant,
+                         obj: ptr GodotObject, funcName: GodotString,
+                         before: bool) {.inline.} =
+  getGDNativeAPI().arrayBSearchCustom(self, val, obj, funcName, before)
+
 iterator items*(self: GodotArray): GodotVariant =
   for i in 0..<self.len:
     yield self[i]
