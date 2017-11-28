@@ -541,10 +541,17 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   template registerGodotMethod(classNameLit, classNameIdent, methodNameIdent,
                                methodNameLit, minArgs, maxArgs,
                                argTypes, methFuncIdent, hasReturnValue) =
+    {.emit: """/*TYPESECTION*/
+N_NOINLINE(void, setStackBottom)(void* thestackbottom);
+""".}
     proc methFuncIdent(obj: ptr GodotObject, methodData: pointer,
                        userData: pointer, numArgs: cint,
                        args: var array[MAX_ARG_COUNT, ptr GodotVariant]):
                       GodotVariant {.noconv.} =
+      var stackBottom {.volatile.}: pointer
+      {.emit: """
+        setStackBottom((void*)(&`stackBottom`));
+      """.}
       let self = cast[classNameIdent](userData)
       const isStaticCall = methodNameLit == cstring"_ready" or
                            methodNameLit == cstring"_process" or
