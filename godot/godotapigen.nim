@@ -2,7 +2,7 @@
 
 import streams, json, os, strutils, times, sets, tables
 import sequtils, algorithm
-import compiler / [ast, renderer, idents, astalgo]
+import compiler.ast, compiler.renderer, compiler.idents, compiler.astalgo
 
 proc ident(ident: string): PNode =
   result = newNode(nkIdent)
