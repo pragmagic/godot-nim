@@ -94,7 +94,8 @@ proc buildDocs*(outDir, godotNimDir, godotBin: string) =
       allNimFiles.add(file)
   for file in allNimFiles:
     spawn execOrFail(
-      "nim doc -d:useRealtimeGc -o:" & quoted(outName(outDirAbs, file)) &
+      "nim doc -d:useRealtimeGc --path:godot -o:" &
+      quoted(outName(outDirAbs, file)) &
       " --git.url:" & quoted(gitHubUrl) &
       " --git.commit:" & quoted(gitCommit) &
       ' ' & quoted(file))
@@ -103,7 +104,7 @@ proc buildDocs*(outDir, godotNimDir, godotBin: string) =
   createDir(godotApiFolder)
   genApiFiles(godotApiFolder, godotBinAbs)
   for file in walkDirRec(godotApiFolder, {pcFile, pcDir}, [".nim"]):
-    spawn execOrFail("nim doc -d:useRealtimeGc " & quoted(file))
+    spawn execOrFail("nim doc -d:useRealtimeGc --path:godot " & quoted(file))
 
   sync()
 
