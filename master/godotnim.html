@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
 
 <!-- Google fonts -->
-<link href='https://fonts.googleapis.com/css?family=Raleway:400,600,900' rel='stylesheet' type='text/css'/>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,600,900' rel='stylesheet' type='text/css'/>
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
@@ -45,18 +45,19 @@ html {
 
 /* Where we want fancier font if available */
 h1, h2, h3, h4, h5, h6, p.module-desc, table.docinfo + blockquote p, table.docinfo blockquote p, h1 + blockquote p {
-  font-family: "Raleway", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important; }
 
 h1.title {
   font-weight: 900; }
 
 body {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
-  color: #666;
-  background-color: rgba(252, 248, 244, 0.75); }
+  color: #444;
+  letter-spacing: 0.15px;
+  background-color: rgba(252, 248, 244, 0.45); }
 
 /* Skeleton grid */
 .container {
@@ -172,8 +173,8 @@ cite {
   font-style: italic !important; }
 
 dt > pre {
-  border-color: rgba(0, 0, 0, 0.15);
-  background-color: transparent;
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
   margin: 15px 0px 5px; }
 
 dd > pre {
@@ -189,6 +190,17 @@ dd > pre {
 .line-nums-table {
   width: 100%;
   table-layout: fixed; }
+
+/* Nim search input */
+div#searchInput {
+  margin-bottom: 8px;
+}
+div#searchInput input#searchInput {
+  width: 10em;
+}
+div.search-groupby {
+  margin-bottom: 8px;
+}
 
 table.line-nums-table {
   border-radius: 4px;
@@ -333,7 +345,7 @@ img {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
 
 p {
-  margin: 0 0 12px; }
+  margin: 0 0 8px; }
 
 small {
   font-size: 85%; }
@@ -353,7 +365,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   line-height: 20px;
   color: inherit;
@@ -361,6 +373,7 @@ h6 {
 
 h1 {
   font-size: 2em;
+  font-weight: 400;
   padding-bottom: .15em;
   border-bottom: 1px solid #aaaaaa;
   margin-top: 1.0em;
@@ -491,13 +504,13 @@ pre {
   box-sizing: border-box;
   min-width: calc(100% - 19.5px);
   padding: 9.5px;
-  margin: 0.25em 10px 0.25em 10px;
-  font-size: 14px;
+  margin: 0.25em 10px 10px 10px;
+  font-size: 15px;
   line-height: 20px;
   white-space: pre !important;
   overflow-y: hidden;
   overflow-x: visible;
-  background-color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.01);
   border: 1px solid #cccccc;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -776,14 +789,14 @@ div.admonition p.admonition-title, div.hint p.admonition-title,
 div.important p.admonition-title, div.note p.admonition-title,
 div.tip p.admonition-title {
   font-weight: bold;
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 div.attention p.admonition-title, div.caution p.admonition-title,
 div.danger p.admonition-title, div.error p.admonition-title,
 div.warning p.admonition-title, .code .error {
   color: #b30000;
   font-weight: bold;
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 /* Uncomment (and remove this text!) to get reduced vertical space in
    compound paragraphs.
@@ -830,7 +843,7 @@ div.sidebar {
   clear: right; }
 
 div.sidebar p.rubric {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-size: medium; }
 
 div.system-messages {
@@ -937,12 +950,12 @@ p.rubric {
   text-align: center; }
 
 p.sidebar-title {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: larger; }
 
 p.sidebar-subtitle {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold; }
 
 p.topic-title {
@@ -984,15 +997,15 @@ pre.code .inserted, code .inserted {
   background-color: #A3D289; }
 
 span.classifier {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-style: oblique; }
 
 span.classifier-delimiter {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold; }
 
 span.interpreted {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 span.option {
   white-space: nowrap; }
@@ -1015,7 +1028,7 @@ table.docinfo {
   margin: 0em;
   margin-top: 2em;
   margin-bottom: 2em;
-  font-family: "Raleway", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important;
   color: #444444; }
 
 table.docutils {
@@ -1145,21 +1158,26 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
   background-repeat: no-repeat;
   background-image: url("data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA==");
   margin-bottom: -5px; }
-  div.pragma {
-    display: none;
-  }
-  span.pragmabegin {
-    cursor: pointer;
-  }
-  span.pragmaend {
-    cursor: pointer;
-  }
+div.pragma {
+  display: none;
+}
+span.pragmabegin {
+  cursor: pointer;
+}
+span.pragmaend {
+  cursor: pointer;
+}
 
 div.search_results {
   background-color: antiquewhite;
   margin: 3em;
   padding: 1em;
   border: 1px solid #4d4d4d;
+}
+
+div#global-links ul {
+  margin-left: 0;
+  list-style-type: none;
 }
 </style>
 
@@ -1198,7 +1216,11 @@ function main() {
     <h1 class="title">Module godotnim</h1>
     <div class="row">
   <div class="three columns">
-  <div>
+  <div id="global-links">
+    <ul class="simple">
+    </ul>
+  </div>
+  <div id="searchInput">
     Search: <input type="text" id="searchInput"
       onkeyup="search()" />
   </div>
@@ -1220,7 +1242,7 @@ function main() {
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#NimGodotObject"
-    title="NimGodotObject* = ref object of RootObj
+    title="NimGodotObject = ref object of RootObj
   godotObject: ptr GodotObject
   linkedObject: NimGodotObject ## Wrapper around native object that is the container of the Nim &quot;script&quot;
                              ## This is needed for `of` checks and `as` conversions to work as
@@ -1229,17 +1251,19 @@ function main() {
                              ## ``Particles`` is valid, but Nim type system is not aware of that.
                              ## This works in both directions - for linked native object this
                              ## reference points to Nim object.
-  isExternalRef: bool"><wbr />Nim<wbr />Godot<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
+  isRef*: bool
+  isFinalized: bool
+  isNative: bool"><wbr />Nim<wbr />Godot<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#ConversionResult"
-    title="ConversionResult* = enum
+    title="ConversionResult = enum
   OK, TypeError,               ## Type mismatch
   RangeError                  ## Types match, but the value is out of range.
             ## Mainly used for numeric (ordinal) types."><wbr />Conversion<wbr />Result<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#CallError"
-    title="CallError* = object of Exception
+    title="CallError = object of Exception
   err*: VariantCallError       ## The error as returned by Godot"><wbr />Call<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotTypeInfo"
-    title="GodotTypeInfo* = object
+    title="GodotTypeInfo = object
   variantType*: VariantType
   hint*: GodotPropertyHint
   hintStr*: string ## Format depends on the type and the hint.
@@ -1253,118 +1277,122 @@ function main() {
   <a class="reference reference-toplevel" href="#8" id="58">Vars</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#classRegistryStatic"
-    title="classRegistryStatic*: TableRef[cstring, ObjectInfo]"><wbr />class<wbr />Registry<wbr />Static<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="classRegistryStatic: TableRef[cstring, ObjectInfo]"><wbr />class<wbr />Registry<wbr />Static<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#refClasses"
-    title="refClasses* = newSeq[string]()"><wbr />ref<wbr />Classes<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="refClasses = newSeq(0)"><wbr />ref<wbr />Classes<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#print,varargs[string,]"
-    title="print*(parts: varargs[string, `$`])"><wbr />print<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#isFinalized,NimGodotObject"
+    title="isFinalized(obj: NimGodotObject): bool"><wbr />is<wbr />Finalized<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
+  <li><a class="reference" href="#print,varargs[string,]"
+    title="print(parts: varargs[string, `$`])"><wbr />print<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#getClassName,NimGodotObject"
-    title="getClassName*(o: NimGodotObject): string"><wbr />get<wbr />Class<wbr />Name<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getClassName(o: NimGodotObject): string"><wbr />get<wbr />Class<wbr />Name<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#deinit,NimGodotObject"
-    title="deinit*(obj: NimGodotObject)"><wbr />deinit<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="deinit(obj: NimGodotObject)"><wbr />deinit<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#nimGodotObjectFinalizer,T"
-    title="nimGodotObjectFinalizer*[T: NimGodotObject](obj: T)"><wbr />nim<wbr />Godot<wbr />Object<wbr />Finalizer<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="nimGodotObjectFinalizer[T: NimGodotObject](obj: T)"><wbr />nim<wbr />Godot<wbr />Object<wbr />Finalizer<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#asNimGodotObject,ptr.GodotObject,bool"
-    title="asNimGodotObject*[T: NimGodotObject](godotObject: ptr GodotObject;
-                                    noRef: bool = false): T"><wbr />as<wbr />Nim<wbr />Godot<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="asNimGodotObject[T: NimGodotObject](godotObject: ptr GodotObject;
+                                   forceNativeObject: bool = false): T"><wbr />as<wbr />Nim<wbr />Godot<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#newVariant,NimGodotObject"
-    title="newVariant*(obj: NimGodotObject): Variant"><wbr />new<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="newVariant(obj: NimGodotObject): Variant"><wbr />new<wbr />Variant<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#asObject,Variant"
-    title="asObject*[T: NimGodotObject](v: Variant): T"><wbr />as<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="asObject[T: NimGodotObject](v: Variant): T"><wbr />as<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#asObject,Variant,typedesc[NimGodotObject]"
-    title="asObject*(v: Variant; T: typedesc[NimGodotObject]): T"><wbr />as<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="asObject(v: Variant; T: typedesc[NimGodotObject]): T:type"><wbr />as<wbr />Object<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#as,NimGodotObject,typedesc[T]"
-    title="`as`*[T: NimGodotObject](obj: NimGodotObject; t: typedesc[T]): T">`<wbr />as`<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#~,NimGodotObject,typedesc[T]"
-    title="`~`*[T: NimGodotObject](obj: NimGodotObject; t: typedesc[T]): bool">`<wbr />~`<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="`as`[T: NimGodotObject](obj: NimGodotObject; t: typedesc[T]): T"><wbr />`as`<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
+  <li><a class="reference" href="#of,NimGodotObject,typedesc[T]"
+    title="`of`[T: NimGodotObject](obj: NimGodotObject; t: typedesc[T]): bool"><wbr />`of`<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#getSingleton,"
-    title="getSingleton*[T: NimGodotObject](): T"><wbr />get<wbr />Singleton<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getSingleton[T: NimGodotObject](): T"><wbr />get<wbr />Singleton<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#gdnew,"
-    title="gdnew*[T: NimGodotObject](): T"><wbr />gdnew<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="gdnew[T: NimGodotObject](): T"><wbr />gdnew<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#newCallError,VariantCallError"
-    title="newCallError*(err: VariantCallError): ref CallError"><wbr />new<wbr />Call<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="newCallError(err: VariantCallError): ref CallError"><wbr />new<wbr />Call<wbr />Error<span class="attachedType" style="visibility:hidden">CallError</span></a></li>
   <li><a class="reference" href="#newConversionError,ConversionResult"
-    title="newConversionError*(err: ConversionResult): ref ValueError"><wbr />new<wbr />Conversion<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="newConversionError(err: ConversionResult): ref ValueError"><wbr />new<wbr />Conversion<wbr />Error<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#setGodotObject,NimGodotObject,ptr.GodotObject"
-    title="setGodotObject*(nimObj: NimGodotObject; obj: ptr GodotObject)"><wbr />set<wbr />Godot<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="setGodotObject(nimObj: NimGodotObject; obj: ptr GodotObject)"><wbr />set<wbr />Godot<wbr />Object<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#setNativeObject,NimGodotObject,NimGodotObject"
-    title="setNativeObject*(nimObj: NimGodotObject; nativeObj: NimGodotObject)"><wbr />set<wbr />Native<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="setNativeObject(nimObj: NimGodotObject; nativeObj: NimGodotObject)"><wbr />set<wbr />Native<wbr />Object<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#removeGodotObject,NimGodotObject"
-    title="removeGodotObject*(nimObj: NimGodotObject)"><wbr />remove<wbr />Godot<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="removeGodotObject(nimObj: NimGodotObject)"><wbr />remove<wbr />Godot<wbr />Object<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#==,NimGodotObject,NimGodotObject"
-    title="`==`*(self, other: NimGodotObject): bool">`<wbr />==`<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="`==`(self, other: NimGodotObject): bool"><wbr />`==`<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#godotObject,NimGodotObject"
-    title="godotObject*(nimObj: NimGodotObject): ptr GodotObject"><wbr />godot<wbr />Object<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="godotObject(nimObj: NimGodotObject): ptr GodotObject"><wbr />godot<wbr />Object<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#godotTypeInfo,typedesc[NimGodotObject]"
-    title="godotTypeInfo*(T: typedesc[NimGodotObject]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="godotTypeInfo(T: typedesc[NimGodotObject]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#toVariant,NimGodotObject"
-    title="toVariant*(self: NimGodotObject): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="toVariant(self: NimGodotObject): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden">NimGodotObject</span></a></li>
   <li><a class="reference" href="#fromVariant,T,Variant"
-    title="fromVariant*[T: NimGodotObject](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant[T: NimGodotObject](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#toVariant,Variant"
-    title="toVariant*(self: Variant): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="toVariant(self: Variant): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#fromVariant,Variant,Variant"
-    title="fromVariant*(self: var Variant; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant(self: var Variant; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#godotTypeInfo,typedesc[SomeGodotOrNum]"
-    title="godotTypeInfo*(T: typedesc[SomeGodotOrNum]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="godotTypeInfo(T: typedesc[SomeGodotOrNum]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden">GodotTypeInfo</span></a></li>
   <li><a class="reference" href="#godotTypeInfo,typedesc[range]"
-    title="godotTypeInfo*(T: typedesc[range]): VariantType"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="godotTypeInfo(T: typedesc[range]): VariantType"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#toVariant,T"
-    title="toVariant*[T: SomeGodotOrNum](val: T): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="toVariant[T: SomeGodotOrNum](val: T): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#fromVariant,T,Variant_2"
-    title="fromVariant*[T: SomeSignedInt or SomeUnsignedInt](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant[T: SomeSignedInt or SomeUnsignedInt](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#godotTypeInfo,typedesc[]"
-    title="godotTypeInfo*(T: typedesc[enum]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="godotTypeInfo(T: typedesc[enum]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden">GodotTypeInfo</span></a></li>
   <li><a class="reference" href="#toVariant,T_2"
-    title="toVariant*[T: enum](self: T): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="toVariant[T: enum](self: T): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#fromVariant,T,Variant_3"
-    title="fromVariant*[T: enum](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant[T: enum](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#fromVariant,T,Variant_4"
-    title="fromVariant*[T: SomeFloat](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant[T: SomeFloat](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#fromVariant,T,Variant_5"
-    title="fromVariant*[T: SomeGodot](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant[T: SomeGodot](self: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#godotTypeInfo,typedesc[string]"
-    title="godotTypeInfo*(T: typedesc[string]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="godotTypeInfo(T: typedesc[string]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden">GodotTypeInfo</span></a></li>
   <li><a class="reference" href="#toVariant,string"
-    title="toVariant*(s: string): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="toVariant(s: string): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#fromVariant,string,Variant"
-    title="fromVariant*(s: var string; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant(s: var string; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#godotTypeInfo,typedesc[seq]"
-    title="godotTypeInfo*(T: typedesc[seq]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="godotTypeInfo(T: typedesc[seq]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden">GodotTypeInfo</span></a></li>
   <li><a class="reference" href="#godotTypeInfo,typedesc[array]"
-    title="godotTypeInfo*(T: typedesc[array]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#toVariant,openarray[T]"
-    title="toVariant*[T](s: openarray[T]): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="godotTypeInfo(T: typedesc[array]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden">GodotTypeInfo</span></a></li>
+  <li><a class="reference" href="#toVariant,seq[T]"
+    title="toVariant[T](s: seq[T]): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#toVariant,array[I,T]"
+    title="toVariant[I, T](s: array[I, T]): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#fromVariant,seq[T],Variant"
-    title="fromVariant*[T](s: var seq[T]; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant[T](s: var seq[T]; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#fromVariant,T,Variant_6"
-    title="fromVariant*[T: array](s: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant[T: array](s: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#godotTypeInfo,typedesc[]_2"
-    title="godotTypeInfo*(T: typedesc[Table | TableRef]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="godotTypeInfo(T: typedesc[Table | TableRef]): GodotTypeInfo"><wbr />godot<wbr />Type<wbr />Info<span class="attachedType" style="visibility:hidden">GodotTypeInfo</span></a></li>
   <li><a class="reference" href="#toVariant,T_3"
-    title="toVariant*[T: Table or TableRef](t: T): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="toVariant[T: Table or TableRef](t: T): Variant"><wbr />to<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#fromVariant,T,Variant_7"
-    title="fromVariant*[T: Table or TableRef](t: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="fromVariant[T: Table or TableRef](t: var T; val: Variant): ConversionResult"><wbr />from<wbr />Variant<span class="attachedType" style="visibility:hidden">ConversionResult</span></a></li>
   <li><a class="reference" href="#getNativeLibHandle,"
-    title="getNativeLibHandle*(): pointer"><wbr />get<wbr />Native<wbr />Lib<wbr />Handle<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="getNativeLibHandle(): pointer"><wbr />get<wbr />Native<wbr />Lib<wbr />Handle<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
 <li>
-  <a class="reference reference-toplevel" href="#17" id="67">Templates</a>
+  <a class="reference reference-toplevel" href="#18" id="68">Templates</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#printWarning.t,typed"
-    title="printWarning*(warning: typed)"><wbr />print<wbr />Warning<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="printWarning(warning: typed)"><wbr />print<wbr />Warning<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#printError.t,typed"
-    title="printError*(error: typed)"><wbr />print<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="printError(error: typed)"><wbr />print<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#registerClass.t,typedesc,cstring,bool"
-    title="registerClass*(T: typedesc; godotClassName: cstring; native: bool)"><wbr />register<wbr />Class<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="registerClass(T: typedesc; godotClassName: cstring; native: bool)"><wbr />register<wbr />Class<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1383,12 +1411,12 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="tables.html">tables</a>, <a class="reference external" href="typetraits.html">typetraits</a>, <a class="reference external" href="macros.html">macros</a>, <a class="reference external" href="asyncdispatch.html">asyncdispatch</a>, <a class="reference external" href="godotbase.html">core/godotbase</a>, <a class="reference external" href="vector2.html">core/vector2</a>, <a class="reference external" href="rect2.html">core/rect2</a>, <a class="reference external" href="vector3.html">core/vector3</a>, <a class="reference external" href="transform2d.html">core/transform2d</a>, <a class="reference external" href="planes.html">core/planes</a>, <a class="reference external" href="quats.html">core/quats</a>, <a class="reference external" href="rect3.html">core/rect3</a>, <a class="reference external" href="basis.html">core/basis</a>, <a class="reference external" href="transforms.html">core/transforms</a>, <a class="reference external" href="colors.html">core/colors</a>, <a class="reference external" href="nodepaths.html">core/nodepaths</a>, <a class="reference external" href="rids.html">core/rids</a>, <a class="reference external" href="dictionaries.html">core/dictionaries</a>, <a class="reference external" href="arrays.html">core/arrays</a>, <a class="reference external" href="poolarrays.html">core/poolarrays</a>, <a class="reference external" href="variants.html">core/variants</a>, <a class="reference external" href="godotinternal.html">godotinternal</a>
+<a class="reference external" href="tables.html">tables</a>, <a class="reference external" href="typetraits.html">typetraits</a>, <a class="reference external" href="macros.html">macros</a>, <a class="reference external" href="asyncdispatch.html">asyncdispatch</a>, <a class="reference external" href="gdnativeapi.html">gdnativeapi</a>, <a class="reference external" href="godotcoretypes.html">core/godotcoretypes</a>, <a class="reference external" href="vector2.html">core/vector2</a>, <a class="reference external" href="rect2.html">core/rect2</a>, <a class="reference external" href="vector3.html">core/vector3</a>, <a class="reference external" href="transform2d.html">core/transform2d</a>, <a class="reference external" href="planes.html">core/planes</a>, <a class="reference external" href="quats.html">core/quats</a>, <a class="reference external" href="aabb.html">core/aabb</a>, <a class="reference external" href="basis.html">core/basis</a>, <a class="reference external" href="transforms.html">core/transforms</a>, <a class="reference external" href="colors.html">core/colors</a>, <a class="reference external" href="nodepaths.html">core/nodepaths</a>, <a class="reference external" href="rids.html">core/rids</a>, <a class="reference external" href="dictionaries.html">core/dictionaries</a>, <a class="reference external" href="arrays.html">core/arrays</a>, <a class="reference external" href="poolarrays.html">core/poolarrays</a>, <a class="reference external" href="variants.html">core/variants</a>, <a class="reference external" href="godotinternal.html">godotinternal</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<dt id="NimGodotObject"><a name="NimGodotObject"></a><pre><span class="Identifier">NimGodotObject</span><span class="Operator">*</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootObj</span>
+<dt id="NimGodotObject"><a name="NimGodotObject"></a><pre><span class="Identifier">NimGodotObject</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootObj</span>
   <span class="Identifier">godotObject</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span>
   <span class="Identifier">linkedObject</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span> <span class="Comment">## Wrapper around native object that is the container of the Nim &quot;script&quot;</span>
                              <span class="Comment">## This is needed for `of` checks and `as` conversions to work as</span>
@@ -1397,40 +1425,42 @@ function main() {
                              <span class="Comment">## ``Particles`` is valid, but Nim type system is not aware of that.</span>
                              <span class="Comment">## This works in both directions - for linked native object this</span>
                              <span class="Comment">## reference points to Nim object.</span>
-  <span class="Identifier">isExternalRef</span><span class="Other">:</span> <span class="Identifier">bool</span>
+  <span class="Identifier">isRef</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">bool</span>
+  <span class="Identifier">isFinalized</span><span class="Other">:</span> <span class="Identifier">bool</span>
+  <span class="Identifier">isNative</span><span class="Other">:</span> <span class="Identifier">bool</span>
 </pre></dt>
 <dd>
 The base type all Godot types inherit from. Manages lifecycle of the wrapped <tt class="docutils literal"><span class="pre">GodotObject</span></tt>.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L29"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="ConversionResult"><a name="ConversionResult"></a><pre><span class="Identifier">ConversionResult</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">pure</span></div><span class="Other pragmaend">.}</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+<dt id="ConversionResult"><a name="ConversionResult"></a><pre><span class="Identifier">ConversionResult</span> <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">OK</span><span class="Other">,</span> <span class="Identifier">TypeError</span><span class="Other">,</span>               <span class="Comment">## Type mismatch</span>
   <span class="Identifier">RangeError</span>                  <span class="Comment">## Types match, but the value is out of range.</span>
             <span class="Comment">## Mainly used for numeric (ordinal) types.</span></pre></dt>
 <dd>
 Conversion result to return from <tt class="docutils literal"><span class="pre">fromVariant</span></tt> procedure.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L43"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L46"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="CallError"><a name="CallError"></a><pre><span class="Identifier">CallError</span><span class="Operator">*</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">Exception</span>
+<dt id="CallError"><a name="CallError"></a><pre><span class="Identifier">CallError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">Exception</span>
   <span class="Identifier">err</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">VariantCallError</span>       <span class="Comment">## The error as returned by Godot</span>
   </pre></dt>
 <dd>
 Raised by wrappers in case of an incorrect dynamic invocation. For example, if incorrect number of arguments were passed or they had unexpected types.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L66"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L69"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="GodotTypeInfo"><a name="GodotTypeInfo"></a><pre><span class="Identifier">GodotTypeInfo</span><span class="Operator">*</span> <span class="Other">=</span> <span class="Keyword">object</span>
+<dt id="GodotTypeInfo"><a name="GodotTypeInfo"></a><pre><span class="Identifier">GodotTypeInfo</span> <span class="Other">=</span> <span class="Keyword">object</span>
   <span class="Identifier">variantType</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">VariantType</span>
   <span class="Identifier">hint</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">GodotPropertyHint</span>
   <span class="Identifier">hintStr</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Comment">## Format depends on the type and the hint.</span>
@@ -1441,9 +1471,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Type information provided to Godot editor
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L79"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L82"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L79" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L82" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1451,22 +1481,22 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="8">
 <h1><a class="toc-backref" href="#8">Vars</a></h1>
 <dl class="item">
-<dt id="classRegistryStatic"><a name="classRegistryStatic"></a><pre><span class="Identifier">classRegistryStatic</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">compileTime</span></div><span class="Other pragmaend">.}</span><span class="Other">:</span> <span class="Identifier">TableRef</span><span class="Other">[</span><span class="Identifier">cstring</span><span class="Other">,</span> <span class="Identifier">ObjectInfo</span><span class="Other">]</span></pre></dt>
+<dt id="classRegistryStatic"><a name="classRegistryStatic"></a><pre><span class="Identifier">classRegistryStatic</span><span class="Other">:</span> <span class="Identifier">TableRef</span><span class="Other">[</span><span class="Identifier">cstring</span><span class="Other">,</span> <span class="Identifier">ObjectInfo</span><span class="Other">]</span></pre></dt>
 <dd>
 Compile-time variable used for implementation of several procedures and macros
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L109"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L115"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L109" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L115" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="refClasses"><a name="refClasses"></a><pre><span class="Identifier">refClasses</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">compileTime</span></div><span class="Other pragmaend">.}</span> <span class="Other">=</span> <span class="Identifier">newSeq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">(</span><span class="Other">)</span></pre></dt>
+<dt id="refClasses"><a name="refClasses"></a><pre><span class="Identifier">refClasses</span> <span class="Other">=</span> <span class="Identifier">newSeq</span><span class="Other">(</span><span class="DecNumber">0</span><span class="Other">)</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L118"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L124"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L118" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L124" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1474,444 +1504,465 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="print"><a name="print,varargs[string,]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">print</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">parts</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Other">`</span><span class="Operator">$</span><span class="Other">`</span><span class="Other">]</span><span class="Other">)</span></pre></dt>
+<dt id="isFinalized"><a name="isFinalized,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isFinalized</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L92"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L92" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="print"><a name="print,varargs[string,]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">print</span><span class="Other">(</span><span class="Identifier">parts</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Other">`</span><span class="Operator">$</span><span class="Other">`</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Prints concatenated <tt class="docutils literal"><span class="pre">parts</span></tt> to Godot log.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L99"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L105"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L99" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L105" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="getClassName"><a name="getClassName,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getClassName</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">o</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
+<dt id="getClassName"><a name="getClassName,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getClassName</span><span class="Other">(</span><span class="Identifier">o</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L120"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L126"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L120" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L126" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="deinit"><a name="deinit,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">deinit</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span></pre></dt>
+<dt id="deinit"><a name="deinit,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">deinit</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Destroy the object. You only need to call this for objects not inherited from Reference, where manual lifecycle control is necessary.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L137"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L143"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L137" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L143" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="nimGodotObjectFinalizer"><a name="nimGodotObjectFinalizer,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">nimGodotObjectFinalizer</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span></pre></dt>
+<dt id="nimGodotObjectFinalizer"><a name="nimGodotObjectFinalizer,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">nimGodotObjectFinalizer</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L144"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L150"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L144" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L150" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="asNimGodotObject"><a name="asNimGodotObject,ptr.GodotObject,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asNimGodotObject</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">godotObject</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span><span class="Other">;</span>
-                                        <span class="Identifier">noRef</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dt id="asNimGodotObject"><a name="asNimGodotObject,ptr.GodotObject,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asNimGodotObject</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">godotObject</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span><span class="Other">;</span>
+                                       <span class="Identifier">forceNativeObject</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 Wraps <tt class="docutils literal"><span class="pre">godotObject</span></tt> into Nim type <tt class="docutils literal"><span class="pre">T</span></tt>. This is used by <a class="reference external" href="godotapigen.html">godotapigen</a> and should rarely be used by anything else.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L235"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L242"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L235" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L242" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="newVariant"><a name="newVariant,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="newVariant"><a name="newVariant,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newVariant</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L251"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L258"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L251" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L258" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="asObject"><a name="asObject,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asObject</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Converts <tt class="docutils literal"><span class="pre">v</span></tt> to object of type <tt class="docutils literal"><span class="pre">T</span></tt>. Returns <tt class="docutils literal"><span class="pre">nil</span></tt> if the conversion cannot be performed (<tt class="docutils literal"><span class="pre">v</span></tt>'s type is not an Object or it's an object of an incompatible type)
-&nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L254"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L254" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="asObject"><a name="asObject,Variant,typedesc[NimGodotObject]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asObject</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">;</span> <span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="asObject"><a name="asObject,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asObject</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Converts <tt class="docutils literal"><span class="pre">v</span></tt> to object of type <tt class="docutils literal"><span class="pre">T</span></tt>. Returns <tt class="docutils literal"><span class="pre">nil</span></tt> if the conversion cannot be performed (<tt class="docutils literal"><span class="pre">v</span></tt>'s type is not an Object or it's an object of an incompatible type)
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L260"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L261"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L260" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L261" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="as"><a name="as,NimGodotObject,typedesc[T]"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Keyword">as</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">;</span> <span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dt id="asObject"><a name="asObject,Variant,typedesc[NimGodotObject]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asObject</span><span class="Other">(</span><span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">;</span> <span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T:type</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+Converts <tt class="docutils literal"><span class="pre">v</span></tt> to object of type <tt class="docutils literal"><span class="pre">T</span></tt>. Returns <tt class="docutils literal"><span class="pre">nil</span></tt> if the conversion cannot be performed (<tt class="docutils literal"><span class="pre">v</span></tt>'s type is not an Object or it's an object of an incompatible type)
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L267"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L267" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="as"><a name="as,NimGodotObject,typedesc[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`as`</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">;</span> <span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 <p>Converts the <tt class="docutils literal"><span class="pre">obj</span></tt> into the specified type. Returns <tt class="docutils literal"><span class="pre">nil</span></tt> if the conversion cannot be performed (the <tt class="docutils literal"><span class="pre">obj</span></tt> is not of the type <tt class="docutils literal"><span class="pre">T</span></tt>)</p>
 <p>This can be used either in dot notation (<tt class="docutils literal"><span class="pre">node.as(Button)</span></tt>) or infix notation (<tt class="docutils literal"><span class="pre">node as Button</span></tt>).</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L266"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L273"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L266" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L273" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="~"><a name="~,NimGodotObject,typedesc[T]"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">~</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">;</span> <span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="of"><a name="of,NimGodotObject,typedesc[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`of`</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">obj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">;</span> <span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Godot-specific inheritance check. You must use this over Nim's standard <tt class="docutils literal"><span class="pre">of</span></tt> operator, because Nim does not know which object your script is attached to in runtime. For example, if you create a <tt class="docutils literal"><span class="pre">gdobj Bullet of Spatial</span></tt> and the <tt class="docutils literal"><span class="pre">Bullet</span></tt> is attached to a <tt class="docutils literal"><span class="pre">MeshInstance</span></tt>, <tt class="docutils literal"><span class="pre">myBullet of MeshInstance</span></tt> will return <tt class="docutils literal"><span class="pre">false</span></tt>, but <tt class="docutils literal"><span class="pre">myBullet ~ MeshInstance</span></tt> will return <tt class="docutils literal"><span class="pre">true</span></tt>. This is going to be changed to <tt class="docutils literal"><span class="pre">of</span></tt> in later versions, when Nim starts supporting overloading <tt class="docutils literal"><span class="pre">of</span></tt> operator.
+Godot-specific inheritance check.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L284"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L291"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L284" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L291" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="getSingleton"><a name="getSingleton,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSingleton</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dt id="getSingleton"><a name="getSingleton,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSingleton</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 Returns singleton of type <tt class="docutils literal"><span class="pre">T</span></tt>. Normally, this should not be used, because <a class="reference external" href="godotapigen.html">godotapigen</a> wraps singleton methods so that singleton objects don't have to be provided as parameters.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L325"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L325"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L325" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="gdnew"><a name="gdnew,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">gdnew</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dt id="gdnew"><a name="gdnew,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">gdnew</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 Instantiates new object of type <tt class="docutils literal"><span class="pre">T</span></tt>.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L372"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L376"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L372" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L376" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="newCallError"><a name="newCallError,VariantCallError"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newCallError</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Identifier">VariantCallError</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">CallError</span></pre></dt>
+<dt id="newCallError"><a name="newCallError,VariantCallError"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newCallError</span><span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Identifier">VariantCallError</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">CallError</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Instantiates <tt class="docutils literal"><span class="pre">CallError</span></tt> from Godot <tt class="docutils literal"><span class="pre">err</span></tt>.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L380"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L384"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L380" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L384" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="newConversionError"><a name="newConversionError,ConversionResult"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newConversionError</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">ValueError</span></pre></dt>
+<dt id="newConversionError"><a name="newConversionError,ConversionResult"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newConversionError</span><span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">ValueError</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Instantiates error raised by <a class="reference external" href="godotapigen.html">godotapigen</a> generated code in case of a conversion error.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L396"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L400"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L396" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L400" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="setGodotObject"><a name="setGodotObject,NimGodotObject,ptr.GodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setGodotObject</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">nimObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">;</span> <span class="Identifier">obj</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setGodotObject"><a name="setGodotObject,NimGodotObject,ptr.GodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setGodotObject</span><span class="Other">(</span><span class="Identifier">nimObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">;</span> <span class="Identifier">obj</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Used from Godot constructor produced by <tt class="docutils literal"><span class="pre">gdobj</span></tt> macro. Do not call.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L409"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L413"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L409" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L413" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="setNativeObject"><a name="setNativeObject,NimGodotObject,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setNativeObject</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">nimObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">;</span> <span class="Identifier">nativeObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="setNativeObject"><a name="setNativeObject,NimGodotObject,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setNativeObject</span><span class="Other">(</span><span class="Identifier">nimObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">;</span> <span class="Identifier">nativeObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Used from Godot constructor produced by <tt class="docutils literal"><span class="pre">gdobj</span></tt> macro. Do not call.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L415"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L419"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L415" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L419" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="removeGodotObject"><a name="removeGodotObject,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">removeGodotObject</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">nimObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="removeGodotObject"><a name="removeGodotObject,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">removeGodotObject</span><span class="Other">(</span><span class="Identifier">nimObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Used from Godot destructor produced by <tt class="docutils literal"><span class="pre">gdobj</span></tt> macro. Do not call.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L421"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L421" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="=="><a name="==,NimGodotObject,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">==</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">other</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Compares objects by referential equality.
-&nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L426"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L426"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L426" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="godotObject"><a name="godotObject,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotObject</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">nimObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="=="><a name="==,NimGodotObject,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`==`</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">other</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+Compares objects by referential equality.
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L431"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L431" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="godotObject"><a name="godotObject,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotObject</span><span class="Other">(</span><span class="Identifier">nimObj</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Returns raw poitner to <tt class="docutils literal"><span class="pre">GodotObject</span></tt>. Use only if you know what you are doing.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L432"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L432" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[NimGodotObject]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-&nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L437"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L437"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L437" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="toVariant"><a name="toVariant,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[NimGodotObject]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L445"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L442"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L445" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L442" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,T,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
+<dt id="toVariant"><a name="toVariant,NimGodotObject"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L451"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L450"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L451" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L450" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="toVariant"><a name="toVariant,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="fromVariant"><a name="fromVariant,T,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">NimGodotObject</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L463"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L456"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L463" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L456" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,Variant,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Variant</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="toVariant"><a name="toVariant,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L469"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L468"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L469" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L468" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[SomeGodotOrNum]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">SomeGodotOrNum</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="fromVariant"><a name="fromVariant,Variant,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Variant</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L473"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L474"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L473" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L474" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[range]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">range</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">VariantType</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[SomeGodotOrNum]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">SomeGodotOrNum</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L530"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L478"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L530" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L478" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="toVariant"><a name="toVariant,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeGodotOrNum</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[range]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">range</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">VariantType</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L537"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L535"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L537" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L535" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,T,Variant_2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeSignedInt</span> <span class="Keyword">or</span> <span class="Identifier">SomeUnsignedInt</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
+<dt id="toVariant"><a name="toVariant,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeGodotOrNum</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L546"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L542"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L546" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L542" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Keyword">enum</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span></pre></dt>
+<dt id="fromVariant"><a name="fromVariant,T,Variant_2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeSignedInt</span> <span class="Keyword">or</span> <span class="Identifier">SomeUnsignedInt</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L563"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L551"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L563" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L551" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="toVariant"><a name="toVariant,T_2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Keyword">enum</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Keyword">enum</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L574"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L568"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L574" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L568" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,T,Variant_3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Keyword">enum</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="toVariant"><a name="toVariant,T_2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Keyword">enum</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L577"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L579"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L577" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L579" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,T,Variant_4"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeFloat</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
+<dt id="fromVariant"><a name="fromVariant,T,Variant_3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Keyword">enum</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L584"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L582"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L584" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L582" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,T,Variant_5"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeGodot</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
+<dt id="fromVariant"><a name="fromVariant,T,Variant_4"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeFloat</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L592"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L589"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L592" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L589" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[string]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="fromVariant"><a name="fromVariant,T,Variant_5"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeGodot</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L650"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L597"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L650" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L597" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="toVariant"><a name="toVariant,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[string]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L653"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L655"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L653" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L655" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,string,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
+<dt id="toVariant"><a name="toVariant,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L656"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L658"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L656" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L658" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[seq]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span></pre></dt>
+<dt id="fromVariant"><a name="fromVariant,string,Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L680"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L661"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L680" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L661" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[array]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">array</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span></pre></dt>
+<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[seq]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L683"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L685"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L683" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L685" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="toVariant"><a name="toVariant,openarray[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">openarray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span></pre></dt>
+<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[array]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">array</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L686"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L688"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L686" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L688" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,seq[T],Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
+<dt id="toVariant"><a name="toVariant,seq[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L693"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L698"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L693" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L698" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,T,Variant_6"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
+<dt id="toVariant"><a name="toVariant,array[I,T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Other">[</span><span class="Identifier">I</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">I</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L708"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L703"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L708" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L703" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[]_2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">Table</span> <span class="Operator">|</span> <span class="Identifier">TableRef</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="fromVariant"><a name="fromVariant,seq[T],Variant"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L726"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L706"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L726" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L706" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="toVariant"><a name="toVariant,T_3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Table</span> <span class="Keyword">or</span> <span class="Identifier">TableRef</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span></pre></dt>
+<dt id="fromVariant"><a name="fromVariant,T,Variant_6"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L729"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L721"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L729" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L721" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="fromVariant"><a name="fromVariant,T,Variant_7"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Table</span> <span class="Keyword">or</span> <span class="Identifier">TableRef</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
+<dt id="godotTypeInfo"><a name="godotTypeInfo,typedesc[]_2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotTypeInfo</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Identifier">Table</span> <span class="Operator">|</span> <span class="Identifier">TableRef</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">GodotTypeInfo</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L739"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L739"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L739" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="getNativeLibHandle"><a name="getNativeLibHandle,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getNativeLibHandle</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">pointer</span></pre></dt>
+<dt id="toVariant"><a name="toVariant,T_3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Table</span> <span class="Keyword">or</span> <span class="Identifier">TableRef</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Variant</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L742"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L742" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="fromVariant"><a name="fromVariant,T,Variant_7"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fromVariant</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Table</span> <span class="Keyword">or</span> <span class="Identifier">TableRef</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Variant</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">ConversionResult</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L752"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L752" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="getNativeLibHandle"><a name="getNativeLibHandle,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getNativeLibHandle</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Returns NativeScript library handle used to register type information in Godot.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L774"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L787"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L774" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L787" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
 </dl></div>
-<div class="section" id="17">
-<h1><a class="toc-backref" href="#17">Templates</a></h1>
+<div class="section" id="18">
+<h1><a class="toc-backref" href="#18">Templates</a></h1>
 <dl class="item">
-<dt id="printWarning"><a name="printWarning.t,typed"></a><pre><span class="Keyword">template</span> <span class="Identifier">printWarning</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">warning</span><span class="Other">:</span> <span class="Identifier">typed</span><span class="Other">)</span></pre></dt>
+<dt id="printWarning"><a name="printWarning.t,typed"></a><pre><span class="Keyword">template</span> <span class="Identifier">printWarning</span><span class="Other">(</span><span class="Identifier">warning</span><span class="Other">:</span> <span class="Identifier">typed</span><span class="Other">)</span></pre></dt>
 <dd>
 Prints <tt class="docutils literal"><span class="pre">warning</span></tt> to Godot log, adding filename and line information.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L89"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L95"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L89" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L95" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="printError"><a name="printError.t,typed"></a><pre><span class="Keyword">template</span> <span class="Identifier">printError</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">error</span><span class="Other">:</span> <span class="Identifier">typed</span><span class="Other">)</span></pre></dt>
+<dt id="printError"><a name="printError.t,typed"></a><pre><span class="Keyword">template</span> <span class="Identifier">printError</span><span class="Other">(</span><span class="Identifier">error</span><span class="Other">:</span> <span class="Identifier">typed</span><span class="Other">)</span></pre></dt>
 <dd>
 Prints <tt class="docutils literal"><span class="pre">error</span></tt> to Godot log, adding filename and line information.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L94"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L100"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L94" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L100" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="registerClass"><a name="registerClass.t,typedesc,cstring,bool"></a><pre><span class="Keyword">template</span> <span class="Identifier">registerClass</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">;</span> <span class="Identifier">godotClassName</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">native</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span></pre></dt>
+<dt id="registerClass"><a name="registerClass.t,typedesc,cstring,bool"></a><pre><span class="Keyword">template</span> <span class="Identifier">registerClass</span><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">;</span> <span class="Identifier">godotClassName</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">native</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span></pre></dt>
 <dd>
 Registers the specified Godot type. Used by <tt class="docutils literal"><span class="pre">gdobj</span></tt> macro and <a class="reference external" href="godotapigen.html">godotapigen</a>.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/nim/godotnim.nim#L187"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/nim/godotnim.nim#L194"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L187" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/nim/godotnim.nim#L194" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1924,7 +1975,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-23 14:53:55 UTC</small>
+        <small>Made with Nim. Generated: 2017-12-10 10:58:44 UTC</small>
       </div>
     </div>
   </div>

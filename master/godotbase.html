@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
 
 <!-- Google fonts -->
-<link href='https://fonts.googleapis.com/css?family=Raleway:400,600,900' rel='stylesheet' type='text/css'/>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,600,900' rel='stylesheet' type='text/css'/>
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
@@ -45,18 +45,19 @@ html {
 
 /* Where we want fancier font if available */
 h1, h2, h3, h4, h5, h6, p.module-desc, table.docinfo + blockquote p, table.docinfo blockquote p, h1 + blockquote p {
-  font-family: "Raleway", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important; }
 
 h1.title {
   font-weight: 900; }
 
 body {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
-  color: #666;
-  background-color: rgba(252, 248, 244, 0.75); }
+  color: #444;
+  letter-spacing: 0.15px;
+  background-color: rgba(252, 248, 244, 0.45); }
 
 /* Skeleton grid */
 .container {
@@ -172,8 +173,8 @@ cite {
   font-style: italic !important; }
 
 dt > pre {
-  border-color: rgba(0, 0, 0, 0.15);
-  background-color: transparent;
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
   margin: 15px 0px 5px; }
 
 dd > pre {
@@ -189,6 +190,17 @@ dd > pre {
 .line-nums-table {
   width: 100%;
   table-layout: fixed; }
+
+/* Nim search input */
+div#searchInput {
+  margin-bottom: 8px;
+}
+div#searchInput input#searchInput {
+  width: 10em;
+}
+div.search-groupby {
+  margin-bottom: 8px;
+}
 
 table.line-nums-table {
   border-radius: 4px;
@@ -333,7 +345,7 @@ img {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
 
 p {
-  margin: 0 0 12px; }
+  margin: 0 0 8px; }
 
 small {
   font-size: 85%; }
@@ -353,7 +365,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   line-height: 20px;
   color: inherit;
@@ -361,6 +373,7 @@ h6 {
 
 h1 {
   font-size: 2em;
+  font-weight: 400;
   padding-bottom: .15em;
   border-bottom: 1px solid #aaaaaa;
   margin-top: 1.0em;
@@ -491,13 +504,13 @@ pre {
   box-sizing: border-box;
   min-width: calc(100% - 19.5px);
   padding: 9.5px;
-  margin: 0.25em 10px 0.25em 10px;
-  font-size: 14px;
+  margin: 0.25em 10px 10px 10px;
+  font-size: 15px;
   line-height: 20px;
   white-space: pre !important;
   overflow-y: hidden;
   overflow-x: visible;
-  background-color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.01);
   border: 1px solid #cccccc;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -776,14 +789,14 @@ div.admonition p.admonition-title, div.hint p.admonition-title,
 div.important p.admonition-title, div.note p.admonition-title,
 div.tip p.admonition-title {
   font-weight: bold;
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 div.attention p.admonition-title, div.caution p.admonition-title,
 div.danger p.admonition-title, div.error p.admonition-title,
 div.warning p.admonition-title, .code .error {
   color: #b30000;
   font-weight: bold;
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 /* Uncomment (and remove this text!) to get reduced vertical space in
    compound paragraphs.
@@ -830,7 +843,7 @@ div.sidebar {
   clear: right; }
 
 div.sidebar p.rubric {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-size: medium; }
 
 div.system-messages {
@@ -937,12 +950,12 @@ p.rubric {
   text-align: center; }
 
 p.sidebar-title {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: larger; }
 
 p.sidebar-subtitle {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold; }
 
 p.topic-title {
@@ -984,15 +997,15 @@ pre.code .inserted, code .inserted {
   background-color: #A3D289; }
 
 span.classifier {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-style: oblique; }
 
 span.classifier-delimiter {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold; }
 
 span.interpreted {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 span.option {
   white-space: nowrap; }
@@ -1015,7 +1028,7 @@ table.docinfo {
   margin: 0em;
   margin-top: 2em;
   margin-bottom: 2em;
-  font-family: "Raleway", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important;
   color: #444444; }
 
 table.docutils {
@@ -1145,21 +1158,26 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
   background-repeat: no-repeat;
   background-image: url("data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA==");
   margin-bottom: -5px; }
-  div.pragma {
-    display: none;
-  }
-  span.pragmabegin {
-    cursor: pointer;
-  }
-  span.pragmaend {
-    cursor: pointer;
-  }
+div.pragma {
+  display: none;
+}
+span.pragmabegin {
+  cursor: pointer;
+}
+span.pragmaend {
+  cursor: pointer;
+}
 
 div.search_results {
   background-color: antiquewhite;
   margin: 3em;
   padding: 1em;
   border: 1px solid #4d4d4d;
+}
+
+div#global-links ul {
+  margin-left: 0;
+  list-style-type: none;
 }
 </style>
 
@@ -1198,7 +1216,11 @@ function main() {
     <h1 class="title">Module godotbase</h1>
     <div class="row">
   <div class="three columns">
-  <div>
+  <div id="global-links">
+    <ul class="simple">
+    </ul>
+  </div>
+  <div id="searchInput">
     Search: <input type="text" id="searchInput"
       onkeyup="search()" />
   </div>
@@ -1217,53 +1239,20 @@ function main() {
   </ul>
 </li>
 <li>
-  <a class="reference reference-toplevel" href="#7" id="57">Types</a>
-  <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#Error"
-    title="Error* = enum
-  OK, Failed,                  ## Generic fail error
-  Unavailable,                ## What is requested is unsupported&#x2F;unavailable
-  Unconfigured,               ## The object being used hasnt been properly set up yet
-  Unauthorized,               ## Missing credentials for requested resource
-  ParameterRangeError,        ## Parameter given out of range (5)
-  OutOfMemory,                ## Out of memory
-  FileNotFound, FileBadDrive, FileBadPath, FileNoPermission, ## (10)
-  FileAlreadyInUse, FileCantOpen, FileCantWrite, FileCantRead, FileUnrecognized, ## (15)
-  FileCorrupt, FileMissingDependencies, FileEOF, CantOpen, ## Can&#x27;t open a resource&#x2F;socket&#x2F;file
-  CantCreate,                 ## (20)
-  QueryFailed, AlreadyInUse, Locked, ## resource is locked
-  Timeout, CantConnect,        ## (25)
-  CantResolve, ConnectionError, CantAquireResource, CantFork, InvalidData, ## Data passed is invalid	(30)
-  InvalidParameter,           ## Parameter passed is invalid
-  AlreadyExists,              ## When adding, item already exists
-  DoesNotExist,               ## When retrieving&#x2F;erasing, it item does not exist
-  DatabaseCantRead,           ## Database is full
-  DatabaseCantWrite,          ## Database is full	(35)
-  CompilationFailed, MethodNotFound, LinkFailed, ScriptFailed, CyclicLink, ## (40)
-  InvalidDeclaration, DuplicateSymbol, PauseError, Busy, Skip, ## (45)
-  Help,                       ## user requested help!!
-  Bug, ## a bug in the software certainly happened, due to a double
-      ## check failing or unexpected behavior.
-  PrinterOnFire,              ## the parallel port printer is engulfed in flames
-  WTF                         ## shit happens, has never been used, though"><wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
-
-  </ul>
-</li>
-<li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#isEqualApprox,float32,float32"
-    title="isEqualApprox*(a, b: float32): bool"><wbr />is<wbr />Equal<wbr />Approx<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="isEqualApprox(a, b: float32): bool"><wbr />is<wbr />Equal<wbr />Approx<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#isEqualApprox,float64,float64"
-    title="isEqualApprox*(a, b: float64): bool"><wbr />is<wbr />Equal<wbr />Approx<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="isEqualApprox(a, b: float64): bool"><wbr />is<wbr />Equal<wbr />Approx<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#sign,float32"
-    title="sign*(a: float32): float32"><wbr />sign<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="sign(a: float32): float32"><wbr />sign<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#sign,float64"
-    title="sign*(a: float64): float64"><wbr />sign<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="sign(a: float64): float64"><wbr />sign<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#stepify,float64,float64"
-    title="stepify*(value, step: float64): float64"><wbr />stepify<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="stepify(value, step: float64): float64"><wbr />stepify<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#stepify,float32,float32"
-    title="stepify*(value, step: float32): float32"><wbr />stepify<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="stepify(value, step: float32): float32"><wbr />stepify<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1279,100 +1268,61 @@ function main() {
 <dl class="item">
 <a class="reference external" href="math.html">math</a>
 </dl></div>
-<div class="section" id="7">
-<h1><a class="toc-backref" href="#7">Types</a></h1>
-<dl class="item">
-<dt id="Error"><a name="Error"></a><pre><span class="Identifier">Error</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">sizeof</span><span class="Other">(</span><span class="Identifier">cint</span><span class="Other">)</span><span class="Other">,</span> <span class="Identifier">pure</span></div><span class="Other pragmaend">.}</span> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">OK</span><span class="Other">,</span> <span class="Identifier">Failed</span><span class="Other">,</span>                  <span class="Comment">## Generic fail error</span>
-  <span class="Identifier">Unavailable</span><span class="Other">,</span>                <span class="Comment">## What is requested is unsupported/unavailable</span>
-  <span class="Identifier">Unconfigured</span><span class="Other">,</span>               <span class="Comment">## The object being used hasnt been properly set up yet</span>
-  <span class="Identifier">Unauthorized</span><span class="Other">,</span>               <span class="Comment">## Missing credentials for requested resource</span>
-  <span class="Identifier">ParameterRangeError</span><span class="Other">,</span>        <span class="Comment">## Parameter given out of range (5)</span>
-  <span class="Identifier">OutOfMemory</span><span class="Other">,</span>                <span class="Comment">## Out of memory</span>
-  <span class="Identifier">FileNotFound</span><span class="Other">,</span> <span class="Identifier">FileBadDrive</span><span class="Other">,</span> <span class="Identifier">FileBadPath</span><span class="Other">,</span> <span class="Identifier">FileNoPermission</span><span class="Other">,</span> <span class="Comment">## (10)</span>
-  <span class="Identifier">FileAlreadyInUse</span><span class="Other">,</span> <span class="Identifier">FileCantOpen</span><span class="Other">,</span> <span class="Identifier">FileCantWrite</span><span class="Other">,</span> <span class="Identifier">FileCantRead</span><span class="Other">,</span> <span class="Identifier">FileUnrecognized</span><span class="Other">,</span> <span class="Comment">## (15)</span>
-  <span class="Identifier">FileCorrupt</span><span class="Other">,</span> <span class="Identifier">FileMissingDependencies</span><span class="Other">,</span> <span class="Identifier">FileEOF</span><span class="Other">,</span> <span class="Identifier">CantOpen</span><span class="Other">,</span> <span class="Comment">## Can't open a resource/socket/file</span>
-  <span class="Identifier">CantCreate</span><span class="Other">,</span>                 <span class="Comment">## (20)</span>
-  <span class="Identifier">QueryFailed</span><span class="Other">,</span> <span class="Identifier">AlreadyInUse</span><span class="Other">,</span> <span class="Identifier">Locked</span><span class="Other">,</span> <span class="Comment">## resource is locked</span>
-  <span class="Identifier">Timeout</span><span class="Other">,</span> <span class="Identifier">CantConnect</span><span class="Other">,</span>        <span class="Comment">## (25)</span>
-  <span class="Identifier">CantResolve</span><span class="Other">,</span> <span class="Identifier">ConnectionError</span><span class="Other">,</span> <span class="Identifier">CantAquireResource</span><span class="Other">,</span> <span class="Identifier">CantFork</span><span class="Other">,</span> <span class="Identifier">InvalidData</span><span class="Other">,</span> <span class="Comment">## Data passed is invalid	(30)</span>
-  <span class="Identifier">InvalidParameter</span><span class="Other">,</span>           <span class="Comment">## Parameter passed is invalid</span>
-  <span class="Identifier">AlreadyExists</span><span class="Other">,</span>              <span class="Comment">## When adding, item already exists</span>
-  <span class="Identifier">DoesNotExist</span><span class="Other">,</span>               <span class="Comment">## When retrieving/erasing, it item does not exist</span>
-  <span class="Identifier">DatabaseCantRead</span><span class="Other">,</span>           <span class="Comment">## Database is full</span>
-  <span class="Identifier">DatabaseCantWrite</span><span class="Other">,</span>          <span class="Comment">## Database is full	(35)</span>
-  <span class="Identifier">CompilationFailed</span><span class="Other">,</span> <span class="Identifier">MethodNotFound</span><span class="Other">,</span> <span class="Identifier">LinkFailed</span><span class="Other">,</span> <span class="Identifier">ScriptFailed</span><span class="Other">,</span> <span class="Identifier">CyclicLink</span><span class="Other">,</span> <span class="Comment">## (40)</span>
-  <span class="Identifier">InvalidDeclaration</span><span class="Other">,</span> <span class="Identifier">DuplicateSymbol</span><span class="Other">,</span> <span class="Identifier">PauseError</span><span class="Other">,</span> <span class="Identifier">Busy</span><span class="Other">,</span> <span class="Identifier">Skip</span><span class="Other">,</span> <span class="Comment">## (45)</span>
-  <span class="Identifier">Help</span><span class="Other">,</span>                       <span class="Comment">## user requested help!!</span>
-  <span class="Identifier">Bug</span><span class="Other">,</span> <span class="Comment">## a bug in the software certainly happened, due to a double</span>
-      <span class="Comment">## check failing or unexpected behavior.</span>
-  <span class="Identifier">PrinterOnFire</span><span class="Other">,</span>              <span class="Comment">## the parallel port printer is engulfed in flames</span>
-  <span class="Identifier">WTF</span>                         <span class="Comment">## shit happens, has never been used, though</span></pre></dt>
-<dd>
-
-&nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/godotbase.nim#L6"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L6" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-
-</dl></div>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="isEqualApprox"><a name="isEqualApprox,float32,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isEqualApprox</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="isEqualApprox"><a name="isEqualApprox,float32,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isEqualApprox</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/godotbase.nim#L63"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/godotbase.nim#L8"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L8" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="isEqualApprox"><a name="isEqualApprox,float64,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isEqualApprox</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="isEqualApprox"><a name="isEqualApprox,float64,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isEqualApprox</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/godotbase.nim#L66"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/godotbase.nim#L11"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="sign"><a name="sign,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">sign</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="sign"><a name="sign,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">sign</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/godotbase.nim#L69"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/godotbase.nim#L14"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="sign"><a name="sign,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">sign</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="sign"><a name="sign,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">sign</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/godotbase.nim#L72"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/godotbase.nim#L17"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="stepify"><a name="stepify,float64,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stepify</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">value</span><span class="Other">,</span> <span class="Identifier">step</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span></pre></dt>
+<dt id="stepify"><a name="stepify,float64,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stepify</span><span class="Other">(</span><span class="Identifier">value</span><span class="Other">,</span> <span class="Identifier">step</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/godotbase.nim#L75"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/godotbase.nim#L20"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L75" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="stepify"><a name="stepify,float32,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stepify</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">value</span><span class="Other">,</span> <span class="Identifier">step</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span></pre></dt>
+<dt id="stepify"><a name="stepify,float32,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stepify</span><span class="Other">(</span><span class="Identifier">value</span><span class="Other">,</span> <span class="Identifier">step</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/godotbase.nim#L81"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/godotbase.nim#L26"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/godotbase.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1385,7 +1335,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-23 14:53:55 UTC</small>
+        <small>Made with Nim. Generated: 2017-12-10 10:58:33 UTC</small>
       </div>
     </div>
   </div>

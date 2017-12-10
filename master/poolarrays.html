@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
 
 <!-- Google fonts -->
-<link href='https://fonts.googleapis.com/css?family=Raleway:400,600,900' rel='stylesheet' type='text/css'/>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,600,900' rel='stylesheet' type='text/css'/>
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
@@ -45,18 +45,19 @@ html {
 
 /* Where we want fancier font if available */
 h1, h2, h3, h4, h5, h6, p.module-desc, table.docinfo + blockquote p, table.docinfo blockquote p, h1 + blockquote p {
-  font-family: "Raleway", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important; }
 
 h1.title {
   font-weight: 900; }
 
 body {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
-  color: #666;
-  background-color: rgba(252, 248, 244, 0.75); }
+  color: #444;
+  letter-spacing: 0.15px;
+  background-color: rgba(252, 248, 244, 0.45); }
 
 /* Skeleton grid */
 .container {
@@ -172,8 +173,8 @@ cite {
   font-style: italic !important; }
 
 dt > pre {
-  border-color: rgba(0, 0, 0, 0.15);
-  background-color: transparent;
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
   margin: 15px 0px 5px; }
 
 dd > pre {
@@ -189,6 +190,17 @@ dd > pre {
 .line-nums-table {
   width: 100%;
   table-layout: fixed; }
+
+/* Nim search input */
+div#searchInput {
+  margin-bottom: 8px;
+}
+div#searchInput input#searchInput {
+  width: 10em;
+}
+div.search-groupby {
+  margin-bottom: 8px;
+}
 
 table.line-nums-table {
   border-radius: 4px;
@@ -333,7 +345,7 @@ img {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
 
 p {
-  margin: 0 0 12px; }
+  margin: 0 0 8px; }
 
 small {
   font-size: 85%; }
@@ -353,7 +365,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   line-height: 20px;
   color: inherit;
@@ -361,6 +373,7 @@ h6 {
 
 h1 {
   font-size: 2em;
+  font-weight: 400;
   padding-bottom: .15em;
   border-bottom: 1px solid #aaaaaa;
   margin-top: 1.0em;
@@ -491,13 +504,13 @@ pre {
   box-sizing: border-box;
   min-width: calc(100% - 19.5px);
   padding: 9.5px;
-  margin: 0.25em 10px 0.25em 10px;
-  font-size: 14px;
+  margin: 0.25em 10px 10px 10px;
+  font-size: 15px;
   line-height: 20px;
   white-space: pre !important;
   overflow-y: hidden;
   overflow-x: visible;
-  background-color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.01);
   border: 1px solid #cccccc;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -776,14 +789,14 @@ div.admonition p.admonition-title, div.hint p.admonition-title,
 div.important p.admonition-title, div.note p.admonition-title,
 div.tip p.admonition-title {
   font-weight: bold;
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 div.attention p.admonition-title, div.caution p.admonition-title,
 div.danger p.admonition-title, div.error p.admonition-title,
 div.warning p.admonition-title, .code .error {
   color: #b30000;
   font-weight: bold;
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 /* Uncomment (and remove this text!) to get reduced vertical space in
    compound paragraphs.
@@ -830,7 +843,7 @@ div.sidebar {
   clear: right; }
 
 div.sidebar p.rubric {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-size: medium; }
 
 div.system-messages {
@@ -937,12 +950,12 @@ p.rubric {
   text-align: center; }
 
 p.sidebar-title {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: larger; }
 
 p.sidebar-subtitle {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold; }
 
 p.topic-title {
@@ -984,15 +997,15 @@ pre.code .inserted, code .inserted {
   background-color: #A3D289; }
 
 span.classifier {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-style: oblique; }
 
 span.classifier-delimiter {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold; }
 
 span.interpreted {
-  font-family: "Helvetica Neue", "HelveticaNeue", "Raleway", Helvetica, Arial, sans-serif; }
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 span.option {
   white-space: nowrap; }
@@ -1015,7 +1028,7 @@ table.docinfo {
   margin: 0em;
   margin-top: 2em;
   margin-bottom: 2em;
-  font-family: "Raleway", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important;
   color: #444444; }
 
 table.docutils {
@@ -1145,21 +1158,26 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
   background-repeat: no-repeat;
   background-image: url("data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA==");
   margin-bottom: -5px; }
-  div.pragma {
-    display: none;
-  }
-  span.pragmabegin {
-    cursor: pointer;
-  }
-  span.pragmaend {
-    cursor: pointer;
-  }
+div.pragma {
+  display: none;
+}
+span.pragmabegin {
+  cursor: pointer;
+}
+span.pragmaend {
+  cursor: pointer;
+}
 
 div.search_results {
   background-color: antiquewhite;
   margin: 3em;
   padding: 1em;
   border: 1px solid #4d4d4d;
+}
+
+div#global-links ul {
+  margin-left: 0;
+  list-style-type: none;
 }
 </style>
 
@@ -1198,7 +1216,11 @@ function main() {
     <h1 class="title">Module poolarrays</h1>
     <div class="row">
   <div class="three columns">
-  <div>
+  <div id="global-links">
+    <ul class="simple">
+    </ul>
+  </div>
+  <div id="searchInput">
     Search: <input type="text" id="searchInput"
       onkeyup="search()" />
   </div>
@@ -1217,28 +1239,251 @@ function main() {
   </ul>
 </li>
 <li>
-  <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
+  <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#add,PoolStringArray,string"
-    title="add*(self: var PoolStringArray; data: string)"><wbr />add<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#addFirst,PoolStringArray,string"
-    title="addFirst*(self: var PoolStringArray; data: string)"><wbr />add<wbr />First<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#insert,PoolStringArray,int,string"
-    title="insert*(self: var PoolStringArray; idx: int; data: string): Error"><wbr />insert<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#[]=,PoolStringArray,int,string"
-    title="`[]=`*(self: var PoolStringArray; idx: int; data: string)">`<wbr />[]=`<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#[],PoolStringArray,int"
-    title="`[]`*(self: PoolStringArray; idx: int): string">`<wbr />[]`<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#PoolByteArray"
+    title="PoolByteArray = ref object
+  godotPoolByteArray: GodotPoolByteArray"><wbr />Pool<wbr />Byte<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#PoolIntArray"
+    title="PoolIntArray = ref object
+  godotPoolIntArray: GodotPoolIntArray"><wbr />Pool<wbr />Int<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#PoolRealArray"
+    title="PoolRealArray = ref object
+  godotPoolRealArray: GodotPoolRealArray"><wbr />Pool<wbr />Real<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#PoolVector2Array"
+    title="PoolVector2Array = ref object
+  godotPoolVector2Array: GodotPoolVector2Array"><wbr />Pool<wbr />Vector2Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#PoolVector3Array"
+    title="PoolVector3Array = ref object
+  godotPoolVector3Array: GodotPoolVector3Array"><wbr />Pool<wbr />Vector3Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#PoolColorArray"
+    title="PoolColorArray = ref object
+  godotPoolColorArray: GodotPoolColorArray"><wbr />Pool<wbr />Color<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#PoolStringArray"
+    title="PoolStringArray = ref object
+  godotPoolStringArray: GodotPoolStringArray"><wbr />Pool<wbr />String<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
 <li>
-  <a class="reference reference-toplevel" href="#14" id="64">Iterators</a>
+  <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#items.i,PoolStringArray"
-    title="items*(arr: PoolStringArray): string"><wbr />items<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#newPoolByteArray,"
+    title="newPoolByteArray(): PoolByteArray"><wbr />new<wbr />Pool<wbr />Byte<wbr />Array<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#godotPoolByteArray,PoolByteArray"
+    title="godotPoolByteArray(self126086: PoolByteArray): ptr GodotPoolByteArray"><wbr />godot<wbr />Pool<wbr />Byte<wbr />Array<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#newPoolByteArray,GodotPoolByteArray"
+    title="newPoolByteArray(arr126088: GodotPoolByteArray): PoolByteArray"><wbr />new<wbr />Pool<wbr />Byte<wbr />Array<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#newPoolIntArray,"
+    title="newPoolIntArray(): PoolIntArray"><wbr />new<wbr />Pool<wbr />Int<wbr />Array<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#godotPoolIntArray,PoolIntArray"
+    title="godotPoolIntArray(self126147: PoolIntArray): ptr GodotPoolIntArray"><wbr />godot<wbr />Pool<wbr />Int<wbr />Array<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#newPoolIntArray,GodotPoolIntArray"
+    title="newPoolIntArray(arr126149: GodotPoolIntArray): PoolIntArray"><wbr />new<wbr />Pool<wbr />Int<wbr />Array<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#newPoolRealArray,"
+    title="newPoolRealArray(): PoolRealArray"><wbr />new<wbr />Pool<wbr />Real<wbr />Array<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#godotPoolRealArray,PoolRealArray"
+    title="godotPoolRealArray(self126210: PoolRealArray): ptr GodotPoolRealArray"><wbr />godot<wbr />Pool<wbr />Real<wbr />Array<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#newPoolRealArray,GodotPoolRealArray"
+    title="newPoolRealArray(arr126212: GodotPoolRealArray): PoolRealArray"><wbr />new<wbr />Pool<wbr />Real<wbr />Array<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#newPoolVector2Array,"
+    title="newPoolVector2Array(): PoolVector2Array"><wbr />new<wbr />Pool<wbr />Vector2Array<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#godotPoolVector2Array,PoolVector2Array"
+    title="godotPoolVector2Array(self126273: PoolVector2Array): ptr GodotPoolVector2Array"><wbr />godot<wbr />Pool<wbr />Vector2Array<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#newPoolVector2Array,GodotPoolVector2Array"
+    title="newPoolVector2Array(arr126275: GodotPoolVector2Array): PoolVector2Array"><wbr />new<wbr />Pool<wbr />Vector2Array<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#newPoolVector3Array,"
+    title="newPoolVector3Array(): PoolVector3Array"><wbr />new<wbr />Pool<wbr />Vector3Array<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#godotPoolVector3Array,PoolVector3Array"
+    title="godotPoolVector3Array(self126336: PoolVector3Array): ptr GodotPoolVector3Array"><wbr />godot<wbr />Pool<wbr />Vector3Array<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#newPoolVector3Array,GodotPoolVector3Array"
+    title="newPoolVector3Array(arr126338: GodotPoolVector3Array): PoolVector3Array"><wbr />new<wbr />Pool<wbr />Vector3Array<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#newPoolColorArray,"
+    title="newPoolColorArray(): PoolColorArray"><wbr />new<wbr />Pool<wbr />Color<wbr />Array<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#godotPoolColorArray,PoolColorArray"
+    title="godotPoolColorArray(self126399: PoolColorArray): ptr GodotPoolColorArray"><wbr />godot<wbr />Pool<wbr />Color<wbr />Array<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#newPoolColorArray,GodotPoolColorArray"
+    title="newPoolColorArray(arr126401: GodotPoolColorArray): PoolColorArray"><wbr />new<wbr />Pool<wbr />Color<wbr />Array<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#newPoolStringArray,"
+    title="newPoolStringArray(): PoolStringArray"><wbr />new<wbr />Pool<wbr />String<wbr />Array<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#godotPoolStringArray,PoolStringArray"
+    title="godotPoolStringArray(self126462: PoolStringArray): ptr GodotPoolStringArray"><wbr />godot<wbr />Pool<wbr />String<wbr />Array<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#newPoolStringArray,GodotPoolStringArray"
+    title="newPoolStringArray(arr126464: GodotPoolStringArray): PoolStringArray"><wbr />new<wbr />Pool<wbr />String<wbr />Array<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#newPoolByteArray,Array"
+    title="newPoolByteArray(arr171002: Array): PoolByteArray"><wbr />new<wbr />Pool<wbr />Byte<wbr />Array<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#add,PoolByteArray,PoolByteArray"
+    title="add(self171004: var PoolByteArray; arr171006: PoolByteArray)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#delete,PoolByteArray,int"
+    title="delete(self171008: var PoolByteArray; idx171010: int)"><wbr />delete<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#reverse,PoolByteArray"
+    title="reverse(self171012: var PoolByteArray)"><wbr />reverse<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#setLen,PoolByteArray,int"
+    title="setLen(self171014: var PoolByteArray; size171016: int)"><wbr />set<wbr />Len<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#len,PoolByteArray"
+    title="len(self171018: PoolByteArray): int"><wbr />len<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#add,PoolByteArray,uint8"
+    title="add(self171020: var PoolByteArray; data171022: uint8)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#insert,PoolByteArray,int,uint8"
+    title="insert(self171024: var PoolByteArray; idx171026: int; data171028: uint8): Error"><wbr />insert<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#[]=,PoolByteArray,int,uint8"
+    title="`[]=`(self171030: var PoolByteArray; idx171032: int; data171034: uint8)"><wbr />`[]=`<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#[],PoolByteArray,int"
+    title="`[]`(self171036: PoolByteArray; idx171038: int): uint8"><wbr />`[]`<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#newPoolIntArray,Array"
+    title="newPoolIntArray(arr171202: Array): PoolIntArray"><wbr />new<wbr />Pool<wbr />Int<wbr />Array<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#add,PoolIntArray,PoolIntArray"
+    title="add(self171204: var PoolIntArray; arr171206: PoolIntArray)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#delete,PoolIntArray,int"
+    title="delete(self171208: var PoolIntArray; idx171210: int)"><wbr />delete<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#reverse,PoolIntArray"
+    title="reverse(self171212: var PoolIntArray)"><wbr />reverse<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#setLen,PoolIntArray,int"
+    title="setLen(self171214: var PoolIntArray; size171216: int)"><wbr />set<wbr />Len<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#len,PoolIntArray"
+    title="len(self171218: PoolIntArray): int"><wbr />len<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#add,PoolIntArray,cint"
+    title="add(self171220: var PoolIntArray; data171222: cint)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#insert,PoolIntArray,int,cint"
+    title="insert(self171224: var PoolIntArray; idx171226: int; data171228: cint): Error"><wbr />insert<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#[]=,PoolIntArray,int,cint"
+    title="`[]=`(self171230: var PoolIntArray; idx171232: int; data171234: cint)"><wbr />`[]=`<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#[],PoolIntArray,int"
+    title="`[]`(self171236: PoolIntArray; idx171238: int): cint"><wbr />`[]`<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#newPoolRealArray,Array"
+    title="newPoolRealArray(arr171402: Array): PoolRealArray"><wbr />new<wbr />Pool<wbr />Real<wbr />Array<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#add,PoolRealArray,PoolRealArray"
+    title="add(self171404: var PoolRealArray; arr171406: PoolRealArray)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#delete,PoolRealArray,int"
+    title="delete(self171408: var PoolRealArray; idx171410: int)"><wbr />delete<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#reverse,PoolRealArray"
+    title="reverse(self171412: var PoolRealArray)"><wbr />reverse<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#setLen,PoolRealArray,int"
+    title="setLen(self171414: var PoolRealArray; size171416: int)"><wbr />set<wbr />Len<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#len,PoolRealArray"
+    title="len(self171418: PoolRealArray): int"><wbr />len<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#add,PoolRealArray,float64"
+    title="add(self171420: var PoolRealArray; data171422: float64)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#insert,PoolRealArray,int,float64"
+    title="insert(self171424: var PoolRealArray; idx171426: int; data171428: float64): Error"><wbr />insert<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#[]=,PoolRealArray,int,float64"
+    title="`[]=`(self171430: var PoolRealArray; idx171432: int; data171434: float64)"><wbr />`[]=`<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#[],PoolRealArray,int"
+    title="`[]`(self171436: PoolRealArray; idx171438: int): float64"><wbr />`[]`<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#newPoolVector2Array,Array"
+    title="newPoolVector2Array(arr171602: Array): PoolVector2Array"><wbr />new<wbr />Pool<wbr />Vector2Array<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#add,PoolVector2Array,PoolVector2Array"
+    title="add(self171604: var PoolVector2Array; arr171606: PoolVector2Array)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#delete,PoolVector2Array,int"
+    title="delete(self171608: var PoolVector2Array; idx171610: int)"><wbr />delete<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#reverse,PoolVector2Array"
+    title="reverse(self171612: var PoolVector2Array)"><wbr />reverse<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#setLen,PoolVector2Array,int"
+    title="setLen(self171614: var PoolVector2Array; size171616: int)"><wbr />set<wbr />Len<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#len,PoolVector2Array"
+    title="len(self171618: PoolVector2Array): int"><wbr />len<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#add,PoolVector2Array,Vector2"
+    title="add(self171620: var PoolVector2Array; data171622: Vector2)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#insert,PoolVector2Array,int,Vector2"
+    title="insert(self171624: var PoolVector2Array; idx171626: int; data171628: Vector2): Error"><wbr />insert<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#[]=,PoolVector2Array,int,Vector2"
+    title="`[]=`(self171630: var PoolVector2Array; idx171632: int; data171634: Vector2)"><wbr />`[]=`<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#[],PoolVector2Array,int"
+    title="`[]`(self171636: PoolVector2Array; idx171638: int): Vector2"><wbr />`[]`<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#newPoolVector3Array,Array"
+    title="newPoolVector3Array(arr171802: Array): PoolVector3Array"><wbr />new<wbr />Pool<wbr />Vector3Array<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#add,PoolVector3Array,PoolVector3Array"
+    title="add(self171804: var PoolVector3Array; arr171806: PoolVector3Array)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#delete,PoolVector3Array,int"
+    title="delete(self171808: var PoolVector3Array; idx171810: int)"><wbr />delete<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#reverse,PoolVector3Array"
+    title="reverse(self171812: var PoolVector3Array)"><wbr />reverse<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#setLen,PoolVector3Array,int"
+    title="setLen(self171814: var PoolVector3Array; size171816: int)"><wbr />set<wbr />Len<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#len,PoolVector3Array"
+    title="len(self171818: PoolVector3Array): int"><wbr />len<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#add,PoolVector3Array,Vector3"
+    title="add(self171820: var PoolVector3Array; data171822: Vector3)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#insert,PoolVector3Array,int,Vector3"
+    title="insert(self171824: var PoolVector3Array; idx171826: int; data171828: Vector3): Error"><wbr />insert<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#[]=,PoolVector3Array,int,Vector3"
+    title="`[]=`(self171830: var PoolVector3Array; idx171832: int; data171834: Vector3)"><wbr />`[]=`<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#[],PoolVector3Array,int"
+    title="`[]`(self171836: PoolVector3Array; idx171838: int): Vector3"><wbr />`[]`<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#newPoolColorArray,Array"
+    title="newPoolColorArray(arr172002: Array): PoolColorArray"><wbr />new<wbr />Pool<wbr />Color<wbr />Array<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#add,PoolColorArray,PoolColorArray"
+    title="add(self172004: var PoolColorArray; arr172006: PoolColorArray)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#delete,PoolColorArray,int"
+    title="delete(self172008: var PoolColorArray; idx172010: int)"><wbr />delete<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#reverse,PoolColorArray"
+    title="reverse(self172012: var PoolColorArray)"><wbr />reverse<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#setLen,PoolColorArray,int"
+    title="setLen(self172014: var PoolColorArray; size172016: int)"><wbr />set<wbr />Len<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#len,PoolColorArray"
+    title="len(self172018: PoolColorArray): int"><wbr />len<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#add,PoolColorArray,Color"
+    title="add(self172020: var PoolColorArray; data172022: Color)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#insert,PoolColorArray,int,Color"
+    title="insert(self172024: var PoolColorArray; idx172026: int; data172028: Color): Error"><wbr />insert<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#[]=,PoolColorArray,int,Color"
+    title="`[]=`(self172030: var PoolColorArray; idx172032: int; data172034: Color)"><wbr />`[]=`<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#[],PoolColorArray,int"
+    title="`[]`(self172036: PoolColorArray; idx172038: int): Color"><wbr />`[]`<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#newPoolStringArray,Array"
+    title="newPoolStringArray(arr172202: Array): PoolStringArray"><wbr />new<wbr />Pool<wbr />String<wbr />Array<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#add,PoolStringArray,PoolStringArray"
+    title="add(self172204: var PoolStringArray; arr172206: PoolStringArray)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#delete,PoolStringArray,int"
+    title="delete(self172208: var PoolStringArray; idx172210: int)"><wbr />delete<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#reverse,PoolStringArray"
+    title="reverse(self172212: var PoolStringArray)"><wbr />reverse<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#setLen,PoolStringArray,int"
+    title="setLen(self172214: var PoolStringArray; size172216: int)"><wbr />set<wbr />Len<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#len,PoolStringArray"
+    title="len(self172218: PoolStringArray): int"><wbr />len<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#add,PoolStringArray,string"
+    title="add(self: var PoolStringArray; data: string)"><wbr />add<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#insert,PoolStringArray,int,string"
+    title="insert(self: var PoolStringArray; idx: int; data: string): Error"><wbr />insert<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#[]=,PoolStringArray,int,string"
+    title="`[]=`(self: var PoolStringArray; idx: int; data: string)"><wbr />`[]=`<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+  <li><a class="reference" href="#[],PoolStringArray,int"
+    title="`[]`(self: PoolStringArray; idx: int): string"><wbr />`[]`<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
+
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#15" id="65">Iterators</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#items.i,PoolByteArray"
+    title="items(arr171040: PoolByteArray): uint8"><wbr />items<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#pairs.i,PoolByteArray"
+    title="pairs(arr171044: PoolByteArray): tuple[key: int, val: uint8]"><wbr />pairs<span class="attachedType" style="visibility:hidden">PoolByteArray</span></a></li>
+  <li><a class="reference" href="#items.i,PoolIntArray"
+    title="items(arr171240: PoolIntArray): cint"><wbr />items<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#pairs.i,PoolIntArray"
+    title="pairs(arr171244: PoolIntArray): tuple[key: int, val: cint]"><wbr />pairs<span class="attachedType" style="visibility:hidden">PoolIntArray</span></a></li>
+  <li><a class="reference" href="#items.i,PoolRealArray"
+    title="items(arr171440: PoolRealArray): float64"><wbr />items<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#pairs.i,PoolRealArray"
+    title="pairs(arr171444: PoolRealArray): tuple[key: int, val: float64]"><wbr />pairs<span class="attachedType" style="visibility:hidden">PoolRealArray</span></a></li>
+  <li><a class="reference" href="#items.i,PoolVector2Array"
+    title="items(arr171640: PoolVector2Array): Vector2"><wbr />items<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#pairs.i,PoolVector2Array"
+    title="pairs(arr171644: PoolVector2Array): tuple[key: int, val: Vector2]"><wbr />pairs<span class="attachedType" style="visibility:hidden">PoolVector2Array</span></a></li>
+  <li><a class="reference" href="#items.i,PoolVector3Array"
+    title="items(arr171840: PoolVector3Array): Vector3"><wbr />items<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#pairs.i,PoolVector3Array"
+    title="pairs(arr171844: PoolVector3Array): tuple[key: int, val: Vector3]"><wbr />pairs<span class="attachedType" style="visibility:hidden">PoolVector3Array</span></a></li>
+  <li><a class="reference" href="#items.i,PoolColorArray"
+    title="items(arr172040: PoolColorArray): Color"><wbr />items<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#pairs.i,PoolColorArray"
+    title="pairs(arr172044: PoolColorArray): tuple[key: int, val: Color]"><wbr />pairs<span class="attachedType" style="visibility:hidden">PoolColorArray</span></a></li>
+  <li><a class="reference" href="#items.i,PoolStringArray"
+    title="items(arr: PoolStringArray): string"><wbr />items<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
   <li><a class="reference" href="#pairs.i,PoolStringArray"
-    title="pairs*(arr: PoolStringArray): tuple[key: int, val: string]"><wbr />pairs<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="pairs(arr: PoolStringArray): tuple[key: int, val: string]"><wbr />pairs<span class="attachedType" style="visibility:hidden">PoolStringArray</span></a></li>
 
   </ul>
 </li>
@@ -1252,77 +1497,1109 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="vector2.html">vector2</a>, <a class="reference external" href="vector3.html">vector3</a>, <a class="reference external" href="colors.html">colors</a>, <a class="reference external" href="godotpoolarrays.html">internal/godotpoolarrays</a>, <a class="reference external" href="godotstrings.html">internal/godotstrings</a>, <a class="reference external" href="godotbase.html">godotbase</a>, <a class="reference external" href="arrays.html">arrays</a>
+<a class="reference external" href="godotcoretypes.html">godotcoretypes</a>, <a class="reference external" href="godotinternaltypes.html">internal/godotinternaltypes</a>, <a class="reference external" href="godotpoolarrays.html">internal/godotpoolarrays</a>, <a class="reference external" href="godotstrings.html">internal/godotstrings</a>, <a class="reference external" href="arrays.html">arrays</a>
+</dl></div>
+<div class="section" id="7">
+<h1><a class="toc-backref" href="#7">Types</a></h1>
+<dl class="item">
+<dt id="PoolByteArray"><a name="PoolByteArray"></a><pre><span class="Identifier">PoolByteArray</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">godotPoolByteArray</span><span class="Other">:</span> <span class="Identifier">GodotPoolByteArray</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L10"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="PoolIntArray"><a name="PoolIntArray"></a><pre><span class="Identifier">PoolIntArray</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">godotPoolIntArray</span><span class="Other">:</span> <span class="Identifier">GodotPoolIntArray</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L10"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="PoolRealArray"><a name="PoolRealArray"></a><pre><span class="Identifier">PoolRealArray</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">godotPoolRealArray</span><span class="Other">:</span> <span class="Identifier">GodotPoolRealArray</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L10"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="PoolVector2Array"><a name="PoolVector2Array"></a><pre><span class="Identifier">PoolVector2Array</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">godotPoolVector2Array</span><span class="Other">:</span> <span class="Identifier">GodotPoolVector2Array</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L10"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="PoolVector3Array"><a name="PoolVector3Array"></a><pre><span class="Identifier">PoolVector3Array</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">godotPoolVector3Array</span><span class="Other">:</span> <span class="Identifier">GodotPoolVector3Array</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L10"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="PoolColorArray"><a name="PoolColorArray"></a><pre><span class="Identifier">PoolColorArray</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">godotPoolColorArray</span><span class="Other">:</span> <span class="Identifier">GodotPoolColorArray</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L10"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="PoolStringArray"><a name="PoolStringArray"></a><pre><span class="Identifier">PoolStringArray</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">godotPoolStringArray</span><span class="Other">:</span> <span class="Identifier">GodotPoolStringArray</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L10"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+
 </dl></div>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="add"><a name="add,PoolStringArray,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span></pre></dt>
+<dt id="newPoolByteArray"><a name="newPoolByteArray,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolByteArray</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+                                      <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/poolarrays.nim#L120"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L120" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="addFirst"><a name="addFirst,PoolStringArray,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">addFirst</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span></pre></dt>
+<dt id="godotPoolByteArray"><a name="godotPoolByteArray,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotPoolByteArray</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">126086</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotPoolByteArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-
+WARNING: do not keep the returned value for longer than the lifetime of the array.
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/poolarrays.nim#L125"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L20"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L125" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="insert"><a name="insert,PoolStringArray,int,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">insert</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span></pre></dt>
+<dt id="newPoolByteArray"><a name="newPoolByteArray,GodotPoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolByteArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">126088</span><span class="Other">:</span> <span class="Identifier">GodotPoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/poolarrays.nim#L130"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L72"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L130" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="[]="><a name="[]=,PoolStringArray,int,string"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">[]=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span></pre></dt>
+<dt id="newPoolIntArray"><a name="newPoolIntArray,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolIntArray</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/poolarrays.nim#L135"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L135" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="[]"><a name="[],PoolStringArray,int"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">[]</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
+<dt id="godotPoolIntArray"><a name="godotPoolIntArray,PoolIntArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotPoolIntArray</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">126147</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotPoolIntArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+WARNING: do not keep the returned value for longer than the lifetime of the array.
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L20"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolIntArray"><a name="newPoolIntArray,GodotPoolIntArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolIntArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">126149</span><span class="Other">:</span> <span class="Identifier">GodotPoolIntArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/poolarrays.nim#L140"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L75"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L140" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L75" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolRealArray"><a name="newPoolRealArray,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolRealArray</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+                                      <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L16"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="godotPoolRealArray"><a name="godotPoolRealArray,PoolRealArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotPoolRealArray</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">126210</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotPoolRealArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+WARNING: do not keep the returned value for longer than the lifetime of the array.
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L20"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolRealArray"><a name="newPoolRealArray,GodotPoolRealArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolRealArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">126212</span><span class="Other">:</span> <span class="Identifier">GodotPoolRealArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L78"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L78" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolVector2Array"><a name="newPoolVector2Array,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolVector2Array</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L16"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="godotPoolVector2Array"><a name="godotPoolVector2Array,PoolVector2Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotPoolVector2Array</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">126273</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotPoolVector2Array</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+WARNING: do not keep the returned value for longer than the lifetime of the array.
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L20"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolVector2Array"><a name="newPoolVector2Array,GodotPoolVector2Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolVector2Array</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">126275</span><span class="Other">:</span> <span class="Identifier">GodotPoolVector2Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L81"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolVector3Array"><a name="newPoolVector3Array,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolVector3Array</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L16"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="godotPoolVector3Array"><a name="godotPoolVector3Array,PoolVector3Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotPoolVector3Array</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">126336</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotPoolVector3Array</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+WARNING: do not keep the returned value for longer than the lifetime of the array.
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L20"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolVector3Array"><a name="newPoolVector3Array,GodotPoolVector3Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolVector3Array</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">126338</span><span class="Other">:</span> <span class="Identifier">GodotPoolVector3Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L84"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L84" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolColorArray"><a name="newPoolColorArray,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolColorArray</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+                                        <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L16"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="godotPoolColorArray"><a name="godotPoolColorArray,PoolColorArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotPoolColorArray</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">126399</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotPoolColorArray</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+WARNING: do not keep the returned value for longer than the lifetime of the array.
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L20"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolColorArray"><a name="newPoolColorArray,GodotPoolColorArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolColorArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">126401</span><span class="Other">:</span> <span class="Identifier">GodotPoolColorArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L87"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L87" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolStringArray"><a name="newPoolStringArray,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolStringArray</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L16"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="godotPoolStringArray"><a name="godotPoolStringArray,PoolStringArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">godotPoolStringArray</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">126462</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotPoolStringArray</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+WARNING: do not keep the returned value for longer than the lifetime of the array.
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L20"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolStringArray"><a name="newPoolStringArray,GodotPoolStringArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolStringArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">126464</span><span class="Other">:</span> <span class="Identifier">GodotPoolStringArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L90"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L90" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolByteArray"><a name="newPoolByteArray,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolByteArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171002</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L32"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolByteArray,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171004</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolByteArray</span><span class="Other">;</span> <span class="Identifier">arr</span><span class="DecNumber">171006</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L36"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="delete"><a name="delete,PoolByteArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">delete</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171008</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolByteArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171010</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L39"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="reverse"><a name="reverse,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">reverse</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171012</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L42"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="setLen"><a name="setLen,PoolByteArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setLen</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171014</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolByteArray</span><span class="Other">;</span> <span class="Identifier">size</span><span class="DecNumber">171016</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L45"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="len"><a name="len,PoolByteArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">len</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171018</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L48"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolByteArray,uint8"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171020</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolByteArray</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171022</span><span class="Other">:</span> <span class="Identifier">uint8</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L52"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="insert"><a name="insert,PoolByteArray,int,uint8"></a><pre><span class="Keyword">proc</span> <span class="Identifier">insert</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171024</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolByteArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171026</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171028</span><span class="Other">:</span> <span class="Identifier">uint8</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L55"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]="><a name="[]=,PoolByteArray,int,uint8"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]=`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171030</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolByteArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171032</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171034</span><span class="Other">:</span> <span class="Identifier">uint8</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L58"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]"><a name="[],PoolByteArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171036</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171038</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">uint8</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L61"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolIntArray"><a name="newPoolIntArray,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolIntArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171202</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L32"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolIntArray,PoolIntArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171204</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolIntArray</span><span class="Other">;</span> <span class="Identifier">arr</span><span class="DecNumber">171206</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L36"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="delete"><a name="delete,PoolIntArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">delete</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171208</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolIntArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171210</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L39"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="reverse"><a name="reverse,PoolIntArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">reverse</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171212</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolIntArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L42"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="setLen"><a name="setLen,PoolIntArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setLen</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171214</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolIntArray</span><span class="Other">;</span> <span class="Identifier">size</span><span class="DecNumber">171216</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L45"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="len"><a name="len,PoolIntArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">len</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171218</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L48"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolIntArray,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171220</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolIntArray</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171222</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L52"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="insert"><a name="insert,PoolIntArray,int,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">insert</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171224</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolIntArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171226</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171228</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L55"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]="><a name="[]=,PoolIntArray,int,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]=`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171230</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolIntArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171232</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171234</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L58"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]"><a name="[],PoolIntArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171236</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171238</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L61"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolRealArray"><a name="newPoolRealArray,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolRealArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171402</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L32"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolRealArray,PoolRealArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171404</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolRealArray</span><span class="Other">;</span> <span class="Identifier">arr</span><span class="DecNumber">171406</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L36"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="delete"><a name="delete,PoolRealArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">delete</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171408</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolRealArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171410</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L39"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="reverse"><a name="reverse,PoolRealArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">reverse</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171412</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolRealArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L42"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="setLen"><a name="setLen,PoolRealArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setLen</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171414</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolRealArray</span><span class="Other">;</span> <span class="Identifier">size</span><span class="DecNumber">171416</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L45"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="len"><a name="len,PoolRealArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">len</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171418</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L48"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolRealArray,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171420</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolRealArray</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171422</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L52"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="insert"><a name="insert,PoolRealArray,int,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">insert</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171424</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolRealArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171426</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171428</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L55"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]="><a name="[]=,PoolRealArray,int,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]=`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171430</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolRealArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171432</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171434</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L58"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]"><a name="[],PoolRealArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171436</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171438</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L61"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolVector2Array"><a name="newPoolVector2Array,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolVector2Array</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171602</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L32"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolVector2Array,PoolVector2Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171604</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">arr</span><span class="DecNumber">171606</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L36"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="delete"><a name="delete,PoolVector2Array,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">delete</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171608</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171610</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L39"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="reverse"><a name="reverse,PoolVector2Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">reverse</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171612</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector2Array</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L42"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="setLen"><a name="setLen,PoolVector2Array,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setLen</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171614</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">size</span><span class="DecNumber">171616</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L45"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="len"><a name="len,PoolVector2Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">len</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171618</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L48"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolVector2Array,Vector2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171620</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171622</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L52"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="insert"><a name="insert,PoolVector2Array,int,Vector2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">insert</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171624</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171626</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171628</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L55"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]="><a name="[]=,PoolVector2Array,int,Vector2"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]=`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171630</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171632</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171634</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L58"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]"><a name="[],PoolVector2Array,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171636</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171638</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector2</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L61"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolVector3Array"><a name="newPoolVector3Array,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolVector3Array</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171802</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L32"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolVector3Array,PoolVector3Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171804</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector3Array</span><span class="Other">;</span> <span class="Identifier">arr</span><span class="DecNumber">171806</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L36"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="delete"><a name="delete,PoolVector3Array,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">delete</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171808</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector3Array</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171810</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L39"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="reverse"><a name="reverse,PoolVector3Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">reverse</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171812</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector3Array</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L42"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="setLen"><a name="setLen,PoolVector3Array,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setLen</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171814</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector3Array</span><span class="Other">;</span> <span class="Identifier">size</span><span class="DecNumber">171816</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L45"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="len"><a name="len,PoolVector3Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">len</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171818</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L48"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolVector3Array,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171820</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector3Array</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171822</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L52"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="insert"><a name="insert,PoolVector3Array,int,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">insert</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171824</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector3Array</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171826</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171828</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L55"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]="><a name="[]=,PoolVector3Array,int,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]=`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171830</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolVector3Array</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171832</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">171834</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L58"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]"><a name="[],PoolVector3Array,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">171836</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">171838</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L61"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolColorArray"><a name="newPoolColorArray,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolColorArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">172002</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L32"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolColorArray,PoolColorArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172004</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolColorArray</span><span class="Other">;</span> <span class="Identifier">arr</span><span class="DecNumber">172006</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L36"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="delete"><a name="delete,PoolColorArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">delete</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172008</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolColorArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">172010</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L39"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="reverse"><a name="reverse,PoolColorArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">reverse</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172012</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolColorArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L42"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="setLen"><a name="setLen,PoolColorArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setLen</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172014</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolColorArray</span><span class="Other">;</span> <span class="Identifier">size</span><span class="DecNumber">172016</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L45"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="len"><a name="len,PoolColorArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">len</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172018</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L48"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolColorArray,Color"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172020</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolColorArray</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">172022</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L52"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="insert"><a name="insert,PoolColorArray,int,Color"></a><pre><span class="Keyword">proc</span> <span class="Identifier">insert</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172024</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolColorArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">172026</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">172028</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L55"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]="><a name="[]=,PoolColorArray,int,Color"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]=`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172030</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolColorArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">172032</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="DecNumber">172034</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L58"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]"><a name="[],PoolColorArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]`</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172036</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">172038</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Color</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L61"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newPoolStringArray"><a name="newPoolStringArray,Array"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newPoolStringArray</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">172202</span><span class="Other">:</span> <span class="Identifier">Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L32"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolStringArray,PoolStringArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172204</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">arr</span><span class="DecNumber">172206</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L36"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="delete"><a name="delete,PoolStringArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">delete</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172208</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="DecNumber">172210</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L39"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="reverse"><a name="reverse,PoolStringArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">reverse</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172212</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L42"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="setLen"><a name="setLen,PoolStringArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setLen</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172214</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">size</span><span class="DecNumber">172216</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L45"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="len"><a name="len,PoolStringArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">len</span><span class="Other">(</span><span class="Identifier">self</span><span class="DecNumber">172218</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L48"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="add"><a name="add,PoolStringArray,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">add</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L118"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L118" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="insert"><a name="insert,PoolStringArray,int,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">insert</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Error</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L123"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L123" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]="><a name="[]=,PoolStringArray,int,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]=`</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L128"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L128" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="[]"><a name="[],PoolStringArray,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`[]`</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L133"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L133" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
 </dl></div>
-<div class="section" id="14">
-<h1><a class="toc-backref" href="#14">Iterators</a></h1>
+<div class="section" id="15">
+<h1><a class="toc-backref" href="#15">Iterators</a></h1>
 <dl class="item">
-<dt id="items"><a name="items.i,PoolStringArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">items</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">arr</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
+<dt id="items"><a name="items.i,PoolByteArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">items</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171040</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">uint8</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/poolarrays.nim#L145"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L64"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L145" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="pairs"><a name="pairs.i,PoolStringArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">pairs</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">arr</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span></pre></dt>
+<dt id="pairs"><a name="pairs.i,PoolByteArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">pairs</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171044</span><span class="Other">:</span> <span class="Identifier">PoolByteArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">uint8</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/7e230480488d066eebf41dc594ca363bb28fcaf1/godot/core/poolarrays.nim#L149"
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L68"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L149" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="items"><a name="items.i,PoolIntArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">items</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171240</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L64"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="pairs"><a name="pairs.i,PoolIntArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">pairs</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171244</span><span class="Other">:</span> <span class="Identifier">PoolIntArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L68"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="items"><a name="items.i,PoolRealArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">items</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171440</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L64"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="pairs"><a name="pairs.i,PoolRealArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">pairs</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171444</span><span class="Other">:</span> <span class="Identifier">PoolRealArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L68"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="items"><a name="items.i,PoolVector2Array"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">items</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171640</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector2</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L64"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="pairs"><a name="pairs.i,PoolVector2Array"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">pairs</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171644</span><span class="Other">:</span> <span class="Identifier">PoolVector2Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Vector2</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L68"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="items"><a name="items.i,PoolVector3Array"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">items</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171840</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L64"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="pairs"><a name="pairs.i,PoolVector3Array"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">pairs</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">171844</span><span class="Other">:</span> <span class="Identifier">PoolVector3Array</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L68"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="items"><a name="items.i,PoolColorArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">items</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">172040</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Color</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L64"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="pairs"><a name="pairs.i,PoolColorArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">pairs</span><span class="Other">(</span><span class="Identifier">arr</span><span class="DecNumber">172044</span><span class="Other">:</span> <span class="Identifier">PoolColorArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Color</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L68"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="items"><a name="items.i,PoolStringArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">items</span><span class="Other">(</span><span class="Identifier">arr</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L138"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L138" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="pairs"><a name="pairs.i,PoolStringArray"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">pairs</span><span class="Other">(</span><span class="Identifier">arr</span><span class="Other">:</span> <span class="Identifier">PoolStringArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/72dd992e6644846c84363af3baab3c4020abdcca/godot/core/poolarrays.nim#L142"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/poolarrays.nim#L142" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1335,7 +2612,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-08-23 14:53:55 UTC</small>
+        <small>Made with Nim. Generated: 2017-12-10 10:58:35 UTC</small>
       </div>
     </div>
   </div>
