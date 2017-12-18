@@ -259,7 +259,17 @@ proc makeConstSection(constObj: JsonNode): PNode =
     result.add(def)
 
 type
-  MethodArg = tuple[name, typ: string, defaultVal: JsonNode, isVarargs: bool]
+  ArgKind = enum
+    Normal,
+    VarArgs
+    Bound
+
+  MethodArg = object
+    name: string
+    typ: string
+    defaultVal: JsonNode
+    kind: ArgKind
+
   MethodInfo = ref object
     name: PNode
     godotName: string
@@ -349,6 +359,9 @@ proc makeDefaultValue(arg: MethodArg): PNode =
         "Cannot build default value from $# ($#)" %
         [$arg.defaultVal, arg.typ])
 
+proc boundArgName(idx: int): string =
+  "godotBoundArg" & $idx
+
 proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
                       meth: MethodInfo, withImplementation: bool) =
   var body: PNode
@@ -390,12 +403,16 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
     var argLenNode = newIntLit(0)
     let argsName = ident("argsToPassToGodot")
     if meth.args.len > 0:
-      for arg in meth.args:
-        if arg.isVarargs:
+      for idx, arg in meth.args:
+        if arg.kind == ArgKind.VarArgs:
           varargsName = arg.name
           isVarargs = true
           vars.add(newIdentDefs(ident("callError"), ident("VariantCallError")))
-          break
+        elif arg.kind == ArgKind.Bound:
+          let argName = boundArgName(idx)
+          vars.add(newIdentDefs(
+            ident(argName), newNode(nkEmpty), arg.makeDefaultValue()))
+
       let argsAlloc = newNode(nkCast).addChain(
         newNode(nkPtrTy).addChain(
           newNode(nkBracketExpr).addChain(
@@ -425,12 +442,13 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
 
     let argConversions = newNode(nkStmtList)
     for idx, arg in meth.args:
-      var argName = ident(arg.name)
-      if arg.isVarargs:
+      var argName = if arg.kind == ArgKind.Bound: ident(boundArgName(idx))
+                    else: ident(arg.name)
+      if arg.kind == ArgKind.VarArgs:
         argName = newNode(nkBracketExpr).addChain(
           ident(varargsName),
           infix(ident("idx"), ident("-"), newIntLit(staticArgsLen)))
-      let argIdx = if arg.isVarargs: ident("idx") else: newIntLit(idx)
+      let argIdx = if arg.kind == ArgKind.VarArgs: ident("idx") else: newIntLit(idx)
       let isStandardType = arg.typ in standardTypes
       let isWrappedType = arg.typ in wrapperTypes
       let convArg = if not varargsName.isNil:
@@ -440,7 +458,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
                     elif arg.typ == "string": newCall("unsafeAddr",
                                   ident("argToPassToGodot" & $idx))
                     else: ident("argToPassToGodot" & $idx) # object
-      if not isStandardType and arg.isVarargs:
+      if not isStandardType and arg.kind == ArgKind.VarArgs:
         raise newException(ValueError,
           "Non-standard type $# for varargs params of method $# of type $#" %
             [arg.typ, meth.godotName, meth.typ.godotName])
@@ -458,7 +476,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
           newNode(nkBracketExpr).addChain(argsName), argIdx),
           convArg
       )
-      if not arg.isVarargs:
+      if arg.kind != ArgKind.VarArgs:
         argConversions.add(
           argAsgn
         )
@@ -610,12 +628,16 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
     params.add(newIdentDefs(ident("self"), ident(toNimType(meth.typ.name))))
 
   for arg in meth.args:
-    if arg.isVarargs:
-      params.add(newIdentDefs(ident(arg.name),
-        newNode(nkBracketExpr).addChain(ident("varargs"), ident(arg.typ))))
-    else:
+    case arg.kind:
+    of ArgKind.Normal:
       let defaultValue = arg.makeDefaultValue()
       params.add(newIdentDefs(ident(arg.name), ident(arg.typ), defaultValue))
+    of ArgKind.VarArgs:
+      params.add(newIdentDefs(ident(arg.name),
+        newNode(nkBracketExpr).addChain(ident("varargs"), ident(arg.typ))))
+    of ArgKind.Bound:
+      discard
+
   let procDecl = newProc(if not withImplementation: postfix(meth.name, "*")
                          else: meth.name,
                          params, body, procType)
@@ -656,8 +678,13 @@ proc makeProperty(types: Table[string, GodotType], tree: PNode,
     name: setterName,
     typ: typ,
     godotName: propertyObj["setter"].str,
-    args: @[("val", nimType, JsonNode(nil), false)]
+    args: @[MethodArg(name: "val", typ: nimType)]
   )
+  if "index" in propertyObj and propertyObj["index"] != newJInt(-1):
+    getterInfo.args = @[MethodArg(defaultVal: newJString($propertyObj["index"]),
+                                  typ: "int", kind: ArgKind.Bound)] & getterInfo.args
+    setterInfo.args = @[MethodArg(defaultVal: newJString($propertyObj["index"]),
+                                  typ: "int", kind: ArgKind.Bound)] & setterInfo.args
   generateMethod(tree, methodBindRegistry, getterInfo, withImplementation)
   generateMethod(tree, methodBindRegistry, setterInfo, withImplementation)
 
@@ -694,10 +721,11 @@ proc makeMethod(types: Table[string, GodotType], tree: PNode,
     let typ = toNimType(types, arg["type"].str)
     let defaultVal = if arg["has_default_value"].bval: arg["default_value"]
                      else: nil
-    args.add((toNimStyle(arg["name"].str), typ,
-              defaultVal, false))
+    args.add(MethodArg(
+              name: toNimStyle(arg["name"].str), typ: typ,
+              defaultVal: defaultVal))
   if methodObj["has_varargs"].bval:
-    args.add(("variantArgs", "Variant", JsonNode(nil), true))
+    args.add(MethodArg(name: "variantArgs", typ: "Variant", kind: ArgKind.VarArgs))
 
   let godotName = methodObj["name"].str
   var nimName = toNimStyle(godotName)
