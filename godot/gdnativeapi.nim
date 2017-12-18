@@ -1452,6 +1452,7 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     getClassConstructor: proc (className: cstring): GodotClassConstructor
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    getGlobalConstants: pointer
     registerNativeCallType: proc (callType: cstring,
                                   cb: proc (procHandle: pointer,
                                             args: ptr GodotArray): GodotVariant
