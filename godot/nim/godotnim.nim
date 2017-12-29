@@ -1,6 +1,6 @@
 # Copyright 2017 Xored Software, Inc.
 
-import tables, typetraits, macros, asyncdispatch
+import tables, typetraits, macros
 import gdnativeapi
 import core.godotcoretypes
 import core.vector2, core.rect2,
@@ -811,15 +811,30 @@ proc godot_gdnative_terminate(options: ptr GDNativeTerminateOptions) {.
   deallocHeap(runFinalizers = not options[].inEditor, allowGcAfterwards = false)
 
 const nimGcStepLengthUs {.intdefine.} = 2000
+
+var idleCallbacks {.threadvar.}: seq[proc () {.closure.}]
+idleCallbacks = newSeq[proc () {.closure.}]()
+
+var isMainThread {.threadvar.}: bool
+isMainThread = true
+
+proc registerFrameCallback*(cb: proc () {.closure.}) =
+  # Registers a callback to be called on the main thread at the end
+  # of each frame.
+  if not isMainThread:
+    const err = cstring"registerFrameIdleCallback is called from non-main thread. Ignoring."
+    godotPrintError(err, cstring"registerFrameCallback",
+                    cstring"godotnim.nim", 0)
+  else:
+    idleCallbacks.add(cb)
+
 proc godot_nativescript_frame() {.cdecl, exportc, dynlib.} =
   var stackBottom {.volatile.}: pointer
   {.emit: """
   setStackBottom((void*)(&`stackBottom`));
   """.}
-  for _ in 1..10:
-    if not asyncdispatch.hasPendingOperations():
-      break
-    poll(0)
+  for cb in idleCallbacks:
+    cb()
   GC_step(nimGcStepLengthUs, true, 0)
 
 when not defined(release):
