@@ -612,7 +612,8 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
     elif isObjRet:
       body.add(newNode(nkAsgn).addChain(ident("result"),
                newCall(newBracketExpr(ident("asNimGodotObject"),
-        newCall("type", ident("result"))), retValIdent)))
+        newCall("type", ident("result"))),
+        retValIdent, ident("false"), ident("true"))))
     elif isStringRet:
       body.add(newNode(nkAsgn).addChain(ident("result"),
                                         newCall("$", retValIdent)))

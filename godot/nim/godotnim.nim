@@ -140,6 +140,13 @@ proc reference(o: ptr GodotObject): bool {.discardable.} =
         cstring"reference")
   referenceMethodBind.ptrCall(o, nil, addr result)
 
+var initRefMethodBind {.threadvar.}: ptr GodotMethodBind
+proc initRef(o: ptr GodotObject): bool {.discardable.} =
+  if isNil(initRefMethodBind):
+    initRefMethodBind = getMethod(cstring"Reference",
+        cstring"init_ref")
+  initRefMethodBind.ptrCall(o, nil, addr result)
+
 proc deinit*(obj: NimGodotObject) =
   ## Destroy the object. You only need to call this for objects not inherited
   ## from Reference, where manual lifecycle control is necessary.
@@ -240,7 +247,7 @@ proc newNimGodotObject[T: NimGodotObject](
       result.godotObject.reference()
 
 proc asNimGodotObject*[T: NimGodotObject](
-    godotObject: ptr GodotObject, forceNativeObject: bool = false): T =
+    godotObject: ptr GodotObject, forceNativeObject, noRef: bool = false): T =
   ## Wraps ``godotObject`` into Nim type ``T``.
   ## This is used by `godotapigen <godotapigen.html>`_ and should rarely be
   ## used by anything else.
@@ -253,7 +260,8 @@ proc asNimGodotObject*[T: NimGodotObject](
       result = nil
   if result.isNil:
     result = newNimGodotObject[T](
-      godotObject, cstring(godotObject.getClassName()), forceNativeObject)
+      godotObject, cstring(godotObject.getClassName()),
+      forceNativeObject or noRef)
 
 proc newVariant*(obj: NimGodotObject): Variant {.inline.} =
   newVariant(obj.godotObject)
@@ -377,9 +385,15 @@ proc gdnew*[T: NimGodotObject](): T =
   ## Instantiates new object of type ``T``.
   const godotName = asCString(toGodotName(T))
   const objInfo = classRegistryStatic[godotName]
-  result = when objInfo.isNative:
-             asNimGodotObject[T](getClassConstructor(godotName)())
-           else: newOwnObj[T](godotName)
+  when objInfo.isNative:
+    let godotObject = getClassConstructor(godotName)()
+    new(result, nimGodotObjectFinalizer[T])
+    result.godotObject = godotObject
+    when objInfo.isRef:
+      godotObject.initRef()
+      result.isRef = true
+  else:
+    result = newOwnObj[T](godotName)
 
 proc newCallError*(err: VariantCallError): ref CallError =
   ## Instantiates ``CallError`` from Godot ``err``.
