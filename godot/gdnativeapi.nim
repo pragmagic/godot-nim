@@ -1265,18 +1265,20 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # String API
+    charStringLength: proc (self: GodotCharString): cint
+                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    charStringGetData: proc (self: GodotCharString): cstring
+                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    charStringDestroy: proc (self: var GodotCharString)
+                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringNew: proc (dest: var GodotString)
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringNewCopy: proc (dest: var GodotString, src: GodotString)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    stringNewData: proc (dest: var GodotString, contents: cstring, size: cint)
-                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    stringNewUTF16Data: pointer
-    stringGetData: proc (self: GodotString, dest: cstring, size: var cint)
-                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    stringNewWithWideString: pointer
     stringOperatorIndex: pointer
     stringOperatorIndexConst: pointer
-    stringUTF16Str: pointer
+    stringWideStr: pointer
     stringOperatorEqual: proc (self, other: GodotString): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorLess: proc (self, other: GodotString): bool
@@ -1285,6 +1287,9 @@ type
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringLength: proc (self: GodotString): cint
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    stringCasecmpTo: pointer
+    stringNocasecmpTo: pointer
+    stringNaturalnocasecmpTo: pointer
     stringBeginsWith: pointer
     stringBeginsWithCharArray: pointer
     stringBigrams: pointer
@@ -1376,11 +1381,14 @@ type
     stringErase: pointer
     stringAscii: pointer
     stringAsciiExtended: pointer
-    stringUtf8: pointer
+    stringUtf8: proc (self: GodotString): GodotCharString
+                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringParseUtf8: pointer
     stringParseUtf8WithLen: pointer
-    stringCharsToUtf8: pointer
-    stringCharsToUtf8WithLen: pointer
+    stringCharsToUtf8: proc (str: cstring): GodotString
+                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    stringCharsToUtf8WithLen: proc (str: cstring, len: cint): GodotString
+                                   {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringHash: pointer
     stringHash64: pointer
     stringHashChars: pointer
@@ -2541,13 +2549,15 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # String API
+    charStringLength*: proc (self: GodotCharString): cint
+                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    charStringGetData*: proc (self: GodotCharString): cstring
+                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    charStringDestroy*: proc (self: var GodotCharString)
+                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringNew*: proc (dest: var GodotString)
                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringNewCopy*: proc (dest: var GodotString, src: GodotString)
-                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    stringNewData*: proc (dest: var GodotString, contents: cstring, size: cint)
-                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    stringGetData*: proc (self: GodotString, dest: cstring, size: var cint)
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorEqual*: proc (self, other: GodotString): bool
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2559,6 +2569,12 @@ type
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringDestroy*: proc (self: var GodotString)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    stringUtf8*: proc (self: GodotString): GodotCharString
+                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    stringCharsToUtf8*: proc (str: cstring): GodotString
+                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    stringCharsToUtf8WithLen*: proc (str: cstring, len: cint): GodotString
+                                    {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # Misc API
     objectDestroy*: proc (self: ptr GodotObject)
@@ -3120,15 +3136,20 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           variantDestroy
 
           # String API
+          charStringLength
+          charStringGetData
+          charStringDestroy
+
           stringNew
           stringNewCopy
-          stringNewData
-          stringGetData
           stringOperatorEqual
           stringOperatorLess
           stringOperatorPlus
           stringLength
           stringDestroy
+          stringUtf8
+          stringCharsToUtf8
+          stringCharsToUtf8WithLen
 
           # Misc API
           objectDestroy

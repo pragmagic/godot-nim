@@ -8,16 +8,7 @@ proc initGodotString(dest: var GodotString) {.inline, raises: [].} =
 proc initGodotString(dest: var GodotString; contents: cstring;
                      size: cint) {.inline.} =
   ## Initializes ``dest`` from UTF-8 ``contents``
-  getGDNativeAPI().stringNewData(dest, contents, size)
-
-proc getData(self: GodotString; dest: cstring;
-             size: var cint) {.inline.} =
-  ## Converts ``self`` into UTF-8 encoding, putting the result into ``dest``.
-  getGDNativeAPI().stringGetData(self, dest, size)
-
-proc len*(self: GodotString): cint {.inline.} =
-  ## Returns the length of string in bytes if it is represented as UTF-8.
-  getData(self, nil, result)
+  dest = getGDNativeAPI().stringCharsToUtf8WithLen(contents, size)
 
 proc `==`*(self, b: GodotString): bool {.inline.} =
   getGDNativeAPI().stringOperatorEqual(self, b)
@@ -33,10 +24,11 @@ proc deinit*(self: var GodotString) {.inline.} =
 
 proc `$`*(self: GodotString): string =
   ## Converts the ``GodotString`` into Nim string
-  var length = self.len
-  result = newStringOfCap(length)
-  getData(self, addr result[0], length)
-  result.setLen(length)
+  var charStr = getGDNativeAPI().stringUtf8(self)
+  let length = getGDNativeAPI().charStringLength(charStr)
+  result = newString(length)
+  copyMem(addr result[0], getGDNativeAPI().charStringGetData(charStr), length)
+  getGDNativeAPI().charStringDestroy(charStr)
   assert(result[length] == '\0')
 
 proc toGodotString*(s: string): GodotString {.inline.} =

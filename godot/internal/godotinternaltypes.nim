@@ -32,6 +32,9 @@ type
   GodotString* {.byref.} = object
     data: array[sizeof(int), byte]
 
+  GodotCharString* {.byref.} = object
+    data: array[sizeof(int), byte]
+
   VariantType* {.size: sizeof(cint), pure.} = enum
     Nil,   ##  atomic types
     Bool,

@@ -697,10 +697,14 @@ proc makeMethod(types: Table[string, GodotType], tree: PNode,
                       toNimType(types, methodObj["return_type"].str)
                    else: nil
 
-  for prop in typ.jsonNode["properties"]:
-    if prop["getter"].str == methodObj["name"].str or
-       prop["setter"].str == methodObj["name"].str:
-      return
+  if not typ.isSingleton:
+    # for singletons we don't generate Nim setters/getters,
+    # but use plain procedures instead. That's because setter syntax is
+    # supposed to be used on an object (have at least 2 params).
+    for prop in typ.jsonNode["properties"]:
+      if prop["getter"].str == methodObj["name"].str or
+        prop["setter"].str == methodObj["name"].str:
+        return
 
   var args = newSeqOfCap[MethodArg](methodObj["arguments"].len + 1)
   var origArgs = methodObj["arguments"]
@@ -924,16 +928,18 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
 
     # first, generate declarations only for ease of
     # human readability of the file
-    for property in obj["properties"]:
-      makeProperty(types, tree, methodBindRegsitry, typ, property,
-                   withImplementation = false)
+    if not typ.isSingleton:
+      for property in obj["properties"]:
+        makeProperty(types, tree, methodBindRegsitry, typ, property,
+                    withImplementation = false)
     for meth in obj["methods"]:
       makeMethod(types, tree, methodBindRegsitry, typ,
                  meth, withImplementation = false)
 
-    for property in obj["properties"]:
-      makeProperty(types, tree, methodBindRegsitry, typ,
-                   property, withImplementation = true)
+    if not typ.isSingleton:
+      for property in obj["properties"]:
+        makeProperty(types, tree, methodBindRegsitry, typ,
+                     property, withImplementation = true)
     for meth in obj["methods"]:
       makeMethod(types, tree, methodBindRegsitry, typ, meth,
                  withImplementation = true)
