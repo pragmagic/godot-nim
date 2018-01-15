@@ -83,7 +83,7 @@ proc `+`*(self, other: Vector2): Vector2 {.inline.} =
   getGDNativeAPI().vector2OperatorAdd(self, other)
 
 proc `+=`*(self: var Vector2, other: Vector2) {.inline.} =
-  self += other
+  self = self + other
 
 proc `-`*(self, other: Vector2): Vector2 =
   getGDNativeAPI().vector2OperatorSubtract(self, other)
