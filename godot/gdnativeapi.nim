@@ -624,46 +624,60 @@ type
 
     # Pool Array Read Access API
 
+    poolByteArrayReadAccessCopy: pointer
     poolByteArrayReadAccessPtr: pointer
     poolByteArrayReadAccessOperatorAssign: pointer
     poolByteArrayReadAccessDestroy: pointer
+    poolIntArrayReadAccessCopy: pointer
     poolIntArrayReadAccessPtr: pointer
     poolIntArrayReadAccessOperatorAssign: pointer
     poolIntArrayReadAccessDestroy: pointer
+    poolRealArrayReadAccessCopy: pointer
     poolRealArrayReadAccessPtr: pointer
     poolRealArrayReadAccessOperatorAssign: pointer
     poolRealArrayReadAccessDestroy: pointer
+    poolStringArrayReadAccessCopy: pointer
     poolStringArrayReadAccessPtr: pointer
     poolStringArrayReadAccessOperatorAssign: pointer
     poolStringArrayReadAccessDestroy: pointer
+    poolVector2ArrayReadAccessCopy: pointer
     poolVector2ArrayReadAccessPtr: pointer
     poolVector2ArrayReadAccessOperatorAssign: pointer
     poolVector2ArrayReadAccessDestroy: pointer
+    poolVector3ArrayReadAccessCopy: pointer
     poolVector3ArrayReadAccessPtr: pointer
     poolVector3ArrayReadAccessOperatorAssign: pointer
     poolVector3ArrayReadAccessDestroy: pointer
+    poolColorArrayReadAccessCopy: pointer
     poolColorArrayReadAccessPtr: pointer
     poolColorArrayReadAccessOperatorAssign: pointer
     poolColorArrayReadAccessDestroy: pointer
 
+    poolByteArrayWriteAccessCopy: pointer
     poolByteArrayWriteAccessPtr: pointer
     poolByteArrayWriteAccessOperatorAssign: pointer
     poolByteArrayWriteAccessDestroy: pointer
+    poolIntArrayWriteAccessCopy: pointer
     poolIntArrayWriteAccessPtr: pointer
     poolIntArrayWriteAccessOperatorAssign: pointer
     poolIntArrayWriteAccessDestroy: pointer
+    poolRealArrayWriteAccessCopy: pointer
     poolRealArrayWriteAccessPtr: pointer
     poolRealArrayWriteAccessOperatorAssign: pointer
     poolRealArrayWriteAccessDestroy: pointer
+    poolStringArrayWriteAccessCopy: pointer
     poolStringArrayWriteAccessPtr: pointer
     poolStringArrayWriteAccessOperatorAssign: pointer
     poolStringArrayWriteAccessDestroy: pointer
+    poolVector2ArrayWriteAccessCopy: pointer
     poolVector2ArrayWriteAccessPtr: pointer
     poolVector2ArrayWriteAccessOperatorAssign: pointer
     poolVector2ArrayWriteAccessDestroy: pointer
+    poolVector3ArrayWriteAccessCopy: pointer
     poolVector3ArrayWriteAccessPtr: pointer
     poolVector3ArrayWriteAccessOperatorAssign: pointer
     poolVector3ArrayWriteAccessDestroy: pointer
+    poolColorArrayWriteAccessCopy: pointer
     poolColorArrayWriteAccessPtr: pointer
     poolColorArrayWriteAccessOperatorAssign: pointer
     poolColorArrayWriteAccessDestroy: pointer
