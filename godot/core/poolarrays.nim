@@ -33,29 +33,29 @@ template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
     new(result, poolArrayFinalizer)
     initProcName(result.fieldName, arr.godotArray[])
 
-  proc add*(self: var T; arr: T) {.inline.} =
+  proc add*(self: T; arr: T) {.inline.} =
     self.fieldName.add(arr.fieldName)
 
-  proc delete*(self: var T; idx: int) {.inline.} =
+  proc delete*(self: T; idx: int) {.inline.} =
     self.fieldName.delete(idx.cint)
 
-  proc reverse*(self: var T) {.inline.} =
+  proc reverse*(self: T) {.inline.} =
     self.fieldName.reverse()
 
-  proc setLen*(self: var T; size: int) {.inline.} =
+  proc setLen*(self: T; size: int) {.inline.} =
     self.fieldName.setLen(size.cint)
 
   proc len*(self: T): int {.inline.} =
     self.fieldName.len.int
 
   when not noData:
-    proc add*(self: var T; data: DataT) {.inline.} =
+    proc add*(self: T; data: DataT) {.inline.} =
       self.fieldName.add(data)
 
-    proc insert*(self: var T; idx: int; data: DataT): Error {.inline.} =
+    proc insert*(self: T; idx: int; data: DataT): Error {.inline.} =
       self.fieldName.insert(idx.cint, data)
 
-    proc `[]=`*(self: var T; idx: int; data: DataT) {.inline.} =
+    proc `[]=`*(self: T; idx: int; data: DataT) {.inline.} =
       self.fieldName[idx.cint] = data
 
     proc `[]`*(self: T; idx: int): DataT {.inline.} =
@@ -115,17 +115,17 @@ definePoolArray(PoolStringArray, GodotPoolStringArray, string,
                 godotPoolStringArray, newPoolStringArray,
                 initGodotPoolStringArray, true)
 
-proc add*(self: var PoolStringArray; data: string) =
+proc add*(self: PoolStringArray; data: string) =
   var s = data.toGodotString()
   self.godotPoolStringArray.add(s)
   s.deinit()
 
-proc insert*(self: var PoolStringArray; idx: int; data: string): Error =
+proc insert*(self: PoolStringArray; idx: int; data: string): Error =
   var s = data.toGodotString()
   result = self.godotPoolStringArray.insert(idx.cint, s)
   s.deinit()
 
-proc `[]=`*(self: var PoolStringArray; idx: int; data: string) =
+proc `[]=`*(self: PoolStringArray; idx: int; data: string) =
   var s = data.toGodotString()
   self.godotPoolStringArray[idx.cint] = s
   s.deinit()

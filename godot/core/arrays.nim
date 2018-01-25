@@ -62,16 +62,16 @@ proc newArray*(pba: PoolByteArray): Array {.inline.} =
   new(result, arrayFinalizer)
   initGodotArray(result.godotArray, pba.godotPoolByteArray[])
 
-proc `[]=`*(self: var Array; idx: int; value: Variant) {.inline.} =
+proc `[]=`*(self: Array; idx: int; value: Variant) {.inline.} =
   self.godotArray[idx.cint] = value.godotVariant[]
 
 proc `[]`*(self: Array; idx: int): Variant {.inline.} =
   newVariant(self.godotArray[idx.cint])
 
-proc add*(self: var Array; value: Variant) {.inline.} =
+proc add*(self: Array; value: Variant) {.inline.} =
   self.godotArray.add(value.godotVariant[])
 
-proc clear*(self: var Array) {.inline.} =
+proc clear*(self: Array) {.inline.} =
   self.godotArray.clear()
 
 proc count*(self: Array; value: Variant): int {.inline.} =
@@ -80,7 +80,7 @@ proc count*(self: Array; value: Variant): int {.inline.} =
 proc isEmpty*(self: Array): bool {.inline.} =
   self.godotArray.isEmpty()
 
-proc erase*(self: var Array; value: Variant) {.inline.} =
+proc erase*(self: Array; value: Variant) {.inline.} =
   self.godotArray.erase(value.godotVariant[])
 
 proc first*(self: Array): Variant {.inline.} =
@@ -101,28 +101,28 @@ proc contains*(self: Array; value: Variant): bool {.inline.} =
 proc hash*(self: Array): Hash {.inline.} =
   hash(self.godotArray.godotHash())
 
-proc insert*(self: var Array; pos: int; value: Variant) {.inline.} =
+proc insert*(self: Array; pos: int; value: Variant) {.inline.} =
   self.godotArray.insert(pos.cint, value.godotVariant[])
 
-proc reverse*(self: var Array) {.inline.} =
+proc reverse*(self: Array) {.inline.} =
   self.godotArray.reverse()
 
-proc popLast*(self: var Array): Variant {.inline.} =
+proc popLast*(self: Array): Variant {.inline.} =
   newVariant(self.godotArray.popLast())
 
-proc popFirst*(self: var Array): Variant {.inline.} =
+proc popFirst*(self: Array): Variant {.inline.} =
   newVariant(self.godotArray.popFirst())
 
-proc addLast*(self: var Array; value: Variant) {.inline.} =
+proc addLast*(self: Array; value: Variant) {.inline.} =
   self.godotArray.addLast(value.godotVariant[])
 
-proc addFirst*(self: var Array; value: Variant) {.inline.} =
+proc addFirst*(self: Array; value: Variant) {.inline.} =
   self.godotArray.addFirst(value.godotVariant[])
 
-proc delete*(self: var Array; idx: int) {.inline.} =
+proc delete*(self: Array; idx: int) {.inline.} =
   self.godotArray.delete(idx.cint)
 
-proc setLen*(self: var Array; size: int) {.inline.} =
+proc setLen*(self: Array; size: int) {.inline.} =
   self.godotArray.setLen(size.cint)
 
 proc rfind*(self: Array; what: Variant; fromIdx: int): int {.inline.} =
@@ -131,7 +131,7 @@ proc rfind*(self: Array; what: Variant; fromIdx: int): int {.inline.} =
 proc len*(self: Array): int {.inline.} =
   self.godotArray.len.int
 
-proc sort*(self: var Array) {.inline.} =
+proc sort*(self: Array) {.inline.} =
   self.godotArray.sort()
 
 iterator items*(self: Array): Variant =
