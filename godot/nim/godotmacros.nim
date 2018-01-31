@@ -1,4 +1,4 @@
-# Copyright 2017 Xored Software, Inc.
+# Copyright 2018 Xored Software, Inc.
 
 import macros, tables, typetraits
 import godotinternal, internal.godotvariants

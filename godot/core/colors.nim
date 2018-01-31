@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Xored Software, Inc.
+# Copyright (c) 2018 Xored Software, Inc.
 
 import godotcoretypes, gdnativeapi
 

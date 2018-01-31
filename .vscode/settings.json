@@ -9,7 +9,7 @@
                   "godot/godotapigen.nim"],
   "nim.buildOnSave": false,
   "nim.lintOnSave": true,
-  "nim.licenseString": "# Copyright 2017 Xored Software, Inc.\n\n",
+  "nim.licenseString": "# Copyright 2018 Xored Software, Inc.\n\n",
   "files.exclude": {
     "**/nimcache/**": true
   }

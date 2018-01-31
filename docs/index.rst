@@ -5,6 +5,7 @@ Nim bindings for Godot Engine
 :Author: Ruslan Mustakov
 :Version: |godotnimversion|
 :GitHub: `$GODOTNIM_GITHUB_URL <$GODOTNIM_GITHUB_URL>`_
+:License: MIT
 
 .. contents::
 
@@ -32,25 +33,11 @@ which adds features for editing GDScript and Godot resource files.
 Getting Started
 ===============
 
-Building Godot
+Getting Godot
 --------------
 
-The library requires a not yet released Godot version 3.0, which you can
-build yourself by running the commands below (requires
-`Git <https://git-scm.com/downloads>`_,
-`Python 2.7 <https://www.python.org/downloads/>`_,
-`SCons <http://www.scons.org/>`_):
-
-.. code-block:: bash
-   git clone https://github.com/godotengine/godot.git
-   cd godot
-   scons platform=<your_platform>
-
-where ``<your_platform>`` can be ``windows``, ``osx``, ``x11``. After build
-is finished, Godot binaries will be under the ``bin`` folder. More details
-about compiling Godot can be found in `Godot documentation
-<https://godot.readthedocs.io/en/stable/development/compiling/index.html>`_.
-
+The library requires Godot version 3.0, which you can get here:
+https://godotengine.org/download
 
 Installing Nim
 -------------
@@ -63,7 +50,7 @@ Make sure you also have ``nimble`` (Nim's package manager) installed.
 Creating Project
 ----------------
 
-The fastest way to set up a Godot-Nim project is to use an existing stub:
+The fastest way to set up a Godot-Nim project is to use the existing stub:
 
 .. code-block:: bash
    git clone --depth=1 https://github.com/pragmagic/godot-nim-stub.git myproject
@@ -88,7 +75,7 @@ If you would like to use Nim in an existing project:
    build scripts (``nakefile.nim``, ``src/stub.nimble``) according to your
    own project structure.
 
-2. Copy ``project/nimlib.tres`` to your Godot project folder. It is a
+2. Copy ``nimlib.gdnlib`` to your Godot project folder. It is a
    GDNative library resource that contains paths to dynamic libraries
    compiled by Nim.
 

@@ -13,4 +13,4 @@ Documentation: https://pragmagic.github.io/godot-nim/
 
 This project is licensed under the MIT license. Read [LICENSE](LICENSE) file for details.
 
-Copyright (c) 2017 Xored Software, Inc.
+Copyright (c) 2018 Xored Software, Inc.
