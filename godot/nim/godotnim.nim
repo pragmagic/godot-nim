@@ -483,7 +483,7 @@ proc toVariant*(self: Variant): Variant {.inline.} =
   if self.isNil:
     newVariant()
   else:
-    self
+    newVariant(self)
 
 proc fromVariant*(self: var Variant,
                   val: Variant): ConversionResult {.inline.} =
