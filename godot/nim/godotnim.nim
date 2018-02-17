@@ -2,7 +2,7 @@
 
 import tables, typetraits, macros
 import gdnativeapi
-import core.godotcoretypes
+import core.godotcoretypes, core.godotbase
 import core.vector2, core.rect2,
        core.vector3, core.transform2d,
        core.planes, core.quats, core.aabb,
@@ -91,25 +91,6 @@ type
 
 proc isFinalized*(obj: NimGodotObject): bool {.inline.} =
   obj.isFinalized
-
-template printWarning*(warning: typed) =
-  ## Prints ``warning`` to Godot log, adding filename and line information.
-  let (filename, line) = instantiationInfo()
-  godotPrintWarning(cstring($warning), cstring"", cstring(filename), line.cint)
-
-template printError*(error: typed) =
-  ## Prints ``error`` to Godot log, adding filename and line information.
-  let (filename, line) = instantiationInfo()
-  godotPrintError(cstring($error), cstring"", cstring(filename), line.cint)
-
-proc print*(parts: varargs[string, `$`]) =
-  ## Prints concatenated ``parts`` to Godot log.
-  var combined = ""
-  for v in parts:
-    combined.add(v)
-  var s = combined.toGodotString()
-  godotPrint(s)
-  s.deinit()
 
 var classRegistry {.threadvar.}: TableRef[cstring, ObjectInfo]
 var classRegistryStatic* {.compileTime.}: TableRef[cstring, ObjectInfo]

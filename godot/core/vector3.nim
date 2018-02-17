@@ -3,6 +3,8 @@
 import math
 import godotbase, godotcoretypes
 
+{.push stackTrace: off.}
+
 proc vec3*(): Vector3 {.inline.} =
   Vector3()
 
@@ -233,3 +235,5 @@ proc cubicInterpolate*(self, b, preA, postB: Vector3;
             (-p0 + p2) * t +
             (2.0 * p0 - 5.0 * p1 + 4 * p2 - p3) * t2 +
             (-p0 + 3.0 * p1 - 3.0 * p2 + p3) * t3)
+
+{.pop.} # stackTrace: off

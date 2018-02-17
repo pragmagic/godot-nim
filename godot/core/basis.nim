@@ -4,6 +4,8 @@ import math
 import godotbase, vector3, quats
 import godotcoretypes
 
+{.push stackTrace: off.}
+
 proc setCells*(basis: var Basis, xx, xy, xz, yx, yy, yz, zx, zy, zz: float32) =
   basis.elements[0].x = xx
   basis.elements[0].y = xy
@@ -449,3 +451,5 @@ proc rotate*(self: var Vector3; axis: Vector3; phi: float32) =
 proc rotated*(self: Vector3; axis: Vector3; phi: float32): Vector3 =
   result = self
   result.rotate(axis, phi)
+
+{.pop.} # stackTrace: off
