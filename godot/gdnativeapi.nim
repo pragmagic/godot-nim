@@ -347,8 +347,10 @@ type
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolByteArrayResize: proc (self: var GodotPoolByteArray, size: cint)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    poolByteArrayRead: pointer
-    poolByteArrayWrite: pointer
+    poolByteArrayRead: proc (self: GodotPoolByteArray): ptr GodotPoolByteArrayReadAccess
+                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayWrite: proc (self: var GodotPoolByteArray): ptr GodotPoolByteArrayWriteAccess
+                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolByteArraySet: proc (self: var GodotPoolByteArray, idx: cint, data: byte)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolByteArrayGet: proc (self: GodotPoolByteArray, idx: cint): byte
@@ -384,8 +386,10 @@ type
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolIntArrayResize: proc (self: var GodotPoolIntArray, size: cint)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    poolIntArrayRead: pointer
-    poolIntArrayWrite: pointer
+    poolIntArrayRead: proc (self: GodotPoolIntArray): ptr GodotPoolIntArrayReadAccess
+                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayWrite: proc (self: var GodotPoolIntArray): ptr GodotPoolIntArrayWriteAccess
+                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolIntArraySet: proc (self: var GodotPoolIntArray, idx: cint, data: cint)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolIntArrayGet: proc (self: GodotPoolIntArray, idx: cint): cint
@@ -423,8 +427,10 @@ type
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolRealArrayResize: proc (self: var GodotPoolRealArray, size: cint)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    poolRealArrayRead: pointer
-    poolRealArrayWrite: pointer
+    poolRealArrayRead: proc (self: GodotPoolRealArray): ptr GodotPoolRealArrayReadAccess
+                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayWrite: proc (self: var GodotPoolRealArray): ptr GodotPoolRealArrayWriteAccess
+                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolRealArraySet: proc (self: var GodotPoolRealArray, idx: cint,
                             data: float32)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -471,8 +477,10 @@ type
     poolStringArrayResize: proc (self: var GodotPoolStringArray, size: cint)
                                 {.noconv, raises: [], gcsafe, tags: [],
                                   locks: 0.}
-    poolStringArrayRead: pointer
-    poolStringArrayWrite: pointer
+    poolStringArrayRead: proc (self: GodotPoolStringArray): ptr GodotPoolStringArrayReadAccess
+                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayWrite: proc (self: var GodotPoolStringArray): ptr GodotPoolStringArrayWriteAccess
+                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolStringArraySet: proc (self: var GodotPoolStringArray, idx: cint,
                               data: GodotString)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -519,8 +527,10 @@ type
     poolVector2ArrayResize: proc (self: var GodotPoolVector2Array, size: cint)
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    poolVector2ArrayRead: pointer
-    poolVector2ArrayWrite: pointer
+    poolVector2ArrayRead: proc (self: GodotPoolVector2Array): ptr GodotPoolVector2ArrayReadAccess
+                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayWrite: proc (self: var GodotPoolVector2Array): ptr GodotPoolVector2ArrayWriteAccess
+                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolVector2ArraySet: proc (self: var GodotPoolVector2Array, idx: cint,
                                 data: Vector2)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -566,8 +576,10 @@ type
     poolVector3ArrayResize: proc (self: var GodotPoolVector3Array,
                                   size: cint) {.noconv, raises: [], gcsafe,
                                                 tags: [], locks: 0.}
-    poolVector3ArrayRead: pointer
-    poolVector3ArrayWrite: pointer
+    poolVector3ArrayRead: proc (self: GodotPoolVector3Array): ptr GodotPoolVector3ArrayReadAccess
+                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayWrite: proc (self: var GodotPoolVector3Array): ptr GodotPoolVector3ArrayWriteAccess
+                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolVector3ArraySet: proc (self: var GodotPoolVector3Array, idx: cint,
                                 data: Vector3) {.noconv, raises: [], gcsafe,
                                                 tags: [], locks: 0.}
@@ -609,8 +621,10 @@ type
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolColorArrayResize: proc (self: var GodotPoolColorArray, size: cint)
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    poolColorArrayRead: pointer
-    poolColorArrayWrite: pointer
+    poolColorArrayRead: proc (self: GodotPoolColorArray): ptr GodotPoolColorArrayReadAccess
+                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayWrite: proc (self: var GodotPoolColorArray): ptr GodotPoolColorArrayWriteAccess
+                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolColorArraySet: proc (self: var GodotPoolColorArray, idx: cint,
                               data: Color)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -622,65 +636,133 @@ type
                                 {.noconv, raises: [], gcsafe, tags: [],
                                   locks: 0.}
 
-    # Pool Array Read Access API
+    # Pool Array Read/Write Access API
 
-    poolByteArrayReadAccessCopy: pointer
-    poolByteArrayReadAccessPtr: pointer
-    poolByteArrayReadAccessOperatorAssign: pointer
-    poolByteArrayReadAccessDestroy: pointer
-    poolIntArrayReadAccessCopy: pointer
-    poolIntArrayReadAccessPtr: pointer
-    poolIntArrayReadAccessOperatorAssign: pointer
-    poolIntArrayReadAccessDestroy: pointer
-    poolRealArrayReadAccessCopy: pointer
-    poolRealArrayReadAccessPtr: pointer
-    poolRealArrayReadAccessOperatorAssign: pointer
-    poolRealArrayReadAccessDestroy: pointer
-    poolStringArrayReadAccessCopy: pointer
-    poolStringArrayReadAccessPtr: pointer
-    poolStringArrayReadAccessOperatorAssign: pointer
-    poolStringArrayReadAccessDestroy: pointer
-    poolVector2ArrayReadAccessCopy: pointer
-    poolVector2ArrayReadAccessPtr: pointer
-    poolVector2ArrayReadAccessOperatorAssign: pointer
-    poolVector2ArrayReadAccessDestroy: pointer
-    poolVector3ArrayReadAccessCopy: pointer
-    poolVector3ArrayReadAccessPtr: pointer
-    poolVector3ArrayReadAccessOperatorAssign: pointer
-    poolVector3ArrayReadAccessDestroy: pointer
-    poolColorArrayReadAccessCopy: pointer
-    poolColorArrayReadAccessPtr: pointer
-    poolColorArrayReadAccessOperatorAssign: pointer
-    poolColorArrayReadAccessDestroy: pointer
+    poolByteArrayReadAccessCopy: proc (self: ptr GodotPoolByteArrayReadAccess): ptr GodotPoolByteArrayReadAccess
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayReadAccessPtr: proc (self: ptr GodotPoolByteArrayReadAccess): ptr byte
+                                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayReadAccessOperatorAssign: proc (self, other: ptr GodotPoolByteArrayReadAccess)
+                                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayReadAccessDestroy: proc (self: ptr GodotPoolByteArrayReadAccess)
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
-    poolByteArrayWriteAccessCopy: pointer
-    poolByteArrayWriteAccessPtr: pointer
-    poolByteArrayWriteAccessOperatorAssign: pointer
-    poolByteArrayWriteAccessDestroy: pointer
-    poolIntArrayWriteAccessCopy: pointer
-    poolIntArrayWriteAccessPtr: pointer
-    poolIntArrayWriteAccessOperatorAssign: pointer
-    poolIntArrayWriteAccessDestroy: pointer
-    poolRealArrayWriteAccessCopy: pointer
-    poolRealArrayWriteAccessPtr: pointer
-    poolRealArrayWriteAccessOperatorAssign: pointer
-    poolRealArrayWriteAccessDestroy: pointer
-    poolStringArrayWriteAccessCopy: pointer
-    poolStringArrayWriteAccessPtr: pointer
-    poolStringArrayWriteAccessOperatorAssign: pointer
-    poolStringArrayWriteAccessDestroy: pointer
-    poolVector2ArrayWriteAccessCopy: pointer
-    poolVector2ArrayWriteAccessPtr: pointer
-    poolVector2ArrayWriteAccessOperatorAssign: pointer
-    poolVector2ArrayWriteAccessDestroy: pointer
-    poolVector3ArrayWriteAccessCopy: pointer
-    poolVector3ArrayWriteAccessPtr: pointer
-    poolVector3ArrayWriteAccessOperatorAssign: pointer
-    poolVector3ArrayWriteAccessDestroy: pointer
-    poolColorArrayWriteAccessCopy: pointer
-    poolColorArrayWriteAccessPtr: pointer
-    poolColorArrayWriteAccessOperatorAssign: pointer
-    poolColorArrayWriteAccessDestroy: pointer
+    poolIntArrayReadAccessCopy: proc (self: ptr GodotPoolIntArrayReadAccess): ptr GodotPoolIntArrayReadAccess
+                                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayReadAccessPtr: proc (self: ptr GodotPoolIntArrayReadAccess): ptr cint
+                                    {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayReadAccessOperatorAssign: proc (self, other: ptr GodotPoolIntArrayReadAccess)
+                                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayReadAccessDestroy: proc (self: ptr GodotPoolIntArrayReadAccess)
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolRealArrayReadAccessCopy: proc (self: ptr GodotPoolRealArrayReadAccess): ptr GodotPoolRealArrayReadAccess
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayReadAccessPtr: proc (self: ptr GodotPoolRealArrayReadAccess): ptr float32
+                                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayReadAccessOperatorAssign: proc (self, other: ptr GodotPoolRealArrayReadAccess)
+                                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayReadAccessDestroy: proc (self: ptr GodotPoolRealArrayReadAccess)
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolStringArrayReadAccessCopy: proc (self: ptr GodotPoolStringArrayReadAccess): ptr GodotPoolStringArrayReadAccess
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayReadAccessPtr: proc (self: ptr GodotPoolStringArrayReadAccess): ptr GodotString
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayReadAccessOperatorAssign: proc (self, other: ptr GodotPoolStringArrayReadAccess)
+                                                  {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayReadAccessDestroy: proc (self: ptr GodotPoolStringArrayReadAccess)
+                                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolVector2ArrayReadAccessCopy: proc (self: ptr GodotPoolVector2ArrayReadAccess): ptr GodotPoolVector2ArrayReadAccess
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayReadAccessPtr: proc (self: ptr GodotPoolVector2ArrayReadAccess): ptr Vector2
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayReadAccessOperatorAssign: proc (self, other: ptr GodotPoolVector2ArrayReadAccess)
+                                                   {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayReadAccessDestroy: proc (self: ptr GodotPoolVector2ArrayReadAccess)
+                                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolVector3ArrayReadAccessCopy: proc (self: ptr GodotPoolVector3ArrayReadAccess): ptr GodotPoolVector3ArrayReadAccess
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayReadAccessPtr: proc (self: ptr GodotPoolVector3ArrayReadAccess): ptr Vector3
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayReadAccessOperatorAssign: proc (self, other: ptr GodotPoolVector3ArrayReadAccess)
+                                                   {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayReadAccessDestroy: proc (self: ptr GodotPoolVector3ArrayReadAccess)
+                                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolColorArrayReadAccessCopy: proc (self: ptr GodotPoolColorArrayReadAccess): ptr GodotPoolColorArrayReadAccess
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayReadAccessPtr: proc (self: ptr GodotPoolColorArrayReadAccess): ptr Color
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayReadAccessOperatorAssign: proc (self, other: ptr GodotPoolColorArrayReadAccess)
+                                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayReadAccessDestroy: proc (self: ptr GodotPoolColorArrayReadAccess)
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolByteArrayWriteAccessCopy: proc (self: ptr GodotPoolByteArrayWriteAccess): ptr GodotPoolByteArrayWriteAccess
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayWriteAccessPtr: proc (self: ptr GodotPoolByteArrayWriteAccess): ptr byte
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayWriteAccessOperatorAssign: proc (self, other: ptr GodotPoolByteArrayWriteAccess)
+                                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayWriteAccessDestroy: proc (self: ptr GodotPoolByteArrayWriteAccess)
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolIntArrayWriteAccessCopy: proc (self: ptr GodotPoolIntArrayWriteAccess): ptr GodotPoolIntArrayWriteAccess
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayWriteAccessPtr: proc (self: ptr GodotPoolIntArrayWriteAccess): ptr cint
+                                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayWriteAccessOperatorAssign: proc (self, other: ptr GodotPoolIntArrayWriteAccess)
+                                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayWriteAccessDestroy: proc (self: ptr GodotPoolIntArrayWriteAccess)
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolRealArrayWriteAccessCopy: proc (self: ptr GodotPoolRealArrayWriteAccess): ptr GodotPoolRealArrayWriteAccess
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayWriteAccessPtr: proc (self: ptr GodotPoolRealArrayWriteAccess): ptr float32
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayWriteAccessOperatorAssign: proc (self, other: ptr GodotPoolRealArrayWriteAccess)
+                                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayWriteAccessDestroy: proc (self: ptr GodotPoolRealArrayWriteAccess)
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolStringArrayWriteAccessCopy: proc (self: ptr GodotPoolStringArrayWriteAccess): ptr GodotPoolStringArrayWriteAccess
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayWriteAccessPtr: proc (self: ptr GodotPoolStringArrayWriteAccess): ptr GodotString
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayWriteAccessOperatorAssign: proc (self, other: ptr GodotPoolStringArrayWriteAccess)
+                                                   {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayWriteAccessDestroy: proc (self: ptr GodotPoolStringArrayWriteAccess)
+                                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolVector2ArrayWriteAccessCopy: proc (self: ptr GodotPoolVector2ArrayWriteAccess): ptr GodotPoolVector2ArrayWriteAccess
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayWriteAccessPtr: proc (self: ptr GodotPoolVector2ArrayWriteAccess): ptr Vector2
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayWriteAccessOperatorAssign: proc (self, other: ptr GodotPoolVector2ArrayWriteAccess)
+                                                    {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayWriteAccessDestroy: proc (self: ptr GodotPoolVector2ArrayWriteAccess)
+                                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolVector3ArrayWriteAccessCopy: proc (self: ptr GodotPoolVector3ArrayWriteAccess): ptr GodotPoolVector3ArrayWriteAccess
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayWriteAccessPtr: proc (self: ptr GodotPoolVector3ArrayWriteAccess): ptr Vector3
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayWriteAccessOperatorAssign: proc (self, other: ptr GodotPoolVector3ArrayWriteAccess)
+                                                    {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayWriteAccessDestroy: proc (self: ptr GodotPoolVector3ArrayWriteAccess)
+                                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolColorArrayWriteAccessCopy: proc (self: ptr GodotPoolColorArrayWriteAccess): ptr GodotPoolColorArrayWriteAccess
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayWriteAccessPtr: proc (self: ptr GodotPoolColorArrayWriteAccess): ptr Color
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayWriteAccessOperatorAssign: proc (self, other: ptr GodotPoolColorArrayWriteAccess)
+                                                  {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayWriteAccessDestroy: proc (self: ptr GodotPoolColorArrayWriteAccess)
+                                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # Array API
     arrayNew: proc (dest: var GodotArray)
@@ -1707,6 +1789,10 @@ type
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolByteArrayResize*: proc (self: var GodotPoolByteArray, size: cint)
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayRead*: proc (self: GodotPoolByteArray): ptr GodotPoolByteArrayReadAccess
+                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayWrite*: proc (self: var GodotPoolByteArray): ptr GodotPoolByteArrayWriteAccess
+                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolByteArraySet*: proc (self: var GodotPoolByteArray, idx: cint, data: byte)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolByteArrayGet*: proc (self: GodotPoolByteArray, idx: cint): byte
@@ -1742,6 +1828,10 @@ type
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolIntArrayResize*: proc (self: var GodotPoolIntArray, size: cint)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayRead*: proc (self: GodotPoolIntArray): ptr GodotPoolIntArrayReadAccess
+                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayWrite*: proc (self: var GodotPoolIntArray): ptr GodotPoolIntArrayWriteAccess
+                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolIntArraySet*: proc (self: var GodotPoolIntArray, idx: cint, data: cint)
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolIntArrayGet*: proc (self: GodotPoolIntArray, idx: cint): cint
@@ -1778,6 +1868,10 @@ type
     poolRealArrayRemove*: proc (self: var GodotPoolRealArray, idx: cint)
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolRealArrayResize*: proc (self: var GodotPoolRealArray, size: cint)
+                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayRead*: proc (self: GodotPoolRealArray): ptr GodotPoolRealArrayReadAccess
+                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayWrite*: proc (self: var GodotPoolRealArray): ptr GodotPoolRealArrayWriteAccess
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolRealArraySet*: proc (self: var GodotPoolRealArray, idx: cint,
                              data: float32)
@@ -1825,6 +1919,10 @@ type
     poolStringArrayResize*: proc (self: var GodotPoolStringArray, size: cint)
                                  {.noconv, raises: [], gcsafe, tags: [],
                                    locks: 0.}
+    poolStringArrayRead*: proc (self: GodotPoolStringArray): ptr GodotPoolStringArrayReadAccess
+                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayWrite*: proc (self: var GodotPoolStringArray): ptr GodotPoolStringArrayWriteAccess
+                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolStringArraySet*: proc (self: var GodotPoolStringArray, idx: cint,
                                data: GodotString)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1871,6 +1969,10 @@ type
     poolVector2ArrayResize*: proc (self: var GodotPoolVector2Array, size: cint)
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
+    poolVector2ArrayRead*: proc (self: GodotPoolVector2Array): ptr GodotPoolVector2ArrayReadAccess
+                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayWrite*: proc (self: var GodotPoolVector2Array): ptr GodotPoolVector2ArrayWriteAccess
+                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolVector2ArraySet*: proc (self: var GodotPoolVector2Array, idx: cint,
                                 data: Vector2)
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1916,6 +2018,10 @@ type
     poolVector3ArrayResize*: proc (self: var GodotPoolVector3Array,
                                    size: cint) {.noconv, raises: [], gcsafe,
                                                 tags: [], locks: 0.}
+    poolVector3ArrayRead*: proc (self: GodotPoolVector3Array): ptr GodotPoolVector3ArrayReadAccess
+                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayWrite*: proc (self: var GodotPoolVector3Array): ptr GodotPoolVector3ArrayWriteAccess
+                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolVector3ArraySet*: proc (self: var GodotPoolVector3Array, idx: cint,
                                 data: Vector3) {.noconv, raises: [], gcsafe,
                                                 tags: [], locks: 0.}
@@ -1957,6 +2063,10 @@ type
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolColorArrayResize*: proc (self: var GodotPoolColorArray, size: cint)
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayRead*: proc (self: GodotPoolColorArray): ptr GodotPoolColorArrayReadAccess
+                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayWrite*: proc (self: var GodotPoolColorArray): ptr GodotPoolColorArrayWriteAccess
+                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolColorArraySet*: proc (self: var GodotPoolColorArray, idx: cint,
                               data: Color)
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1967,6 +2077,134 @@ type
     poolColorArrayDestroy*: proc (self: GodotPoolColorArray)
                                  {.noconv, raises: [], gcsafe, tags: [],
                                    locks: 0.}
+
+    # Pool Array Read/Write Access API
+
+    poolByteArrayReadAccessCopy*: proc (self: ptr GodotPoolByteArrayReadAccess): ptr GodotPoolByteArrayReadAccess
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayReadAccessPtr*: proc (self: ptr GodotPoolByteArrayReadAccess): ptr byte
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayReadAccessOperatorAssign*: proc (self, other: ptr GodotPoolByteArrayReadAccess)
+                                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayReadAccessDestroy*: proc (self: ptr GodotPoolByteArrayReadAccess)
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolIntArrayReadAccessCopy*: proc (self: ptr GodotPoolIntArrayReadAccess): ptr GodotPoolIntArrayReadAccess
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayReadAccessPtr*: proc (self: ptr GodotPoolIntArrayReadAccess): ptr cint
+                                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayReadAccessOperatorAssign*: proc (self, other: ptr GodotPoolIntArrayReadAccess)
+                                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayReadAccessDestroy*: proc (self: ptr GodotPoolIntArrayReadAccess)
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolRealArrayReadAccessCopy*: proc (self: ptr GodotPoolRealArrayReadAccess): ptr GodotPoolRealArrayReadAccess
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayReadAccessPtr*: proc (self: ptr GodotPoolRealArrayReadAccess): ptr float32
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayReadAccessOperatorAssign*: proc (self, other: ptr GodotPoolRealArrayReadAccess)
+                                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayReadAccessDestroy*: proc (self: ptr GodotPoolRealArrayReadAccess)
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolStringArrayReadAccessCopy*: proc (self: ptr GodotPoolStringArrayReadAccess): ptr GodotPoolStringArrayReadAccess
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayReadAccessPtr*: proc (self: ptr GodotPoolStringArrayReadAccess): ptr GodotString
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayReadAccessOperatorAssign*: proc (self, other: ptr GodotPoolStringArrayReadAccess)
+                                                   {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayReadAccessDestroy*: proc (self: ptr GodotPoolStringArrayReadAccess)
+                                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolVector2ArrayReadAccessCopy*: proc (self: ptr GodotPoolVector2ArrayReadAccess): ptr GodotPoolVector2ArrayReadAccess
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayReadAccessPtr*: proc (self: ptr GodotPoolVector2ArrayReadAccess): ptr Vector2
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayReadAccessOperatorAssign*: proc (self, other: ptr GodotPoolVector2ArrayReadAccess)
+                                                    {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayReadAccessDestroy*: proc (self: ptr GodotPoolVector2ArrayReadAccess)
+                                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolVector3ArrayReadAccessCopy*: proc (self: ptr GodotPoolVector3ArrayReadAccess): ptr GodotPoolVector3ArrayReadAccess
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayReadAccessPtr*: proc (self: ptr GodotPoolVector3ArrayReadAccess): ptr Vector3
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayReadAccessOperatorAssign*: proc (self, other: ptr GodotPoolVector3ArrayReadAccess)
+                                                    {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayReadAccessDestroy*: proc (self: ptr GodotPoolVector3ArrayReadAccess)
+                                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolColorArrayReadAccessCopy*: proc (self: ptr GodotPoolColorArrayReadAccess): ptr GodotPoolColorArrayReadAccess
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayReadAccessPtr*: proc (self: ptr GodotPoolColorArrayReadAccess): ptr Color
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayReadAccessOperatorAssign*: proc (self, other: ptr GodotPoolColorArrayReadAccess)
+                                                  {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayReadAccessDestroy*: proc (self: ptr GodotPoolColorArrayReadAccess)
+                                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolByteArrayWriteAccessCopy*: proc (self: ptr GodotPoolByteArrayWriteAccess): ptr GodotPoolByteArrayWriteAccess
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayWriteAccessPtr*: proc (self: ptr GodotPoolByteArrayWriteAccess): ptr byte
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayWriteAccessOperatorAssign*: proc (self, other: ptr GodotPoolByteArrayWriteAccess)
+                                                  {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolByteArrayWriteAccessDestroy*: proc (self: ptr GodotPoolByteArrayWriteAccess)
+                                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolIntArrayWriteAccessCopy*: proc (self: ptr GodotPoolIntArrayWriteAccess): ptr GodotPoolIntArrayWriteAccess
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayWriteAccessPtr*: proc (self: ptr GodotPoolIntArrayWriteAccess): ptr cint
+                                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayWriteAccessOperatorAssign*: proc (self, other: ptr GodotPoolIntArrayWriteAccess)
+                                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolIntArrayWriteAccessDestroy*: proc (self: ptr GodotPoolIntArrayWriteAccess)
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolRealArrayWriteAccessCopy*: proc (self: ptr GodotPoolRealArrayWriteAccess): ptr GodotPoolRealArrayWriteAccess
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayWriteAccessPtr*: proc (self: ptr GodotPoolRealArrayWriteAccess): ptr float32
+                                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayWriteAccessOperatorAssign*: proc (self, other: ptr GodotPoolRealArrayWriteAccess)
+                                                  {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolRealArrayWriteAccessDestroy*: proc (self: ptr GodotPoolRealArrayWriteAccess)
+                                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolStringArrayWriteAccessCopy*: proc (self: ptr GodotPoolStringArrayWriteAccess): ptr GodotPoolStringArrayWriteAccess
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayWriteAccessPtr*: proc (self: ptr GodotPoolStringArrayWriteAccess): ptr GodotString
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayWriteAccessOperatorAssign*: proc (self, other: ptr GodotPoolStringArrayWriteAccess)
+                                                    {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolStringArrayWriteAccessDestroy*: proc (self: ptr GodotPoolStringArrayWriteAccess)
+                                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolVector2ArrayWriteAccessCopy*: proc (self: ptr GodotPoolVector2ArrayWriteAccess): ptr GodotPoolVector2ArrayWriteAccess
+                                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayWriteAccessPtr*: proc (self: ptr GodotPoolVector2ArrayWriteAccess): ptr Vector2
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayWriteAccessOperatorAssign*: proc (self, other: ptr GodotPoolVector2ArrayWriteAccess)
+                                                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector2ArrayWriteAccessDestroy*: proc (self: ptr GodotPoolVector2ArrayWriteAccess)
+                                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolVector3ArrayWriteAccessCopy*: proc (self: ptr GodotPoolVector3ArrayWriteAccess): ptr GodotPoolVector3ArrayWriteAccess
+                                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayWriteAccessPtr*: proc (self: ptr GodotPoolVector3ArrayWriteAccess): ptr Vector3
+                                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayWriteAccessOperatorAssign*: proc (self, other: ptr GodotPoolVector3ArrayWriteAccess)
+                                                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolVector3ArrayWriteAccessDestroy*: proc (self: ptr GodotPoolVector3ArrayWriteAccess)
+                                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+
+    poolColorArrayWriteAccessCopy*: proc (self: ptr GodotPoolColorArrayWriteAccess): ptr GodotPoolColorArrayWriteAccess
+                                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayWriteAccessPtr*: proc (self: ptr GodotPoolColorArrayWriteAccess): ptr Color
+                                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayWriteAccessOperatorAssign*: proc (self, other: ptr GodotPoolColorArrayWriteAccess)
+                                                   {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    poolColorArrayWriteAccessDestroy*: proc (self: ptr GodotPoolColorArrayWriteAccess)
+                                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # Array API
     arrayNew*: proc (dest: var GodotArray)
@@ -2780,6 +3018,8 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           poolByteArrayPushBack
           poolByteArrayRemove
           poolByteArrayResize
+          poolByteArrayRead
+          poolByteArrayWrite
           poolByteArraySet
           poolByteArrayGet
           poolByteArraySize
@@ -2796,6 +3036,8 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           poolIntArrayPushBack
           poolIntArrayRemove
           poolIntArrayResize
+          poolIntArrayRead
+          poolIntArrayWrite
           poolIntArraySet
           poolIntArrayGet
           poolIntArraySize
@@ -2812,6 +3054,8 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           poolRealArrayPushBack
           poolRealArrayRemove
           poolRealArrayResize
+          poolRealArrayRead
+          poolRealArrayWrite
           poolRealArraySet
           poolRealArrayGet
           poolRealArraySize
@@ -2828,6 +3072,8 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           poolStringArrayPushBack
           poolStringArrayRemove
           poolStringArrayResize
+          poolStringArrayRead
+          poolStringArrayWrite
           poolStringArraySet
           poolStringArrayGet
           poolStringArraySize
@@ -2845,6 +3091,8 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           poolVector2ArrayPushBack
           poolVector2ArrayRemove
           poolVector2ArrayResize
+          poolVector2ArrayRead
+          poolVector2ArrayWrite
           poolVector2ArraySet
           poolVector2ArrayGet
           poolVector2ArraySize
@@ -2861,6 +3109,8 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           poolVector3ArrayPushBack
           poolVector3ArrayRemove
           poolVector3ArrayResize
+          poolVector3ArrayRead
+          poolVector3ArrayWrite
           poolVector3ArraySet
           poolVector3ArrayGet
           poolVector3ArraySize
@@ -2877,6 +3127,8 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           poolColorArrayPushBack
           poolColorArrayRemove
           poolColorArrayResize
+          poolColorArrayRead
+          poolColorArrayWrite
           poolColorArraySet
           poolColorArrayGet
           poolColorArraySize
@@ -2921,6 +3173,78 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           arrayBSearch
           arrayBSearchCustom
           arrayDestroy
+
+          # Pool Array Read/Write Access API
+
+          poolByteArrayReadAccessCopy
+          poolByteArrayReadAccessPtr
+          poolByteArrayReadAccessOperatorAssign
+          poolByteArrayReadAccessDestroy
+
+          poolIntArrayReadAccessCopy
+          poolIntArrayReadAccessPtr
+          poolIntArrayReadAccessOperatorAssign
+          poolIntArrayReadAccessDestroy
+
+          poolRealArrayReadAccessCopy
+          poolRealArrayReadAccessPtr
+          poolRealArrayReadAccessOperatorAssign
+          poolRealArrayReadAccessDestroy
+
+          poolStringArrayReadAccessCopy
+          poolStringArrayReadAccessPtr
+          poolStringArrayReadAccessOperatorAssign
+          poolStringArrayReadAccessDestroy
+
+          poolVector2ArrayReadAccessCopy
+          poolVector2ArrayReadAccessPtr
+          poolVector2ArrayReadAccessOperatorAssign
+          poolVector2ArrayReadAccessDestroy
+
+          poolVector3ArrayReadAccessCopy
+          poolVector3ArrayReadAccessPtr
+          poolVector3ArrayReadAccessOperatorAssign
+          poolVector3ArrayReadAccessDestroy
+
+          poolColorArrayReadAccessCopy
+          poolColorArrayReadAccessPtr
+          poolColorArrayReadAccessOperatorAssign
+          poolColorArrayReadAccessDestroy
+
+          poolByteArrayWriteAccessCopy
+          poolByteArrayWriteAccessPtr
+          poolByteArrayWriteAccessOperatorAssign
+          poolByteArrayWriteAccessDestroy
+
+          poolIntArrayWriteAccessCopy
+          poolIntArrayWriteAccessPtr
+          poolIntArrayWriteAccessOperatorAssign
+          poolIntArrayWriteAccessDestroy
+
+          poolRealArrayWriteAccessCopy
+          poolRealArrayWriteAccessPtr
+          poolRealArrayWriteAccessOperatorAssign
+          poolRealArrayWriteAccessDestroy
+
+          poolStringArrayWriteAccessCopy
+          poolStringArrayWriteAccessPtr
+          poolStringArrayWriteAccessOperatorAssign
+          poolStringArrayWriteAccessDestroy
+
+          poolVector2ArrayWriteAccessCopy
+          poolVector2ArrayWriteAccessPtr
+          poolVector2ArrayWriteAccessOperatorAssign
+          poolVector2ArrayWriteAccessDestroy
+
+          poolVector3ArrayWriteAccessCopy
+          poolVector3ArrayWriteAccessPtr
+          poolVector3ArrayWriteAccessOperatorAssign
+          poolVector3ArrayWriteAccessDestroy
+
+          poolColorArrayWriteAccessCopy
+          poolColorArrayWriteAccessPtr
+          poolColorArrayWriteAccessOperatorAssign
+          poolColorArrayWriteAccessDestroy
 
           # Dictionary API
           dictionaryNew

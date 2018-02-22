@@ -48,6 +48,12 @@ template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
   proc len*(self: T): int {.inline.} =
     self.fieldName.len.int
 
+  proc subarray*(self: T, idxFrom, idxTo: int): T {.inline.} =
+    ## Indexes are inclusive, negative values count from the end of the array.
+    assert(idxFrom >= low(cint) and idxFrom <= high(cint) and
+           idxTo >= low(cint) and idxTo <= high(cint))
+    newProcName(self.fieldName.subarray(idxFrom.cint, idxTo.cint))
+
   when not noData:
     proc add*(self: T; data: DataT) {.inline.} =
       self.fieldName.add(data)
@@ -62,12 +68,20 @@ template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
       self.fieldName[idx.cint]
 
     iterator items*(arr: T): DataT =
-      for i in 0..<arr.len:
-        yield arr[i]
+      for item in arr.fieldName.items:
+        yield item
 
     iterator pairs*(arr: T): tuple[key: int, val: DataT] =
-      for i in 0..<arr.len:
-        yield (i, arr[i])
+      for pair in arr.fieldName.pairs:
+        yield (pair[0].int, pair[1])
+
+    iterator mitems*(arr: T): var DataT =
+      for item in arr.fieldName.mitems:
+        yield item
+
+    iterator mpairs*(arr: T): tuple[key: int, val: var DataT] =
+      for pair in arr.fieldName.mpairs:
+        yield (pair[0].int, pair[1])
 
 definePoolArrayBase(PoolByteArray, GodotPoolByteArray, uint8,
                     godotPoolByteArray, newPoolByteArray,
@@ -75,7 +89,7 @@ definePoolArrayBase(PoolByteArray, GodotPoolByteArray, uint8,
 definePoolArrayBase(PoolIntArray, GodotPoolIntArray, cint,
                     godotPoolIntArray, newPoolIntArray,
                     initGodotPoolIntArray)
-definePoolArrayBase(PoolRealArray, GodotPoolRealArray, float64,
+definePoolArrayBase(PoolRealArray, GodotPoolRealArray, float32,
                     godotPoolRealArray, newPoolRealArray,
                     initGodotPoolRealArray)
 definePoolArrayBase(PoolVector2Array, GodotPoolVector2Array, Vector2,
@@ -99,7 +113,7 @@ definePoolArray(PoolByteArray, GodotPoolByteArray, uint8,
 definePoolArray(PoolIntArray, GodotPoolIntArray, cint,
                 godotPoolIntArray, newPoolIntArray,
                 initGodotPoolIntArray)
-definePoolArray(PoolRealArray, GodotPoolRealArray, float64,
+definePoolArray(PoolRealArray, GodotPoolRealArray, float32,
                 godotPoolRealArray, newPoolRealArray,
                 initGodotPoolRealArray)
 definePoolArray(PoolVector2Array, GodotPoolVector2Array, Vector2,

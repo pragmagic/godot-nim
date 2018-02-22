@@ -3,11 +3,16 @@
 import godotinternaltypes, gdnativeapi
 import core.godotcoretypes
 
+proc offset[T](p: ptr T, offset: int): ptr T {.inline.} =
+  cast[ptr T](cast[ByteAddress](p) +% (offset * sizeof(T)))
+
 template genPoolArrayAPI(ArrayT, initIdent, DataT,
                          newProc, newCopyProc, newWithArrayProc, appendProc,
                          appendArrayProc, insertProc, invertProc, pushBackProc,
                          removeProc, resizeProc, setProc, getProc, sizeProc,
-                         destroyProc) =
+                         destroyProc, readProc, writeProc,
+                         readAccessPtrProc, writeAccessPtrProc,
+                         readAccessDestroyProc, writeAccessDestroyProc) =
   proc initIdent*(dest: var ArrayT) {.inline.} =
     getGDNativeAPI().newProc(dest)
 
@@ -48,13 +53,61 @@ template genPoolArrayAPI(ArrayT, initIdent, DataT,
   proc len*(self: ArrayT): cint {.inline.} =
     getGDNativeAPI().sizeProc(self)
 
-  iterator items*(arr: ArrayT): DataT =
-    for i in 0.cint..<arr.len:
-      yield arr[i]
+  iterator items*(self: ArrayT): DataT =
+    let readAccess = getGDNativeAPI().readProc(self)
+    let readPtr = getGDNativeAPI().readAccessPtrProc(readAccess)
+    for i in 0.cint..<self.len:
+      yield readPtr.offset(i)[]
+    getGDNativeAPI().readAccessDestroyProc(readAccess)
 
-  iterator pairs*(arr: ArrayT): tuple[key: cint, val: DataT] =
-    for i in 0.cint..<arr.len:
-      yield (i, arr[i])
+  iterator mitems*(self: var ArrayT): var DataT =
+    let writeAccess = getGDNativeAPI().writeProc(self)
+    let writePtr = getGDNativeAPI().writeAccessPtrProc(writeAccess)
+    for i in 0.cint..<self.len:
+      yield writePtr.offset(i)[]
+    getGDNativeAPI().writeAccessDestroyProc(writeAccess)
+
+  iterator pairs*(self: ArrayT): tuple[key: cint, val: DataT] =
+    let readAccess = getGDNativeAPI().readProc(self)
+    let readPtr = getGDNativeAPI().readAccessPtrProc(readAccess)
+    for i in 0.cint..<self.len:
+      yield (i, readPtr.offset(i)[])
+    getGDNativeAPI().readAccessDestroyProc(readAccess)
+
+  iterator mpairs*(self: var ArrayT): tuple[key: cint, val: var DataT] =
+    let writeAccess = getGDNativeAPI().writeProc(self)
+    let writePtr = getGDNativeAPI().writeAccessPtrProc(writeAccess)
+    for i in 0.cint..<self.len:
+      yield (i, writePtr.offset(i)[])
+    getGDNativeAPI().writeAccessDestroyProc(writeAccess)
+
+  proc subarray*(self: ArrayT, idxFrom, idxTo: cint): ArrayT =
+    ## Indexes are inclusive, negative values count from the end of the array.
+    let ownLen = self.len
+    var actualIdxFrom = if idxFrom < 0: idxFrom + ownLen
+                        else: idxFrom
+    var actualIdxTo = if idxTo < 0: idxTo + ownLen
+                      else: idxTo
+
+    initIdent(result)
+    if actualIdxFrom < 0 or actualIdxFrom >= ownLen:
+      let (file, line) = instantiationInfo()
+      getGDNativeAPI().printError(
+        cstring"Invalid subarray begin index", cstring"subarray", file, line.cint)
+      return
+    if actualIdxTo < 0 or actualIdxTo >= ownLen:
+      let (file, line) = instantiationInfo()
+      getGDNativeAPI().printError(
+        cstring"Invalid subarray end index", cstring"subarray", file, line.cint)
+      return
+    let span = actualIdxTo - actualIdxFrom + 1
+    result.setLen(span)
+    let readAccess = getGDNativeAPI().readProc(self)
+    let writeAccess = getGDNativeAPI().writeProc(result)
+    let readPtr = getGDNativeAPI().readAccessPtrProc(readAccess).offset(actualIdxFrom)
+    copyMem(getGDNativeAPI().writeAccessPtrProc(writeAccess), readPtr, span)
+    getGDNativeAPI().readAccessDestroyProc(readAccess)
+    getGDNativeAPI().writeAccessDestroyProc(writeAccess)
 
 genPoolArrayAPI(GodotPoolByteArray, initGodotPoolByteArray, byte,
                 poolByteArrayNew,
@@ -70,7 +123,13 @@ genPoolArrayAPI(GodotPoolByteArray, initGodotPoolByteArray, byte,
                 poolByteArraySet,
                 poolByteArrayGet,
                 poolByteArraySize,
-                poolByteArrayDestroy)
+                poolByteArrayDestroy,
+                poolByteArrayRead,
+                poolByteArrayWrite,
+                poolByteArrayReadAccessPtr,
+                poolByteArrayWriteAccessPtr,
+                poolByteArrayReadAccessDestroy,
+                poolByteArrayWriteAccessDestroy)
 
 genPoolArrayAPI(GodotPoolIntArray, initGodotPoolIntArray, cint,
                 poolIntArrayNew,
@@ -86,7 +145,13 @@ genPoolArrayAPI(GodotPoolIntArray, initGodotPoolIntArray, cint,
                 poolIntArraySet,
                 poolIntArrayGet,
                 poolIntArraySize,
-                poolIntArrayDestroy)
+                poolIntArrayDestroy,
+                poolIntArrayRead,
+                poolIntArrayWrite,
+                poolIntArrayReadAccessPtr,
+                poolIntArrayWriteAccessPtr,
+                poolIntArrayReadAccessDestroy,
+                poolIntArrayWriteAccessDestroy)
 
 genPoolArrayAPI(GodotPoolRealArray, initGodotPoolRealArray, float32,
                 poolRealArrayNew,
@@ -102,7 +167,13 @@ genPoolArrayAPI(GodotPoolRealArray, initGodotPoolRealArray, float32,
                 poolRealArraySet,
                 poolRealArrayGet,
                 poolRealArraySize,
-                poolRealArrayDestroy)
+                poolRealArrayDestroy,
+                poolRealArrayRead,
+                poolRealArrayWrite,
+                poolRealArrayReadAccessPtr,
+                poolRealArrayWriteAccessPtr,
+                poolRealArrayReadAccessDestroy,
+                poolRealArrayWriteAccessDestroy)
 
 genPoolArrayAPI(GodotPoolStringArray, initGodotPoolStringArray, GodotString,
                 poolStringArrayNew,
@@ -118,7 +189,13 @@ genPoolArrayAPI(GodotPoolStringArray, initGodotPoolStringArray, GodotString,
                 poolStringArraySet,
                 poolStringArrayGet,
                 poolStringArraySize,
-                poolStringArrayDestroy)
+                poolStringArrayDestroy,
+                poolStringArrayRead,
+                poolStringArrayWrite,
+                poolStringArrayReadAccessPtr,
+                poolStringArrayWriteAccessPtr,
+                poolStringArrayReadAccessDestroy,
+                poolStringArrayWriteAccessDestroy)
 
 genPoolArrayAPI(GodotPoolVector2Array, initGodotPoolVector2Array, Vector2,
                 poolVector2ArrayNew,
@@ -134,7 +211,13 @@ genPoolArrayAPI(GodotPoolVector2Array, initGodotPoolVector2Array, Vector2,
                 poolVector2ArraySet,
                 poolVector2ArrayGet,
                 poolVector2ArraySize,
-                poolVector2ArrayDestroy)
+                poolVector2ArrayDestroy,
+                poolVector2ArrayRead,
+                poolVector2ArrayWrite,
+                poolVector2ArrayReadAccessPtr,
+                poolVector2ArrayWriteAccessPtr,
+                poolVector2ArrayReadAccessDestroy,
+                poolVector2ArrayWriteAccessDestroy)
 
 genPoolArrayAPI(GodotPoolVector3Array, initGodotPoolVector3Array, Vector3,
                 poolVector3ArrayNew,
@@ -150,7 +233,13 @@ genPoolArrayAPI(GodotPoolVector3Array, initGodotPoolVector3Array, Vector3,
                 poolVector3ArraySet,
                 poolVector3ArrayGet,
                 poolVector3ArraySize,
-                poolVector3ArrayDestroy)
+                poolVector3ArrayDestroy,
+                poolVector3ArrayRead,
+                poolVector3ArrayWrite,
+                poolVector3ArrayReadAccessPtr,
+                poolVector3ArrayWriteAccessPtr,
+                poolVector3ArrayReadAccessDestroy,
+                poolVector3ArrayWriteAccessDestroy)
 
 genPoolArrayAPI(GodotPoolColorArray, initGodotPoolColorArray, Color,
                 poolColorArrayNew,
@@ -166,4 +255,10 @@ genPoolArrayAPI(GodotPoolColorArray, initGodotPoolColorArray, Color,
                 poolColorArraySet,
                 poolColorArrayGet,
                 poolColorArraySize,
-                poolColorArrayDestroy)
+                poolColorArrayDestroy,
+                poolColorArrayRead,
+                poolColorArrayWrite,
+                poolColorArrayReadAccessPtr,
+                poolColorArrayWriteAccessPtr,
+                poolColorArrayReadAccessDestroy,
+                poolColorArrayWriteAccessDestroy)

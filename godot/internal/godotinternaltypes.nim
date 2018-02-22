@@ -16,18 +16,52 @@ type
 
   GodotPoolByteArray* {.byref.} = object
     data: array[sizeof(int), byte]
+  GodotPoolByteArrayReadAccess* {.byref.} = object
+    data: array[1, byte]
+  GodotPoolByteArrayWriteAccess* {.byref.} = object
+    data: array[1, byte]
+
   GodotPoolIntArray* {.byref.} = object
     data: array[sizeof(int), byte]
+  GodotPoolIntArrayReadAccess* {.byref.} = object
+    data: array[1, byte]
+  GodotPoolIntArrayWriteAccess* {.byref.} = object
+    data: array[1, byte]
+
   GodotPoolRealArray* {.byref.} = object
     data: array[sizeof(int), byte]
+  GodotPoolRealArrayReadAccess* {.byref.} = object
+    data: array[1, byte]
+  GodotPoolRealArrayWriteAccess* {.byref.} = object
+    data: array[1, byte]
+
   GodotPoolStringArray* {.byref.} = object
     data: array[sizeof(int), byte]
+  GodotPoolStringArrayReadAccess* {.byref.} = object
+    data: array[1, byte]
+  GodotPoolStringArrayWriteAccess* {.byref.} = object
+    data: array[1, byte]
+
   GodotPoolVector2Array* {.byref.} = object
     data: array[sizeof(int), byte]
+  GodotPoolVector2ArrayReadAccess* {.byref.} = object
+    data: array[1, byte]
+  GodotPoolVector2ArrayWriteAccess* {.byref.} = object
+    data: array[1, byte]
+
   GodotPoolVector3Array* {.byref.} = object
     data: array[sizeof(int), byte]
+  GodotPoolVector3ArrayReadAccess* {.byref.} = object
+    data: array[1, byte]
+  GodotPoolVector3ArrayWriteAccess* {.byref.} = object
+    data: array[1, byte]
+
   GodotPoolColorArray* {.byref.} = object
     data: array[sizeof(int), byte]
+  GodotPoolColorArrayReadAccess* {.byref.} = object
+    data: array[1, byte]
+  GodotPoolColorArrayWriteAccess* {.byref.} = object
+    data: array[1, byte]
 
   GodotString* {.byref.} = object
     data: array[sizeof(int), byte]
