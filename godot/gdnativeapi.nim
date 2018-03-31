@@ -2907,7 +2907,8 @@ var gdNativeAPI: GDNativeAPI
 proc getGDNativeAPI*(): ptr GDNativeAPI {.inline.} =
   addr gdNativeAPI
 
-proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
+proc setGDNativeAPIInternal(apiStruct: pointer, initOptions: ptr GDNativeInitOptions,
+                            foundCoreApi: var bool, foundNativeScriptApi: var bool) =
   let header = cast[ptr GDNativeAPIHeader](apiStruct)
 
   if header.typ >= ord(low(GDNativeAPIType)).cuint and header.typ <= ord(high(GDNativeAPIType)).cuint:
@@ -2915,7 +2916,7 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
     case typ:
     of GDNativeCore:
       let coreApi = cast[ptr GDNativeCoreAPI1](apiStruct)
-      if coreApi[].version.major == 1:
+      if coreApi[].version.major == 1 and coreApi[].version.minor == 0:
         assign(gdNativeApi, coreApi[]):
           # Color API
           colorNewRGBA
@@ -3505,15 +3506,14 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           printWarning
           print
 
+        foundCoreApi = true
         for i in 0.cuint..<coreApi.numExtensions:
-          setGDNativeAPI(coreApi.extensions[][i.int], initOptions)
-      else:
-        let want = GDNativeAPIVersion(major: 1, minor: 0)
-        initOptions[].reportVersionMismatch(
-          initOptions[].gdNativeLibrary, cstring"Core", want, coreApi[].version)
+          setGDNativeAPIInternal(coreApi.extensions[][i.int], initOptions,
+                                 foundCoreApi, foundNativeScriptApi)
     of GDNativeExtNativeScript:
       let nativeScriptApi = cast[ptr GDNativeNativeScriptAPI1](apiStruct)
-      if nativeScriptApi[].version.major == 1:
+      if nativeScriptApi[].version.major == 1 and
+         nativeScriptApi[].version.minor == 0:
         assign(gdNativeApi, nativeScriptApi[]):
           nativeScriptRegisterClass
           nativeScriptRegisterToolClass
@@ -3521,15 +3521,31 @@ proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
           nativeScriptRegisterProperty
           nativeScriptRegisterSignal
           nativeScriptGetUserdata
-      else:
-        let want = GDNativeAPIVersion(major: 1, minor: 0)
-        initOptions[].reportVersionMismatch(
-          initOptions[].gdNativeLibrary, cstring"NativeScript",
-          want, nativeScriptApi[].version)
+        foundNativeScriptApi = true
 
     of GDNativeExtPluginScript, GDNativeExtNativeARVR:
       # Not used
       discard
 
   if not header.next.isNil:
-    setGDNativeAPI(header.next, initOptions)
+    setGDNativeAPIInternal(header.next, initOptions,
+                           foundCoreApi, foundNativeScriptApi)
+
+proc setGDNativeAPI*(apiStruct: pointer, initOptions: ptr GDNativeInitOptions) =
+  var foundCoreApi: bool
+  var foundNativeScriptApi: bool
+
+  setGDNativeAPIInternal(apiStruct, initOptions,
+                         foundCoreApi, foundNativeScriptApi)
+
+  if not foundCoreApi:
+    let want = GDNativeAPIVersion(major: 1, minor: 0)
+    initOptions[].reportVersionMismatch(
+      initOptions[].gdNativeLibrary, cstring"Core", want,
+      GDNativeAPIVersion(major: 0, minor: 0))
+
+  if not foundNativeScriptApi:
+    let want = GDNativeAPIVersion(major: 1, minor: 0)
+    initOptions[].reportVersionMismatch(
+      initOptions[].gdNativeLibrary, cstring"NativeScript",
+      want, GDNativeAPIVersion(major: 0, minor: 0))
