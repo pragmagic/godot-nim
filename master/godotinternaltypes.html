@@ -57,7 +57,7 @@ body {
   line-height: 20px;
   color: #444;
   letter-spacing: 0.15px;
-  background-color: rgba(252, 248, 244, 0.45); }
+  background-color: #FDFBFA; }
 
 /* Skeleton grid */
 .container {
@@ -192,10 +192,10 @@ dd > pre {
   table-layout: fixed; }
 
 /* Nim search input */
-div#searchInput {
+div#searchInputDiv {
   margin-bottom: 8px;
 }
-div#searchInput input#searchInput {
+div#searchInputDiv input#searchInput {
   width: 10em;
 }
 div.search-groupby {
@@ -1143,7 +1143,7 @@ dt pre > span.Identifier ~ span.Identifier, dt pre > span.Operator ~ span.Identi
   color: inherit;
   font-weight: inherit; }
 
-dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator {
+dt pre > span.Operator ~ span.Identifier {
   color: inherit;
   font-weight: inherit; }
 
@@ -1220,7 +1220,7 @@ function main() {
     <ul class="simple">
     </ul>
   </div>
-  <div id="searchInput">
+  <div id="searchInputDiv">
     Search: <input type="text" id="searchInput"
       onkeyup="search()" />
   </div>
@@ -1249,24 +1249,66 @@ function main() {
   <li><a class="reference" href="#GodotPoolByteArray"
     title="GodotPoolByteArray = object
   data: array[sizeof(int), byte]"><wbr />Godot<wbr />Pool<wbr />Byte<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolByteArrayReadAccess"
+    title="GodotPoolByteArrayReadAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Byte<wbr />Array<wbr />Read<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolByteArrayWriteAccess"
+    title="GodotPoolByteArrayWriteAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Byte<wbr />Array<wbr />Write<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotPoolIntArray"
     title="GodotPoolIntArray = object
   data: array[sizeof(int), byte]"><wbr />Godot<wbr />Pool<wbr />Int<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolIntArrayReadAccess"
+    title="GodotPoolIntArrayReadAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Int<wbr />Array<wbr />Read<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolIntArrayWriteAccess"
+    title="GodotPoolIntArrayWriteAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Int<wbr />Array<wbr />Write<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotPoolRealArray"
     title="GodotPoolRealArray = object
   data: array[sizeof(int), byte]"><wbr />Godot<wbr />Pool<wbr />Real<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolRealArrayReadAccess"
+    title="GodotPoolRealArrayReadAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Real<wbr />Array<wbr />Read<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolRealArrayWriteAccess"
+    title="GodotPoolRealArrayWriteAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Real<wbr />Array<wbr />Write<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotPoolStringArray"
     title="GodotPoolStringArray = object
   data: array[sizeof(int), byte]"><wbr />Godot<wbr />Pool<wbr />String<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolStringArrayReadAccess"
+    title="GodotPoolStringArrayReadAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />String<wbr />Array<wbr />Read<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolStringArrayWriteAccess"
+    title="GodotPoolStringArrayWriteAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />String<wbr />Array<wbr />Write<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotPoolVector2Array"
     title="GodotPoolVector2Array = object
   data: array[sizeof(int), byte]"><wbr />Godot<wbr />Pool<wbr />Vector2Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolVector2ArrayReadAccess"
+    title="GodotPoolVector2ArrayReadAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Vector2Array<wbr />Read<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolVector2ArrayWriteAccess"
+    title="GodotPoolVector2ArrayWriteAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Vector2Array<wbr />Write<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotPoolVector3Array"
     title="GodotPoolVector3Array = object
   data: array[sizeof(int), byte]"><wbr />Godot<wbr />Pool<wbr />Vector3Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolVector3ArrayReadAccess"
+    title="GodotPoolVector3ArrayReadAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Vector3Array<wbr />Read<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolVector3ArrayWriteAccess"
+    title="GodotPoolVector3ArrayWriteAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Vector3Array<wbr />Write<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotPoolColorArray"
     title="GodotPoolColorArray = object
   data: array[sizeof(int), byte]"><wbr />Godot<wbr />Pool<wbr />Color<wbr />Array<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolColorArrayReadAccess"
+    title="GodotPoolColorArrayReadAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Color<wbr />Array<wbr />Read<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#GodotPoolColorArrayWriteAccess"
+    title="GodotPoolColorArrayWriteAccess = object
+  data: array[1, byte]"><wbr />Godot<wbr />Pool<wbr />Color<wbr />Array<wbr />Write<wbr />Access<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#GodotString"
     title="GodotString = object
   data: array[sizeof(int), byte]"><wbr />Godot<wbr />String<span class="attachedType" style="visibility:hidden"></span></a></li>
@@ -1453,7 +1495,7 @@ function main() {
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L6"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L6"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L6" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1464,7 +1506,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L9"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L9"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1475,7 +1517,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L12"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L12"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1484,7 +1526,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L15"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L15"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1495,9 +1537,31 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L17"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L17"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolByteArrayReadAccess"><a name="GodotPoolByteArrayReadAccess"></a><pre><span class="Identifier">GodotPoolByteArrayReadAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L19"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolByteArrayWriteAccess"><a name="GodotPoolByteArrayWriteAccess"></a><pre><span class="Identifier">GodotPoolByteArrayWriteAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L21"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPoolIntArray"><a name="GodotPoolIntArray"></a><pre><span class="Identifier">GodotPoolIntArray</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1506,9 +1570,31 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L19"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L24"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolIntArrayReadAccess"><a name="GodotPoolIntArrayReadAccess"></a><pre><span class="Identifier">GodotPoolIntArrayReadAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L26"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolIntArrayWriteAccess"><a name="GodotPoolIntArrayWriteAccess"></a><pre><span class="Identifier">GodotPoolIntArrayWriteAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L28"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPoolRealArray"><a name="GodotPoolRealArray"></a><pre><span class="Identifier">GodotPoolRealArray</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1517,9 +1603,31 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L21"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L31"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolRealArrayReadAccess"><a name="GodotPoolRealArrayReadAccess"></a><pre><span class="Identifier">GodotPoolRealArrayReadAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L33"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolRealArrayWriteAccess"><a name="GodotPoolRealArrayWriteAccess"></a><pre><span class="Identifier">GodotPoolRealArrayWriteAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L35"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPoolStringArray"><a name="GodotPoolStringArray"></a><pre><span class="Identifier">GodotPoolStringArray</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1528,9 +1636,31 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L23"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L38"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L38" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolStringArrayReadAccess"><a name="GodotPoolStringArrayReadAccess"></a><pre><span class="Identifier">GodotPoolStringArrayReadAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L40"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolStringArrayWriteAccess"><a name="GodotPoolStringArrayWriteAccess"></a><pre><span class="Identifier">GodotPoolStringArrayWriteAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L42"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPoolVector2Array"><a name="GodotPoolVector2Array"></a><pre><span class="Identifier">GodotPoolVector2Array</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1539,9 +1669,31 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L25"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L45"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolVector2ArrayReadAccess"><a name="GodotPoolVector2ArrayReadAccess"></a><pre><span class="Identifier">GodotPoolVector2ArrayReadAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L47"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L47" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolVector2ArrayWriteAccess"><a name="GodotPoolVector2ArrayWriteAccess"></a><pre><span class="Identifier">GodotPoolVector2ArrayWriteAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L49"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPoolVector3Array"><a name="GodotPoolVector3Array"></a><pre><span class="Identifier">GodotPoolVector3Array</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1550,9 +1702,31 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L27"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L52"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolVector3ArrayReadAccess"><a name="GodotPoolVector3ArrayReadAccess"></a><pre><span class="Identifier">GodotPoolVector3ArrayReadAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L54"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L54" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolVector3ArrayWriteAccess"><a name="GodotPoolVector3ArrayWriteAccess"></a><pre><span class="Identifier">GodotPoolVector3ArrayWriteAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L56"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L56" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPoolColorArray"><a name="GodotPoolColorArray"></a><pre><span class="Identifier">GodotPoolColorArray</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1561,9 +1735,31 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L29"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L59"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L59" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolColorArrayReadAccess"><a name="GodotPoolColorArrayReadAccess"></a><pre><span class="Identifier">GodotPoolColorArrayReadAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L61"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="GodotPoolColorArrayWriteAccess"><a name="GodotPoolColorArrayWriteAccess"></a><pre><span class="Identifier">GodotPoolColorArrayWriteAccess</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">byte</span><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L63"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotString"><a name="GodotString"></a><pre><span class="Identifier">GodotString</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1572,9 +1768,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L32"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L66"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotCharString"><a name="GodotCharString"></a><pre><span class="Identifier">GodotCharString</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1583,9 +1779,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L35"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L69"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="VariantType"><a name="VariantType"></a><pre><span class="Identifier">VariantType</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1600,9 +1796,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L38"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L72"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L38" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="VariantCallErrorType"><a name="VariantCallErrorType"></a><pre><span class="Identifier">VariantCallErrorType</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1611,9 +1807,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L69"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L103"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L103" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="VariantCallError"><a name="VariantCallError"></a><pre><span class="Identifier">VariantCallError</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1624,9 +1820,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L77"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L111"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L77" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L111" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotVariant"><a name="GodotVariant"></a><pre><span class="Identifier">GodotVariant</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1635,18 +1831,18 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L82"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L116"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L82" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L116" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotMethodBind"><a name="GodotMethodBind"></a><pre><span class="Identifier">GodotMethodBind</span> <span class="Other">=</span> <span class="Keyword">object</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L85"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L119"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L85" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L119" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GDNativeAPIVersion"><a name="GDNativeAPIVersion"></a><pre><span class="Identifier">GDNativeAPIVersion</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1656,9 +1852,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L88"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L122"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L88" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L122" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GDNativeInitOptions"><a name="GDNativeInitOptions"></a><pre><span class="Identifier">GDNativeInitOptions</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1677,9 +1873,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L92"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L126"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L92" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L126" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GDNativeTerminateOptions"><a name="GDNativeTerminateOptions"></a><pre><span class="Identifier">GDNativeTerminateOptions</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1688,9 +1884,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L104"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L138"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L104" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L138" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotMethodRPCMode"><a name="GodotMethodRPCMode"></a><pre><span class="Identifier">GodotMethodRPCMode</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1698,9 +1894,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L107"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L141"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L107" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L141" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotMethodAttributes"><a name="GodotMethodAttributes"></a><pre><span class="Identifier">GodotMethodAttributes</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1709,9 +1905,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L114"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L148"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L114" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L148" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPropertyHint"><a name="GodotPropertyHint"></a><pre><span class="Identifier">GodotPropertyHint</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1749,9 +1945,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L117"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L151"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L117" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L151" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPropertyUsage"><a name="GodotPropertyUsage"></a><pre><span class="Identifier">GodotPropertyUsage</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1775,9 +1971,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L186"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L220"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L186" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L220" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPropertyAttributes"><a name="GodotPropertyAttributes"></a><pre><span class="Identifier">GodotPropertyAttributes</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1791,9 +1987,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L214"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L248"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L214" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L248" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotInstanceCreateFunc"><a name="GodotInstanceCreateFunc"></a><pre><span class="Identifier">GodotInstanceCreateFunc</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1804,9 +2000,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 returns user data
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L222"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L256"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L222" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L256" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotInstanceDestroyFunc"><a name="GodotInstanceDestroyFunc"></a><pre><span class="Identifier">GodotInstanceDestroyFunc</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1818,9 +2014,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L229"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L263"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L229" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L263" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotInstanceMethod"><a name="GodotInstanceMethod"></a><pre><span class="Identifier">GodotInstanceMethod</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1833,9 +2029,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L236"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L270"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L236" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L270" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPropertySetFunc"><a name="GodotPropertySetFunc"></a><pre><span class="Identifier">GodotPropertySetFunc</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1847,9 +2043,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L245"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L279"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L245" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L279" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotPropertyGetFunc"><a name="GodotPropertyGetFunc"></a><pre><span class="Identifier">GodotPropertyGetFunc</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1861,9 +2057,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L251"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L285"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L251" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L285" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotSignalArgument"><a name="GodotSignalArgument"></a><pre><span class="Identifier">GodotSignalArgument</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1877,9 +2073,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L257"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L291"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L257" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L291" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotSignal"><a name="GodotSignal"></a><pre><span class="Identifier">GodotSignal</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1892,9 +2088,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L265"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L299"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L265" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L299" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="GodotClassConstructor"><a name="GodotClassConstructor"></a><pre><span class="Identifier">GodotClassConstructor</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">GodotObject</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">noconv</span><span class="Other">,</span> <span class="Identifier">gcsafe</span><span class="Other">,</span> <span class="Identifier">locks</span><span class="Other">:</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
@@ -1902,9 +2098,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L272"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L306"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L272" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L306" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1916,7 +2112,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/d11856377e05212663c72dd06947f9e40456cff3/godot/internal/godotinternaltypes.nim#L3"
+href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/internal/godotinternaltypes.nim#L3"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/pragmagic/godot-nim/edit/master/godot/internal/godotinternaltypes.nim#L3" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -1931,7 +2127,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-02-17 17:05:04 UTC</small>
+        <small>Made with Nim. Generated: 2018-03-31 11:13:03 UTC</small>
       </div>
     </div>
   </div>
