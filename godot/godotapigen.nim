@@ -659,15 +659,73 @@ proc generateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
                     meth: MethodInfo, withImplementation: bool) =
   doGenerateMethod(tree, methodBindRegistry, meth, withImplementation)
 
+proc getMethodInfo(methodObj: JsonNode, types: Table[string, GodotType],
+                   typ: GodotType): MethodInfo =
+  var origArgs = methodObj["arguments"]
+  var isBase = methodObj["is_virtual"].bval
+  if methodObj["is_virtual"].bval:
+    proc getMethod(typNode: JsonNode, methName: string): JsonNode =
+      for meth in typNode["methods"]:
+        if meth["is_virtual"].bval and
+           meth["name"].str == methName: return meth
+    var curTyp = types.getOrDefault(typ.baseName)
+    while not curTyp.isNil:
+      let meth = curTyp.jsonNode.getMethod(methodObj["name"].str)
+      if not meth.isNil:
+        origArgs = meth["arguments"]
+        isBase = false
+      curTyp = types.getOrDefault(curTyp.baseName)
+
+  var args = newSeqOfCap[MethodArg](methodObj["arguments"].len + 1)
+  for arg in origArgs:
+    let typ = toNimType(types, arg["type"].str)
+    let defaultVal = if arg["has_default_value"].bval: arg["default_value"]
+                     else: nil
+    args.add(MethodArg(
+              name: toNimStyle(arg["name"].str), typ: typ,
+              defaultVal: defaultVal))
+  if methodObj["has_varargs"].bval:
+    args.add(MethodArg(name: "variantArgs", typ: "Variant", kind: ArgKind.VarArgs))
+
+  let godotName = methodObj["name"].str
+  var nimName = toNimStyle(godotName)
+  if not godotName.startsWith('_'):
+    for meth in typ.jsonNode["methods"]:
+      if meth["name"].str == '_' & godotName:
+        nimName = nimName & "Impl"
+
+  let returnType = if methodObj["return_type"].str != "void":
+                      toNimType(types, methodObj["return_type"].str)
+                   else: nil
+  const discardableMethods = toSet(["emit_signal"])
+  result = MethodInfo(
+    name: ident(nimName),
+    typ: typ,
+    godotName: methodObj["name"].str,
+    args: args,
+    returnType: returnType,
+    isVirtual: methodObj["is_virtual"].bval,
+    isBase: isBase,
+    isDiscardable: typ.godotName == "Object" and
+                   methodObj["name"].str in discardableMethods
+  )
+
+proc findMethod(obj: JsonNode, methName: string): JsonNode =
+  for meth in obj["methods"]:
+    if meth["name"].str == methName:
+      return meth
+
 proc makeProperty(types: Table[string, GodotType], tree: PNode,
                   methodBindRegistry: var HashSet[string],
-                  typ: GodotType,
-                  propertyObj: JsonNode, withImplementation: bool) =
+                  typ: GodotType, propertyObj: JsonNode, obj: JsonNode,
+                  withImplementation: bool) =
   let getterNameStr = toNimStyle(propertyObj["name"].str)
-  let getterName = ident(toNimStyle(propertyObj["name"].str))
+  let getterName = ident(getterNameStr)
   let setterName = newNode(nkAccQuoted).addChain(ident(getterNameStr & "="))
 
-  let nimType = toNimType(types, propertyObj["type"].str)
+  let getter = findMethod(obj, propertyObj["getter"].str)
+  let nimType = if getter.isNil: toNimType(types, propertyObj["type"].str)
+                else: getMethodInfo(getter, types, typ).returnType
   let getterInfo = MethodInfo(
     name: getterName,
     typ: typ,
@@ -693,10 +751,6 @@ proc makeMethod(types: Table[string, GodotType], tree: PNode,
                 methodBindRegistry: var HashSet[string],
                 typ: GodotType, methodObj: JsonNode,
                 withImplementation: bool) =
-  let returnType = if methodObj["return_type"].str != "void":
-                      toNimType(types, methodObj["return_type"].str)
-                   else: nil
-
   if not typ.isSingleton:
     # for singletons we don't generate Nim setters/getters,
     # but use plain procedures instead. That's because setter syntax is
@@ -706,51 +760,7 @@ proc makeMethod(types: Table[string, GodotType], tree: PNode,
         prop["setter"].str == methodObj["name"].str:
         return
 
-  var args = newSeqOfCap[MethodArg](methodObj["arguments"].len + 1)
-  var origArgs = methodObj["arguments"]
-  var isBase = methodObj["is_virtual"].bval
-  if methodObj["is_virtual"].bval:
-    proc getMethod(typNode: JsonNode, methName: string): JsonNode =
-      for meth in typNode["methods"]:
-        if meth["is_virtual"].bval and
-           meth["name"].str == methName: return meth
-    var curTyp = types.getOrDefault(typ.baseName)
-    while not curTyp.isNil:
-      let meth = curTyp.jsonNode.getMethod(methodObj["name"].str)
-      if not meth.isNil:
-        origArgs = meth["arguments"]
-        isBase = false
-      curTyp = types.getOrDefault(curTyp.baseName)
-
-  for arg in origArgs:
-    let typ = toNimType(types, arg["type"].str)
-    let defaultVal = if arg["has_default_value"].bval: arg["default_value"]
-                     else: nil
-    args.add(MethodArg(
-              name: toNimStyle(arg["name"].str), typ: typ,
-              defaultVal: defaultVal))
-  if methodObj["has_varargs"].bval:
-    args.add(MethodArg(name: "variantArgs", typ: "Variant", kind: ArgKind.VarArgs))
-
-  let godotName = methodObj["name"].str
-  var nimName = toNimStyle(godotName)
-  if not godotName.startsWith('_'):
-    for meth in typ.jsonNode["methods"]:
-      if meth["name"].str == '_' & godotName:
-        nimName = nimName & "Impl"
-
-  const discardableMethods = toSet(["emit_signal"])
-  let methodInfo = MethodInfo(
-    name: ident(nimName),
-    typ: typ,
-    godotName: methodObj["name"].str,
-    args: args,
-    returnType: returnType,
-    isVirtual: methodObj["is_virtual"].bval,
-    isBase: isBase,
-    isDiscardable: typ.godotName == "Object" and
-                   methodObj["name"].str in discardableMethods
-  )
+  let methodInfo = getMethodInfo(methodObj, types, typ)
 
   generateMethod(tree, methodBindRegistry, methodInfo, withImplementation)
 
@@ -931,7 +941,7 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
     if not typ.isSingleton:
       for property in obj["properties"]:
         makeProperty(types, tree, methodBindRegsitry, typ, property,
-                    withImplementation = false)
+                     obj, withImplementation = false)
     for meth in obj["methods"]:
       makeMethod(types, tree, methodBindRegsitry, typ,
                  meth, withImplementation = false)
@@ -939,7 +949,7 @@ proc genApi*(targetDir: string, apiJsonFile: string) =
     if not typ.isSingleton:
       for property in obj["properties"]:
         makeProperty(types, tree, methodBindRegsitry, typ,
-                     property, withImplementation = true)
+                    property, obj, withImplementation = true)
     for meth in obj["methods"]:
       makeMethod(types, tree, methodBindRegsitry, typ, meth,
                  withImplementation = true)
