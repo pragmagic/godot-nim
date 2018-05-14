@@ -823,6 +823,8 @@ proc registerFrameCallback*(cb: proc () {.closure.}) =
   else:
     idleCallbacks.add(cb)
 
+{.push stackTrace: off.}
+
 proc godot_nativescript_frame() {.cdecl, exportc, dynlib.} =
   var stackBottom {.volatile.}: pointer
   {.emit: """
@@ -840,7 +842,7 @@ proc godot_nativescript_thread_enter() {.cdecl, exportc, dynlib.} =
   when compileOption("threads"):
     setupForeignThreadGc()
   else:
-    const err = cstring"A foreign thread is created, but app is compiled without --threads:on. Bad things will happen if Nim code is invoked from this thread."
+    const err = cstring"A foreign thread is created, but app is compiled without --threads:on. Bad things will happen if Nim code is invoked from this thread. If you see this warning when running the editor and you don't actually use threads, ignore it."
     var s = err.toGodotString()
     godotPrint(s)
     s.deinit()
@@ -848,3 +850,5 @@ proc godot_nativescript_thread_enter() {.cdecl, exportc, dynlib.} =
 proc godot_nativescript_thread_exit() {.cdecl, exportc, dynlib.} =
   when compileOption("threads"):
     teardownForeignThreadGc()
+
+{.pop.} # stackTrace: off
