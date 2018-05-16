@@ -91,14 +91,14 @@ template genPoolArrayAPI(ArrayT, initIdent, DataT,
 
     initIdent(result)
     if actualIdxFrom < 0 or actualIdxFrom >= ownLen:
-      let (file, line) = instantiationInfo()
+      let instInfo = instantiationInfo()
       getGDNativeAPI().printError(
-        cstring"Invalid subarray begin index", cstring"subarray", file, line.cint)
+        cstring"Invalid subarray begin index", cstring"subarray", instInfo.filename, instInfo.line.cint)
       return
     if actualIdxTo < 0 or actualIdxTo >= ownLen:
-      let (file, line) = instantiationInfo()
+      let instInfo = instantiationInfo()
       getGDNativeAPI().printError(
-        cstring"Invalid subarray end index", cstring"subarray", file, line.cint)
+        cstring"Invalid subarray end index", cstring"subarray", instInfo.filename, instInfo.line.cint)
       return
     let span = actualIdxTo - actualIdxFrom + 1
     result.setLen(span)

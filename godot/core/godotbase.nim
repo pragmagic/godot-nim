@@ -43,13 +43,13 @@ proc max*(x, y: float32): float32 {.inline, noinit.} =
 
 template printWarning*(warning: typed) =
   ## Prints ``warning`` to Godot log, adding filename and line information.
-  let (filename, line) = instantiationInfo()
-  godotPrintWarning(cstring($warning), cstring"", cstring(filename), line.cint)
+  let instInfo = instantiationInfo()
+  godotPrintWarning(cstring($warning), cstring"", cstring(instInfo.filename), instInfo.line.cint)
 
 template printError*(error: typed) =
   ## Prints ``error`` to Godot log, adding filename and line information.
-  let (filename, line) = instantiationInfo()
-  godotPrintError(cstring($error), cstring"", cstring(filename), line.cint)
+  let instInfo = instantiationInfo()
+  godotPrintError(cstring($error), cstring"", cstring(instInfo.filename), instInfo.line.cint)
 
 proc print*(parts: varargs[string, `$`]) =
   ## Prints concatenated ``parts`` to Godot log.
