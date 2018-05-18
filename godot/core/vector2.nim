@@ -84,7 +84,7 @@ proc length*(self: Vector2): float32 {.inline, noinit.} =
 proc lengthSquared*(self: Vector2): float32 {.inline, noinit.} =
   self.x * self.x + self.y * self.y
 
-proc normalize(self: var Vector2) {.inline.} =
+proc normalize*(self: var Vector2) {.inline.} =
   var len = self.x * self.x + self.y * self.y
   if len != 0:
     len = sqrt(len)
