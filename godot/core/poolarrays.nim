@@ -29,6 +29,12 @@ template definePoolArrayBase(T, GodotT, DataT, fieldName, newProcName,
     new(result, poolArrayFinalizer)
     result.fieldName = arr
 
+  proc hash*(arr: T): Hash =
+    for item in arr.fieldName.items():
+      result = result !&
+        (when type(item) is GodotString: ($item).hash() else: item.hash())
+    result = !$result
+
 template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
                          noData = false) =
 
@@ -85,11 +91,6 @@ template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
     iterator mpairs*(arr: T): tuple[key: int, val: var DataT] =
       for pair in arr.fieldName.mpairs:
         yield (pair[0].int, pair[1])
-
-    proc hash*(arr: T): Hash =
-      for item in arr.items():
-        result = result !& item.hash()
-      result = !$result
 
 definePoolArrayBase(PoolByteArray, GodotPoolByteArray, uint8,
                     godotPoolByteArray, newPoolByteArray,
@@ -164,8 +165,3 @@ iterator items*(arr: PoolStringArray): string =
 iterator pairs*(arr: PoolStringArray): tuple[key: int, val: string] =
   for i in 0..<arr.len:
     yield (i, arr[i])
-
-proc hash*(arr: PoolStringArray): Hash =
-  for s in arr:
-    result = result !& s.hash()
-  result = !$result

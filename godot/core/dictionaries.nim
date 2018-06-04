@@ -42,6 +42,9 @@ proc newVariant*(dict: Dictionary): Variant {.inline.} =
   new(result, variantFinalizer)
   initGodotVariant(result.godotVariant[], dict.godotDictionary)
 
+proc asDictionary*(self: Variant): Dictionary {.inline.} =
+  newDictionary(self.godotVariant[].asGodotDictionary())
+
 proc contains*(self: Dictionary; key: Variant): bool {.inline.}=
   self.godotDictionary.contains(key.godotVariant[])
 

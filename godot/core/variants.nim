@@ -2,7 +2,8 @@ import tables, hashes
 
 import godotcoretypes
 import internal.godotinternaltypes, internal.godotvariants,
-       internal.godotstrings
+       internal.godotstrings, internal.godotdictionaries,
+       internal.godotarrays
 
 type
   Variant* = ref object
@@ -140,11 +141,7 @@ proc newVariant*(obj: ptr GodotObject): Variant {.inline.} =
   new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, obj)
 
-import arrays, poolarrays, dictionaries
-
-proc newVariant*(arr: Array): Variant {.inline.} =
-  new(result, variantFinalizer)
-  initGodotVariant(result.godotVariant, arr.godotArray[])
+import poolarrays
 
 proc newVariant*(pba: PoolByteArray): Variant {.inline.} =
   new(result, variantFinalizer)
@@ -228,12 +225,6 @@ proc asRID*(self: Variant): RID {.inline.} =
 proc asGodotObject*(self: Variant): ptr GodotObject {.inline.} =
   self.godotVariant.asGodotObject()
 
-proc asDictionary*(self: Variant): Dictionary {.inline.} =
-  newDictionary(self.godotVariant.asGodotDictionary())
-
-proc asArray*(self: Variant): Array {.inline.} =
-  newArray(self.godotVariant.asGodotArray())
-
 proc asPoolByteArray*(self: Variant): PoolByteArray {.inline.} =
   newPoolByteArray(self.godotVariant.asGodotPoolByteArray())
 
@@ -277,8 +268,8 @@ proc hash*(self: Variant): Hash =
   of VariantType.NodePath: self.asNodePath().hash()
   of VariantType.RID: self.asRID().hash()
   of VariantType.Object: self.asGodotObject().objectHash()
-  of VariantType.Dictionary: self.asDictionary().hash()
-  of VariantType.Array: self.asArray().hash()
+  of VariantType.Dictionary: hash(self.godotVariant.asGodotDictionary().godotHash())
+  of VariantType.Array: hash(self.godotVariant.asGodotArray().godotHash())
   of VariantType.PoolByteArray: self.asPoolByteArray().hash()
   of VariantType.PoolIntArray: self.asPoolIntArray().hash()
   of VariantType.PoolRealArray: self.asPoolRealArray().hash()
@@ -286,6 +277,15 @@ proc hash*(self: Variant): Hash =
   of VariantType.PoolVector2Array: self.asPoolVector2Array().hash()
   of VariantType.PoolVector3Array: self.asPoolVector3Array().hash()
   of VariantType.PoolColorArray: self.asPoolColorArray().hash()
+
+import arrays
+
+proc newVariant*(arr: Array): Variant {.inline.} =
+  new(result, variantFinalizer)
+  initGodotVariant(result.godotVariant, arr.godotArray[])
+
+proc asArray*(self: Variant): Array {.inline.} =
+  newArray(self.godotVariant.asGodotArray())
 
 proc hasMethod*(self: Variant; meth: string): bool =
   var s = meth.toGodotString()
