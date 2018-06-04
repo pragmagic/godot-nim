@@ -319,6 +319,7 @@ proc singletonName(typ: string): PNode =
 proc makeDefaultValue(arg: MethodArg): PNode =
   result = newEmptyNode()
   if not arg.defaultVal.isNil:
+    var failed = false
     if arg.typ == "bool":
       result = ident(arg.defaultVal.str.toLowerAscii())
     elif arg.typ in intTypes:
@@ -335,15 +336,15 @@ proc makeDefaultValue(arg: MethodArg): PNode =
     elif arg.typ == "Color":
       result = newCall("initColor",
           arg.defaultVal.str.split(',').mapIt(newFloatLit(parseFloat(it))))
-    # elif arg.typ in arrayTypes and (arg.defaultVal.str == "[]" or
-    #        arg.defaultVal.str == "[" & arg.typ & "]"):
-    #   result = newCall("init" & arg.typ)
     elif arg.typ == "RID" and arg.defaultVal.str == "[RID]":
       result = newCall("initRID")
+    elif arg.typ in arrayTypes and (arg.defaultVal.str == "[]" or
+         arg.defaultVal.str == "[" & arg.typ & "]"):
+      result = newCall("new" & arg.typ)
     elif arg.typ == "Vector2" or arg.typ == "Vector3" or arg.typ == "Rect2":
       let parts = arg.defaultVal.str.replace("(", "").replace(")", "").
                          replace(" ", "").
-                         split(",").mapIt(newFloatLit(parseFloat(it)))
+                         split(',').mapIt(newFloatLit(parseFloat(it)))
       if arg.typ.endsWith("r2"):
         result = newCall("vec2", parts)
       elif arg.typ.endsWith('3'):
@@ -352,11 +353,41 @@ proc makeDefaultValue(arg: MethodArg): PNode =
         result = newCall("initRect2", parts)
     elif arg.defaultVal.str == "[Object:null]":
       result = newNilLit()
-    elif arg.typ != "Transform" and arg.typ != "Transform2D" and
-         arg.typ != "Variant" and arg.typ notin arrayTypes: # TODO
+    elif arg.typ == "Transform":
+      let transformParts = arg.defaultVal.str.replace(" ", "").split('-')
+      doAssert(transformParts.len == 2)
+      let basisParts = transformParts[0].split(',').mapIt(
+        newFloatLit(parseFloat(it)))
+      let originParts = transformParts[1].split(',').mapIt(
+        newFloatLit(parseFloat(it)))
+      let basis = newCall("initBasis", basisParts)
+      let origin = newCall("vec3", originParts)
+      result = newCall("initTransform", basis, origin)
+    elif arg.typ == "Transform2D":
+      let parts = arg.defaultVal.str.
+        replace(" ", "").
+        replace(")", "").
+        replace("(", "").
+        split(',').mapIt(newFloatLit(parseFloat(it)))
+      doAssert(parts.len == 6)
+      let xAxis = newCall("vec2", parts[0..1])
+      let yAxis = newCall("vec2", parts[2..3])
+      let origin = newCall("vec2", parts[4..5])
+      result = newCall("initTransform2D", xAxis, yAxis, origin)
+    elif arg.typ == "Variant":
+      if arg.defaultVal.str == "0":
+        result = newCall("newVariant", newIntLit(0))
+      elif arg.defaultVal.str == "Null":
+        result = newCall("newVariant")
+      else:
+        failed = true
+    else:
+      failed = true
+
+    if failed:
       raise newException(
         ValueError,
-        "Cannot build default value from $# ($#)" %
+        "Cannot build default value from \"$#\" ($#) - please report this at https://github.com/pragmagic/godot-nim/issues" %
         [$arg.defaultVal, arg.typ])
 
 proc boundArgName(idx: int): string =
