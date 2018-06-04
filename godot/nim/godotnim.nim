@@ -297,8 +297,8 @@ macro toGodotName(T: typedesc): string =
     godotName = "float"
   elif T is SomeUnsignedInt or T is SomeSignedInt:
     godotName = "int"
-  if godotName.isNil:
-    let nameStr: string = (($T.getType()[1][1].symbol).split(':')[0])
+  if godotName.isNil or godotName.len == 0:
+    let nameStr = (($T.getType()[1][1].symbol).split(':')[0])
     godotName = case nameStr:
     of "File", "Directory", "Thread", "Mutex", "Semaphore":
       "_" & nameStr

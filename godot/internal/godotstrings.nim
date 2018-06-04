@@ -29,14 +29,13 @@ proc `$`*(self: GodotString): string =
   result = newString(length)
   copyMem(addr result[0], getGDNativeAPI().charStringGetData(charStr), length)
   getGDNativeAPI().charStringDestroy(charStr)
-  assert(result[length] == '\0')
 
 proc toGodotString*(s: string): GodotString {.inline.} =
   ## Converts the Nim string into ``GodotString``
   if s.isNil:
     initGodotString(result)
   else:
-    initGodotString(result, unsafeAddr s[0], cint(s.len + 1))
+    initGodotString(result, cstring(s), cint(s.len + 1))
 
 proc toGodotString*(s: cstring): GodotString {.inline.} =
   ## Converts the cstring into ``GodotString``
