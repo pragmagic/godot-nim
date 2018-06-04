@@ -774,7 +774,7 @@ proc fromVariant*[T: Table or TableRef](t: var T,
     result = ConversionResult.TypeError
 
 {.emit: """/*TYPESECTION*/
-void NimMain(void);
+N_LIB_EXPORT N_CDECL(void, NimMain)(void);
 N_NOINLINE(void, setStackBottom)(void* thestackbottom);
 """.}
 
