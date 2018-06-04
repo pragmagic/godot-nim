@@ -1,5 +1,7 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
+import hashes
+
 import vector2
 import internal.godotinternaltypes, internal.godotstrings
 import godotcoretypes, gdnativeapi
@@ -15,8 +17,11 @@ proc initRect2*(pos, size: Vector2): Rect2 {.inline, noinit.} =
 proc initRect2*(x, y, sizeX, sizeY: float32): Rect2 {.inline, noinit.} =
   Rect2(position: vec2(x, y), size: vec2(sizeX, sizeY))
 
-proc `$`*(self: Rect2): string {.inline.} =
+proc `$`*(self: Rect2): string {.inline, noinit.} =
   $getGDNativeAPI().rect2AsString(self)
+
+proc hash*(self: Rect2): Hash {.inline, noinit.} =
+  !$(self.position.hash() !& self.size.hash())
 
 proc area*(self: Rect2): float32 {.inline, noinit.} =
   self.size.x * self.size.y

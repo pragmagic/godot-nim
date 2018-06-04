@@ -1,6 +1,6 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
-import math
+import math, hashes
 import godotbase, godotcoretypes
 
 {.push stackTrace: off.}
@@ -20,6 +20,9 @@ proc `$`*(self: Vector3): string {.inline.} =
   result.add(", ")
   result.add($self.z)
   result.add(')')
+
+proc hash*(self: Vector3): Hash {.inline, noinit.} =
+  !$(self.x.hash() !& self.y.hash() !& self.z.hash())
 
 proc `+`*(a, b: Vector3): Vector3 {.inline.} =
   result.x = a.x + b.x

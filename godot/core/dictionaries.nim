@@ -33,14 +33,14 @@ proc isEmpty*(self: Dictionary): bool {.inline.} =
 proc clear*(self: Dictionary) {.inline.} =
   self.godotDictionary.clear()
 
+proc hash*(self: Dictionary): Hash {.inline.} =
+  hash(self.godotDictionary.godotHash())
+
 import variants, arrays
 
 proc newVariant*(dict: Dictionary): Variant {.inline.} =
   new(result, variantFinalizer)
   initGodotVariant(result.godotVariant[], dict.godotDictionary)
-
-proc asDictionary*(self: Variant): Dictionary {.inline.} =
-  newDictionary(self.godotVariant[].asGodotDictionary)
 
 proc contains*(self: Dictionary; key: Variant): bool {.inline.}=
   self.godotDictionary.contains(key.godotVariant[])
@@ -50,9 +50,6 @@ proc contains*(self: Dictionary; keys: Array): bool {.inline.} =
 
 proc del*(self: Dictionary; key: Variant) {.inline.} =
   self.godotDictionary.del(key.godotVariant[])
-
-proc hash*(self: Dictionary): Hash {.inline.} =
-  hash(self.godotDictionary.godotHash())
 
 proc keys*(self: Dictionary): Array {.inline.} =
   newArray(self.godotDictionary.keys())

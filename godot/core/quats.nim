@@ -1,5 +1,7 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
+import hashes
+
 import internal.godotinternaltypes, internal.godotstrings
 import godotcoretypes, gdnativeapi
 
@@ -16,6 +18,9 @@ proc initQuat*(axis: Vector3; angle: float32): Quat {.inline.} =
 
 proc `$`*(self: Quat): string {.inline.} =
   $getGDNativeAPI().quatAsString(self)
+
+proc hash*(self: Quat): Hash {.inline.} =
+  !$(self.x.hash() !& self.y.hash() !& self.z.hash() !& self.w.hash())
 
 proc length*(self: Quat): float32 {.inline.} =
   getGDNativeAPI().quatLength(self)

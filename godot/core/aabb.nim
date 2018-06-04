@@ -1,5 +1,8 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
+import hashes
+
+import vector3
 import internal.godotinternaltypes, internal.godotstrings
 import godotcoretypes, gdnativeapi
 
@@ -8,6 +11,9 @@ proc initAABB*(pos, size: Vector3): AABB {.inline.} =
 
 proc `$`*(self: AABB): string {.inline.} =
   $getGDNativeAPI().aabbAsString(self)
+
+proc hash*(self: AABB): Hash {.inline.} =
+  !$(self.position.hash() !& self.size.hash())
 
 proc area*(self: AABB): float32 {.inline.} =
   getGDNativeAPI().aabbGetArea(self)

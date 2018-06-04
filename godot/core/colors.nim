@@ -1,5 +1,7 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
+import hashes
+
 import godotcoretypes, gdnativeapi
 
 proc initColor*(r, g, b: float32; a: float32 = 1.0'f32): Color {.inline.} =
@@ -32,6 +34,9 @@ proc `$`*(self: Color): string {.inline.} =
   result.add($self.b)
   result.add(", ")
   result.add($self.a)
+
+proc hash*(self: Color): Hash {.inline.} =
+  !$(self.r.hash() !& self.g.hash() !& self.b.hash() !& self.a.hash())
 
 proc toHex(val: float32, target: var string, targetIdx: int) =
   let val = clamp(int(val * 255), 0, 255)

@@ -1,6 +1,6 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
-import math, godotbase
+import math, godotbase, hashes
 
 import internal.godotinternaltypes, internal.godotstrings
 import godotcoretypes, gdnativeapi
@@ -15,6 +15,9 @@ proc vec2*(x, y: float32): Vector2 {.inline, noinit.} =
 
 proc `$`*(self: Vector2): string {.inline, noinit.} =
   $getGDNativeAPI().vector2AsString(self)
+
+proc hash*(self: Vector2): Hash {.inline, noinit.} =
+  !$(self.x.hash() !& self.y.hash())
 
 proc `+`*(self, other: Vector2): Vector2 {.inline, noinit.} =
   Vector2(x: self.x + other.x, y: self.y + other.y)

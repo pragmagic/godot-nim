@@ -1,4 +1,4 @@
-import tables
+import tables, hashes
 
 import godotcoretypes
 import internal.godotinternaltypes, internal.godotvariants,
@@ -140,7 +140,7 @@ proc newVariant*(obj: ptr GodotObject): Variant {.inline.} =
   new(result, variantFinalizer)
   initGodotVariant(result.godotVariant, obj)
 
-import arrays, poolarrays
+import arrays, poolarrays, dictionaries
 
 proc newVariant*(arr: Array): Variant {.inline.} =
   new(result, variantFinalizer)
@@ -177,80 +177,115 @@ proc newVariant*(pca: PoolColorArray): Variant {.inline.} =
 proc asBool*(self: Variant): bool {.inline.} =
   self.godotVariant.asBool()
 
-proc asUInt*(self: Variant): uint64 =
+proc asUInt*(self: Variant): uint64 {.inline.} =
   self.godotVariant.asUInt()
 
-proc asInt*(self: Variant): int64 =
+proc asInt*(self: Variant): int64 {.inline.} =
   self.godotVariant.asInt()
 
-proc asReal*(self: Variant): cdouble =
+proc asReal*(self: Variant): cdouble {.inline.} =
   self.godotVariant.asReal()
 
-proc asString*(self: Variant): string =
+proc asString*(self: Variant): string {.inline.} =
   $self
 
-proc asVector2*(self: Variant): Vector2 =
+proc asVector2*(self: Variant): Vector2 {.inline.} =
   self.godotVariant.asVector2()
 
-proc asRect2*(self: Variant): Rect2 =
+proc asRect2*(self: Variant): Rect2 {.inline.} =
   self.godotVariant.asRect2()
 
-proc asVector3*(self: Variant): Vector3 =
+proc asVector3*(self: Variant): Vector3 {.inline.} =
   self.godotVariant.asVector3()
 
-proc asTransform2D*(self: Variant): Transform2D =
+proc asTransform2D*(self: Variant): Transform2D {.inline.} =
   self.godotVariant.asTransform2D()
 
-proc asPlane*(self: Variant): Plane =
+proc asPlane*(self: Variant): Plane {.inline.} =
   self.godotVariant.asPlane()
 
-proc asQuat*(self: Variant): Quat =
+proc asQuat*(self: Variant): Quat {.inline.} =
   self.godotVariant.asQuat()
 
-proc asAABB*(self: Variant): AABB =
+proc asAABB*(self: Variant): AABB {.inline.} =
   self.godotVariant.asAABB()
 
-proc asBasis*(self: Variant): Basis =
+proc asBasis*(self: Variant): Basis {.inline.} =
   self.godotVariant.asBasis()
 
-proc asTransform*(self: Variant): Transform =
+proc asTransform*(self: Variant): Transform {.inline.} =
   self.godotVariant.asTransform()
 
-proc asColor*(self: Variant): Color =
+proc asColor*(self: Variant): Color {.inline.} =
   self.godotVariant.asColor()
 
-proc asNodePath*(self: Variant): NodePath =
+proc asNodePath*(self: Variant): NodePath {.inline.} =
   result = newNodePath(self.godotVariant.asNodePath())
 
-proc asRID*(self: Variant): RID =
+proc asRID*(self: Variant): RID {.inline.} =
   self.godotVariant.asRID()
 
-proc asGodotObject*(self: Variant): ptr GodotObject =
+proc asGodotObject*(self: Variant): ptr GodotObject {.inline.} =
   self.godotVariant.asGodotObject()
 
-proc asArray*(self: Variant): Array =
+proc asDictionary*(self: Variant): Dictionary {.inline.} =
+  newDictionary(self.godotVariant.asGodotDictionary())
+
+proc asArray*(self: Variant): Array {.inline.} =
   newArray(self.godotVariant.asGodotArray())
 
-proc asPoolByteArray*(self: Variant): PoolByteArray =
+proc asPoolByteArray*(self: Variant): PoolByteArray {.inline.} =
   newPoolByteArray(self.godotVariant.asGodotPoolByteArray())
 
-proc asPoolIntArray*(self: Variant): PoolIntArray =
+proc asPoolIntArray*(self: Variant): PoolIntArray {.inline.} =
   newPoolIntArray(self.godotVariant.asGodotPoolIntArray())
 
-proc asPoolRealArray*(self: Variant): PoolRealArray =
+proc asPoolRealArray*(self: Variant): PoolRealArray {.inline.} =
   newPoolRealArray(self.godotVariant.asGodotPoolRealArray())
 
-proc asPoolStringArray*(self: Variant): PoolStringArray =
+proc asPoolStringArray*(self: Variant): PoolStringArray {.inline.} =
   newPoolStringArray(self.godotVariant.asGodotPoolStringArray())
 
-proc asPoolVector2Array*(self: Variant): PoolVector2Array =
+proc asPoolVector2Array*(self: Variant): PoolVector2Array {.inline.} =
   newPoolVector2Array(self.godotVariant.asGodotPoolVector2Array())
 
-proc asPoolVector3Array*(self: Variant): PoolVector3Array =
+proc asPoolVector3Array*(self: Variant): PoolVector3Array {.inline.} =
   newPoolVector3Array(self.godotVariant.asGodotPoolVector3Array())
 
-proc asPoolColorArray*(self: Variant): PoolColorArray =
+proc asPoolColorArray*(self: Variant): PoolColorArray {.inline.} =
   newPoolColorArray(self.godotVariant.asGodotPoolColorArray())
+
+proc hash*(self: Variant): Hash =
+  proc objectHash(obj: ptr GodotObject): Hash =
+    if not obj.isNil: cast[int](obj).hash() else: 0.hash()
+  result = case self.getType():
+  of VariantType.Nil: Hash(0)
+  of VariantType.Bool: self.asBool().hash()
+  of VariantType.Int: self.asInt().hash()
+  of VariantType.Real: self.asReal().hash()
+  of VariantType.String: self.asString().hash()
+  of VariantType.Vector2: self.asVector2().hash()
+  of VariantType.Rect2: self.asRect2().hash()
+  of VariantType.Vector3: self.asVector3().hash()
+  of VariantType.Transform2D: self.asTransform2D().hash()
+  of VariantType.Plane: self.asPlane().hash()
+  of VariantType.Quat: self.asQuat().hash()
+  of VariantType.AABB: self.asAABB().hash()
+  of VariantType.Basis: self.asBasis().hash()
+  of VariantType.Transform: self.asTransform().hash()
+  of VariantType.Color: self.asColor().hash()
+  of VariantType.NodePath: self.asNodePath().hash()
+  of VariantType.RID: self.asRID().hash()
+  of VariantType.Object: self.asGodotObject().objectHash()
+  of VariantType.Dictionary: self.asDictionary().hash()
+  of VariantType.Array: self.asArray().hash()
+  of VariantType.PoolByteArray: self.asPoolByteArray().hash()
+  of VariantType.PoolIntArray: self.asPoolIntArray().hash()
+  of VariantType.PoolRealArray: self.asPoolRealArray().hash()
+  of VariantType.PoolStringArray: self.asPoolStringArray().hash()
+  of VariantType.PoolVector2Array: self.asPoolVector2Array().hash()
+  of VariantType.PoolVector3Array: self.asPoolVector3Array().hash()
+  of VariantType.PoolColorArray: self.asPoolColorArray().hash()
 
 proc hasMethod*(self: Variant; meth: string): bool =
   var s = meth.toGodotString()

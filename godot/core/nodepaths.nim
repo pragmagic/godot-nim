@@ -1,5 +1,7 @@
 # Copyright 2018 Xored Software, Inc.
 
+import hashes
+
 import internal.godotinternaltypes, internal.godotnodepaths,
        internal.godotstrings
 
@@ -31,6 +33,9 @@ proc `$`*(self: NodePath): string {.inline.} =
   var s = self.path.toGodotString()
   result = $s
   s.deinit()
+
+proc hash*(self: NodePath): Hash {.inline.} =
+  ($self).hash()
 
 proc isAbsolute*(self: NodePath): bool {.inline.} =
   self.path.isAbsolute()

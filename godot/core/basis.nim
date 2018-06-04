@@ -1,6 +1,7 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
-import math
+import math, hashes
+
 import godotbase, vector3, quats
 import godotcoretypes
 
@@ -200,6 +201,9 @@ proc `$`*(self: Basis): string {.inline.} =
       if i != 0 or j != 0:
         result.add(", ")
       result.add($self[i][j])
+
+proc hash*(self: Basis): Hash {.inline.} =
+  !$(self.elements[0].hash() !& self.elements[1].hash() !& self.elements[2].hash())
 
 template cofac(row1, col1, row2, col2: int): float32 =
   self.elements[row1][col1] * self.elements[row2][col2] -

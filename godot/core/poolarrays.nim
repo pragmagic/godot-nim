@@ -1,8 +1,11 @@
 # Copyright 2018 Xored Software, Inc.
 
+import hashes
+
 import godotcoretypes
 import internal.godotinternaltypes, internal.godotpoolarrays,
        internal.godotstrings
+import vector2, vector3, colors
 
 template definePoolArrayBase(T, GodotT, DataT, fieldName, newProcName,
                              initProcName) =
@@ -83,6 +86,11 @@ template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
       for pair in arr.fieldName.mpairs:
         yield (pair[0].int, pair[1])
 
+    proc hash*(arr: T): Hash =
+      for item in arr.items():
+        result = result !& item.hash()
+      result = !$result
+
 definePoolArrayBase(PoolByteArray, GodotPoolByteArray, uint8,
                     godotPoolByteArray, newPoolByteArray,
                     initGodotPoolByteArray)
@@ -156,3 +164,8 @@ iterator items*(arr: PoolStringArray): string =
 iterator pairs*(arr: PoolStringArray): tuple[key: int, val: string] =
   for i in 0..<arr.len:
     yield (i, arr[i])
+
+proc hash*(arr: PoolStringArray): Hash =
+  for s in arr:
+    result = result !& s.hash()
+  result = !$result

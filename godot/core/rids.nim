@@ -1,5 +1,7 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
+import hashes
+
 import godotcoretypes, internal.godotinternaltypes, gdnativeapi
 
 proc initRID*(): RID {.inline.} =
@@ -13,6 +15,9 @@ proc id*(self: RID): uint32 {.inline.} =
 
 proc `$`*(self: RID): string {.inline.} =
   $self.id
+
+proc hash*(self: RID): Hash {.inline.} =
+  self.id.hash()
 
 proc `==`*(a, b: RID): bool {.inline.} =
   getGDNativeAPI().ridOperatorEqual(a, b)

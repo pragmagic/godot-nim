@@ -1,5 +1,7 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
+import hashes, vector2
+
 import internal.godotinternaltypes, internal.godotstrings
 import godotcoretypes, gdnativeapi
 
@@ -14,6 +16,9 @@ proc initTransform2D*(xAxis, yAxis, origin: Vector2): Transform2D {.inline.} =
 
 proc `$`*(self: Transform2D): string {.inline.} =
   $getGDNativeAPI().transform2DAsString(self)
+
+proc hash*(self: Transform2D): Hash {.inline, noinit.} =
+  !$(self.elements[0].hash() !& self.elements[1].hash() !& self.elements[2].hash())
 
 proc inverse*(self: Transform2D): Transform2D {.inline.} =
   getGDNativeAPI().transform2DInverse(self)

@@ -1,8 +1,10 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
+import hashes
+
 import internal.godotinternaltypes, internal.godotstrings
 import godotcoretypes, gdnativeapi
-import basis
+import basis, vector3
 
 proc initTransform*(): Transform {.inline.} =
   result.basis = initBasis()
@@ -20,6 +22,9 @@ proc initTransform*(basis: Basis, origin: Vector3): Transform {.inline.} =
 
 proc `$`*(self: Transform): string {.inline.} =
   $getGDNativeAPI().transformAsString(self)
+
+proc hash*(self: Transform): Hash {.inline.} =
+  !$(self.basis.hash() !& self.origin.hash())
 
 proc inverse*(self: Transform): Transform {.inline.} =
   getGDNativeAPI().transformInverse(self)

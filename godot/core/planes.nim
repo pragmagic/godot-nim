@@ -1,5 +1,7 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
+import hashes
+
 import vector3
 
 import internal.godotinternaltypes, internal.godotstrings
@@ -19,6 +21,9 @@ proc initPlane*(normal: Vector3; d: float32): Plane {.inline.} =
 
 proc `$`*(self: Plane): string {.inline.} =
   $getGDNativeAPI().planeAsString(self)
+
+proc hash*(self: Plane): Hash {.inline, noinit.} =
+  !$(self.normal.hash() !& self.d.hash())
 
 proc normalized*(self: Plane): Plane {.inline.} =
   getGDNativeAPI().planeNormalized(self)
