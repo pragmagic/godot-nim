@@ -1245,6 +1245,8 @@ function main() {
     title="initAABB(pos, size: Vector3): AABB"><wbr />init<wbr />AABB<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#$,AABB"
     title="`$`(self: AABB): string"><wbr />`$`<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#hash,AABB"
+    title="hash(self: AABB): Hash"><wbr />hash<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#area,AABB"
     title="area(self: AABB): float32"><wbr />area<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#hasNoArea,AABB"
@@ -1300,7 +1302,7 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="godotinternaltypes.html">internal/godotinternaltypes</a>, <a class="reference external" href="godotstrings.html">internal/godotstrings</a>, <a class="reference external" href="godotcoretypes.html">godotcoretypes</a>, <a class="reference external" href="gdnativeapi.html">gdnativeapi</a>
+<a class="reference external" href="hashes.html">hashes</a>, <a class="reference external" href="vector3.html">vector3</a>, <a class="reference external" href="godotinternaltypes.html">internal/godotinternaltypes</a>, <a class="reference external" href="godotstrings.html">internal/godotstrings</a>, <a class="reference external" href="godotcoretypes.html">godotcoretypes</a>, <a class="reference external" href="gdnativeapi.html">gdnativeapi</a>
 </dl></div>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
@@ -1309,90 +1311,99 @@ function main() {
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L6"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L9"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L6" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="$"><a name="$,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`$`</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L9"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L12"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="hash"><a name="hash,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hash</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Hash</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L15"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="area"><a name="area,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">area</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L12"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="hasNoArea"><a name="hasNoArea,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hasNoArea</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L15"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L21"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="hasNoSurface"><a name="hasNoSurface,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hasNoSurface</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L18"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L24"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="intersects"><a name="intersects,AABB,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">intersects</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">other</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L21"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L27"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="encloses"><a name="encloses,AABB,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">encloses</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">other</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L24"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="merge"><a name="merge,AABB,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">merge</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">other</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">AABB</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L27"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L33"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="intersection"><a name="intersection,AABB,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">intersection</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">other</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">AABB</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L30"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L36"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="intersectsPlane"><a name="intersectsPlane,AABB,Plane"></a><pre><span class="Keyword">proc</span> <span class="Identifier">intersectsPlane</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">;</span> <span class="Identifier">plane</span><span class="Other">:</span> <span class="Identifier">Plane</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L33"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L39"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="intersectsSegment"><a name="intersectsSegment,AABB,Vector3,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">intersectsSegment</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">;</span> <span class="Identifier">start</span><span class="Other">,</span> <span class="Identifier">to</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
@@ -1400,117 +1411,117 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L36"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L42"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="contains"><a name="contains,AABB,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">contains</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">;</span> <span class="Identifier">point</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L39"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L45"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getSupport"><a name="getSupport,AABB,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSupport</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">;</span> <span class="Identifier">dir</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L42"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L48"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getLongestAxis"><a name="getLongestAxis,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getLongestAxis</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L45"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L51"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getLongestAxisIndex"><a name="getLongestAxisIndex,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getLongestAxisIndex</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L48"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L54"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L54" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getLongestAxisSize"><a name="getLongestAxisSize,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getLongestAxisSize</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L51"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L57"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getShortestAxis"><a name="getShortestAxis,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getShortestAxis</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L54"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L60"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L54" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getShortestAxisIndex"><a name="getShortestAxisIndex,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getShortestAxisIndex</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L57"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L63"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getShortestAxisSize"><a name="getShortestAxisSize,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getShortestAxisSize</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L60"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L66"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="expand"><a name="expand,AABB,Vector3"></a><pre><span class="Keyword">proc</span> <span class="Identifier">expand</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">;</span> <span class="Identifier">toPoint</span><span class="Other">:</span> <span class="Identifier">Vector3</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">AABB</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L63"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L69"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="grow"><a name="grow,AABB,float32"></a><pre><span class="Keyword">proc</span> <span class="Identifier">grow</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">;</span> <span class="Identifier">by</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">AABB</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L66"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L72"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getEndpoint"><a name="getEndpoint,AABB,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getEndpoint</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">;</span> <span class="Identifier">idx</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vector3</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L69"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L75"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L75" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="=="><a name="==,AABB,AABB"></a><pre><span class="Keyword">proc</span> <span class="Identifier">`==`</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">AABB</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/pragmagic/godot-nim/tree/dc6ebaf5757b82436d714a779855207c6009afe4/godot/core/aabb.nim#L72"
+href="https://github.com/pragmagic/godot-nim/tree/b3ad6134d90aafd9da58050fd89943c492cc5351/godot/core/aabb.nim#L78"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/pragmagic/godot-nim/edit/master/godot/core/aabb.nim#L78" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1523,7 +1534,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2018-03-31 11:12:52 UTC</small>
+        <small>Made with Nim. Generated: 2018-06-04 09:45:38 UTC</small>
       </div>
     </div>
   </div>
