@@ -722,6 +722,11 @@ proc makeProperty(types: Table[string, GodotType], tree: PNode,
                   methodBindRegistry: var HashSet[string],
                   typ: GodotType, propertyObj: JsonNode, obj: JsonNode,
                   withImplementation: bool) =
+  for meth in obj["methods"]:
+    if meth["name"].str == '_' & propertyObj["name"].str:
+      # Don't generate properties if there is a name clash - otherwise
+      # using the property would not compile due to ambiguity.
+      return
   let getterNameStr = toNimStyle(propertyObj["name"].str)
   let getterName = ident(getterNameStr)
   let setterName = newNode(nkAccQuoted).addChain(ident(getterNameStr & "="))
@@ -760,8 +765,14 @@ proc makeMethod(types: Table[string, GodotType], tree: PNode,
     # supposed to be used on an object (have at least 2 params).
     for prop in typ.jsonNode["properties"]:
       if prop["getter"].str == methodObj["name"].str or
-        prop["setter"].str == methodObj["name"].str:
-        return
+         prop["setter"].str == methodObj["name"].str:
+        var hasDuplicateMethod = false
+        for meth in typ.jsonNode["methods"]:
+          if meth["name"].str == '_' & prop["name"].str:
+            hasDuplicateMethod = true
+            break
+        if not hasDuplicateMethod:
+          return
 
   let methodInfo = getMethodInfo(methodObj, types, typ)
 
