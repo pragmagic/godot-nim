@@ -468,9 +468,12 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
             newIdentDefs(ident("argToPassToGodot" & $idx), newEmptyNode(),
                          newCall("toGodotString", argName))))
         else:
+          let objVal = newIfStmt(
+            prefix("not", newDotExpr(argName, ident"isNil")),
+            newDotExpr(argName, ident("godotObject"))
+          ).addChain(newNode(nkElse).addChain(newNilLit()))
           argConversions.add(newNode(nkLetSection).addChain(
-            newIdentDefs(ident("argToPassToGodot" & $idx), newEmptyNode(),
-                        newDotExpr(argName, ident("godotObject")))))
+            newIdentDefs(ident("argToPassToGodot" & $idx), newEmptyNode(), objVal)))
       let argAsgn = newNode(nkAsgn).addChain(
         newNode(nkBracketExpr).addChain(
           newNode(nkBracketExpr).addChain(argsName), argIdx),
