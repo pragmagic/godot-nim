@@ -673,6 +673,8 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
     of ArgKind.Bound:
       discard
 
+  if procType == nkMethodDef:
+    meth.name = postfix(meth.name, "Impl")
   let procDecl = newProc(if not withImplementation: postfix(meth.name, "*")
                          else: meth.name,
                          params, body, procType)
