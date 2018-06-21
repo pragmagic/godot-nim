@@ -267,9 +267,9 @@ proc `as`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): T =
   ## This can be used either in dot notation (``node.as(Button)``) or
   ## infix notation (``node as Button``).
   if obj.isNil: return nil
-  if obj of T:
+  if system.`of`(obj, T):
     result = T(obj)
-  elif not obj.linkedObject.isNil and obj.linkedObject of T:
+  elif not obj.linkedObject.isNil and system.`of`(obj.linkedObject, T):
     result = T(obj.linkedObject)
   else:
     when not defined(release):
@@ -277,10 +277,9 @@ proc `as`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): T =
                   T.name & "\n" & getStackTrace())
     result = nil
 
-proc `of`*[T: NimGodotObject](obj: NimGodotObject,
-                              t: typedesc[T]): bool {.inline.} =
+proc `of`*[T1, T2: NimGodotObject](obj: T1, t: typedesc[T2]): bool {.inline.} =
   ## Godot-specific inheritance check.
-  not obj.isNil and (system.`of`(obj, T) or system.`of`(obj.linkedObject, T))
+  not obj.isNil and (system.`of`(obj, T2) or system.`of`(obj.linkedObject, T2))
 
 proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
