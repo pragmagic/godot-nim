@@ -172,7 +172,11 @@ proc parseMethod(meth: NimNode): MethodDecl =
 
 proc parseVarSection(decl: NimNode): seq[VarDecl] =
   assert(decl.kind == nnkVarSection)
-  result = identDefsToVarDecls(decl[0])
+  for i in 0..<decl.len:
+    if i == 0:
+      result = identDefsToVarDecls(decl[i])
+    else:
+      result.add(identDefsToVarDecls(decl[i]))
 
 proc parseType(definition, callSite: NimNode): ObjectDecl =
   let body = callSite[^1]
