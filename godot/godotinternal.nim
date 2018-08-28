@@ -93,6 +93,11 @@ proc getClassName*(o: ptr GodotObject): string =
     # There are physics type not known by ClassDB
     result = result[0..result.len-3]
 
+proc getClassNameRaw*(o: ptr GodotObject): GodotString =
+  if getClassMethodBind.isNil:
+    getClassMethodBind = getMethod(cstring"Object", cstring"get_class")
+  getClassMethodBind.ptrCall(o, nil, addr result)
+
 proc getGodotSingleton*(name: cstring): ptr GodotObject {.inline.} =
   getGDNativeAPI().globalGetSingleton(name)
 

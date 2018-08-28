@@ -3,9 +3,6 @@
 import godotinternaltypes, gdnativeapi
 import core.godotcoretypes
 
-proc offset[T](p: ptr T, offset: int): ptr T {.inline.} =
-  cast[ptr T](cast[ByteAddress](p) +% (offset * sizeof(T)))
-
 template genPoolArrayAPI(ArrayT, initIdent, DataT,
                          newProc, newCopyProc, newWithArrayProc, appendProc,
                          appendArrayProc, insertProc, invertProc, pushBackProc,

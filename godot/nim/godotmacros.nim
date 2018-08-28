@@ -508,7 +508,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   # Register Godot object
   let parentName = if obj.parentName.isNil: newStrLitNode("Object")
                    else: newStrLitNode(obj.parentName)
-  let classNameLit = newCStringLit(obj.name)
+  let classNameLit = newStrLitNode(obj.name)
   let classNameIdent = ident(obj.name)
   let isRef: bool = if obj.parentName.isNil: false
                     else: obj.parentName in refClasses

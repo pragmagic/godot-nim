@@ -1374,7 +1374,8 @@ type
     stringNewWithWideString: pointer
     stringOperatorIndex: pointer
     stringOperatorIndexConst: pointer
-    stringWideStr: pointer
+    stringWideStr: proc (self: GodotString): ptr cwchar_t
+                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorEqual: proc (self, other: GodotString): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorLess: proc (self, other: GodotString): bool
@@ -2811,6 +2812,8 @@ type
                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringNewCopy*: proc (dest: var GodotString, src: GodotString)
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
+    stringWideStr*: proc (self: GodotString): ptr cwchar_t
+                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorEqual*: proc (self, other: GodotString): bool
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     stringOperatorLess*: proc (self, other: GodotString): bool
@@ -3481,6 +3484,7 @@ proc setGDNativeAPIInternal(apiStruct: pointer, initOptions: ptr GDNativeInitOpt
 
           stringNew
           stringNewCopy
+          stringWideStr
           stringOperatorEqual
           stringOperatorLess
           stringOperatorPlus

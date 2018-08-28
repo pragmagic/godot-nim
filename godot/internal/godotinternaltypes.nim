@@ -66,6 +66,8 @@ type
   GodotString* {.byref.} = object
     data: array[sizeof(int), byte]
 
+  cwchar_t* {.importc: "wchar_t", nodecl.} = object
+
   GodotCharString* {.byref.} = object
     data: array[sizeof(int), byte]
 
@@ -305,3 +307,6 @@ type
 
   GodotClassConstructor* = proc (): ptr GodotObject {.
     noconv, gcsafe, locks: 0, raises: [], tags: [].}
+
+template offset*[T](p: ptr T, offset: int): ptr T =
+  cast[ptr T](cast[ByteAddress](p) +% (offset * sizeof(T)))
