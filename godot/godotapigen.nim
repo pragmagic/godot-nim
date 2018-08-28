@@ -839,7 +839,7 @@ proc typeNameToModuleName(name: string): string =
 proc newRegisterClassNode(typ: GodotType): PNode =
   newCall("registerClass",
     ident(typ.name),
-    newCStringLit(typ.godotName),
+    newStrLit(typ.godotName),
     ident("true") # isNative
   )
 
@@ -877,7 +877,7 @@ proc genTypeFile(types: Table[string, GodotType], targetDir: string) =
     if not typ.shouldExport(types): continue
     let regNode = newCall("registerClass",
       ident(typ.name),
-      newCStringLit(typ.godotName),
+      newStrLit(typ.godotName),
       ident("true") # isNative
     )
     godotApiTypesTree.add(regNode)

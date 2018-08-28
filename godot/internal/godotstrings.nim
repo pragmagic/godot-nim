@@ -22,6 +22,12 @@ proc `&`*(self, b: GodotString): GodotString {.inline.} =
 proc deinit*(self: var GodotString) {.inline.} =
   getGDNativeAPI().stringDestroy(self)
 
+proc len*(self: GodotString): cint {.inline.} =
+  getGDNativeAPI().stringLength(self)
+
+proc dataPtr*(self: GodotString): ptr cwchar_t {.inline.} =
+  getGDNativeAPI().stringWideStr(self)
+
 proc `$`*(self: GodotString): string =
   ## Converts the ``GodotString`` into Nim string
   var charStr = getGDNativeAPI().stringUtf8(self)

@@ -1,6 +1,6 @@
 # Copyright 2018 Xored Software, Inc.
 
-import tables, typetraits, macros
+import tables, typetraits, macros, unicode
 import gdnativeapi
 import core.godotcoretypes, core.godotbase
 import core.vector2, core.rect2,
@@ -89,20 +89,70 @@ type
       ## values.
       ## See documentation of ``GodotPropertyHint`` for description of formats.
 
+  FNV1Hash = uint32
+
 proc isFinalized*(obj: NimGodotObject): bool {.inline.} =
   obj.isFinalized
 
-var classRegistry {.threadvar.}: TableRef[cstring, ObjectInfo]
-var classRegistryStatic* {.compileTime.}: TableRef[cstring, ObjectInfo]
+var classRegistry {.threadvar.}: TableRef[FNV1Hash, ObjectInfo]
+var classRegistryStatic* {.compileTime.}: TableRef[FNV1Hash, ObjectInfo]
   ## Compile-time variable used for implementation of several procedures
   ## and macros
 static:
-  classRegistryStatic = newTable[cstring, ObjectInfo]()
+  classRegistryStatic = newTable[FNV1Hash, ObjectInfo]()
 
 static:
   import sets, strutils
 var nativeClasses {.compileTime.} = newSeq[string]()
 var refClasses* {.compileTime.} = newSeq[string]()
+
+template initFNV1Hash(hash: var FNV1Hash) =
+  hash = 0x811c9dc5'u32
+
+template appendFNV1Hash(hash: var FNV1Hash, val: uint8) =
+  block:
+    let u64hash = hash.uint64
+    hash = (
+      u64hash +
+      (u64hash shl 1'u64) +
+      (u64hash shl 4'u64) +
+      (u64hash shl 7'u64) +
+      (u64hash shl 8'u64) +
+      (u64hash shl 24'u64)).uint32 xor val
+
+{.push stackTrace:off.}
+proc lsb(c: ptr cwchar_t): char {.noinit, inline.} =
+  {.emit: [result, " = (char)(", c[]," & 0xFF);"]}
+{.pop.}
+
+proc fnv1Hash(godotClassName: GodotString): FNV1Hash =
+  var charsCount = godotClassName.len
+  let charsPtr = godotClassName.dataPtr
+  if charsCount > 2 and
+     charsPtr.offset(charsCount - 2).lsb == 'S' and
+     charsPtr.offset(charsCount - 1).lsb == 'W':
+    charsCount -= 2
+
+  initFNV1Hash(result)
+  for i in 0..<charsCount:
+    let c = charsPtr.offset(i).lsb
+    appendFNV1Hash(result, c.uint8)
+
+proc fnv1Hash(godotClassName: string): FNV1Hash {.compileTime.} =
+  var charsCount = godotClassName.len
+  if godotClassName.endsWith("SW"):
+    charsCount -= 2
+
+  initFNV1Hash(result)
+  var i = 0
+  for rune in runes(godotClassName):
+    if i >= charsCount:
+      break
+    let firstByte = uint8(rune.uint64 and 0xFF'u64)
+    appendFNV1Hash(result, firstByte)
+    # We don't really need to calculate hash of other bytes,
+    # since we only use hashes of ASCII strings
+    inc i
 
 proc getClassName*(o: NimGodotObject): string =
   o.godotObject.getClassName()
@@ -179,12 +229,12 @@ macro isResource(T: typedesc): bool =
   result = if inherits(getType(T), "Resource"): ident("true")
            else: ident("false")
 
-template registerClass*(T: typedesc; godotClassName: cstring,
+template registerClass*(T: typedesc; godotClassName: string or cstring,
                         native: bool) =
   ## Registers the specified Godot type.
   ## Used by ``gdobj`` macro and `godotapigen <godotapigen.html>`_.
   if classRegistry.isNil:
-    classRegistry = newTable[cstring, ObjectInfo]()
+    classRegistry = newTable[FNV1Hash, ObjectInfo]()
   let constructor = proc(): NimGodotObject =
     var t: T
     new(t, nimGodotObjectFinalizer[T])
@@ -198,14 +248,22 @@ template registerClass*(T: typedesc; godotClassName: cstring,
     isNative: native,
     isRef: isRef
   )
-  classRegistry[godotClassName] = objInfo
+  classRegistry[fnv1Hash($godotClassName)] = objInfo
   static:
     let objInfoStatic = ObjectInfo(
       baseNativeClass: base,
       isNative: native,
       isRef: isRef,
     )
-    classRegistryStatic[godotClassName] = objInfoStatic
+    let nameHash = fnv1Hash($godotClassName)
+    if not classRegistryStatic.contains(nameHash):
+      classRegistryStatic[nameHash] = objInfoStatic
+    elif not endsWith($godotClassName, "SW"):
+      # For simplicity we assume that all class names must have
+      # different hashes
+      # If this exception is ever raised, I guess, we should
+      # implement a proper collision resolving
+      raise newException(Exception, "Hash collision " & $godotClassName)
   when isRef:
     static:
       refClasses.add(T.name)
@@ -214,10 +272,10 @@ template registerClass*(T: typedesc; godotClassName: cstring,
       nativeClasses.add(T.name)
 
 proc newNimGodotObject[T: NimGodotObject](
-    godotObject: ptr GodotObject, godotClassName: cstring, noRef: bool): T =
+    godotObject: ptr GodotObject, godotClassName: GodotString, noRef: bool): T =
   assert(not classRegistry.isNil)
   assert(not godotObject.isNil)
-  let objInfo = classRegistry.getOrDefault(godotClassName)
+  let objInfo = classRegistry.getOrDefault(fnv1Hash(godotClassName))
   if objInfo.constructor.isNil:
     printError("Nim constructor not found for class " & $godotClassName)
   else:
@@ -240,9 +298,11 @@ proc asNimGodotObject*[T: NimGodotObject](
       # Could be data from other bindings
       result = nil
   if result.isNil:
+    var classNameStr = godotObject.getClassNameRaw()
     result = newNimGodotObject[T](
-      godotObject, cstring(godotObject.getClassName()),
+      godotObject, classNameStr,
       forceNativeObject or noRef)
+    deinit(classNameStr)
 
 proc newVariant*(obj: NimGodotObject): Variant {.inline.} =
   newVariant(obj.godotObject)
@@ -363,17 +423,18 @@ proc newOwnObj[T: NimGodotObject](name: cstring): T =
 
 proc gdnew*[T: NimGodotObject](): T =
   ## Instantiates new object of type ``T``.
-  const godotName = asCString(toGodotName(T))
-  const objInfo = classRegistryStatic[godotName]
+  const godotName = toGodotName(T)
+  const cGodotName = asCString(godotName)
+  const objInfo = classRegistryStatic[fnv1Hash(godotName)]
   when objInfo.isNative:
-    let godotObject = getClassConstructor(godotName)()
+    let godotObject = getClassConstructor(cGodotName)()
     new(result, nimGodotObjectFinalizer[T])
     result.godotObject = godotObject
     when objInfo.isRef:
       godotObject.initRef()
       result.isRef = true
   else:
-    result = newOwnObj[T](godotName)
+    result = newOwnObj[T](cGodotName)
 
 proc newCallError*(err: VariantCallError): ref CallError =
   ## Instantiates ``CallError`` from Godot ``err``.
