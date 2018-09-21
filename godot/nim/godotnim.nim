@@ -791,10 +791,10 @@ proc fromVariant*[T: array](s: var T, val: Variant): ConversionResult =
   else:
     result = ConversionResult.TypeError
 
-proc godotTypeInfo*(T: typedesc[Table|TableRef]): GodotTypeInfo {.inline.} =
+proc godotTypeInfo*(T: typedesc[Table|TableRef|OrderedTable|OrderedTableRef]): GodotTypeInfo {.inline.} =
   result.variantType = VariantType.Dictionary
 
-proc toVariant*[T: Table or TableRef](t: T): Variant =
+proc toVariant*[T: Table or TableRef or OrderedTable or OrderedTableRef](t: T): Variant =
   when t is ref:
     if t.isNil:
       return newVariant()
@@ -804,7 +804,7 @@ proc toVariant*[T: Table or TableRef](t: T): Variant =
     dict[toVariant(k)] = toVariant(v)
   result = newVariant(dict)
 
-proc fromVariant*[T: Table or TableRef](t: var T,
+proc fromVariant*[T: Table or TableRef or OrderedTable or OrderedTableRef](t: var T,
                                         val: Variant): ConversionResult =
   if val.getType() == VariantType.Nil:
     when t is ref:
@@ -814,8 +814,12 @@ proc fromVariant*[T: Table or TableRef](t: var T,
     mixin fromVariant
     when t is Table:
       t = initTable[type(t.keys()), type(t.values())]()
-    else:
+    elif t is TableRef:
       t = newTable[type(t.keys()), type(t.values())]()
+    elif t is OrderedTable:
+      t = initOrderedTable[type(t.keys()), type(t.values())]()
+    else:
+      t = newOrderedTable[type(t.keys()), type(t.values())]()
     for k, v in dict:
       var nimKey: type(t.keys())
       var nimVal: type(t.values())
