@@ -64,16 +64,16 @@ proc gray*(self: Color): float32 {.inline.} =
   getGDNativeAPI().colorGray(self)
 
 proc inverted*(self: Color): Color {.inline.} =
-  getGDNativeAPI().colorInverted(self)
+  getGDNativeAPI().colorInverted(self).toColor()
 
 proc contrasted*(self: Color): Color {.inline.} =
-  getGDNativeAPI().colorContrasted(self)
+  getGDNativeAPI().colorContrasted(self).toColor()
 
 proc lerp*(self: Color; b: Color; t: float32): Color {.inline.} =
-  getGDNativeAPI().colorLinearInterpolate(self, b, t)
+  getGDNativeAPI().colorLinearInterpolate(self, b, t).toColor()
 
 proc blend*(self: Color; over: Color): Color {.inline.} =
-  getGDNativeAPI().colorBlend(self, over)
+  getGDNativeAPI().colorBlend(self, over).toColor()
 
 proc `==`*(a, b: Color): bool {.inline.} =
   a.r == b.r and a.g == b.g and a.b == b.b and a.a == b.a

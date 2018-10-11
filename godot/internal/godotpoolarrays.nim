@@ -45,7 +45,15 @@ template genPoolArrayAPI(ArrayT, initIdent, DataT,
     getGDNativeAPI().setProc(self, idx, data)
 
   proc `[]`*(self: ArrayT; idx: cint): DataT {.inline.} =
-    getGDNativeAPI().getProc(self, idx)
+    let data = getGDNativeAPI().getProc(self, idx)
+    when DataT is Color:
+      data.toColor()
+    elif DataT is Vector2:
+      data.toVector2()
+    elif DataT is Vector3:
+      data.toVector3()
+    else:
+      data
 
   proc len*(self: ArrayT): cint {.inline.} =
     getGDNativeAPI().sizeProc(self)

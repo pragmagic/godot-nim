@@ -31,10 +31,10 @@ proc encloses*(self, other: AABB): bool {.inline.} =
   getGDNativeAPI().aabbEncloses(self, other)
 
 proc merge*(self, other: AABB): AABB {.inline.} =
-  getGDNativeAPI().aabbMerge(self, other)
+  getGDNativeAPI().aabbMerge(self, other).toAABB()
 
 proc intersection*(self, other: AABB): AABB {.inline.} =
-  getGDNativeAPI().aabbIntersection(self, other)
+  getGDNativeAPI().aabbIntersection(self, other).toAABB()
 
 proc intersectsPlane*(self: AABB; plane: Plane): bool {.inline.} =
   getGDNativeAPI().aabbIntersectsPlane(self, plane)
@@ -46,10 +46,10 @@ proc contains*(self: AABB; point: Vector3): bool {.inline.} =
   getGDNativeAPI().aabbHasPoint(self, point)
 
 proc getSupport*(self: AABB; dir: Vector3): Vector3 {.inline.} =
-  getGDNativeAPI().aabbGetSupport(self, dir)
+  getGDNativeAPI().aabbGetSupport(self, dir).toVector3()
 
 proc getLongestAxis*(self: AABB): Vector3 {.inline.} =
-  getGDNativeAPI().aabbGetLongestAxis(self)
+  getGDNativeAPI().aabbGetLongestAxis(self).toVector3()
 
 proc getLongestAxisIndex*(self: AABB): cint {.inline.} =
   getGDNativeAPI().aabbGetLongestAxisIndex(self)
@@ -58,7 +58,7 @@ proc getLongestAxisSize*(self: AABB): float32 {.inline.} =
   getGDNativeAPI().aabbGetLongestAxisSize(self)
 
 proc getShortestAxis*(self: AABB): Vector3 {.inline.} =
-  getGDNativeAPI().aabbGetShortestAxis(self)
+  getGDNativeAPI().aabbGetShortestAxis(self).toVector3()
 
 proc getShortestAxisIndex*(self: AABB): cint {.inline.} =
   getGDNativeAPI().aabbGetShortestAxisIndex(self)
@@ -67,13 +67,13 @@ proc getShortestAxisSize*(self: AABB): float32 {.inline.} =
   getGDNativeAPI().aabbGetShortestAxisSize(self)
 
 proc expand*(self: AABB; toPoint: Vector3): AABB {.inline.} =
-  getGDNativeAPI().aabbExpand(self, toPoint)
+  getGDNativeAPI().aabbExpand(self, toPoint).toAABB()
 
 proc grow*(self: AABB; by: float32): AABB {.inline.} =
-  getGDNativeAPI().aabbGrow(self, by)
+  getGDNativeAPI().aabbGrow(self, by).toAABB()
 
 proc getEndpoint*(self: AABB; idx: cint): Vector3 {.inline.} =
-  getGDNativeAPI().aabbGetEndpoint(self, idx)
+  getGDNativeAPI().aabbGetEndpoint(self, idx).toVector3()
 
 proc `==`*(a, b: AABB): bool {.inline.} =
   getGDNativeAPI().aabbOperatorEqual(a, b)

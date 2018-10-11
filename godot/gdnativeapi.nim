@@ -3,6 +3,36 @@
 import internal.godotinternaltypes, core.godotcoretypes, macros
 
 type
+  ColorData* {.byref.} = object
+    data: array[16, uint8]
+
+  Vector3Data* {.byref.} = object
+    data: array[12, uint8]
+
+  Vector2Data* {.byref.} = object
+    data: array[8, uint8]
+
+  PlaneData* {.byref.} = object
+    data: array[16, uint8]
+
+  BasisData* {.byref.} = object
+    data: array[36, uint8]
+
+  QuatData* {.byref.} = object
+    data: array[16, uint8]
+
+  AABBData* {.byref.} = object
+    data: array[24, uint8]
+
+  Rect2Data* {.byref.} = object
+    data: array[16, uint8]
+
+  Transform2DData* {.byref.} = object
+    data: array[24, uint8]
+
+  TransformData* {.byref.} = object
+    data: array[48, uint8]
+
   GDNativeAPIType {.size: sizeof(cuint).} = enum
     GDNativeCore,
     GDNativeExtNativeScript,
@@ -93,14 +123,14 @@ type
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     colorGray: proc (self: Color): float32
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    colorInverted: proc (self: Color): Color
+    colorInverted: proc (self: Color): ColorData
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    colorContrasted: proc (self: Color): Color
+    colorContrasted: proc (self: Color): ColorData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    colorLinearInterpolate: proc (self, other: Color, t: float32): Color
+    colorLinearInterpolate: proc (self, other: Color, t: float32): ColorData
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    colorBlend: proc (self, other: Color): Color
+    colorBlend: proc (self, other: Color): ColorData
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     colorToHtml: proc (self: Color, withAlpha: bool): GodotString
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -114,7 +144,7 @@ type
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2AsString: proc (self: Vector2): GodotString
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Normalized: proc (self: Vector2): Vector2
+    vector2Normalized: proc (self: Vector2): Vector2Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2Length: proc (self: Vector2): float32
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -133,57 +163,57 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2AngleToPoint: proc (self, to: Vector2): float32
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2LinearInterpolate: proc (self, b: Vector2, t: float32): Vector2
+    vector2LinearInterpolate: proc (self, b: Vector2, t: float32): Vector2Data
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
     vector2CubicInterpolate: proc (self, b, preA, postB: Vector2,
-                                    t: float32): Vector2
+                                    t: float32): Vector2Data
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    vector2Rotated: proc (self: Vector2, phi: float32): Vector2
+    vector2Rotated: proc (self: Vector2, phi: float32): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Tangent: proc (self: Vector2): Vector2
+    vector2Tangent: proc (self: Vector2): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Floor: proc (self: Vector2): Vector2
+    vector2Floor: proc (self: Vector2): Vector2Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Snapped: proc (self, by: Vector2): Vector2
+    vector2Snapped: proc (self, by: Vector2): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2Aspect: proc (self: Vector2): float32
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2Dot: proc (self, other: Vector2): float32
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Slide: proc (self, n: Vector2): Vector2
+    vector2Slide: proc (self, n: Vector2): Vector2Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Bounce: proc (self, n: Vector2): Vector2
+    vector2Bounce: proc (self, n: Vector2): Vector2Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Reflect: proc (self, n: Vector2): Vector2
+    vector2Reflect: proc (self, n: Vector2): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Abs: proc (self: Vector2): Vector2
+    vector2Abs: proc (self: Vector2): Vector2Data
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Clamped: proc (self: Vector2, length: float32): Vector2
+    vector2Clamped: proc (self: Vector2, length: float32): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2OperatorAdd: proc (self, other: Vector2): Vector2
+    vector2OperatorAdd: proc (self, other: Vector2): Vector2Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2OperatorSubtract: proc (self, other: Vector2): Vector2
+    vector2OperatorSubtract: proc (self, other: Vector2): Vector2Data
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    vector2OperatorMultiplyVector: proc (self, other: Vector2): Vector2
+    vector2OperatorMultiplyVector: proc (self, other: Vector2): Vector2Data
                                         {.noconv, raises: [], gcsafe, tags: [],
                                           locks: 0.}
-    vector2OperatorMultiplyScalar: proc (self: Vector2, scalar: float32): Vector2
+    vector2OperatorMultiplyScalar: proc (self: Vector2, scalar: float32): Vector2Data
                                         {.noconv, raises: [], gcsafe, tags: [],
                                           locks: 0.}
-    vector2OperatorDivideVector: proc (self, other: Vector2): Vector2
+    vector2OperatorDivideVector: proc (self, other: Vector2): Vector2Data
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
-    vector2OperatorDivideScalar: proc (self: Vector2, scalar: float32): Vector2
+    vector2OperatorDivideScalar: proc (self: Vector2, scalar: float32): Vector2Data
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
     vector2OperatorEqual: proc (self, other: Vector2): bool
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2OperatorLess: proc (self, other: Vector2): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2OperatorNeg: proc (self: Vector2): Vector2
+    vector2OperatorNeg: proc (self: Vector2): Vector2Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2SetX: pointer
     vector2SetY: pointer
@@ -218,33 +248,33 @@ type
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     quatLengthSquared: proc (self: Quat): float32
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatNormalized: proc (self: Quat): Quat
+    quatNormalized: proc (self: Quat): QuatData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     quatIsNormalized: proc (self: Quat): bool
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatInverse: proc (self: Quat): Quat
+    quatInverse: proc (self: Quat): QuatData
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     quatDot: proc (self, other: Quat): float32
                   {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatXform: proc (self: Quat, v: Vector3): Vector3
+    quatXform: proc (self: Quat, v: Vector3): Vector3Data
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatSlerp: proc (self, other: Quat, t: float32): Quat
+    quatSlerp: proc (self, other: Quat, t: float32): QuatData
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatSlerpni: proc (self, other: Quat, t: float32): Quat
+    quatSlerpni: proc (self, other: Quat, t: float32): QuatData
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatCubicSlerp: proc (self, other, preA, postB: Quat, t: float32): Quat
+    quatCubicSlerp: proc (self, other, preA, postB: Quat, t: float32): QuatData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorMultiply: proc (self: Quat, b: float32): Quat
+    quatOperatorMultiply: proc (self: Quat, b: float32): QuatData
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorAdd: proc (self, other: Quat): Quat
+    quatOperatorAdd: proc (self, other: Quat): QuatData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorSubtract: proc (self, other: Quat): Quat
+    quatOperatorSubtract: proc (self, other: Quat): QuatData
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorDivide: proc (self: Quat, divider: float32): Quat
+    quatOperatorDivide: proc (self: Quat, divider: float32): QuatData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     quatOperatorEqual: proc (self, other: Quat): bool
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorNeg: proc (self: Quat): Quat
+    quatOperatorNeg: proc (self: Quat): QuatData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # Basis API
@@ -534,7 +564,7 @@ type
     poolVector2ArraySet: proc (self: var GodotPoolVector2Array, idx: cint,
                                 data: Vector2)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    poolVector2ArrayGet: proc (self: GodotPoolVector2Array, idx: cint): Vector2
+    poolVector2ArrayGet: proc (self: GodotPoolVector2Array, idx: cint): Vector2Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolVector2ArraySize: proc (self: GodotPoolVector2Array): cint
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -583,7 +613,7 @@ type
     poolVector3ArraySet: proc (self: var GodotPoolVector3Array, idx: cint,
                                 data: Vector3) {.noconv, raises: [], gcsafe,
                                                 tags: [], locks: 0.}
-    poolVector3ArrayGet: proc (self: GodotPoolVector3Array, idx: cint): Vector3
+    poolVector3ArrayGet: proc (self: GodotPoolVector3Array, idx: cint): Vector3Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolVector3ArraySize: proc (self: GodotPoolVector3Array): cint
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -628,7 +658,7 @@ type
     poolColorArraySet: proc (self: var GodotPoolColorArray, idx: cint,
                               data: Color)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    poolColorArrayGet: proc (self: GodotPoolColorArray, idx: cint): Color
+    poolColorArrayGet: proc (self: GodotPoolColorArray, idx: cint): ColorData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolColorArraySize: proc (self: GodotPoolColorArray): cint
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -937,11 +967,11 @@ type
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeAsString: proc (self: Plane): GodotString
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeNormalized: proc (self: Plane): Plane
+    planeNormalized: proc (self: Plane): PlaneData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeCenter: proc (self: Plane): Vector3
+    planeCenter: proc (self: Plane): Vector3Data
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeGetAnyPoint: proc (self: Plane): Vector3
+    planeGetAnyPoint: proc (self: Plane): Vector3Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeIsPointOver: proc (self: Plane, point: Vector3): bool
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -949,7 +979,7 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeHasPoint: proc (self: Plane, point: Vector3, epsilon: float32): bool
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeProject: proc (self: Plane, point: Vector3): Vector3
+    planeProject: proc (self: Plane, point: Vector3): Vector3Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeIntersect3: proc (self: Plane, dest: var Vector3, b, c: Plane): bool
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -960,13 +990,13 @@ type
                                   segmentBegin, segmentEnd: Vector3): bool
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    planeOperatorNeg: proc (self: Plane): Plane
+    planeOperatorNeg: proc (self: Plane): PlaneData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeOperatorEqual: proc (self, other: Plane): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeSetNormal: proc (self: var Plane, normal: Vector3)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeGetNormal: proc (self: Plane): Vector3
+    planeGetNormal: proc (self: Plane): Vector3Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeGetD: proc (self: Plane): float32
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -989,21 +1019,21 @@ type
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     rect2HasNoArea: proc (self: Rect2): bool
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2Clip: proc (self, other: Rect2): Rect2
+    rect2Clip: proc (self, other: Rect2): Rect2Data
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2Merge: proc (self, other: Rect2): Rect2
+    rect2Merge: proc (self, other: Rect2): Rect2Data
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     rect2HasPoint: proc (self: Rect2, point: Vector2): bool
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2Grow: proc (self: Rect2, by: float32): Rect2
+    rect2Grow: proc (self: Rect2, by: float32): Rect2Data
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2Expand: proc (self: Rect2, to: Vector2): Rect2
+    rect2Expand: proc (self: Rect2, to: Vector2): Rect2Data
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     rect2OperatorEqual: proc (self, other: Rect2): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2GetPosition: proc (self: Rect2): Vector2
+    rect2GetPosition: proc (self: Rect2): Vector2Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2GetSize: proc (self: Rect2): Vector2
+    rect2GetSize: proc (self: Rect2): Vector2Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     rect2SetPosition: proc (self: var Rect2, pos: Vector2)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1013,11 +1043,11 @@ type
     # AABB API
     aabbNew: proc (dest: var AABB, pos, size: Vector3)
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetPosition: proc (self: AABB): Vector3
+    aabbGetPosition: proc (self: AABB): Vector3Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbSetPosition: proc (self: var AABB, pos: Vector3)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetSize: proc (self: AABB): Vector3
+    aabbGetSize: proc (self: AABB): Vector3Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbSetSize: proc (self: var AABB, pos: Vector3)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1033,9 +1063,9 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbEncloses: proc (self, other: AABB): bool
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbMerge: proc (self, other: AABB): AABB
+    aabbMerge: proc (self, other: AABB): AABBData
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbIntersection: proc (self, other: AABB): AABB
+    aabbIntersection: proc (self, other: AABB): AABBData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbIntersectsPlane: proc (self: AABB, plane: Plane): bool
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1044,9 +1074,9 @@ type
                                     locks: 0.}
     aabbHasPoint: proc (self: AABB, point: Vector3): bool
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetSupport: proc (self: AABB, dir: Vector3): Vector3
+    aabbGetSupport: proc (self: AABB, dir: Vector3): Vector3Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetLongestAxis: proc (self: AABB): Vector3
+    aabbGetLongestAxis: proc (self: AABB): Vector3Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbGetLongestAxisIndex: proc (self: AABB): cint
                                     {.noconv, raises: [], gcsafe, tags: [],
@@ -1054,7 +1084,7 @@ type
     aabbGetLongestAxisSize: proc (self: AABB): float32
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    aabbGetShortestAxis: proc (self: AABB): Vector3
+    aabbGetShortestAxis: proc (self: AABB): Vector3Data
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbGetShortestAxisIndex: proc (self: AABB): cint
                                     {.noconv, raises: [], gcsafe, tags: [],
@@ -1062,11 +1092,11 @@ type
     aabbGetShortestAxisSize: proc (self: AABB): float32
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    aabbExpand: proc (self: AABB, toPoint: Vector3): AABB
+    aabbExpand: proc (self: AABB, toPoint: Vector3): AABBData
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGrow: proc (self: AABB, by: float32): AABB
+    aabbGrow: proc (self: AABB, by: float32): AABBData
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetEndpoint: proc (self: AABB, idx: cint): Vector3
+    aabbGetEndpoint: proc (self: AABB, idx: cint): Vector3Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbOperatorEqual: proc (self, other: AABB): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1090,36 +1120,36 @@ type
                                         locks: 0.}
     transformNew: proc (dest: var Transform, basis: Basis, origin: Vector3)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformGetBasis: proc (self: Transform): Basis
+    transformGetBasis: proc (self: Transform): BasisData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     transformSetBasis: proc (self: var Transform, basis: Basis)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformGetOrigin: proc (self: Transform): Vector3
+    transformGetOrigin: proc (self: Transform): Vector3Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     transformSetOrigin: proc (self: var Transform, v: Vector3)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     transformAsString: proc (self: Transform): GodotString
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformInverse: proc (self: Transform): Transform
+    transformInverse: proc (self: Transform): TransformData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformAffineInverse: proc (self: Transform): Transform
+    transformAffineInverse: proc (self: Transform): TransformData
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transformOrthonormalized: proc (self: Transform): Transform
+    transformOrthonormalized: proc (self: Transform): TransformData
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
     transformRotated: proc (self: Transform, axis: Vector3,
-                            phi: float32): Transform
+                            phi: float32): TransformData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformScaled: proc (self: Transform, scale: Vector3): Transform
+    transformScaled: proc (self: Transform, scale: Vector3): TransformData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformTranslated: proc (self: Transform, offset: Vector3): Transform
+    transformTranslated: proc (self: Transform, offset: Vector3): TransformData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformLookingAt: proc (self: Transform, target, up: Vector3): Transform
+    transformLookingAt: proc (self: Transform, target, up: Vector3): TransformData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformXformPlane: proc (self: Transform, plane: Plane): Plane
+    transformXformPlane: proc (self: Transform, plane: Plane): PlaneData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformXformInvPlane: proc (self: Transform, plane: Plane): Plane
+    transformXformInvPlane: proc (self: Transform, plane: Plane): PlaneData
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
     transformNewIdentity: proc (dest: var Transform)
@@ -1127,18 +1157,18 @@ type
     transformOperatorEqual: proc (self, other: Transform): bool
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transformOperatorMultiply: proc (self, other: Transform): Transform
+    transformOperatorMultiply: proc (self, other: Transform): TransformData
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    transformXformVector3: proc (self: Transform, v: Vector3): Vector3
+    transformXformVector3: proc (self: Transform, v: Vector3): Vector3Data
                                 {.noconv, raises: [], gcsafe, tags: [],
                                   locks: 0.}
-    transformXformInvVector3: proc (self: Transform, v: Vector3): Vector3
+    transformXformInvVector3: proc (self: Transform, v: Vector3): Vector3Data
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    transformXformAABB: proc (self: Transform, v: AABB): AABB
+    transformXformAABB: proc (self: Transform, v: AABB): AABBData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformXformInvAABB: proc (self: Transform, v: AABB): AABB
+    transformXformInvAABB: proc (self: Transform, v: AABB): AABBData
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
 
@@ -1151,58 +1181,58 @@ type
                                       locks: 0.}
     transform2DAsString: proc (self: Transform2D): GodotString
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DInverse: proc (self: Transform2D): Transform2D
+    transform2DInverse: proc (self: Transform2D): Transform2DData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DAffineInverse: proc (self: Transform2D): Transform2D
+    transform2DAffineInverse: proc (self: Transform2D): Transform2DData
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
     transform2DGetRotation: proc (self: Transform2D): float32
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transform2DGetOrigin: proc (self: Transform2D): Vector2
+    transform2DGetOrigin: proc (self: Transform2D): Vector2Data
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DGetScale: proc (self: Transform2D): Vector2
+    transform2DGetScale: proc (self: Transform2D): Vector2Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DOrthonormalized: proc (self: Transform2D): Transform2D
+    transform2DOrthonormalized: proc (self: Transform2D): Transform2DData
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
-    transform2DRotated: proc (self: Transform2D, phi: float32): Transform2D
+    transform2DRotated: proc (self: Transform2D, phi: float32): Transform2DData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DScaled: proc (self: Transform2D, scale: Vector2): Transform2D
+    transform2DScaled: proc (self: Transform2D, scale: Vector2): Transform2DData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DTranslated: proc (self: Transform2D, offset: Vector2): Transform2D
+    transform2DTranslated: proc (self: Transform2D, offset: Vector2): Transform2DData
                                 {.noconv, raises: [], gcsafe, tags: [],
                                   locks: 0.}
-    transform2DXformVector2: proc (self: Transform2D, v: Vector2): Vector2
+    transform2DXformVector2: proc (self: Transform2D, v: Vector2): Vector2Data
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transform2DXformInvVector2: proc (self: Transform2D, v: Vector2): Vector2
+    transform2DXformInvVector2: proc (self: Transform2D, v: Vector2): Vector2Data
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
-    transform2DBasisXformVector2: proc (self: Transform2D, v: Vector2): Vector2
+    transform2DBasisXformVector2: proc (self: Transform2D, v: Vector2): Vector2Data
                                         {.noconv, raises: [], gcsafe, tags: [],
                                           locks: 0.}
     transform2DBasisXformInvVector2: proc (self: Transform2D,
-                                            v: Vector2): Vector2
+                                            v: Vector2): Vector2Data
                                           {.noconv, raises: [], gcsafe, tags: [],
                                             locks: 0.}
     transform2DInterpolateWith: proc (self, other: Transform2D,
-                                      t: float32): Transform2D
+                                      t: float32): Transform2DData
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
     transform2DOperatorEqual: proc (self, other: Transform2D): bool
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    transform2DOperatorMultiply: proc (self, other: Transform2D): Transform2D
+    transform2DOperatorMultiply: proc (self, other: Transform2D): Transform2DData
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
     transform2DNewIdentity: proc (dest: var Transform2D)
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transform2DXformRect2: proc (self: Transform2D, v: Rect2): Rect2
+    transform2DXformRect2: proc (self: Transform2D, v: Rect2): Rect2Data
                                 {.noconv, raises: [], gcsafe, tags: [],
                                   locks: 0.}
-    transform2DXformInvRect2: proc (self: Transform2D, v: Rect2): Rect2
+    transform2DXformInvRect2: proc (self: Transform2D, v: Rect2): Rect2Data
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
 
@@ -1291,25 +1321,25 @@ type
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantAsString: proc (self: GodotVariant): GodotString
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsVector2: proc (self: GodotVariant): Vector2
+    variantAsVector2: proc (self: GodotVariant): Vector2Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsRect2: proc (self: GodotVariant): Rect2
+    variantAsRect2: proc (self: GodotVariant): Rect2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsVector3: proc (self: GodotVariant): Vector3
+    variantAsVector3: proc (self: GodotVariant): Vector3Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsTransform2D: proc (self: GodotVariant): Transform2D
+    variantAsTransform2D: proc (self: GodotVariant): Transform2DData
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsPlane: proc (self: GodotVariant): Plane
+    variantAsPlane: proc (self: GodotVariant): PlaneData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsQuat: proc (self: GodotVariant): Quat
+    variantAsQuat: proc (self: GodotVariant): QuatData
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsAABB: proc (self: GodotVariant): AABB
+    variantAsAABB: proc (self: GodotVariant): AABBData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsBasis: proc (self: GodotVariant): Basis
+    variantAsBasis: proc (self: GodotVariant): BasisData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsTransform: proc (self: GodotVariant): Transform
+    variantAsTransform: proc (self: GodotVariant): TransformData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsColor: proc (self: GodotVariant): Color
+    variantAsColor: proc (self: GodotVariant): ColorData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantAsNodePath: proc (self: GodotVariant): GodotNodePath
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1611,14 +1641,14 @@ type
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     colorGray*: proc (self: Color): float32
                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    colorInverted*: proc (self: Color): Color
+    colorInverted*: proc (self: Color): ColorData
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    colorContrasted*: proc (self: Color): Color
+    colorContrasted*: proc (self: Color): ColorData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    colorLinearInterpolate*: proc (self, other: Color, t: float32): Color
+    colorLinearInterpolate*: proc (self, other: Color, t: float32): ColorData
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    colorBlend*: proc (self, other: Color): Color
+    colorBlend*: proc (self, other: Color): ColorData
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     colorToHtml*: proc (self: Color, withAlpha: bool): GodotString
                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1632,7 +1662,7 @@ type
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2AsString*: proc (self: Vector2): GodotString
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Normalized*: proc (self: Vector2): Vector2
+    vector2Normalized*: proc (self: Vector2): Vector2Data
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2Length*: proc (self: Vector2): float32
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -1651,57 +1681,57 @@ type
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2AngleToPoint*: proc (self, to: Vector2): float32
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2LinearInterpolate*: proc (self, b: Vector2, t: float32): Vector2
+    vector2LinearInterpolate*: proc (self, b: Vector2, t: float32): Vector2Data
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
     vector2CubicInterpolate*: proc (self, b, preA, postB: Vector2,
-                                    t: float32): Vector2
+                                    t: float32): Vector2Data
                                    {.noconv, raises: [], gcsafe, tags: [],
                                      locks: 0.}
-    vector2Rotated*: proc (self: Vector2, phi: float32): Vector2
+    vector2Rotated*: proc (self: Vector2, phi: float32): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Tangent*: proc (self: Vector2): Vector2
+    vector2Tangent*: proc (self: Vector2): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Floor*: proc (self: Vector2): Vector2
+    vector2Floor*: proc (self: Vector2): Vector2Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Snapped*: proc (self, by: Vector2): Vector2
+    vector2Snapped*: proc (self, by: Vector2): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2Aspect*: proc (self: Vector2): float32
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2Dot*: proc (self, other: Vector2): float32
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Slide*: proc (self, n: Vector2): Vector2
+    vector2Slide*: proc (self, n: Vector2): Vector2Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Bounce*: proc (self, n: Vector2): Vector2
+    vector2Bounce*: proc (self, n: Vector2): Vector2Data
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Reflect*: proc (self, n: Vector2): Vector2
+    vector2Reflect*: proc (self, n: Vector2): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Abs*: proc (self: Vector2): Vector2
+    vector2Abs*: proc (self: Vector2): Vector2Data
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2Clamped*: proc (self: Vector2, length: float32): Vector2
+    vector2Clamped*: proc (self: Vector2, length: float32): Vector2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2OperatorAdd*: proc (self, other: Vector2): Vector2
+    vector2OperatorAdd*: proc (self, other: Vector2): Vector2Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2OperatorSubtract*: proc (self, other: Vector2): Vector2
+    vector2OperatorSubtract*: proc (self, other: Vector2): Vector2Data
                                    {.noconv, raises: [], gcsafe, tags: [],
                                      locks: 0.}
-    vector2OperatorMultiplyVector*: proc (self, other: Vector2): Vector2
+    vector2OperatorMultiplyVector*: proc (self, other: Vector2): Vector2Data
                                          {.noconv, raises: [], gcsafe, tags: [],
                                            locks: 0.}
-    vector2OperatorMultiplyScalar*: proc (self: Vector2, scalar: float32): Vector2
+    vector2OperatorMultiplyScalar*: proc (self: Vector2, scalar: float32): Vector2Data
                                          {.noconv, raises: [], gcsafe, tags: [],
                                            locks: 0.}
-    vector2OperatorDivideVector*: proc (self, other: Vector2): Vector2
+    vector2OperatorDivideVector*: proc (self, other: Vector2): Vector2Data
                                        {.noconv, raises: [], gcsafe, tags: [],
                                          locks: 0.}
-    vector2OperatorDivideScalar*: proc (self: Vector2, scalar: float32): Vector2
+    vector2OperatorDivideScalar*: proc (self: Vector2, scalar: float32): Vector2Data
                                        {.noconv, raises: [], gcsafe, tags: [],
                                          locks: 0.}
     vector2OperatorEqual*: proc (self, other: Vector2): bool
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     vector2OperatorLess*: proc (self, other: Vector2): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    vector2OperatorNeg*: proc (self: Vector2): Vector2
+    vector2OperatorNeg*: proc (self: Vector2): Vector2Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # Quat API
@@ -1732,33 +1762,33 @@ type
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     quatLengthSquared*: proc (self: Quat): float32
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatNormalized*: proc (self: Quat): Quat
+    quatNormalized*: proc (self: Quat): QuatData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     quatIsNormalized*: proc (self: Quat): bool
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatInverse*: proc (self: Quat): Quat
+    quatInverse*: proc (self: Quat): QuatData
                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     quatDot*: proc (self, other: Quat): float32
                    {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatXform*: proc (self: Quat, v: Vector3): Vector3
+    quatXform*: proc (self: Quat, v: Vector3): Vector3Data
                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatSlerp*: proc (self, other: Quat, t: float32): Quat
+    quatSlerp*: proc (self, other: Quat, t: float32): QuatData
                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatSlerpni*: proc (self, other: Quat, t: float32): Quat
+    quatSlerpni*: proc (self, other: Quat, t: float32): QuatData
                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatCubicSlerp*: proc (self, other, preA, postB: Quat, t: float32): Quat
+    quatCubicSlerp*: proc (self, other, preA, postB: Quat, t: float32): QuatData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorMultiply*: proc (self: Quat, b: float32): Quat
+    quatOperatorMultiply*: proc (self: Quat, b: float32): QuatData
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorAdd*: proc (self, other: Quat): Quat
+    quatOperatorAdd*: proc (self, other: Quat): QuatData
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorSubtract*: proc (self, other: Quat): Quat
+    quatOperatorSubtract*: proc (self, other: Quat): QuatData
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorDivide*: proc (self: Quat, divider: float32): Quat
+    quatOperatorDivide*: proc (self: Quat, divider: float32): QuatData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     quatOperatorEqual*: proc (self, other: Quat): bool
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    quatOperatorNeg*: proc (self: Quat): Quat
+    quatOperatorNeg*: proc (self: Quat): QuatData
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
 
     # PoolByteArray API
@@ -1977,7 +2007,7 @@ type
     poolVector2ArraySet*: proc (self: var GodotPoolVector2Array, idx: cint,
                                 data: Vector2)
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    poolVector2ArrayGet*: proc (self: GodotPoolVector2Array, idx: cint): Vector2
+    poolVector2ArrayGet*: proc (self: GodotPoolVector2Array, idx: cint): Vector2Data
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolVector2ArraySize*: proc (self: GodotPoolVector2Array): cint
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2026,7 +2056,7 @@ type
     poolVector3ArraySet*: proc (self: var GodotPoolVector3Array, idx: cint,
                                 data: Vector3) {.noconv, raises: [], gcsafe,
                                                 tags: [], locks: 0.}
-    poolVector3ArrayGet*: proc (self: GodotPoolVector3Array, idx: cint): Vector3
+    poolVector3ArrayGet*: proc (self: GodotPoolVector3Array, idx: cint): Vector3Data
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolVector3ArraySize*: proc (self: GodotPoolVector3Array): cint
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2071,7 +2101,7 @@ type
     poolColorArraySet*: proc (self: var GodotPoolColorArray, idx: cint,
                               data: Color)
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    poolColorArrayGet*: proc (self: GodotPoolColorArray, idx: cint): Color
+    poolColorArrayGet*: proc (self: GodotPoolColorArray, idx: cint): ColorData
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     poolColorArraySize*: proc (self: GodotPoolColorArray): cint
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2378,11 +2408,11 @@ type
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeAsString*: proc (self: Plane): GodotString
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeNormalized*: proc (self: Plane): Plane
+    planeNormalized*: proc (self: Plane): PlaneData
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeCenter*: proc (self: Plane): Vector3
+    planeCenter*: proc (self: Plane): Vector3Data
                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeGetAnyPoint*: proc (self: Plane): Vector3
+    planeGetAnyPoint*: proc (self: Plane): Vector3Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeIsPointOver*: proc (self: Plane, point: Vector3): bool
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2390,7 +2420,7 @@ type
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeHasPoint*: proc (self: Plane, point: Vector3, epsilon: float32): bool
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeProject*: proc (self: Plane, point: Vector3): Vector3
+    planeProject*: proc (self: Plane, point: Vector3): Vector3Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeIntersect3*: proc (self: Plane, dest: var Vector3, b, c: Plane): bool
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2401,13 +2431,13 @@ type
                                    segmentBegin, segmentEnd: Vector3): bool
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    planeOperatorNeg*: proc (self: Plane): Plane
+    planeOperatorNeg*: proc (self: Plane): PlaneData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeOperatorEqual*: proc (self, other: Plane): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeSetNormal*: proc (self: var Plane, normal: Vector3)
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    planeGetNormal*: proc (self: Plane): Vector3
+    planeGetNormal*: proc (self: Plane): Vector3Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     planeGetD*: proc (self: Plane): float32
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2430,21 +2460,21 @@ type
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     rect2HasNoArea*: proc (self: Rect2): bool
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2Clip*: proc (self, other: Rect2): Rect2
+    rect2Clip*: proc (self, other: Rect2): Rect2Data
                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2Merge*: proc (self, other: Rect2): Rect2
+    rect2Merge*: proc (self, other: Rect2): Rect2Data
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     rect2HasPoint*: proc (self: Rect2, point: Vector2): bool
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2Grow*: proc (self: Rect2, by: float32): Rect2
+    rect2Grow*: proc (self: Rect2, by: float32): Rect2Data
                      {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2Expand*: proc (self: Rect2, to: Vector2): Rect2
+    rect2Expand*: proc (self: Rect2, to: Vector2): Rect2Data
                        {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     rect2OperatorEqual*: proc (self, other: Rect2): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2GetPosition*: proc (self: Rect2): Vector2
+    rect2GetPosition*: proc (self: Rect2): Vector2Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    rect2GetSize*: proc (self: Rect2): Vector2
+    rect2GetSize*: proc (self: Rect2): Vector2Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     rect2SetPosition*: proc (self: var Rect2, pos: Vector2)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2454,11 +2484,11 @@ type
     # AABB API
     aabbNew*: proc (dest: var AABB, pos, size: Vector3)
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetPosition*: proc (self: AABB): Vector3
+    aabbGetPosition*: proc (self: AABB): Vector3Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbSetPosition*: proc (self: var AABB, pos: Vector3)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetSize*: proc (self: AABB): Vector3
+    aabbGetSize*: proc (self: AABB): Vector3Data
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbSetSize*: proc (self: var AABB, pos: Vector3)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2474,9 +2504,9 @@ type
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbEncloses*: proc (self, other: AABB): bool
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbMerge*: proc (self, other: AABB): AABB
+    aabbMerge*: proc (self, other: AABB): AABBData
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbIntersection*: proc (self, other: AABB): AABB
+    aabbIntersection*: proc (self, other: AABB): AABBData
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbIntersectsPlane*: proc (self: AABB, plane: Plane): bool
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2485,9 +2515,9 @@ type
                                     locks: 0.}
     aabbHasPoint*: proc (self: AABB, point: Vector3): bool
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetSupport*: proc (self: AABB, dir: Vector3): Vector3
+    aabbGetSupport*: proc (self: AABB, dir: Vector3): Vector3Data
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetLongestAxis*: proc (self: AABB): Vector3
+    aabbGetLongestAxis*: proc (self: AABB): Vector3Data
                                {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbGetLongestAxisIndex*: proc (self: AABB): cint
                                     {.noconv, raises: [], gcsafe, tags: [],
@@ -2495,7 +2525,7 @@ type
     aabbGetLongestAxisSize*: proc (self: AABB): float32
                                    {.noconv, raises: [], gcsafe, tags: [],
                                      locks: 0.}
-    aabbGetShortestAxis*: proc (self: AABB): Vector3
+    aabbGetShortestAxis*: proc (self: AABB): Vector3Data
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbGetShortestAxisIndex*: proc (self: AABB): cint
                                      {.noconv, raises: [], gcsafe, tags: [],
@@ -2503,11 +2533,11 @@ type
     aabbGetShortestAxisSize*: proc (self: AABB): float32
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    aabbExpand*: proc (self: AABB, toPoint: Vector3): AABB
+    aabbExpand*: proc (self: AABB, toPoint: Vector3): AABBData
                       {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGrow*: proc (self: AABB, by: float32): AABB
+    aabbGrow*: proc (self: AABB, by: float32): AABBData
                     {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    aabbGetEndpoint*: proc (self: AABB, idx: cint): Vector3
+    aabbGetEndpoint*: proc (self: AABB, idx: cint): Vector3Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     aabbOperatorEqual*: proc (self, other: AABB): bool
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2531,36 +2561,36 @@ type
                                         locks: 0.}
     transformNew*: proc (dest: var Transform, basis: Basis, origin: Vector3)
                         {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformGetBasis*: proc (self: Transform): Basis
+    transformGetBasis*: proc (self: Transform): BasisData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     transformSetBasis*: proc (self: var Transform, basis: Basis)
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformGetOrigin*: proc (self: Transform): Vector3
+    transformGetOrigin*: proc (self: Transform): Vector3Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     transformSetOrigin*: proc (self: var Transform, v: Vector3)
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     transformAsString*: proc (self: Transform): GodotString
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformInverse*: proc (self: Transform): Transform
+    transformInverse*: proc (self: Transform): TransformData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformAffineInverse*: proc (self: Transform): Transform
+    transformAffineInverse*: proc (self: Transform): TransformData
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transformOrthonormalized*: proc (self: Transform): Transform
+    transformOrthonormalized*: proc (self: Transform): TransformData
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
     transformRotated*: proc (self: Transform, axis: Vector3,
-                             phi: float32): Transform
+                             phi: float32): TransformData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformScaled*: proc (self: Transform, scale: Vector3): Transform
+    transformScaled*: proc (self: Transform, scale: Vector3): TransformData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformTranslated*: proc (self: Transform, offset: Vector3): Transform
+    transformTranslated*: proc (self: Transform, offset: Vector3): TransformData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformLookingAt*: proc (self: Transform, target, up: Vector3): Transform
+    transformLookingAt*: proc (self: Transform, target, up: Vector3): TransformData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformXformPlane*: proc (self: Transform, plane: Plane): Plane
+    transformXformPlane*: proc (self: Transform, plane: Plane): PlaneData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformXformInvPlane*: proc (self: Transform, plane: Plane): Plane
+    transformXformInvPlane*: proc (self: Transform, plane: Plane): PlaneData
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
     transformNewIdentity*: proc (dest: var Transform)
@@ -2568,18 +2598,18 @@ type
     transformOperatorEqual*: proc (self, other: Transform): bool
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transformOperatorMultiply*: proc (self, other: Transform): Transform
+    transformOperatorMultiply*: proc (self, other: Transform): TransformData
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    transformXformVector3*: proc (self: Transform, v: Vector3): Vector3
+    transformXformVector3*: proc (self: Transform, v: Vector3): Vector3Data
                                 {.noconv, raises: [], gcsafe, tags: [],
                                   locks: 0.}
-    transformXformInvVector3*: proc (self: Transform, v: Vector3): Vector3
+    transformXformInvVector3*: proc (self: Transform, v: Vector3): Vector3Data
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    transformXformAABB*: proc (self: Transform, v: AABB): AABB
+    transformXformAABB*: proc (self: Transform, v: AABB): AABBData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transformXformInvAABB*: proc (self: Transform, v: AABB): AABB
+    transformXformInvAABB*: proc (self: Transform, v: AABB): AABBData
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
 
@@ -2592,58 +2622,58 @@ type
                                       locks: 0.}
     transform2DAsString*: proc (self: Transform2D): GodotString
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DInverse*: proc (self: Transform2D): Transform2D
+    transform2DInverse*: proc (self: Transform2D): Transform2DData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DAffineInverse*: proc (self: Transform2D): Transform2D
+    transform2DAffineInverse*: proc (self: Transform2D): Transform2DData
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
     transform2DGetRotation*: proc (self: Transform2D): float32
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transform2DGetOrigin*: proc (self: Transform2D): Vector2
+    transform2DGetOrigin*: proc (self: Transform2D): Vector2Data
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DGetScale*: proc (self: Transform2D): Vector2
+    transform2DGetScale*: proc (self: Transform2D): Vector2Data
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DOrthonormalized*: proc (self: Transform2D): Transform2D
+    transform2DOrthonormalized*: proc (self: Transform2D): Transform2DData
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
-    transform2DRotated*: proc (self: Transform2D, phi: float32): Transform2D
+    transform2DRotated*: proc (self: Transform2D, phi: float32): Transform2DData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DScaled*: proc (self: Transform2D, scale: Vector2): Transform2D
+    transform2DScaled*: proc (self: Transform2D, scale: Vector2): Transform2DData
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    transform2DTranslated*: proc (self: Transform2D, offset: Vector2): Transform2D
+    transform2DTranslated*: proc (self: Transform2D, offset: Vector2): Transform2DData
                                 {.noconv, raises: [], gcsafe, tags: [],
                                   locks: 0.}
-    transform2DXformVector2*: proc (self: Transform2D, v: Vector2): Vector2
+    transform2DXformVector2*: proc (self: Transform2D, v: Vector2): Vector2Data
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transform2DXformInvVector2*: proc (self: Transform2D, v: Vector2): Vector2
+    transform2DXformInvVector2*: proc (self: Transform2D, v: Vector2): Vector2Data
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
-    transform2DBasisXformVector2*: proc (self: Transform2D, v: Vector2): Vector2
+    transform2DBasisXformVector2*: proc (self: Transform2D, v: Vector2): Vector2Data
                                         {.noconv, raises: [], gcsafe, tags: [],
                                           locks: 0.}
     transform2DBasisXformInvVector2*: proc (self: Transform2D,
-                                            v: Vector2): Vector2
+                                            v: Vector2): Vector2Data
                                           {.noconv, raises: [], gcsafe, tags: [],
                                             locks: 0.}
     transform2DInterpolateWith*: proc (self, other: Transform2D,
-                                      t: float32): Transform2D
+                                      t: float32): Transform2DData
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
     transform2DOperatorEqual*: proc (self, other: Transform2D): bool
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
-    transform2DOperatorMultiply*: proc (self, other: Transform2D): Transform2D
+    transform2DOperatorMultiply*: proc (self, other: Transform2D): Transform2DData
                                       {.noconv, raises: [], gcsafe, tags: [],
                                         locks: 0.}
     transform2DNewIdentity*: proc (dest: var Transform2D)
                                   {.noconv, raises: [], gcsafe, tags: [],
                                     locks: 0.}
-    transform2DXformRect2*: proc (self: Transform2D, v: Rect2): Rect2
+    transform2DXformRect2*: proc (self: Transform2D, v: Rect2): Rect2Data
                                 {.noconv, raises: [], gcsafe, tags: [],
                                   locks: 0.}
-    transform2DXformInvRect2*: proc (self: Transform2D, v: Rect2): Rect2
+    transform2DXformInvRect2*: proc (self: Transform2D, v: Rect2): Rect2Data
                                     {.noconv, raises: [], gcsafe, tags: [],
                                       locks: 0.}
 
@@ -2732,25 +2762,25 @@ type
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantAsString*: proc (self: GodotVariant): GodotString
                            {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsVector2*: proc (self: GodotVariant): Vector2
+    variantAsVector2*: proc (self: GodotVariant): Vector2Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsRect2*: proc (self: GodotVariant): Rect2
+    variantAsRect2*: proc (self: GodotVariant): Rect2Data
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsVector3*: proc (self: GodotVariant): Vector3
+    variantAsVector3*: proc (self: GodotVariant): Vector3Data
                             {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsTransform2D*: proc (self: GodotVariant): Transform2D
+    variantAsTransform2D*: proc (self: GodotVariant): Transform2DData
                                 {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsPlane*: proc (self: GodotVariant): Plane
+    variantAsPlane*: proc (self: GodotVariant): PlaneData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsQuat*: proc (self: GodotVariant): Quat
+    variantAsQuat*: proc (self: GodotVariant): QuatData
                          {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsAABB*: proc (self: GodotVariant): AABB
+    variantAsAABB*: proc (self: GodotVariant): AABBData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsBasis*: proc (self: GodotVariant): Basis
+    variantAsBasis*: proc (self: GodotVariant): BasisData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsTransform*: proc (self: GodotVariant): Transform
+    variantAsTransform*: proc (self: GodotVariant): TransformData
                               {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
-    variantAsColor*: proc (self: GodotVariant): Color
+    variantAsColor*: proc (self: GodotVariant): ColorData
                           {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
     variantAsNodePath*: proc (self: GodotVariant): GodotNodePath
                              {.noconv, raises: [], gcsafe, tags: [], locks: 0.}
@@ -2897,6 +2927,38 @@ type
     nativeScriptGetUserdata*: proc (obj: ptr GodotObject): pointer
                                    {.noconv, raises: [], gcsafe, tags: [],
                                      locks: 0.}
+
+{.push stackTrace: off.}
+proc toColor*(val: ColorData): Color {.inline, noinit.} =
+  cast[Color](val)
+
+proc toVector3*(val: Vector3Data): Vector3 {.inline, noinit.} =
+  cast[Vector3](val)
+
+proc toVector2*(val: Vector2Data): Vector2 {.inline, noinit.} =
+  cast[Vector2](val)
+
+proc toPlane*(val: PlaneData): Plane {.inline, noinit.} =
+  cast[Plane](val)
+
+proc toBasis*(val: BasisData): Basis {.inline, noinit.} =
+  cast[Basis](val)
+
+proc toQuat*(val: QuatData): Quat {.inline, noinit.} =
+  cast[Quat](val)
+
+proc toAABB*(val: AABBData): AABB {.inline, noinit.} =
+  cast[AABB](val)
+
+proc toRect2*(val: Rect2Data): Rect2 {.inline, noinit.} =
+  cast[Rect2](val)
+
+proc toTransform2D*(val: Transform2DData): Transform2D {.inline, noinit.} =
+  cast[Transform2D](val)
+
+proc toTransform*(val: TransformData): Transform {.inline, noinit.} =
+  cast[Transform](val)
+{.pop.}
 
 macro assign(dest, src: typed, values: untyped): typed =
   result = newStmtList()

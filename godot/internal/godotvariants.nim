@@ -121,34 +121,34 @@ proc asGodotString*(self: GodotVariant): GodotString {.inline.} =
   getGDNativeAPI().variantAsString(self)
 
 proc asVector2*(self: GodotVariant): Vector2 {.inline.} =
-  getGDNativeAPI().variantAsVector2(self)
+  getGDNativeAPI().variantAsVector2(self).toVector2()
 
 proc asRect2*(self: GodotVariant): Rect2 {.inline.} =
-  getGDNativeAPI().variantAsRect2(self)
+  getGDNativeAPI().variantAsRect2(self).toRect2()
 
 proc asVector3*(self: GodotVariant): Vector3 {.inline.} =
-  getGDNativeAPI().variantAsVector3(self)
+  getGDNativeAPI().variantAsVector3(self).toVector3()
 
 proc asTransform2D*(self: GodotVariant): Transform2D {.inline.} =
-  getGDNativeAPI().variantAsTransform2D(self)
+  getGDNativeAPI().variantAsTransform2D(self).toTransform2D()
 
 proc asPlane*(self: GodotVariant): Plane {.inline.} =
-  getGDNativeAPI().variantAsPlane(self)
+  getGDNativeAPI().variantAsPlane(self).toPlane()
 
 proc asQuat*(self: GodotVariant): Quat {.inline.} =
-  getGDNativeAPI().variantAsQuat(self)
+  getGDNativeAPI().variantAsQuat(self).toQuat()
 
 proc asAABB*(self: GodotVariant): AABB {.inline.} =
-  getGDNativeAPI().variantAsAABB(self)
+  getGDNativeAPI().variantAsAABB(self).toAABB()
 
 proc asBasis*(self: GodotVariant): Basis {.inline.} =
-  getGDNativeAPI().variantAsBasis(self)
+  getGDNativeAPI().variantAsBasis(self).toBasis()
 
 proc asTransform*(self: GodotVariant): Transform {.inline.} =
-  getGDNativeAPI().variantAsTransform(self)
+  getGDNativeAPI().variantAsTransform(self).toTransform()
 
 proc asColor*(self: GodotVariant): Color {.inline.} =
-  getGDNativeAPI().variantAsColor(self)
+  getGDNativeAPI().variantAsColor(self).toColor()
 
 proc asNodePath*(self: GodotVariant): GodotNodePath {.inline.} =
   getGDNativeAPI().variantAsNodePath(self)

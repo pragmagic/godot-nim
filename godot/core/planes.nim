@@ -26,13 +26,13 @@ proc hash*(self: Plane): Hash {.inline, noinit.} =
   !$(self.normal.hash() !& self.d.hash())
 
 proc normalized*(self: Plane): Plane {.inline.} =
-  getGDNativeAPI().planeNormalized(self)
+  getGDNativeAPI().planeNormalized(self).toPlane()
 
 proc center*(self: Plane): Vector3 {.inline.} =
-  getGDNativeAPI().planeCenter(self)
+  getGDNativeAPI().planeCenter(self).toVector3()
 
 proc getAnyPoint*(self: Plane): Vector3 {.inline.} =
-  getGDNativeAPI().planeGetAnyPoint(self)
+  getGDNativeAPI().planeGetAnyPoint(self).toVector3()
 
 proc isPointOver*(self: Plane; point: Vector3): bool {.inline.} =
   getGDNativeAPI().planeIsPointOver(self, point)
@@ -45,7 +45,7 @@ proc contains*(self: Plane; point: Vector3;
   getGDNativeAPI().planeHasPoint(self, point, epsilon)
 
 proc project*(self: Plane; point: Vector3): Vector3 {.inline.} =
-  getGDNativeAPI().planeProject(self, point)
+  getGDNativeAPI().planeProject(self, point).toVector3()
 
 proc intersect3*(self: Plane; dest: var Vector3;
                  b, c: Plane): bool {.inline.} =
@@ -60,7 +60,7 @@ proc intersectsSegment*(self: Plane; dest: var Vector3;
   getGDNativeAPI().planeIntersectsSegment(self, dest, segmentBegin, segmentEnd)
 
 proc `-`*(self: Plane): Plane {.inline.} =
-  getGDNativeAPI().planeOperatorNeg(self)
+  getGDNativeAPI().planeOperatorNeg(self).toPlane()
 
 proc `==`*(a, b: Plane): bool {.inline.} =
   getGDNativeAPI().planeOperatorEqual(a, b)

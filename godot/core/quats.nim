@@ -29,50 +29,50 @@ proc lengthSquared*(self: Quat): float32 {.inline.} =
   getGDNativeAPI().quatLengthSquared(self)
 
 proc normalized*(self: Quat): Quat {.inline.} =
-  getGDNativeAPI().quatNormalized(self)
+  getGDNativeAPI().quatNormalized(self).toQuat()
 
 proc isNormalized*(self: Quat): bool {.inline.} =
   getGDNativeAPI().quatIsNormalized(self)
 
 proc inverse*(self: Quat): Quat {.inline.} =
-  getGDNativeAPI().quatInverse(self)
+  getGDNativeAPI().quatInverse(self).toQuat()
 
 proc dot*(a, b: Quat): float32 {.inline.} =
   getGDNativeAPI().quatDot(a, b)
 
 proc xform*(self: Quat; v: Vector3): Vector3 {.inline.} =
-  getGDNativeAPI().quatXform(self, v)
+  getGDNativeAPI().quatXform(self, v).toVector3()
 
 proc slerp*(self: Quat; b: Quat; t: float32): Quat {.inline.} =
-  getGDNativeAPI().quatSlerp(self, b, t)
+  getGDNativeAPI().quatSlerp(self, b, t).toQuat()
 
 proc slerpni*(self: Quat; b: Quat; t: float32): Quat {.inline.} =
-  getGDNativeAPI().quatSlerpni(self, b, t)
+  getGDNativeAPI().quatSlerpni(self, b, t).toQuat()
 
 proc cubicSlerp*(self, b, preA, postB: Quat;
                  t: float32): Quat {.inline.} =
-  getGDNativeAPI().quatCubicSlerp(self, b, preA, postB, t)
+  getGDNativeAPI().quatCubicSlerp(self, b, preA, postB, t).toQuat()
 
 proc `*`*(a: Quat, b: float32): Quat {.inline.} =
-  getGDNativeAPI().quatOperatorMultiply(a, b)
+  getGDNativeAPI().quatOperatorMultiply(a, b).toQuat()
 
 proc `*=`*(a: var Quat, b: float32) {.inline.} =
   a = a * b
 
 proc `+`*(a, b: Quat): Quat {.inline.} =
-  getGDNativeAPI().quatOperatorAdd(a, b)
+  getGDNativeAPI().quatOperatorAdd(a, b).toQuat()
 
 proc `+=`*(a: var Quat, b: Quat) {.inline.} =
   a = a + b
 
 proc `-`*(a, b: Quat): Quat {.inline.} =
-  getGDNativeAPI().quatOperatorSubtract(a, b)
+  getGDNativeAPI().quatOperatorSubtract(a, b).toQuat()
 
 proc `-=`* (a: var Quat, b: Quat) {.inline.} =
   a = a - b
 
 proc `/`*(self: Quat; b: float32): Quat {.inline.} =
-  getGDNativeAPI().quatOperatorDivide(self, b)
+  getGDNativeAPI().quatOperatorDivide(self, b).toQuat()
 
 proc `/=`*(self: var Quat, b: float32) {.inline.} =
   self = self / b
@@ -81,4 +81,4 @@ proc `==`*(a, b: Quat): bool {.inline.} =
   getGDNativeAPI().quatOperatorEqual(a, b)
 
 proc `-`*(self: Quat): Quat {.inline.} =
-  getGDNativeAPI().quatOperatorNeg(self)
+  getGDNativeAPI().quatOperatorNeg(self).toQuat()

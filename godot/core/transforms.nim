@@ -27,50 +27,50 @@ proc hash*(self: Transform): Hash {.inline.} =
   !$(self.basis.hash() !& self.origin.hash())
 
 proc inverse*(self: Transform): Transform {.inline.} =
-  getGDNativeAPI().transformInverse(self)
+  getGDNativeAPI().transformInverse(self).toTransform()
 
 proc affineInverse*(self: Transform): Transform {.inline.} =
-  getGDNativeAPI().transformAffineInverse(self)
+  getGDNativeAPI().transformAffineInverse(self).toTransform()
 
 proc orthonormalized*(self: Transform): Transform {.inline.} =
-  getGDNativeAPI().transformOrthonormalized(self)
+  getGDNativeAPI().transformOrthonormalized(self).toTransform()
 
 proc rotated*(self: Transform; axis: Vector3;
               phi: float32): Transform {.inline.} =
-  getGDNativeAPI().transformRotated(self, axis, phi)
+  getGDNativeAPI().transformRotated(self, axis, phi).toTransform()
 
 proc scaled*(self: Transform; scale: Vector3): Transform {.inline.} =
-  getGDNativeAPI().transformScaled(self, scale)
+  getGDNativeAPI().transformScaled(self, scale).toTransform()
 
 proc translated*(self: Transform; offset: Vector3): Transform {.inline.} =
-  getGDNativeAPI().transformTranslated(self, offset)
+  getGDNativeAPI().transformTranslated(self, offset).toTransform()
 
 proc lookingAt*(self: Transform; target, up: Vector3): Transform {.inline.} =
-  getGDNativeAPI().transformLookingAt(self, target, up)
+  getGDNativeAPI().transformLookingAt(self, target, up).toTransform()
 
 proc xformPlane*(self: Transform; plane: Plane): Plane {.inline.} =
-  getGDNativeAPI().transformXformPlane(self, plane)
+  getGDNativeAPI().transformXformPlane(self, plane).toPlane()
 
 proc xformInvPlane*(self: Transform; plane: Plane): Plane {.inline.} =
-  getGDNativeAPI().transformXformInvPlane(self, plane)
+  getGDNativeAPI().transformXformInvPlane(self, plane).toPlane()
 
 proc xformVector3*(self: Transform; v: Vector3): Vector3 {.inline.} =
-  getGDNativeAPI().transformXformVector3(self, v)
+  getGDNativeAPI().transformXformVector3(self, v).toVector3()
 
 proc xformInvVector3*(self: Transform; v: Vector3): Vector3 {.inline.} =
-  getGDNativeAPI().transformXformInvVector3(self, v)
+  getGDNativeAPI().transformXformInvVector3(self, v).toVector3()
 
 proc xformAABB*(self: Transform; rect: AABB): AABB {.inline.} =
-  getGDNativeAPI().transformXformAABB(self, rect)
+  getGDNativeAPI().transformXformAABB(self, rect).toAABB()
 
 proc xformInvAABB*(self: Transform; rect: AABB): AABB {.inline.} =
-  getGDNativeAPI().transformXformInvAABB(self, rect)
+  getGDNativeAPI().transformXformInvAABB(self, rect).toAABB()
 
 proc `==`*(self: Transform; b: Transform): bool {.inline.} =
   getGDNativeAPI().transformOperatorEqual(self, b)
 
 proc `*`*(self, other: Transform): Transform {.inline.} =
-  getGDNativeAPI().transformOperatorMultiply(self, other)
+  getGDNativeAPI().transformOperatorMultiply(self, other).toTransform()
 
 proc `*=`*(self: var Transform, other: Transform) {.inline.} =
   self = self * other
