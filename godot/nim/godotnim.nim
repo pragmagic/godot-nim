@@ -343,23 +343,20 @@ proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
   result.strVal = s
 
-macro toGodotName(T: typedesc): string =
-  var godotName =
-    if T is GodotString or T is string:
-      "String"
-    elif T is SomeFloat:
-      "float"
-    elif T is SomeUnsignedInt or T is SomeSignedInt:
-      "int"
-    else:
-      let nameStr = (($T.getType()[1][1].symbol).split(':')[0])
-      case nameStr:
-        of "File", "Directory", "Thread", "Mutex", "Semaphore":
-          "_" & nameStr
-        else:
-          nameStr
-
-  result = newLit(godotName)
+proc toGodotName(T: typedesc): string =
+  if T is GodotString or T is string:
+    "String"
+  elif T is SomeFloat:
+    "float"
+  elif T is SomeUnsignedInt or T is SomeSignedInt:
+    "int"
+  else:
+    let nameStr = (($T.getType()[1][1].symbol).split(':')[0])
+    case nameStr:
+      of "File", "Directory", "Thread", "Mutex", "Semaphore":
+        "_" & nameStr
+      else:
+        nameStr
 
 macro asCString(s: static[string]): cstring =
   result = newNimNode(nnkCallStrLit).add(
