@@ -71,7 +71,7 @@ proc fixupHrefs(file: string) =
 
 proc getGitHash(): string =
   result = execProcess("git rev-parse HEAD")
-  if not result.isNil and result.len > 0:
+  if result.len > 0:
     result = result.replace("\L", "").replace("\r", "")
 
 proc buildDocs*(outDir, godotNimDir, godotBin: string) =
@@ -112,7 +112,7 @@ proc buildDocs*(outDir, godotNimDir, godotBin: string) =
   var gitHash: string
   withDir(godotBinAbs.parentDir()):
     gitHash = getGitHash()
-    if gitHash.isNil or gitHash.len == 0:
+    if gitHash.len == 0:
       raise newException(Exception,
         "Godot executable is not under Git repository")
 

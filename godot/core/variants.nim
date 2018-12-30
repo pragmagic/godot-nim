@@ -73,12 +73,9 @@ proc newVariant*(r: cdouble): Variant {.inline.} =
 
 proc newVariant*(s: string): Variant {.inline.} =
   new(result, variantFinalizer)
-  if s.isNil:
-    initGodotVariant(result.godotVariant)
-  else:
-    var godotStr = s.toGodotString()
-    initGodotVariant(result.godotVariant, godotStr)
-    godotStr.deinit()
+  var godotStr = s.toGodotString()
+  initGodotVariant(result.godotVariant, godotStr)
+  godotStr.deinit()
 
 import basis, nodepaths
 import planes, quats, rect2, aabb, rids

@@ -1,6 +1,6 @@
 # Copyright 2018 Xored Software, Inc.
 
-import tables, typetraits, macros, unicode
+import tables, typetraits, macros, unicode, strutils, sets
 import gdnativeapi
 import core.godotcoretypes, core.godotbase
 import core.vector2, core.rect2,
@@ -101,8 +101,6 @@ var classRegistryStatic* {.compileTime.}: TableRef[FNV1Hash, ObjectInfo]
 static:
   classRegistryStatic = newTable[FNV1Hash, ObjectInfo]()
 
-static:
-  import sets, strutils
 var nativeClasses {.compileTime.} = newSeq[string]()
 var refClasses* {.compileTime.} = newSeq[string]()
 
@@ -204,7 +202,7 @@ macro baseNativeType(T: typedesc): cstring =
     if typeName == "NimGodotObject":
       break
     t = getType(t[1][1])
-  if baseT.isNil:
+  if baseT == "":
     result = newNilLit()
   else:
     let rStr = newNimNode(nnkRStrLit)
@@ -345,26 +343,20 @@ proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
   result.strVal = s
 
-static:
-  import strutils
-
-macro toGodotName(T: typedesc): string =
-  var godotName: string
+proc toGodotName(T: typedesc): string =
   if T is GodotString or T is string:
-    godotName = "String"
+    "String"
   elif T is SomeFloat:
-    godotName = "float"
+    "float"
   elif T is SomeUnsignedInt or T is SomeSignedInt:
-    godotName = "int"
-  if godotName.isNil or godotName.len == 0:
+    "int"
+  else:
     let nameStr = (($T.getType()[1][1].symbol).split(':')[0])
-    godotName = case nameStr:
-    of "File", "Directory", "Thread", "Mutex", "Semaphore":
-      "_" & nameStr
-    else:
-      nameStr
-
-  result = newLit(godotName)
+    case nameStr:
+      of "File", "Directory", "Thread", "Mutex", "Semaphore":
+        "_" & nameStr
+      else:
+        nameStr
 
 macro asCString(s: static[string]): cstring =
   result = newNimNode(nnkCallStrLit).add(
@@ -717,7 +709,7 @@ proc fromVariant*(s: var string, val: Variant): ConversionResult =
   if val.getType() == VariantType.String:
     s = val.asString()
   elif val.getType() == VariantType.Nil:
-    s = nil
+    s = ""
   else:
     result = ConversionResult.TypeError
 
@@ -839,7 +831,7 @@ proc fromVariant*[T: Table or TableRef or OrderedTable or OrderedTableRef](t: va
 
 {.emit: """/*TYPESECTION*/
 N_LIB_EXPORT N_CDECL(void, NimMain)(void);
-N_NOINLINE(void, setStackBottom)(void* thestackbottom);
+N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
 """.}
 
 var nativeLibHandle: pointer
@@ -855,7 +847,7 @@ proc godot_nativescript_init(handle: pointer) {.
   var stackBottom {.volatile.}: pointer
   {.emit: """
     NimMain();
-    setStackBottom((void*)(&`stackBottom`));
+    nimGC_setStackBottom((void*)(&`stackBottom`));
   """.}
   GC_fullCollect()
   GC_disable()
@@ -893,7 +885,7 @@ proc registerFrameCallback*(cb: proc () {.closure.}) =
 proc godot_nativescript_frame() {.cdecl, exportc, dynlib.} =
   var stackBottom {.volatile.}: pointer
   {.emit: """
-  setStackBottom((void*)(&`stackBottom`));
+  nimGC_setStackBottom((void*)(&`stackBottom`));
   """.}
   for cb in idleCallbacks:
     cb()
