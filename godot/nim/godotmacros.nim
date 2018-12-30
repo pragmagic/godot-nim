@@ -1,6 +1,6 @@
 # Copyright 2018 Xored Software, Inc.
 
-import macros, tables, typetraits
+import macros, tables, typetraits, strutils, sets, sequtils, options
 import godotinternal, internal.godotvariants
 import godotnim, core.variants
 
@@ -10,8 +10,8 @@ type
     typ: NimNode
     defaultValue: NimNode
     isNoGodot: bool
-    hint: string
-    hintStr: string
+    hint: Option[string]
+    hintStr: Option[string]
     usage: NimNode
     isExported: bool
 
@@ -111,12 +111,12 @@ proc removePragma(statement: NimNode, pname: string): bool =
       return true
 
 proc removeStrPragma(statement: NimNode,
-                     pname: string): string {.compileTime.} =
+                     pname: string): Option[string] {.compileTime.} =
   ## Removes the pragma from the node and returns value of the pragma
   ## Works for routine nodes or nnkPragmaExpr
   let node = removePragmaNode(statement, pname)
-  result = if node.isNil: nil
-           else: $node
+  result = if node.isNil: none(string)
+           else: some($node)
 
 proc isExported(node: NimNode): bool {.compileTime.} =
   if node.kind == nnkPragmaExpr:
@@ -197,7 +197,7 @@ proc parseType(definition, callSite: NimNode): ObjectDecl =
       parseError(option, "valid type specifier expected")
   result.isTool = isTool
 
-  if result.parentName.isNil: result.parentName = "Object"
+  if result.parentName == "": result.parentName = "Object"
   for statement in body:
     case statement.kind:
       of nnkVarSection:
@@ -424,9 +424,6 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
                                unsafeAddr attr, setFunc, getFunc)
   hintStrGodot.deinit()
 
-static:
-  import strutils, sets, sequtils
-
 proc toGodotStyle(s: string): string {.compileTime.} =
   result = newStringOfCap(s.len + 10)
   for c in s:
@@ -447,7 +444,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   let objTy = newNimNode(nnkObjectTy)
   typeDef.add(newNimNode(nnkRefTy).add(objTy))
   objTy.add(newEmptyNode())
-  if obj.parentName.isNil:
+  if obj.parentName == "":
     objTy.add(newEmptyNode())
   else:
     objTy.add(newNimNode(nnkOfInherit).add(ident(obj.parentName)))
@@ -506,11 +503,11 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     result.add(meth.nimNode)
 
   # Register Godot object
-  let parentName = if obj.parentName.isNil: newStrLitNode("Object")
+  let parentName = if obj.parentName == "": newStrLitNode("Object")
                    else: newStrLitNode(obj.parentName)
   let classNameLit = newStrLitNode(obj.name)
   let classNameIdent = ident(obj.name)
-  let isRef: bool = if obj.parentName.isNil: false
+  let isRef: bool = if obj.parentName == "": false
                     else: obj.parentName in refClasses
   result.add(getAst(
     registerGodotClass(classNameIdent, classNameLit, isRef, parentName,
@@ -519,10 +516,10 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   # Register fields (properties)
   for field in obj.fields:
     if field.isNoGodot: continue
-    let hintStr = if field.hintStr.isNil: "NIM"
-                  else: field.hintStr
-    let hint = if field.hint.isNil: "NIM"
-               else: field.hint
+    let hintStr = if field.hintStr.isNone: "NIM"
+                  else: field.hintStr.get
+    let hint = if field.hint.isNone: "NIM"
+               else: field.hint.get
     let usage =
       if field.usage.isNil:
         newLit(ord(GodotPropertyUsage.Default) or
