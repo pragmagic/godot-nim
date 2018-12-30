@@ -545,7 +545,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                                methodNameLit, minArgs, maxArgs,
                                argTypes, methFuncIdent, hasReturnValue) =
     {.emit: """/*TYPESECTION*/
-N_NOINLINE(void, setStackBottom)(void* thestackbottom);
+N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
 """.}
     proc methFuncIdent(obj: ptr GodotObject, methodData: pointer,
                        userData: pointer, numArgs: cint,
@@ -553,7 +553,7 @@ N_NOINLINE(void, setStackBottom)(void* thestackbottom);
                       GodotVariant {.noconv.} =
       var stackBottom {.volatile.}: pointer
       {.emit: """
-        setStackBottom((void*)(&`stackBottom`));
+      nimGC_setStackBottom((void*)(&`stackBottom`));
       """.}
       let self = cast[classNameIdent](userData)
       const isStaticCall = methodNameLit == cstring"_ready" or

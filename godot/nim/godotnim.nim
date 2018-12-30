@@ -831,7 +831,7 @@ proc fromVariant*[T: Table or TableRef or OrderedTable or OrderedTableRef](t: va
 
 {.emit: """/*TYPESECTION*/
 N_LIB_EXPORT N_CDECL(void, NimMain)(void);
-N_NOINLINE(void, setStackBottom)(void* thestackbottom);
+N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
 """.}
 
 var nativeLibHandle: pointer
@@ -847,7 +847,7 @@ proc godot_nativescript_init(handle: pointer) {.
   var stackBottom {.volatile.}: pointer
   {.emit: """
     NimMain();
-    setStackBottom((void*)(&`stackBottom`));
+    nimGC_setStackBottom((void*)(&`stackBottom`));
   """.}
   GC_fullCollect()
   GC_disable()
@@ -884,7 +884,7 @@ proc registerFrameCallback*(cb: proc () {.closure.}) =
 proc godot_nativescript_frame() {.cdecl, exportc, dynlib.} =
   var stackBottom {.volatile.}: pointer
   {.emit: """
-  setStackBottom((void*)(&`stackBottom`));
+  nimGC_setStackBottom((void*)(&`stackBottom`));
   """.}
   for cb in idleCallbacks:
     cb()
