@@ -509,9 +509,11 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   let classNameIdent = ident(obj.name)
   let isRef: bool = if obj.parentName == "": false
                     else: obj.parentName in refClasses
+  # Wrapping bools with a newLit is required as a temporary workaround for
+  # https://github.com/nim-lang/Nim/issues/7375
   result.add(getAst(
-    registerGodotClass(classNameIdent, classNameLit, isRef, parentName,
-                       genSym(nskProc, "createFunc"), obj.isTool)))
+    registerGodotClass(classNameIdent, classNameLit, newLit(isRef), parentName,
+                       genSym(nskProc, "createFunc"), newLit(obj.isTool))))
 
   # Register fields (properties)
   for field in obj.fields:
