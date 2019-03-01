@@ -202,7 +202,7 @@ macro baseNativeType(T: typedesc): cstring =
     if typeName == "NimGodotObject":
       break
     t = getType(t[1][1])
-  if baseT == "":
+  if baseT.len == 0:
     result = newNilLit()
   else:
     let rStr = newNimNode(nnkRStrLit)
@@ -343,7 +343,7 @@ proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
   result.strVal = s
 
-proc toGodotName(T: typedesc): string =
+macro toGodotName(T: typedesc): string =
   if T is GodotString or T is string:
     "String"
   elif T is SomeFloat:
@@ -708,10 +708,16 @@ proc toVariant*(s: string): Variant {.inline.} =
 proc fromVariant*(s: var string, val: Variant): ConversionResult =
   if val.getType() == VariantType.String:
     s = val.asString()
-  elif val.getType() == VariantType.Nil:
-    s = ""
+  when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
+    if val.getType() == VariantType.Nil:
+      s = nil
+    else:
+      result = ConversionResult.TypeError
   else:
-    result = ConversionResult.TypeError
+    if val.getType() == VariantType.Nil:
+      s = ""
+    else:
+      result = ConversionResult.TypeError
 
 template arrTypeInfo(T) =
   result.variantType = VariantType.Array
@@ -829,10 +835,16 @@ proc fromVariant*[T: Table or TableRef or OrderedTable or OrderedTableRef](t: va
   else:
     result = ConversionResult.TypeError
 
-{.emit: """/*TYPESECTION*/
-N_LIB_EXPORT N_CDECL(void, NimMain)(void);
-N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
-""".}
+when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
+  {.emit: """/*TYPESECTION*/
+  N_LIB_EXPORT N_CDECL(void, NimMain)(void);
+  N_NOINLINE(void, setStackBottom)(void* thestackbottom);
+  """.}
+else:
+  {.emit: """/*TYPESECTION*/
+  N_LIB_EXPORT N_CDECL(void, NimMain)(void);
+  N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
+  """.}
 
 var nativeLibHandle: pointer
 proc getNativeLibHandle*(): pointer =
