@@ -343,7 +343,7 @@ proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
   result.strVal = s
 
-proc toGodotName(T: typedesc): string {.compileTime.} =
+macro toGodotName(T: typedesc): string =
   if T is GodotString or T is string:
     "String"
   elif T is SomeFloat:
