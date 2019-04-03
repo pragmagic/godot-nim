@@ -456,7 +456,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
             ident("array"), ident("MAX_ARG_COUNT"),
             if isVarargs: newNode(nkPtrTy).addChain(ident("GodotVariant"))
             else: ident("pointer"))))
-      staticArgsLen = if varargsName.isSome: meth.args.len
+      staticArgsLen = if varargsName.isNone: meth.args.len
                       else: meth.args.len - 1
       if varargsName.isSome:
         argLenNode = newCall("cint",
