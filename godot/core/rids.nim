@@ -2,7 +2,7 @@
 
 import hashes
 
-import godotcoretypes, internal.godotinternaltypes, gdnativeapi
+import godotcoretypes, internal/godotinternaltypes, gdnativeapi
 
 proc initRID*(): RID {.inline.} =
   getGDNativeAPI().ridNew(result)

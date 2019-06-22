@@ -3,8 +3,8 @@
 import hashes
 
 import godotcoretypes
-import internal.godotinternaltypes, internal.godotpoolarrays,
-       internal.godotstrings
+import internal/godotinternaltypes, internal/godotpoolarrays,
+       internal/godotstrings
 import vector2, vector3, colors
 
 template definePoolArrayBase(T, GodotT, DataT, fieldName, newProcName,

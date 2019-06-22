@@ -1,6 +1,6 @@
 # Copyright 2018 Xored Software, Inc.
 
-import internal.godotinternaltypes, core.godotcoretypes, macros
+import internal/godotinternaltypes, core/godotcoretypes, macros
 
 type
   ColorData* {.byref.} = object
@@ -3593,7 +3593,7 @@ proc setGDNativeAPIInternal(apiStruct: pointer, initOptions: ptr GDNativeInitOpt
       # Not used
       discard
 
-  if not header.next.isNil:
+  if not header.next.isNil and header != header.next:
     setGDNativeAPIInternal(header.next, initOptions,
                            foundCoreApi, foundNativeScriptApi)
 

@@ -2,13 +2,13 @@
 
 import tables, typetraits, macros, unicode, strutils, sets
 import gdnativeapi
-import core.godotcoretypes, core.godotbase
-import core.vector2, core.rect2,
-       core.vector3, core.transform2d,
-       core.planes, core.quats, core.aabb,
-       core.basis, core.transforms, core.colors,
-       core.nodepaths, core.rids, core.dictionaries,
-       core.arrays, core.poolarrays, core.variants
+import core/godotcoretypes, core/godotbase
+import core/vector2, core/rect2,
+       core/vector3, core/transform2d,
+       core/planes, core/quats, core/aabb,
+       core/basis, core/transforms, core/colors,
+       core/nodepaths, core/rids, core/dictionaries,
+       core/arrays, core/poolarrays, core/variants
 import godotinternal
 
 ## This module defines ``NimGodotObject`` and ``toVariant``/``fromVariant``
@@ -343,20 +343,20 @@ proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
   result.strVal = s
 
-macro toGodotName(T: typedesc): string =
+macro toGodotName(T: typedesc): untyped =
   if T is GodotString or T is string:
-    "String"
+    newStrLitNode"String"
   elif T is SomeFloat:
-    "float"
+    newStrLitNode"float"
   elif T is SomeUnsignedInt or T is SomeSignedInt:
-    "int"
+    newStrLitNode"int"
   else:
-    let nameStr = (($T.getType()[1][1].symbol).split(':')[0])
+    let nameStr = ((T.getType()[1][1].strVal).split(':')[0])
     case nameStr:
       of "File", "Directory", "Thread", "Mutex", "Semaphore":
-        "_" & nameStr
+        newStrLitNode("_" & nameStr)
       else:
-        nameStr
+        newStrLitNode(nameStr)
 
 macro asCString(s: static[string]): cstring =
   result = newNimNode(nnkCallStrLit).add(

@@ -4,7 +4,7 @@ import hashes
 
 import vector3
 
-import internal.godotinternaltypes, internal.godotstrings
+import internal/godotinternaltypes, internal/godotstrings
 import godotcoretypes, gdnativeapi
 
 proc initPlane*(a, b, c, d: float32): Plane {.inline.} =

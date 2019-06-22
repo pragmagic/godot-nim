@@ -1,6 +1,6 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
-import godotinternaltypes, gdnativeapi, core.godotcoretypes
+import godotinternaltypes, gdnativeapi, core/godotcoretypes
 
 proc len*(self: GodotArray): cint {.inline.} =
   getGDNativeAPI().arraySize(self)
