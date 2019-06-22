@@ -1,7 +1,7 @@
 # Copyright (c) 2018 Xored Software, Inc.
 
 import godotinternaltypes, gdnativeapi
-import core.godotcoretypes
+import core/godotcoretypes
 
 template genPoolArrayAPI(ArrayT, initIdent, DataT,
                          newProc, newCopyProc, newWithArrayProc, appendProc,

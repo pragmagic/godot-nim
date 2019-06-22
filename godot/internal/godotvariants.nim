@@ -1,6 +1,6 @@
 # Copyright 2018 Xored Software, Inc.
 
-import core.godotcoretypes, godotinternaltypes, gdnativeapi
+import core/godotcoretypes, godotinternaltypes, gdnativeapi
 
 proc getType*(p: GodotVariant): VariantType {.inline.} =
   getGDNativeAPI().variantGetType(p)

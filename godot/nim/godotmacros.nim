@@ -1,8 +1,8 @@
 # Copyright 2018 Xored Software, Inc.
 
-import macros, tables, typetraits, strutils, sets, sequtils, options
-import godotinternal, internal.godotvariants
-import godotnim, core.variants
+import macros, tables, typetraits, strutils, sets, sequtils, options, algorithm
+import godotinternal, internal/godotvariants
+import godotnim, core/variants
 
 type
   VarDecl = ref object
@@ -51,15 +51,15 @@ template parseError(node: NimNode, msg: string) =
 proc extractNames(definition: NimNode):
     tuple[name, parentName: string] =
   if definition.kind == nnkIdent:
-    result.name = $(definition.ident)
+    result.name = definition.strVal
   else:
     if not (definition.kind == nnkInfix and
-            definition[0].ident == toNimIdent("of")):
+            definition[0].strVal == "of"):
       parseError(definition, "invalid type definition")
-    result.name = $(definition[1].ident)
+    result.name = definition[1].strVal
     case definition[2].kind:
       of nnkIdent:
-        result.parentName = $definition[2].ident
+        result.parentName = definition[2].strVal
       else:
         parseError(definition[2], "parent type expected")
 
@@ -72,13 +72,13 @@ proc newCStringLit(s: string): NimNode {.compileTime.} =
   newNimNode(nnkCallStrLit).add(ident("cstring"), newRStrLit(s))
 
 iterator pragmas(node: NimNode):
-      tuple[key: NimIdent, value: NimNode, index: int] =
+      tuple[key: string, value: NimNode, index: int] =
   assert node.kind in {nnkPragma, nnkEmpty}
   for index in countdown(node.len - 1, 0):
     if node[index].kind == nnkExprColonExpr:
-      yield (node[index][0].ident, node[index][1], index)
+      yield (node[index][0].strVal, node[index][1], index)
     elif node[index].kind == nnkIdent:
-      yield (node[index].ident, nil, index)
+      yield (node[index].strVal, nil, index)
 
 proc removePragmaNode(statement: NimNode,
                       pname: string): NimNode {.compileTime.} =
@@ -91,9 +91,8 @@ proc removePragmaNode(statement: NimNode,
   result = nil
   var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
                 else: statement[1]
-  let pnameIdent = toNimIdent(pname)
   for ident, val, i in pragmas(pragmas):
-    if ident == pnameIdent:
+    if ident == pname:
       pragmas.del(i)
       return val
 
@@ -104,9 +103,8 @@ proc removePragma(statement: NimNode, pname: string): bool =
     return false
   var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
                 else: statement[1]
-  let pnameIdent = toNimIdent(pname)
   for ident, val, i in pragmas(pragmas):
-    if ident == pnameIdent:
+    if ident == pname:
       pragmas.del(i)
       return true
 
@@ -178,8 +176,9 @@ proc parseVarSection(decl: NimNode): seq[VarDecl] =
     else:
       result.add(identDefsToVarDecls(decl[i]))
 
-proc parseType(definition, callSite: NimNode): ObjectDecl =
-  let body = callSite[^1]
+proc parseType(ast: NimNode): ObjectDecl =
+  let definition = ast[0]
+  let body = ast[^1]
   result = ObjectDecl(
     fields: newSeq[VarDecl](),
     methods: newSeq[MethodDecl]()
@@ -187,11 +186,11 @@ proc parseType(definition, callSite: NimNode): ObjectDecl =
   (result.name, result.parentName) = extractNames(definition)
 
   var isTool = false
-  for i in 2..(callSite.len - 2):
-    let option = callSite[i]
+  for i in 1..(ast.len - 2):
+    let option = ast[i]
     if option.kind != nnkIdent:
       parseError(option, "type specifier expected")
-    if option.ident == toNimIdent("tool"):
+    if option.strVal == "tool":
       isTool = true
     else:
       parseError(option, "valid type specifier expected")
@@ -214,7 +213,7 @@ proc parseType(definition, callSite: NimNode): ObjectDecl =
 macro invokeVarArgs(procIdent, objIdent;
                     minArgs, maxArgs: static[int], numArgsIdent,
                     argSeqIdent; argTypes: seq[NimNode],
-                    hasReturnValue, isStaticCall: static[bool]): typed =
+                    hasReturnValue, isStaticCall: static[bool]): untyped =
   ## Produces statement in form:
   ##
   ## .. code-block:: nim
@@ -287,7 +286,7 @@ macro invokeVarArgs(procIdent, objIdent;
       " arguments, but got " & $numArgs)
 
   result.add(newNimNode(nnkElse).add(getAst(
-    printInvokeErr($procIdent.ident, minArgs, maxArgs, numArgsIdent))))
+    printInvokeErr(procIdent.strVal, minArgs, maxArgs, numArgsIdent))))
 
 proc typeError(nimType: string, value: string, godotType: VariantType,
                className: cstring, propertyName: cstring): string =
@@ -433,6 +432,100 @@ proc toGodotStyle(s: string): string {.compileTime.} =
     else:
       result.add(c)
 
+      # nnkNone, nnkEmpty, nnkIdent, nnkSym, nnkType, nnkCharLit, nnkIntLit, nnkInt8Lit,
+      # nnkInt16Lit, nnkInt32Lit, nnkInt64Lit, nnkUIntLit, nnkUInt8Lit, nnkUInt16Lit,
+      # nnkUInt32Lit, nnkUInt64Lit, nnkFloatLit, nnkFloat32Lit, nnkFloat64Lit,
+      # nnkFloat128Lit, nnkStrLit, nnkRStrLit, nnkTripleStrLit, nnkNilLit, nnkComesFrom,
+      # nnkDotCall, nnkCommand, nnkCall, nnkCallStrLit, nnkInfix, nnkPrefix, nnkPostfix,
+      # nnkHiddenCallConv, nnkExprEqExpr, nnkExprColonExpr, nnkIdentDefs, nnkVarTuple,
+      # nnkPar, nnkObjConstr, nnkCurly, nnkCurlyExpr, nnkBracket, nnkBracketExpr,
+      # nnkPragmaExpr, nnkRange, nnkDotExpr, nnkCheckedFieldExpr, nnkDerefExpr, nnkIfExpr,
+      # nnkElifExpr, nnkElseExpr, nnkLambda, nnkDo, nnkAccQuoted, nnkTableConstr, nnkBind,
+      # nnkClosedSymChoice, nnkOpenSymChoice, nnkHiddenStdConv, nnkHiddenSubConv, nnkConv,
+      # nnkCast, nnkStaticExpr, nnkAddr, nnkHiddenAddr, nnkHiddenDeref, nnkObjDownConv,
+      # nnkObjUpConv, nnkChckRangeF, nnkChckRange64, nnkChckRange, nnkStringToCString,
+      # nnkCStringToString, nnkAsgn, nnkFastAsgn, nnkGenericParams, nnkFormalParams,
+      # nnkOfInherit, nnkImportAs, nnkProcDef, nnkMethodDef, nnkConverterDef, nnkMacroDef,
+      # nnkTemplateDef, nnkIteratorDef, nnkOfBranch, nnkElifBranch, nnkExceptBranch,
+      # nnkElse, nnkAsmStmt, nnkPragma, nnkPragmaBlock, nnkIfStmt, nnkWhenStmt, nnkForStmt,
+      # nnkParForStmt, nnkWhileStmt, nnkCaseStmt, nnkTypeSection, nnkVarSection,
+      # nnkLetSection, nnkConstSection, nnkConstDef, nnkTypeDef, nnkYieldStmt, nnkDefer,
+      # nnkTryStmt, nnkFinally, nnkRaiseStmt, nnkReturnStmt, nnkBreakStmt, nnkContinueStmt,
+      # nnkBlockStmt, nnkStaticStmt, nnkDiscardStmt, nnkStmtList, nnkImportStmt,
+      # nnkImportExceptStmt, nnkExportStmt, nnkExportExceptStmt, nnkFromStmt,
+      # nnkIncludeStmt, nnkBindStmt, nnkMixinStmt, nnkUsingStmt, nnkCommentStmt,
+      # nnkStmtListExpr, nnkBlockExpr, nnkStmtListType, nnkBlockType, nnkWith, nnkWithout,
+      # nnkTypeOfExpr, nnkObjectTy, nnkTupleTy, nnkTupleClassTy, nnkTypeClassTy,
+      # nnkStaticTy, nnkRecList, nnkRecCase, nnkRecWhen, nnkRefTy, nnkPtrTy, nnkVarTy,
+      # nnkConstTy, nnkMutableTy, nnkDistinctTy, nnkProcTy, nnkIteratorTy, nnkSharedTy,
+      # nnkEnumTy, nnkEnumFieldDef, nnkArglist, nnkPattern, nnkHiddenTryStmt, nnkClosure,
+      # nnkGotoState, nnkState, nnkBreakState, nnkFuncDef, nnkTupleConstr
+
+proc checkReplaceSelfVar(node: NimNode, childIndex: int, varsList, propsList: seq[string]) {.compileTime.} =
+  let identName = node[childIndex].strVal
+  if varsList.binarySearch(identName) == -1 and propsList.binarySearch(identName) != -1:
+    var newChild = newDotExpr(ident("self"), node[childIndex])
+    node.del childIndex
+    node.insert(childIndex, newChild)
+
+proc checkReplaceSelfMethod(node: NimNode, childIndex: int, methodsList: seq[string]) {.compileTime.} =
+  if methodsList.binarySearch(node[childIndex].strVal) != -1:
+    var newChild = newDotExpr(ident("self"), node[childIndex])
+    node.del childIndex
+    node.insert(childIndex, newChild)
+
+proc applySelf(node: NimNode, varsList: ref seq[string], propsList, methodsList: seq[string]) {.compileTime.} =
+  var lowIndx = -1
+  var highIndx = node.len - 1
+  var isBlock: bool = false
+  case node.kind:
+    of nnkCommand, nnkCall:
+      if node[0].kind == nnkDotExpr:
+        lowIndx = 0
+      elif node[0].kind == nnkIdent:
+        checkReplaceSelfMethod(node, 0, methodsList)
+      else:
+        lowIndx = 1
+    of nnkInfix..nnkPostfix, nnkExprColonExpr, nnkObjConstr, nnkCast:
+      lowIndx = 1
+    of nnkExprEqExpr, nnkPar, nnkCurly..nnkBracketExpr, nnkRange, nnkDerefExpr, nnkIfExpr, nnkTableConstr, nnkAddr, nnkAsgn,
+        nnkIfStmt, nnkCaseStmt, nnkVarSection, nnkLetSection, nnkConstSection, nnkDefer, nnkRaiseStmt, nnkReturnStmt, nnkStmtList,
+        nnkStmtListExpr, nnkTupleConstr:
+      lowIndx = 0
+    of nnkIdentDefs:
+      lowIndx = 2
+      if node[0].kind == nnkIdent:
+        let index = lowerBound(varsList[], node[0].strVal)
+        varsList[].insert(node[0].strVal, index)
+    of nnkVarTuple:
+      lowIndx = node.len - 1
+      for i in 0..node.len - 3:
+        if node[i].kind == nnkIdent:
+          let index = lowerBound(varsList[], node[i].strVal)
+          varsList[].insert(node[i].strVal, index)
+    of nnkDotExpr:
+      lowIndx = 0
+      highIndx = 0
+    of nnkElifExpr, nnkElseExpr, nnkOfBranch..nnkElse, nnkWhenStmt..nnkWhileStmt, nnkTryStmt, nnkFinally, nnkBlockStmt, nnkBlockExpr:
+      isBlock = true
+      lowIndx = 0
+    of nnkConstDef:
+      if node[0].kind == nnkIdent:
+        let index = lowerBound(varsList[], node[0].strVal)
+        varsList[].insert(node[0].strVal, index)
+    else:
+      discard
+  if lowIndx != -1:
+    var nodeVars = varsList
+    for i in lowIndx..highIndx:
+      if isBlock and i == highIndx:
+        new(nodeVars)
+        nodeVars[] = varsList[]
+      if node[i].kind == nnkIdent:
+        checkReplaceSelfVar(node, i, nodeVars[], propsList)
+      else:
+        applySelf(node[i], nodeVars, propsList, methodsList)
+
 proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   result = newNimNode(nnkStmtList)
 
@@ -481,9 +574,9 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     initMethod.body.insert(0, initBody)
 
   # {.this: self.} for convenience
-  result.add(newNimNode(nnkPragma).add(newNimNode(nnkExprColonExpr).add(
-    ident("this"), ident("self")
-  )))
+  # result.add(newNimNode(nnkPragma).add(newNimNode(nnkExprColonExpr).add(
+  #   ident("this"), ident("self")
+  # )))
 
   # Nim proc defintions
   var decls = newSeqOfCap[NimNode](obj.methods.len)
@@ -539,6 +632,25 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                          genSym(nskProc, "getFunc"),
                          newStrLitNode(hintStr), hintIdent, usage,
                          ident($hasDefaultValue), field.defaultValue)))
+  
+  # Keep track of object's fields and methods (used instead of deprecated this:self pragma)
+  var propsList: seq[string] = @[]
+  for field in obj.fields:
+    let indx = lowerBound(propsList, field.name.strVal)
+    propsList.insert(field.name.strVal, indx)
+  var methodsList: seq[string] = @[]
+  for meth in obj.methods:
+    let indx = lowerBound(methodsList, meth.name)
+    methodsList.insert(meth.name, indx)
+  
+  # Inject self to properties and methods
+  for meth in obj.methods:
+    let varsList = new(seq[string])
+    for v in meth.nimNode[3]:
+      if v.kind == nnkIdentDefs:
+        varsList[].add v[0].strVal
+    applySelf(meth.nimNode[6], varsList, propsList, methodsList)
+        
 
   # Register methods
   template registerGodotMethod(classNameLit, classNameIdent, methodNameIdent,
@@ -604,7 +716,7 @@ N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
     let hasReturnValueBool = not (meth.returnType.isNil or
                          meth.returnType.kind == nnkEmpty or
                          (meth.returnType.kind == nnkIdent and
-                          meth.returnType.ident == toNimIdent("void")))
+                          meth.returnType.strVal == "void"))
     let hasReturnValue = if hasReturnValueBool: ident("true")
                          else: ident("false")
     result.add(getAst(
@@ -630,11 +742,11 @@ N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
                                  GodotMethodAttributes(), refDec)
     result.add(getAst(registerRefIncDec(classNameLit)))
 
-{.push warning[Deprecated]: off.}
+# {.push warning[Deprecated]: off.}
 # immediate macros are deprecated, but `untyped` doesn't make it immediate,
 # as the warning and the documentation claim.
 
-macro gdobj*(definition: untyped, body: typed): typed {.immediate.} =
+macro gdobj*(ast: varargs[untyped]): untyped =
   ## Generates Godot type. Self-documenting example:
   ##
   ## .. code-block:: nim
@@ -678,7 +790,7 @@ macro gdobj*(definition: untyped, body: typed): typed {.immediate.} =
   ## `gdnew <godotnim.html#gdnew>`_ or by using
   ## `load <godotapi/resource_loader.html#load,string,string,bool>`_ or any other way
   ## that you can find in `Godot API <index.html#modules-godot-api>`_.
-  let typeDef = parseType(definition, callsite())
+  let typeDef = parseType(ast)
   result = genType(typeDef)
 
-{.push warning[Deprecated]: on.}
+# {.push warning[Deprecated]: on.}

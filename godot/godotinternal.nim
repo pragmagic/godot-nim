@@ -1,8 +1,8 @@
 # Copyright 2018 Xored Software, Inc.
 
-import internal.godotinternaltypes, internal.godotarrays,
-       internal.godotnodepaths, internal.godotpoolarrays, internal.godotstrings,
-       internal.godotvariants, internal.godotdictionaries
+import internal/godotinternaltypes, internal/godotarrays,
+       internal/godotnodepaths, internal/godotpoolarrays, internal/godotstrings,
+       internal/godotvariants, internal/godotdictionaries
 
 import gdnativeapi
 export godotinternaltypes, godotarrays, godotnodepaths, godotpoolarrays,

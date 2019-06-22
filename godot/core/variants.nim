@@ -1,9 +1,9 @@
 import tables, hashes
 
 import godotcoretypes
-import internal.godotinternaltypes, internal.godotvariants,
-       internal.godotstrings, internal.godotdictionaries,
-       internal.godotarrays
+import internal/godotinternaltypes, internal/godotvariants,
+       internal/godotstrings, internal/godotdictionaries,
+       internal/godotarrays
 
 type
   Variant* = ref object

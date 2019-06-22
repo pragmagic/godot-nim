@@ -2,13 +2,13 @@
 
 import tables, typetraits, macros, unicode, strutils, sets
 import gdnativeapi
-import core.godotcoretypes, core.godotbase
-import core.vector2, core.rect2,
-       core.vector3, core.transform2d,
-       core.planes, core.quats, core.aabb,
-       core.basis, core.transforms, core.colors,
-       core.nodepaths, core.rids, core.dictionaries,
-       core.arrays, core.poolarrays, core.variants
+import core/godotcoretypes, core/godotbase
+import core/vector2, core/rect2,
+       core/vector3, core/transform2d,
+       core/planes, core/quats, core/aabb,
+       core/basis, core/transforms, core/colors,
+       core/nodepaths, core/rids, core/dictionaries,
+       core/arrays, core/poolarrays, core/variants
 import godotinternal
 
 ## This module defines ``NimGodotObject`` and ``toVariant``/``fromVariant``
@@ -343,20 +343,20 @@ proc newRStrLit(s: string): NimNode {.compileTime.} =
   result = newNimNode(nnkRStrLit)
   result.strVal = s
 
-macro toGodotName(T: typedesc): string =
+macro toGodotName(T: typedesc): untyped =
   if T is GodotString or T is string:
-    "String"
+    newLit("String")
   elif T is SomeFloat:
-    "float"
+    newLit("float")
   elif T is SomeUnsignedInt or T is SomeSignedInt:
-    "int"
+    newLit("int")
   else:
     let nameStr = (($T.getType()[1][1].symbol).split(':')[0])
     case nameStr:
       of "File", "Directory", "Thread", "Mutex", "Semaphore":
-        "_" & nameStr
+        newLit("_" & nameStr)
       else:
-        nameStr
+        newLit(nameStr)
 
 macro asCString(s: static[string]): cstring =
   result = newNimNode(nnkCallStrLit).add(
@@ -366,7 +366,7 @@ proc getSingleton*[T: NimGodotObject](): T =
   ## Returns singleton of type ``T``. Normally, this should not be used,
   ## because `godotapigen <godotapigen.html>`_ wraps singleton methods so that
   ## singleton objects don't have to be provided as parameters.
-  const godotName = asCString(toGodotName(T))
+  const godotName = asCString(toGodotName(T).strVal)
   let singleton = getGodotSingleton(godotName)
   if singleton.isNil:
     printError("Tried to get non-existing singleton of type " & $godotName)
@@ -415,7 +415,7 @@ proc newOwnObj[T: NimGodotObject](name: cstring): T =
 
 proc gdnew*[T: NimGodotObject](): T =
   ## Instantiates new object of type ``T``.
-  const godotName = toGodotName(T)
+  const godotName = toGodotName(T).strVal
   const cGodotName = asCString(godotName)
   const objInfo = classRegistryStatic[fnv1Hash(godotName)]
   when objInfo.isNative:
@@ -491,7 +491,7 @@ proc godotTypeInfo*(T: typedesc[NimGodotObject]): GodotTypeInfo {.inline.} =
     variantType: VariantType.Object,
     hint: when isResource(T): GodotPropertyHint.ResourceType
           else: GodotPropertyHint.None,
-    hintStr: toGodotName(T)
+    hintStr: toGodotName(T).strVal
   )
 
 proc toVariant*(self: NimGodotObject): Variant {.inline.} =

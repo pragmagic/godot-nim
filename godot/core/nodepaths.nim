@@ -2,8 +2,8 @@
 
 import hashes
 
-import internal.godotinternaltypes, internal.godotnodepaths,
-       internal.godotstrings
+import internal/godotinternaltypes, internal/godotnodepaths,
+       internal/godotstrings
 
 type
   NodePath* = ref object

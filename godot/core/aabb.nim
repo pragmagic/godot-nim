@@ -3,7 +3,7 @@
 import hashes
 
 import vector3
-import internal.godotinternaltypes, internal.godotstrings
+import internal/godotinternaltypes, internal/godotstrings
 import godotcoretypes, gdnativeapi
 
 proc initAABB*(pos, size: Vector3): AABB {.inline.} =

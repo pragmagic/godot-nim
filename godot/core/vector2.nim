@@ -2,7 +2,7 @@
 
 import math, godotbase, hashes
 
-import internal.godotinternaltypes, internal.godotstrings
+import internal/godotinternaltypes, internal/godotstrings
 import godotcoretypes, gdnativeapi
 
 {.push stackTrace: off.}

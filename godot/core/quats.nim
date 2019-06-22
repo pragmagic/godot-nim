@@ -2,7 +2,7 @@
 
 import hashes
 
-import internal.godotinternaltypes, internal.godotstrings
+import internal/godotinternaltypes, internal/godotstrings
 import godotcoretypes, gdnativeapi
 
 proc initQuat*(x, y, z, w: float32): Quat {.inline.} =

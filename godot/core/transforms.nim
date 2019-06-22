@@ -2,7 +2,7 @@
 
 import hashes
 
-import internal.godotinternaltypes, internal.godotstrings
+import internal/godotinternaltypes, internal/godotstrings
 import godotcoretypes, gdnativeapi
 import basis, vector3
 

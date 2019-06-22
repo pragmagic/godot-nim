@@ -1,6 +1,6 @@
 # Copyright 2018 Xored Software, Inc.
 
-import internal.godotinternaltypes, core.godotcoretypes, macros
+import internal/godotinternaltypes, core/godotcoretypes, macros
 
 type
   ColorData* {.byref.} = object
