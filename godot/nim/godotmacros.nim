@@ -432,35 +432,6 @@ proc toGodotStyle(s: string): string {.compileTime.} =
     else:
       result.add(c)
 
-      # nnkNone, nnkEmpty, nnkIdent, nnkSym, nnkType, nnkCharLit, nnkIntLit, nnkInt8Lit,
-      # nnkInt16Lit, nnkInt32Lit, nnkInt64Lit, nnkUIntLit, nnkUInt8Lit, nnkUInt16Lit,
-      # nnkUInt32Lit, nnkUInt64Lit, nnkFloatLit, nnkFloat32Lit, nnkFloat64Lit,
-      # nnkFloat128Lit, nnkStrLit, nnkRStrLit, nnkTripleStrLit, nnkNilLit, nnkComesFrom,
-      # nnkDotCall, nnkCommand, nnkCall, nnkCallStrLit, nnkInfix, nnkPrefix, nnkPostfix,
-      # nnkHiddenCallConv, nnkExprEqExpr, nnkExprColonExpr, nnkIdentDefs, nnkVarTuple,
-      # nnkPar, nnkObjConstr, nnkCurly, nnkCurlyExpr, nnkBracket, nnkBracketExpr,
-      # nnkPragmaExpr, nnkRange, nnkDotExpr, nnkCheckedFieldExpr, nnkDerefExpr, nnkIfExpr,
-      # nnkElifExpr, nnkElseExpr, nnkLambda, nnkDo, nnkAccQuoted, nnkTableConstr, nnkBind,
-      # nnkClosedSymChoice, nnkOpenSymChoice, nnkHiddenStdConv, nnkHiddenSubConv, nnkConv,
-      # nnkCast, nnkStaticExpr, nnkAddr, nnkHiddenAddr, nnkHiddenDeref, nnkObjDownConv,
-      # nnkObjUpConv, nnkChckRangeF, nnkChckRange64, nnkChckRange, nnkStringToCString,
-      # nnkCStringToString, nnkAsgn, nnkFastAsgn, nnkGenericParams, nnkFormalParams,
-      # nnkOfInherit, nnkImportAs, nnkProcDef, nnkMethodDef, nnkConverterDef, nnkMacroDef,
-      # nnkTemplateDef, nnkIteratorDef, nnkOfBranch, nnkElifBranch, nnkExceptBranch,
-      # nnkElse, nnkAsmStmt, nnkPragma, nnkPragmaBlock, nnkIfStmt, nnkWhenStmt, nnkForStmt,
-      # nnkParForStmt, nnkWhileStmt, nnkCaseStmt, nnkTypeSection, nnkVarSection,
-      # nnkLetSection, nnkConstSection, nnkConstDef, nnkTypeDef, nnkYieldStmt, nnkDefer,
-      # nnkTryStmt, nnkFinally, nnkRaiseStmt, nnkReturnStmt, nnkBreakStmt, nnkContinueStmt,
-      # nnkBlockStmt, nnkStaticStmt, nnkDiscardStmt, nnkStmtList, nnkImportStmt,
-      # nnkImportExceptStmt, nnkExportStmt, nnkExportExceptStmt, nnkFromStmt,
-      # nnkIncludeStmt, nnkBindStmt, nnkMixinStmt, nnkUsingStmt, nnkCommentStmt,
-      # nnkStmtListExpr, nnkBlockExpr, nnkStmtListType, nnkBlockType, nnkWith, nnkWithout,
-      # nnkTypeOfExpr, nnkObjectTy, nnkTupleTy, nnkTupleClassTy, nnkTypeClassTy,
-      # nnkStaticTy, nnkRecList, nnkRecCase, nnkRecWhen, nnkRefTy, nnkPtrTy, nnkVarTy,
-      # nnkConstTy, nnkMutableTy, nnkDistinctTy, nnkProcTy, nnkIteratorTy, nnkSharedTy,
-      # nnkEnumTy, nnkEnumFieldDef, nnkArglist, nnkPattern, nnkHiddenTryStmt, nnkClosure,
-      # nnkGotoState, nnkState, nnkBreakState, nnkFuncDef, nnkTupleConstr
-
 proc checkReplaceSelfVar(node: NimNode, childIndex: int, varsList, propsList: seq[string]) {.compileTime.} =
   let identName = node[childIndex].strVal
   if varsList.binarySearch(identName) == -1 and propsList.binarySearch(identName) != -1:
@@ -572,11 +543,6 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     ))
   else:
     initMethod.body.insert(0, initBody)
-
-  # {.this: self.} for convenience
-  # result.add(newNimNode(nnkPragma).add(newNimNode(nnkExprColonExpr).add(
-  #   ident("this"), ident("self")
-  # )))
 
   # Nim proc defintions
   var decls = newSeqOfCap[NimNode](obj.methods.len)
@@ -742,10 +708,6 @@ N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
                                  GodotMethodAttributes(), refDec)
     result.add(getAst(registerRefIncDec(classNameLit)))
 
-# {.push warning[Deprecated]: off.}
-# immediate macros are deprecated, but `untyped` doesn't make it immediate,
-# as the warning and the documentation claim.
-
 macro gdobj*(ast: varargs[untyped]): untyped =
   ## Generates Godot type. Self-documenting example:
   ##
@@ -793,4 +755,3 @@ macro gdobj*(ast: varargs[untyped]): untyped =
   let typeDef = parseType(ast)
   result = genType(typeDef)
 
-# {.push warning[Deprecated]: on.}

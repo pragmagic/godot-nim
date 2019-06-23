@@ -345,18 +345,18 @@ proc newRStrLit(s: string): NimNode {.compileTime.} =
 
 macro toGodotName(T: typedesc): untyped =
   if T is GodotString or T is string:
-    newLit("String")
+    newStrLitNode"String"
   elif T is SomeFloat:
-    newLit("float")
+    newStrLitNode"float"
   elif T is SomeUnsignedInt or T is SomeSignedInt:
-    newLit("int")
+    newStrLitNode"int"
   else:
-    let nameStr = (($T.getType()[1][1].symbol).split(':')[0])
+    let nameStr = ((T.getType()[1][1].strVal).split(':')[0])
     case nameStr:
       of "File", "Directory", "Thread", "Mutex", "Semaphore":
-        newLit("_" & nameStr)
+        newStrLitNode("_" & nameStr)
       else:
-        newLit(nameStr)
+        newStrLitNode(nameStr)
 
 macro asCString(s: static[string]): cstring =
   result = newNimNode(nnkCallStrLit).add(
@@ -366,7 +366,7 @@ proc getSingleton*[T: NimGodotObject](): T =
   ## Returns singleton of type ``T``. Normally, this should not be used,
   ## because `godotapigen <godotapigen.html>`_ wraps singleton methods so that
   ## singleton objects don't have to be provided as parameters.
-  const godotName = asCString(toGodotName(T).strVal)
+  const godotName = asCString(toGodotName(T))
   let singleton = getGodotSingleton(godotName)
   if singleton.isNil:
     printError("Tried to get non-existing singleton of type " & $godotName)
@@ -415,7 +415,7 @@ proc newOwnObj[T: NimGodotObject](name: cstring): T =
 
 proc gdnew*[T: NimGodotObject](): T =
   ## Instantiates new object of type ``T``.
-  const godotName = toGodotName(T).strVal
+  const godotName = toGodotName(T)
   const cGodotName = asCString(godotName)
   const objInfo = classRegistryStatic[fnv1Hash(godotName)]
   when objInfo.isNative:
@@ -491,7 +491,7 @@ proc godotTypeInfo*(T: typedesc[NimGodotObject]): GodotTypeInfo {.inline.} =
     variantType: VariantType.Object,
     hint: when isResource(T): GodotPropertyHint.ResourceType
           else: GodotPropertyHint.None,
-    hintStr: toGodotName(T).strVal
+    hintStr: toGodotName(T)
   )
 
 proc toVariant*(self: NimGodotObject): Variant {.inline.} =
