@@ -454,7 +454,9 @@ proc applySelf(node: NimNode, varsList: ref seq[string], propsList, methodsList:
       if node[0].kind == nnkDotExpr:
         lowIndx = 0
       elif node[0].kind == nnkIdent:
-        checkReplaceSelfMethod(node, 0, methodsList)
+        if node[0].strVal != "procCall":
+          checkReplaceSelfMethod(node, 0, methodsList)
+          lowIndx = 1
       else:
         lowIndx = 1
     of nnkInfix..nnkPostfix, nnkExprColonExpr, nnkObjConstr, nnkCast:
@@ -754,4 +756,5 @@ macro gdobj*(ast: varargs[untyped]): untyped =
   ## that you can find in `Godot API <index.html#modules-godot-api>`_.
   let typeDef = parseType(ast)
   result = genType(typeDef)
+
 
