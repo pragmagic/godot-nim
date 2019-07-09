@@ -867,7 +867,8 @@ proc godot_gdnative_init(options: ptr GDNativeInitOptions) {.
 
 proc godot_gdnative_terminate(options: ptr GDNativeTerminateOptions) {.
     cdecl, exportc, dynlib.} =
-  deallocHeap(runFinalizers = not options[].inEditor, allowGcAfterwards = false)
+  if not options[].inEditor or not compileOption("threads"):
+    deallocHeap(runFinalizers = not options[].inEditor, allowGcAfterwards = false)
 
 const nimGcStepLengthUs {.intdefine.} = 2000
 
