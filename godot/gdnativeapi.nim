@@ -3593,7 +3593,7 @@ proc setGDNativeAPIInternal(apiStruct: pointer, initOptions: ptr GDNativeInitOpt
       # Not used
       discard
 
-  if not header.next.isNil:
+  if not header.next.isNil and header != header.next:
     setGDNativeAPIInternal(header.next, initOptions,
                            foundCoreApi, foundNativeScriptApi)
 
