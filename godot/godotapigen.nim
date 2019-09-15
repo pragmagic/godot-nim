@@ -2,7 +2,12 @@
 
 import streams, json, os, strutils, times, sets, tables, options
 import sequtils, algorithm
-import compiler/ast, compiler/renderer, compiler/idents, compiler/astalgo, compiler/lineinfos
+import compiler/ast, compiler/renderer, compiler/idents, compiler/astalgo
+
+include "internal/backwardcompat.inc.nim"
+
+when (NimMajor, NimMinor, NimPatch) >= (0, 19, 0):
+  import compiler/lineinfos
 
 when (NimMajor, NimMinor, NimPatch) >= (0, 19, 0):
   var gic = newIdentCache()
@@ -14,10 +19,13 @@ proc ident(ident: string): PNode =
   result = PNode(kind: nkIdent, ident: getIdent(ident))
 
 proc newPNode(kind: TNodeKind): PNode =
-  result = PNode(kind: kind)
-  result.info.fileIndex = InvalidFileIdx
-  result.info.col = int16(-1)
-  result.info.line = uint16(0)
+  when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
+    result = newNode(kind)
+  else:
+    result = PNode(kind: kind)
+    result.info.fileIndex = InvalidFileIdx
+    result.info.col = int16(-1)
+    result.info.line = uint16(0)
 
 proc addChain(node: PNode, others: varargs[PNode]): PNode {.discardable.} =
   for other in others:

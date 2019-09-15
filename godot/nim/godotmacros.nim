@@ -32,6 +32,8 @@ type
 
   ParseError = object of Exception
 
+include "internal/backwardcompat.inc.nim"
+
 proc godotToNim[T](val: Variant): (T, ConversionResult) =
   mixin fromVariant
   result[1] = fromVariant(result[0], val)
@@ -432,73 +434,6 @@ proc toGodotStyle(s: string): string {.compileTime.} =
     else:
       result.add(c)
 
-proc checkReplaceSelfVar(node: NimNode, childIndex: int, varsList, propsList: seq[string]) {.compileTime.} =
-  let identName = node[childIndex].strVal
-  if varsList.binarySearch(identName) == -1 and propsList.binarySearch(identName) != -1:
-    var newChild = newDotExpr(ident("self"), node[childIndex])
-    node.del childIndex
-    node.insert(childIndex, newChild)
-
-proc checkReplaceSelfMethod(node: NimNode, childIndex: int, methodsList: seq[string]) {.compileTime.} =
-  if methodsList.binarySearch(node[childIndex].strVal) != -1:
-    var newChild = newDotExpr(ident("self"), node[childIndex])
-    node.del childIndex
-    node.insert(childIndex, newChild)
-
-proc applySelf(node: NimNode, varsList: ref seq[string], propsList, methodsList: seq[string]) {.compileTime.} =
-  var lowIndx = -1
-  var highIndx = node.len - 1
-  var isBlock: bool = false
-  case node.kind:
-    of nnkCommand, nnkCall:
-      if node[0].kind == nnkDotExpr:
-        lowIndx = 0
-      elif node[0].kind == nnkIdent:
-        if node[0].strVal != "procCall":
-          checkReplaceSelfMethod(node, 0, methodsList)
-          lowIndx = 1
-      else:
-        lowIndx = 1
-    of nnkInfix..nnkPostfix, nnkExprColonExpr, nnkObjConstr, nnkCast:
-      lowIndx = 1
-    of nnkExprEqExpr, nnkPar, nnkCurly..nnkBracketExpr, nnkRange, nnkDerefExpr, nnkIfExpr, nnkTableConstr, nnkAddr, nnkAsgn,
-        nnkIfStmt, nnkCaseStmt, nnkVarSection, nnkLetSection, nnkConstSection, nnkDefer, nnkRaiseStmt, nnkReturnStmt, nnkStmtList,
-        nnkStmtListExpr, nnkTupleConstr:
-      lowIndx = 0
-    of nnkIdentDefs:
-      lowIndx = 2
-      if node[0].kind == nnkIdent:
-        let index = lowerBound(varsList[], node[0].strVal)
-        varsList[].insert(node[0].strVal, index)
-    of nnkVarTuple:
-      lowIndx = node.len - 1
-      for i in 0..node.len - 3:
-        if node[i].kind == nnkIdent:
-          let index = lowerBound(varsList[], node[i].strVal)
-          varsList[].insert(node[i].strVal, index)
-    of nnkDotExpr:
-      lowIndx = 0
-      highIndx = 0
-    of nnkElifExpr, nnkElseExpr, nnkOfBranch..nnkElse, nnkWhenStmt..nnkWhileStmt, nnkTryStmt, nnkFinally, nnkBlockStmt, nnkBlockExpr:
-      isBlock = true
-      lowIndx = 0
-    of nnkConstDef:
-      if node[0].kind == nnkIdent:
-        let index = lowerBound(varsList[], node[0].strVal)
-        varsList[].insert(node[0].strVal, index)
-    else:
-      discard
-  if lowIndx != -1:
-    var nodeVars = varsList
-    for i in lowIndx..highIndx:
-      if isBlock and i == highIndx:
-        new(nodeVars)
-        nodeVars[] = varsList[]
-      if node[i].kind == nnkIdent:
-        checkReplaceSelfVar(node, i, nodeVars[], propsList)
-      else:
-        applySelf(node[i], nodeVars, propsList, methodsList)
-
 proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   result = newNimNode(nnkStmtList)
 
@@ -545,6 +480,12 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
     ))
   else:
     initMethod.body.insert(0, initBody)
+
+  when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
+    # {.this: self.} for convenience
+    result.add(newNimNode(nnkPragma).add(newNimNode(nnkExprColonExpr).add(
+      ident("this"), ident("self")
+    )))
 
   # Nim proc defintions
   var decls = newSeqOfCap[NimNode](obj.methods.len)
@@ -600,25 +541,6 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
                          genSym(nskProc, "getFunc"),
                          newStrLitNode(hintStr), hintIdent, usage,
                          ident($hasDefaultValue), field.defaultValue)))
-  
-  # Keep track of object's fields and methods (used instead of deprecated this:self pragma)
-  var propsList: seq[string] = @[]
-  for field in obj.fields:
-    let indx = lowerBound(propsList, field.name.strVal)
-    propsList.insert(field.name.strVal, indx)
-  var methodsList: seq[string] = @[]
-  for meth in obj.methods:
-    let indx = lowerBound(methodsList, meth.name)
-    methodsList.insert(meth.name, indx)
-  
-  # Inject self to properties and methods
-  for meth in obj.methods:
-    let varsList = new(seq[string])
-    for v in meth.nimNode[3]:
-      if v.kind == nnkIdentDefs:
-        varsList[].add v[0].strVal
-    applySelf(meth.nimNode[6], varsList, propsList, methodsList)
-        
 
   # Register methods
   template registerGodotMethod(classNameLit, classNameIdent, methodNameIdent,
@@ -628,19 +550,19 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
       {.emit: """/*TYPESECTION*/
 N_NOINLINE(void, setStackBottom)(void* thestackbottom);
 """.}
-    else:
-      {.emit: """
-N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
-""".}
 
     proc methFuncIdent(obj: ptr GodotObject, methodData: pointer,
                        userData: pointer, numArgs: cint,
                        args: var array[MAX_ARG_COUNT, ptr GodotVariant]):
                       GodotVariant {.noconv.} =
       var stackBottom {.volatile.}: pointer
-      {.emit: """
-      nimGC_setStackBottom((void*)(&`stackBottom`));
-      """.}
+      stackBottom = addr(stackBottom)
+      when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
+        {.emit: """
+          setStackBottom((void*)(&`stackBottom`));
+        """.}
+      else:
+        nimGC_setStackBottom(stackBottom)
       let self = cast[classNameIdent](userData)
       const isStaticCall = methodNameLit == cstring"_ready" or
                            methodNameLit == cstring"_process" or
@@ -718,7 +640,7 @@ macro gdobj*(ast: varargs[untyped]): untyped =
   ##
   ##   gdobj MyObj of Node:
   ##     var myField: int
-  ##       ## Not exported to Godot (i.e. editor will not see this field).
+  ##       ## Not exported to Godot (i.e. editor and scripts will not see this field).
   ##
   ##     var myString* {.gdExport, hint: Length, hintStr: "20".}: string
   ##       ## Exported to Godot as ``my_string``.
@@ -731,12 +653,12 @@ macro gdobj*(ast: varargs[untyped]): untyped =
   ##       ## Exported methods are exported to Godot by default,
   ##       ## and their Godot names are prefixed with ``_``
   ##       ## (in this case ``_ready``)
-  ##       print("I am ready! myString is: " & myString)
+  ##       print("I am ready! myString is: " & self.myString)
   ##
   ##     proc myProc*() {.gdExport.} =
   ##       ## Exported to Godot as ``my_proc``
   ##       print("myProc is called! Incrementing myField.")
-  ##       inc myField
+  ##       inc self.myField
   ##
   ## If parent type is omitted, the type is inherited from ``Object``.
   ##
@@ -756,5 +678,3 @@ macro gdobj*(ast: varargs[untyped]): untyped =
   ## that you can find in `Godot API <index.html#modules-godot-api>`_.
   let typeDef = parseType(ast)
   result = genType(typeDef)
-
-

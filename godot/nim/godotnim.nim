@@ -91,6 +91,8 @@ type
 
   FNV1Hash = uint32
 
+include "internal/backwardcompat.inc.nim"
+
 proc isFinalized*(obj: NimGodotObject): bool {.inline.} =
   obj.isFinalized
 
@@ -110,13 +112,13 @@ template initFNV1Hash(hash: var FNV1Hash) =
 template appendFNV1Hash(hash: var FNV1Hash, val: uint8) =
   block:
     let u64hash = hash.uint64
-    hash = (
+    hash = ((
       u64hash +
       (u64hash shl 1'u64) +
       (u64hash shl 4'u64) +
       (u64hash shl 7'u64) +
       (u64hash shl 8'u64) +
-      (u64hash shl 24'u64)).uint32 xor val
+      (u64hash shl 24'u64)) and 0xFFFFFFFF'u32).uint32 xor val
 
 {.push stackTrace:off.}
 proc lsb(c: ptr cwchar_t): char {.noinit, inline.} =
@@ -187,7 +189,7 @@ proc nimGodotObjectFinalizer*[T: NimGodotObject](obj: T) =
   if obj.godotObject.isNil or obj.isNative: return
   # important to set it before so that ``unreference`` is aware
   obj.isFinalized = true
-  if (obj.isRef or not obj.linkedObject.isNil and obj.linkedObject.isRef) and 
+  if (obj.isRef or not obj.linkedObject.isNil and obj.linkedObject.isRef) and
      obj.godotObject.unreference():
     obj.deinit()
 
@@ -708,16 +710,13 @@ proc toVariant*(s: string): Variant {.inline.} =
 proc fromVariant*(s: var string, val: Variant): ConversionResult =
   if val.getType() == VariantType.String:
     s = val.asString()
-  when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
-    if val.getType() == VariantType.Nil:
+  elif val.getType() == VariantType.Nil:
+    when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
       s = nil
     else:
-      result = ConversionResult.TypeError
-  else:
-    if val.getType() == VariantType.Nil:
       s = ""
-    else:
-      result = ConversionResult.TypeError
+  else:
+    result = ConversionResult.TypeError
 
 template arrTypeInfo(T) =
   result.variantType = VariantType.Array
@@ -840,11 +839,6 @@ when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
   N_LIB_EXPORT N_CDECL(void, NimMain)(void);
   N_NOINLINE(void, setStackBottom)(void* thestackbottom);
   """.}
-else:
-  {.emit: """/*TYPESECTION*/
-  N_LIB_EXPORT N_CDECL(void, NimMain)(void);
-  N_NOINLINE(void, nimGC_setStackBottom)(void* thestackbottom);
-  """.}
 
 var nativeLibHandle: pointer
 proc getNativeLibHandle*(): pointer =
@@ -857,10 +851,16 @@ proc godot_nativescript_init(handle: pointer) {.
   nativeLibHandle = handle
 
   var stackBottom {.volatile.}: pointer
+  stackBottom = addr(stackBottom)
   {.emit: """
     NimMain();
-    nimGC_setStackBottom((void*)(&`stackBottom`));
   """.}
+  when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
+    {.emit: """
+      setStackBottom((void*)(&`stackBottom`));
+    """.}
+  else:
+    nimGC_setStackBottom(stackBottom)
   GC_fullCollect()
   GC_disable()
 
@@ -896,9 +896,13 @@ proc registerFrameCallback*(cb: proc () {.closure.}) =
 
 proc godot_nativescript_frame() {.cdecl, exportc, dynlib.} =
   var stackBottom {.volatile.}: pointer
-  {.emit: """
-  nimGC_setStackBottom((void*)(&`stackBottom`));
-  """.}
+  stackBottom = addr(stackBottom)
+  when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
+    {.emit: """
+      setStackBottom((void*)(&`stackBottom`));
+    """.}
+  else:
+    nimGC_setStackBottom(stackBottom)
   for cb in idleCallbacks:
     cb()
   GC_step(nimGcStepLengthUs, true, 0)

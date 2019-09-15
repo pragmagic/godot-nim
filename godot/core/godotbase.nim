@@ -30,14 +30,17 @@ proc stepify*(value, step: float32): float32 {.inline, noinit.} =
   else:
     value
 
-proc min*(x, y: float32): float32 {.inline, noinit.} =
-  if x <= y: x else: y
+when (NimMajor, NimMinor, NimPatch) < (0, 20, 4):
+  # Newer Nim has these procs in system module
 
-proc abs*(x: float32): float32 {.inline, noinit.} =
-  if x < 0.0: -x else: x
+  proc min*(x, y: float32): float32 {.inline, noinit.} =
+    if x <= y: x else: y
 
-proc max*(x, y: float32): float32 {.inline, noinit.} =
-  if y <= x: x else: y
+  proc abs*(x: float32): float32 {.inline, noinit.} =
+    if x < 0.0: -x else: x
+
+  proc max*(x, y: float32): float32 {.inline, noinit.} =
+    if y <= x: x else: y
 
 {.pop.} # stackTrace: off
 

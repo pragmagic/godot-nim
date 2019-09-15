@@ -1,4 +1,4 @@
-version = "0.7.20"
+version = "0.7.21"
 author = "Xored Software, Inc."
 description = "Godot Engine bindings"
 license = "MIT"
