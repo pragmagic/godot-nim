@@ -73,6 +73,10 @@ proc newVariant*(r: cdouble): Variant {.inline.} =
 
 proc newVariant*(s: string): Variant {.inline.} =
   new(result, variantFinalizer)
+  when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
+    if s.isNil:
+      initGodotVariant(result.godotVariant)
+      return
   var godotStr = s.toGodotString()
   initGodotVariant(result.godotVariant, godotStr)
   godotStr.deinit()
