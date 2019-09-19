@@ -455,7 +455,7 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
   let initBody = newStmtList()
   for decl in obj.fields:
     if not decl.defaultValue.isNil and decl.defaultValue.kind != nnkEmpty:
-      initBody.add(newNimNode(nnkAsgn).add(decl.name, decl.defaultValue))
+      initBody.add(newNimNode(nnkAsgn).add(newDotExpr(ident("self"), decl.name), decl.defaultValue))
     let name = if not decl.isExported: decl.name
                else: postfix(decl.name, "*")
     recList.add(newIdentDefs(name, decl.typ))
