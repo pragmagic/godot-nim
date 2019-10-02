@@ -1,6 +1,6 @@
 # Copyright 2018 Xored Software, Inc.
 
-import tables, typetraits, macros, unicode, strutils, sets
+import tables, typetraits, macros, unicode, strutils, sets, options
 import gdnativeapi
 import core/godotcoretypes, core/godotbase
 import core/vector2, core/rect2,
@@ -787,6 +787,27 @@ proc fromVariant*[T: array](s: var T, val: Variant): ConversionResult =
         inc nimIdx
   else:
     result = ConversionResult.TypeError
+
+proc godotTypeInfo*[T](OptT: typedesc[Option[T]]): GodotTypeInfo =
+  when compiles(godotTypeInfo(T)):
+    result.variantType = godotTypeInfo(T)
+  else:
+    result.variantType = VariantType.Nil
+
+proc toVariant*[T](option: Option[T]): Variant =
+  if option.isSome():
+    result = toVariant(option.unsafeGet())
+  else:
+    result = newVariant()
+
+proc fromVariant*[T](option: var Option[T], val: Variant): ConversionResult =
+  if val.getType() == VariantType.Nil:
+    option = none(T)
+  else:
+    var v: T
+    result = fromVariant(v, val)
+    if result == ConversionResult.OK:
+      option = some(result)
 
 proc godotTypeInfo*(T: typedesc[Table|TableRef|OrderedTable|OrderedTableRef]): GodotTypeInfo {.inline.} =
   result.variantType = VariantType.Dictionary
