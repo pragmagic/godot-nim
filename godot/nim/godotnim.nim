@@ -332,9 +332,6 @@ proc `as`*[T: NimGodotObject](obj: NimGodotObject, t: typedesc[T]): T =
   elif not obj.linkedObject.isNil and system.`of`(obj.linkedObject, T):
     result = T(obj.linkedObject)
   else:
-    when not defined(release):
-      printError("Failed to cast object to " &
-                  T.name & "\n" & getStackTrace())
     result = nil
 
 proc `of`*[T1, T2: NimGodotObject](obj: T1, t: typedesc[T2]): bool {.inline.} =
