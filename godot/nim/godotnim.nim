@@ -604,7 +604,11 @@ proc fromVariant*[T: SomeSignedInt or SomeUnsignedInt](
                  else: uint64)
     intVal = when T is SomeSignedInt: val.asInt()
              else: val.asUint()
-    if intVal > high(T) or intVal < low(T):
+    const highT = when T is SomeSignedInt: high(T).int64
+                  else: high(T).uint64
+    const lowT = when T is SomeSignedInt: low(T).int64
+                 else: low(T).uint64
+    if intVal > highT or intVal < lowT:
       result = ConversionResult.RangeError
     else:
       self = T(intVal)
