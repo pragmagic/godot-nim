@@ -396,15 +396,9 @@ template registerGodotField(classNameLit, classNameIdent, propNameLit,
     getFunc: getFuncIdent
   )
   mixin godotTypeInfo
-  when (NimMajor, NimMinor, NimPatch) < (0, 19, 0):
-    static:
-      var typeInfo: GodotTypeInfo
-      when compiles(godotTypeInfo(propTypeIdent)):
-        typeInfo = godotTypeInfo(propTypeIdent)
-  else:
-    const typeInfo = when compiles(godotTypeInfo(propTypeIdent)):
-                        godotTypeInfo(propTypeIdent)
-                     else: GodotTypeInfo()
+  const typeInfo = when compiles(godotTypeInfo(propTypeIdent)):
+                    godotTypeInfo(propTypeIdent)
+                   else: GodotTypeInfo()
   const hintStr = when hintStrLit != "NIM":
                     hintStrLit
                   else:
