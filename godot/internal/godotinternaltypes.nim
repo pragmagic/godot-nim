@@ -116,7 +116,8 @@ type
     expected*: VariantType
 
   GodotVariant* {.byref.} = object
-    data: array[4 + sizeof(int) div 4, float32]
+    data: array[2, int64]
+    data2: int
 
 type GodotMethodBind* = object
 
