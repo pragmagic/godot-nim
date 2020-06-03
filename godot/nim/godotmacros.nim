@@ -272,8 +272,12 @@ macro invokeVarArgs(procIdent, objIdent;
       invocation = newNimNode(nnkCall).add(ident("procCall"), invocation)
 
     if hasReturnValue:
+      let resultVariant = genSym(nskLet, "ret")
+      branchBody.add(
+        newNimNode(nnkLetSection).add(
+          newIdentDefs(resultVariant, ident("Variant"), newCall("toVariant", invocation))))
       let theCall = newNimNode(nnkBracketExpr).add(newNimNode(nnkDotExpr).add(
-        newCall("toVariant", invocation), ident("godotVariant")))
+        resultVariant, ident("godotVariant")))
       branchBody.add(getAst(initGodotVariantCall(ident("result"), theCall)))
     else:
       branchBody.add(invocation)

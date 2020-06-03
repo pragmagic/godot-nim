@@ -308,6 +308,13 @@ const standardTypes = toHashSet(
    "PoolByteArray", "PoolIntArray", "PoolRealArray", "PoolStringArray",
    "PoolVector2Array", "PoolVector3Array", "PoolColorArray"])
 
+const variantPrimitives = [
+   "bool", "cint", "int", "uint8", "int8", "uint16", "int16", "uint32", "int32",
+   "uint64", "Error",
+   "int64", "float32", "cfloat", "float64", "GodotString", "Vector2", "Rect2",
+   "Vector3", "Transform2D", "Plane", "Quat", "AABB", "Basis", "Transform",
+   "Color", "RID"]
+
 const smallIntTypes = toHashSet(["uint8", "int8", "uint16", "int16", "uint32",
                               "int32", "cint", "int", "Error"])
 const int64Types = toHashSet(["uint64", "int64"])
@@ -322,7 +329,7 @@ const wrapperTypes = union(arrayTypes,
                            toHashSet(["NodePath", "Dictionary", "Variant"]))
 
 proc getInternalPtr(varName: PNode, typ: string): PNode =
-  assert(typ in wrapperTypes)
+  assert(typ in wrapperTypes or typ == "Object")
   result = newDotExpr(varName, ident("godot" & typ))
 
 proc newNilCheck(ident, toAssign: PNode): PNode =
@@ -479,7 +486,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
                             ident("+"),
                             newDotExpr(ident(varargsName.get), ident("len"))))
         argsAlloc.add(newCall("godotAlloc", newCall("cint", infix(
-          newCall("sizeof", ident("Variant")), ident("*"),
+          newCall("sizeof", newPNode(nkPtrTy).addChain(ident("GodotVariant"))), ident("*"),
           newPNode(nkPar).addChain(argLenNode))))
         )
       else:
@@ -493,6 +500,7 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
       vars.add(newIdentDefs(argsName, newPNode(nkEmpty), argsAlloc))
 
     let argConversions = newPNode(nkStmtList)
+    let destructors = newPNode(nkStmtList)
     for idx, arg in meth.args:
       var argName = if arg.kind == ArgKind.Bound: ident(boundArgName(idx))
                     else: ident(arg.name)
@@ -503,13 +511,48 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
       let argIdx = if arg.kind == ArgKind.VarArgs: ident("idx") else: newIntLit(idx)
       let isStandardType = arg.typ in standardTypes
       let isWrappedType = arg.typ in wrapperTypes
-      let convArg = if varargsName.isSome:
-                      getInternalPtr(newCall("toVariant", argName), "Variant")
-                    elif isWrappedType: getInternalPtr(argName, arg.typ)
-                    elif isStandardType: newCall("unsafeAddr", argName)
-                    elif arg.typ == "string": newCall("unsafeAddr",
-                                  ident("argToPassToGodot" & $idx))
-                    else: ident("argToPassToGodot" & $idx) # object
+      let convArg =
+        if varargsName.isSome:
+          let isAlreadyVariant = arg.typ == "Variant"
+          let variantIdent = if isAlreadyVariant: getInternalPtr(argName, "Variant")
+                             else: ident("variant" & $idx)
+          if not isAlreadyVariant:
+            argConversions.add(newPNode(nkVarSection).addChain(
+              newIdentDefs(variantIdent, ident("GodotVariant"), newEmptyNode())
+            ))
+            destructors.add(
+              newCall("deinit", variantIdent)
+            )
+            if arg.typ in variantPrimitives:
+              argConversions.add(
+                newCall("initGodotVariant", variantIdent, argName)
+              )
+            elif arg.typ in wrapperTypes or arg.typ == "Object":
+              argConversions.add(
+                newCall("initGodotVariant", variantIdent, getInternalPtr(argName, arg.typ))
+              )
+            elif arg.typ == "string":
+              let stringIdent = ident("variantString" & $idx)
+              argConversions.addChain(
+                newPNode(nkVarSection).addChain(
+                  newIdentDefs(stringIdent, ident("GodotString"), newCall("toGodotString", argName))
+                )
+              ).addChain(
+                newCall("initGodotVariant", variantIdent, stringIdent)
+              )
+              destructors.add(newCall("deinit", stringIdent))
+            else:
+              raise newException(ValueError,
+                "Non-standard type $# for varargs params of method $# of type $#" %
+                [arg.typ, meth.godotName, meth.typ.godotName])
+
+          if isAlreadyVariant: variantIdent
+          else: newCall("addr", variantIdent)
+        elif isWrappedType: getInternalPtr(argName, arg.typ)
+        elif isStandardType: newCall("unsafeAddr", argName)
+        elif arg.typ == "string": newCall("unsafeAddr",
+                      ident("argToPassToGodot" & $idx))
+        else: ident("argToPassToGodot" & $idx) # object
       if not isStandardType and arg.kind == ArgKind.VarArgs:
         raise newException(ValueError,
           "Non-standard type $# for varargs params of method $# of type $#" %
@@ -630,9 +673,10 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
         if arg.typ == "string":
           body.add(newCall("deinit", ident("argToPassToGodot" & $idx)))
 
-    if meth.args.len > 0 and varargsName.isSome:
-      body.add(freeCall)
     if varargsName.isSome:
+      if meth.args.len > 0:
+        body.add(freeCall)
+      body.add(destructors)
       let errCheck = newIfStmt(
         infix(newDotExpr(ident("callError"), ident("error")), ident("!="),
                  newDotExpr(ident("VariantCallErrorType"), ident("OK"))),
