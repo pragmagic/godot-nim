@@ -31,7 +31,7 @@ type
     ## The base type all Godot types inherit from.
     ## Manages lifecycle of the wrapped ``GodotObject``.
     godotObject: ptr GodotObject
-    linkedObject: NimGodotObject
+    linkedObjectPtr: pointer
       ## Wrapper around native object that is the container of the Nim "script"
       ## This is needed for `of` checks and `as` conversions to work as
       ## expected. For example, Nim type may inherit from ``Spatial``, but the
@@ -39,6 +39,8 @@ type
       ## ``Particles`` is valid, but Nim type system is not aware of that.
       ## This works in both directions - for linked native object this
       ## reference points to Nim object.
+      ## This is stored as a raw pointer to avoid reference cycles and therefore
+      ## improve GC performance.
     isRef*: bool
     isFinalized: bool
     isNative: bool
@@ -184,6 +186,9 @@ proc deinit*(obj: NimGodotObject) =
   assert(not obj.godotObject.isNil)
   obj.godotObject.deinit()
   obj.godotObject = nil
+
+proc linkedObject(obj: NimGodotObject): NimGodotObject {.inline.} =
+  cast[NimGodotObject](obj.linkedObjectPtr)
 
 proc nimGodotObjectFinalizer*[T: NimGodotObject](obj: T) =
   if obj.godotObject.isNil or obj.isNative: return
@@ -465,14 +470,17 @@ proc setGodotObject*(nimObj: NimGodotObject, obj: ptr GodotObject) {.inline.} =
 proc setNativeObject*(nimObj: NimGodotObject,
                       nativeObj: NimGodotObject) {.inline.} =
   ## Used from Godot constructor produced by ``gdobj`` macro. Do not call.
-  nimObj.linkedObject = nativeObj
-  nativeObj.linkedObject = nimObj
+  GC_ref(nativeObj)
+  nimObj.linkedObjectPtr = cast[pointer](nativeObj)
+  nativeObj.linkedObjectPtr = cast[pointer](nimObj)
   nativeObj.isNative = true
 
 proc removeGodotObject*(nimObj: NimGodotObject) {.inline.} =
   ## Used from Godot destructor produced by ``gdobj`` macro. Do not call.
+  GC_unref(nimObj.linkedObject)
   nimObj.godotObject = nil
   nimObj.linkedObject.godotObject = nil
+  nimObj.linkedObjectPtr = nil
 
 proc `==`*(self, other: NimGodotObject): bool {.inline.} =
   ## Compares objects by referential equality.
