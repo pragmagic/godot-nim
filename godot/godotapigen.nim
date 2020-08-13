@@ -642,6 +642,8 @@ proc doGenerateMethod(tree: PNode, methodBindRegistry: var HashSet[string],
         body.add(newPNode(nkVarSection).addChain(newIdentDefs(
           retValIdent, ident("Godot" & returnType),
         )))
+        if returnType != "NodePath":
+          body.add(newCall("initGodot" & returnType, retValIdent))
       elif returnType in standardTypes:
         addrToAssign = newCall("addr", ident("result"))
       elif returnType == "string":
