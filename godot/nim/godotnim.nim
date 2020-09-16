@@ -761,8 +761,9 @@ template arrayToVariant(s: untyped): Variant =
   newVariant(arr)
 
 proc toVariant*[T](s: seq[T]): Variant =
-  if s.isNil:
-    return newVariant()
+  when (NimMajor, NimMinor, NimPatch) < (0, 20, 0):
+    if s.isNil:
+      return newVariant()
   result = arrayToVariant(s)
 
 proc toVariant*[I, T](s: array[I, T]): Variant =
@@ -770,7 +771,10 @@ proc toVariant*[I, T](s: array[I, T]): Variant =
 
 proc fromVariant*[T](s: var seq[T], val: Variant): ConversionResult =
   if val.getType() == VariantType.Nil:
-    s = nil
+    when (NimMajor, NimMinor, NimPatch) < (0, 20, 0):
+      s = nil
+    else:
+      result = ConversionResult.TypeError
   elif val.getType() == VariantType.Array:
     let arr = val.asArray()
     var newS = newSeq[T](arr.len)
