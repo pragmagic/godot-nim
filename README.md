@@ -1,6 +1,6 @@
 # Nim bindings for Godot Engine
 
-Nim bindings for Godot 3.0 based on [GDNative](https://godotengine.org/article/dlscript-here).
+Nim bindings for Godot 3 based on [GDNative](https://godotengine.org/article/dlscript-here).
 
 Documentation: https://pragmagic.github.io/godot-nim/
 
