@@ -5,6 +5,8 @@ import math, godotbase, hashes
 import internal/godotinternaltypes, internal/godotstrings
 import godotcoretypes, gdnativeapi
 
+const EPSILON = 0.00001'f32
+
 {.push stackTrace: off.}
 
 proc vec2*(): Vector2 {.inline, noinit.} =
@@ -198,5 +200,15 @@ proc clamped*(self: Vector2; length: float32): Vector2 {.noinit.} =
   if len > 0 and length < len:
     result /= len
     result *= length
+
+proc moveToward*(vFrom, to: Vector2, delta: float32): Vector2 =
+  let
+    vd = to - vFrom
+    vLen = vd.length
+
+  if vLen <= delta or vLen < EPSILON:
+    result = to
+  else:
+    result = vFrom + (vd / vLen) * delta
 
 {.pop.} # stackTrace: off

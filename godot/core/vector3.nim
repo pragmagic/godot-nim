@@ -3,6 +3,8 @@
 import math, hashes
 import godotbase, godotcoretypes
 
+const EPSILON = 0.00001'f32
+
 {.push stackTrace: off.}
 
 proc vec3*(): Vector3 {.inline.} =
@@ -238,5 +240,15 @@ proc cubicInterpolate*(self, b, preA, postB: Vector3;
             (-p0 + p2) * t +
             (2.0 * p0 - 5.0 * p1 + 4 * p2 - p3) * t2 +
             (-p0 + 3.0 * p1 - 3.0 * p2 + p3) * t3)
+
+proc moveToward*(vFrom, to: Vector3, delta: float32): Vector3 =
+  let
+    vd = to - vFrom
+    vLen = vd.length
+
+  if vLen <= delta or vLen < EPSILON:
+    result = to
+  else:
+    result = vFrom + (vd / vLen) * delta
 
 {.pop.} # stackTrace: off
