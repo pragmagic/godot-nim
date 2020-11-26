@@ -23,12 +23,22 @@ type
     nimNode: NimNode
     isNoGodot: bool
 
+  SignalArgDecl = ref object
+    name: string
+    vtype: VariantType
+
+  SignalDecl = ref object
+    name: string
+    args: seq[SignalArgDecl]
+
   ObjectDecl = ref object
     name: string
     parentName: string
     fields: seq[VarDecl]
+    signals: seq[SignalDecl]
     methods: seq[MethodDecl]
     isTool: bool
+
 
   ParseError = object of Exception
 
@@ -178,11 +188,65 @@ proc parseVarSection(decl: NimNode): seq[VarDecl] =
     else:
       result.add(identDefsToVarDecls(decl[i]))
 
+proc parseSignal(sig: NimNode): SignalDecl =
+  if sig.kind != nnkCommand:
+    parseError(sig, "signal not command syntax")
+  if not (sig[1].kind == nnkCall or sig[1].kind == nnkObjConstr):
+    parseError(sig, "signal must be call or object construction syntax")
+
+  result = SignalDecl(
+    name: $sig[1][0],
+    args: newSeq[SignalArgDecl](),
+  )
+
+  if sig[1].kind == nnkObjConstr:
+    for i in 1..<sig[1].len:
+      var nexpr = sig[1][i]
+      case nexpr.kind:
+      of nnkExprColonExpr:
+        var argType:string = nexpr[1].repr.tolower
+        var vtype = case argType:
+        of "bool": VariantType.Bool
+        of "uint8", "uint16", "uint32", "uint64", "uint": VariantType.Int # variant doesn't support unsigned int
+        of "int8","int16","int32", "int64","int": VariantType.Int
+        of "float32", "float64", "float": VariantType.Real
+        of "string": VariantType.String
+        of "vector2": VariantType.Vector2
+        of "rect2": VariantType.Rect2
+        of "vector3": VariantType.Vector3
+        of "transform2d": VariantType.Transform2D
+        of "plane": VariantType.Plane
+        of "quat": VariantType.Quat
+        of "aabb": VariantType.AABB
+        of "basis": VariantType.Basis
+        of "transform": VariantType.Transform
+        of "color": VariantType.Color
+        of "nodepath": VariantType.NodePath
+        of "rid": VariantType.RID
+        of "object": VariantType.Object
+        of "dictionary": VariantType.Dictionary
+        of "array": VariantType.Array
+        of "poolbytearray": VariantType.PoolByteArray
+        of "poolintarray": VariantType.PoolIntArray
+        of "poolrealarray": VariantType.PoolRealArray
+        of "poolstringarray": VariantType.PoolStringArray
+        of "poolvector2array": VariantType.PoolVector2Array
+        of "poolvector3array": VariantType.PoolVector3Array
+        of "poolcolorarray": VariantType.PoolColorArray
+        else:
+          parseError(nexpr, "signal unsupported argument type")
+          VariantType.Nil
+
+        result.args.add(SignalArgDecl(name: nexpr[0].repr, vtype: vtype))
+      else:
+        parseError(sig, "signals only allow colon expressions")
+
 proc parseType(ast: NimNode): ObjectDecl =
   let definition = ast[0]
   let body = ast[^1]
   result = ObjectDecl(
     fields: newSeq[VarDecl](),
+    signals: newSeq[SignalDecl](),
     methods: newSeq[MethodDecl]()
   )
   (result.name, result.parentName) = extractNames(definition)
@@ -207,6 +271,9 @@ proc parseType(ast: NimNode): ObjectDecl =
       of nnkProcDef, nnkMethodDef:
         let meth = parseMethod(statement)
         result.methods.add(meth)
+      of nnkCommand:
+        let sig = parseSignal(statement)
+        result.signals.add(sig)
       of nnkCommentStmt:
         discard
       else:
@@ -619,6 +686,41 @@ N_NOINLINE(void, setStackBottom)(void* thestackbottom);
                           argTypes, genSym(nskProc, "methFunc"),
                           hasReturnValue)))
 
+  template createSignalArgument(argName, argType)=
+    GodotSignalArgument(name:argName.toGodotString(),
+                        typ:argType,
+                        defaultValue: newVariant().godotVariant[])
+
+  template createSignalArgsArray(sigArgsArrIdent:NimNode, sigArgs:NimNode) =
+    var sigArgsArrIdent = sigArgs
+
+  template registerGodotSignal(classNameLit, signalName) =
+    var godotSignal = GodotSignal(
+      name: signalName.toGodotString())
+    nativeScriptRegisterSignal(getNativeLibHandle(), classNameLit, godotSignal)
+
+  template registerGodotSignal(classNameLit, signalName, argCount, sigArgsArr) =
+    var godotSignal = GodotSignal(
+      name: signalName.toGodotString(),
+      numArgs: argCount,
+      args: addr(sigArgsArr[0]))
+    nativeScriptRegisterSignal(getNativeLibHandle(), classNameLit, godotSignal)
+
+  for sig in obj.signals:
+    if sig.args.len == 0:
+      result.add(getAst(
+        registerGodotSignal(classNameLit, sig.name)))
+    else:
+      var sigArgs = newNimNode(nnkBracket)
+      for i, arg in sig.args:
+        sigArgs.add(getAst(
+          createSignalArgument(arg.name, ord(arg.vtype))))
+      var sigArgsArrIdent = genSym(nskVar, "sigArgs")
+      result.add(getAst(
+        createSignalArgsArray(sigArgsArrIdent, sigArgs)))
+      result.add(getAst(
+        registerGodotSignal(classNameLit, sig.name, sig.args.len, sigArgsArrIdent)))
+
   if isRef:
     # add ref/unref for types inherited from Reference
     template registerRefIncDec(classNameLit) =
@@ -653,16 +755,26 @@ macro gdobj*(ast: varargs[untyped]): untyped =
   ##       ## ``hintStr`` depends on the value of ``hint``, its format is
   ##       ## described in ``GodotPropertyHint`` documentation.
   ##
+  ##     signal my_signal(amount:int, message:string)
+  ##       ## Defines a signal ``my_signal`` with parameters
+  ##
   ##     method ready*() =
   ##       ## Exported methods are exported to Godot by default,
   ##       ## and their Godot names are prefixed with ``_``
   ##       ## (in this case ``_ready``)
   ##       print("I am ready! myString is: " & self.myString)
   ##
+  ##       ## connect to the signal and then emit it
+  ##       discard self.connect("my_signal", self, "on_my_signal")
+  ##       self.emit_signal("my_signal", 123.toVariant, "hello godot".toVariant)
+  ##
   ##     proc myProc*() {.gdExport.} =
   ##       ## Exported to Godot as ``my_proc``
   ##       print("myProc is called! Incrementing myField.")
   ##       inc self.myField
+  ##
+  ##     proc on_my_signal(amount:int, message:string) {.gdExport.} =
+  ##       print("received my_signal " & amount & " " & message)
   ##
   ## If parent type is omitted, the type is inherited from ``Object``.
   ##
