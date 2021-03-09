@@ -94,7 +94,7 @@ proc removePragmaNode(statement: NimNode,
   var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
                 else: statement[1]
   for ident, val, i in pragmas(pragmas):
-    if ident == pname:
+    if ident.eqIdent(pname):
       pragmas.del(i)
       return val
 
@@ -106,7 +106,7 @@ proc removePragma(statement: NimNode, pname: string): bool =
   var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
                 else: statement[1]
   for ident, val, i in pragmas(pragmas):
-    if ident == pname:
+    if ident.eqIdent(pname):
       pragmas.del(i)
       return true
 
