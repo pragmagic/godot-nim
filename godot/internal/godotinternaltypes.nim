@@ -72,35 +72,35 @@ type
     data: array[sizeof(int), byte]
 
   VariantType* {.size: sizeof(cint), pure.} = enum
-    Nil,   ##  atomic types
-    Bool,
-    Int,
-    Real,
-    String,
+    vtNil,   ##  atomic types
+    vtBool,
+    vtInt,
+    vtReal,
+    vtString,
     # math types
-    Vector2, ##  5
-    Rect2,
-    Vector3,
-    Transform2D,
-    Plane,
-    Quat, ##  10
-    AABB,
-    Basis,
-    Transform, ##  misc types
-    Color,
-    NodePath, ##  15
-    RID,
-    Object,
-    Dictionary,
-    Array, ##  20
+    vtVector2, ##  5
+    vtRect2,
+    vtVector3,
+    vtTransform2D,
+    vtPlane,
+    vtQuat, ##  10
+    vtAABB,
+    vtBasis,
+    vtTransform, ##  misc types
+    vtColor,
+    vtNodePath, ##  15
+    vtRID,
+    vtObject,
+    vtDictionary,
+    vtArray, ##  20
     # arrays
-    PoolByteArray,
-    PoolIntArray,
-    PoolRealArray,
-    PoolStringArray,
-    PoolVector2Array, ##  25
-    PoolVector3Array,
-    PoolColorArray
+    vtPoolByteArray,
+    vtPoolIntArray,
+    vtPoolRealArray,
+    vtPoolStringArray,
+    vtPoolVector2Array, ##  25
+    vtPoolVector3Array,
+    vtPoolColorArray
 
   VariantCallErrorType* {.size: sizeof(cint), pure.} = enum
     OK,
