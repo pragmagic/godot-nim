@@ -35,6 +35,30 @@ template definePoolArrayBase(T, GodotT, DataT, fieldName, newProcName,
         (when type(item) is GodotString: ($item).hash() else: item.hash())
     result = !$result
 
+definePoolArrayBase(PoolByteArray, GodotPoolByteArray, uint8,
+                    godotPoolByteArray, newPoolByteArray,
+                    initGodotPoolByteArray)
+definePoolArrayBase(PoolIntArray, GodotPoolIntArray, cint,
+                    godotPoolIntArray, newPoolIntArray,
+                    initGodotPoolIntArray)
+definePoolArrayBase(PoolRealArray, GodotPoolRealArray, float32,
+                    godotPoolRealArray, newPoolRealArray,
+                    initGodotPoolRealArray)
+definePoolArrayBase(PoolVector2Array, GodotPoolVector2Array, Vector2,
+                    godotPoolVector2Array, newPoolVector2Array,
+                    initGodotPoolVector2Array)
+definePoolArrayBase(PoolVector3Array, GodotPoolVector3Array, Vector3,
+                    godotPoolVector3Array, newPoolVector3Array,
+                    initGodotPoolVector3Array)
+definePoolArrayBase(PoolColorArray, GodotPoolColorArray, Color,
+                    godotPoolColorArray, newPoolColorArray,
+                    initGodotPoolColorArray)
+definePoolArrayBase(PoolStringArray, GodotPoolStringArray, string,
+                    godotPoolStringArray, newPoolStringArray,
+                    initGodotPoolStringArray)
+
+import arrays
+
 template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
                          noData = false) =
 
@@ -91,30 +115,6 @@ template definePoolArray(T, GodotT, DataT, fieldName, newProcName, initProcName;
     iterator mpairs*(arr: T): tuple[key: int, val: var DataT] =
       for pair in arr.fieldName.mpairs:
         yield (pair[0].int, pair[1])
-
-definePoolArrayBase(PoolByteArray, GodotPoolByteArray, uint8,
-                    godotPoolByteArray, newPoolByteArray,
-                    initGodotPoolByteArray)
-definePoolArrayBase(PoolIntArray, GodotPoolIntArray, cint,
-                    godotPoolIntArray, newPoolIntArray,
-                    initGodotPoolIntArray)
-definePoolArrayBase(PoolRealArray, GodotPoolRealArray, float32,
-                    godotPoolRealArray, newPoolRealArray,
-                    initGodotPoolRealArray)
-definePoolArrayBase(PoolVector2Array, GodotPoolVector2Array, Vector2,
-                    godotPoolVector2Array, newPoolVector2Array,
-                    initGodotPoolVector2Array)
-definePoolArrayBase(PoolVector3Array, GodotPoolVector3Array, Vector3,
-                    godotPoolVector3Array, newPoolVector3Array,
-                    initGodotPoolVector3Array)
-definePoolArrayBase(PoolColorArray, GodotPoolColorArray, Color,
-                    godotPoolColorArray, newPoolColorArray,
-                    initGodotPoolColorArray)
-definePoolArrayBase(PoolStringArray, GodotPoolStringArray, string,
-                    godotPoolStringArray, newPoolStringArray,
-                    initGodotPoolStringArray)
-
-import arrays
 
 definePoolArray(PoolByteArray, GodotPoolByteArray, uint8,
                 godotPoolByteArray, newPoolByteArray,
