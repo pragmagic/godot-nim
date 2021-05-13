@@ -42,6 +42,16 @@ proc isEqualApprox*(self, other: Basis): bool =
         return false
   result = true
 
+# column accessors
+proc x*(self: Basis): Vector3 {.inline.} =
+  vec3(self.elements[0].x, self.elements[1].x, self.elements[2].x)
+
+proc y*(self: Basis): Vector3 {.inline.} =
+  vec3(self.elements[0].y, self.elements[1].y, self.elements[2].y)
+
+proc z*(self: Basis): Vector3 {.inline.} =
+  vec3(self.elements[0].z, self.elements[1].z, self.elements[2].z)
+
 proc tdotx*(self: Basis; v: Vector3): float32 {.inline.} =
   self.elements[0].x * v.x + self.elements[1].x * v.y + self.elements[2].x * v.z
 
