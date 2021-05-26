@@ -196,6 +196,8 @@ proc nimGodotObjectFinalizer*[T: NimGodotObject](obj: T) =
   obj.isFinalized = true
   if (obj.isRef or not obj.linkedObject.isNil and obj.linkedObject.isRef) and
      obj.godotObject.unreference():
+    if not obj.linkedObject.isNil:
+      GC_unref(obj.linkedObject)
     obj.deinit()
 
 macro baseNativeType(T: typedesc): cstring =
