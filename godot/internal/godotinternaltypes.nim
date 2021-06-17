@@ -92,14 +92,14 @@ type
     RID,
     Object,
     Dictionary,
-    Array, ##  20
+    Array,
     # arrays
-    PoolByteArray,
+    PoolByteArray, ## 20
     PoolIntArray,
     PoolRealArray,
     PoolStringArray,
-    PoolVector2Array, ##  25
-    PoolVector3Array,
+    PoolVector2Array,
+    PoolVector3Array, ## 25
     PoolColorArray
 
   VariantCallErrorType* {.size: sizeof(cint), pure.} = enum
@@ -291,7 +291,7 @@ type
     methodData*: pointer
     freeFunc*: proc (a2: pointer) {.noconv.}
 
-  GodotSignalArgument* {.bycopy.} = object
+  GodotSignalArgument* {.bycopy, packed.} = object
     name*: GodotString
     typ*: cint
     hint*: GodotPropertyHint
