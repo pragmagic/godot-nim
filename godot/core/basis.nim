@@ -283,7 +283,7 @@ proc orthonormalized*(self: Basis): Basis {.inline.} =
   result.orthonormalize()
 
 proc transpose*(self: var Basis) {.inline.} =
-  swap(self.elements[0].x, self.elements[1].x)
+  swap(self.elements[0].y, self.elements[1].x)
   swap(self.elements[0].z, self.elements[2].x)
   swap(self.elements[1].z, self.elements[2].y)
 
