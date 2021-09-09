@@ -818,7 +818,7 @@ proc fromVariant*[T](option: var Option[T], val: Variant): ConversionResult =
     var v: T
     result = fromVariant(v, val)
     if result == ConversionResult.OK:
-      option = some(result)
+      option = some(v)
 
 proc godotTypeInfo*(T: typedesc[Table|TableRef|OrderedTable|OrderedTableRef]): GodotTypeInfo {.inline.} =
   result.variantType = VariantType.Dictionary
