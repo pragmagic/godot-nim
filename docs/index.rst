@@ -64,6 +64,8 @@ help you get started. Consult the stub's `README
 <https://github.com/pragmagic/godot-nim-stub>`_ for information about
 compiling the project.
 
+** Ensure the path to your project does not contain spaces, this will cause an error when using `nake` to build**
+
 
 Adding Nim to Existing Project
 ------------------------------
@@ -78,6 +80,8 @@ If you would like to use Nim in an existing project:
 2. Copy ``nimlib.gdnlib`` to your Godot project folder. It is a
    GDNative library resource that contains paths to dynamic libraries
    compiled by Nim.
+
+** Ensure the path to your project does not contain spaces, this will cause an error when using `nake` to build**
 
 Next Steps
 ----------
