@@ -33,7 +33,8 @@ proc `$`*(self: GodotString): string =
   var charStr = getGDNativeAPI().stringUtf8(self)
   let length = getGDNativeAPI().charStringLength(charStr)
   result = newString(length)
-  copyMem(addr result[0], getGDNativeAPI().charStringGetData(charStr), length)
+  if length > 0:
+    copyMem(addr result[0], getGDNativeAPI().charStringGetData(charStr), length)
   getGDNativeAPI().charStringDestroy(charStr)
 
 proc toGodotString*(s: string): GodotString {.inline.} =
