@@ -1,6 +1,6 @@
 # Copyright 2018 Xored Software, Inc.
 
-import macros, tables, typetraits, strutils, sets, sequtils, options, algorithm
+import macros, strutils, sets, options
 import godotinternal, internal/godotvariants
 import godotnim, core/variants
 
@@ -23,12 +23,22 @@ type
     nimNode: NimNode
     isNoGodot: bool
 
+  SignalArgDecl = ref object
+    name: string
+    typ: NimNode
+
+  SignalDecl = ref object
+    name: string
+    args: seq[SignalArgDecl]
+
   ObjectDecl = ref object
     name: string
     parentName: string
     fields: seq[VarDecl]
+    signals: seq[SignalDecl]
     methods: seq[MethodDecl]
     isTool: bool
+
 
   ParseError = object of Exception
 
@@ -81,6 +91,17 @@ iterator pragmas(node: NimNode):
       yield (node[index][0].strVal, node[index][1], index)
     elif node[index].kind == nnkIdent:
       yield (node[index].strVal, nil, index)
+
+proc hasPragma(statement: NimNode, pname: string): bool =
+  if not (RoutineNodes.contains(statement.kind) or
+          statement.kind == nnkPragmaExpr):
+    return false
+
+  var pragmas = if RoutineNodes.contains(statement.kind): statement.pragma()
+                else: statement[1]
+  for ident, val, i in pragmas(pragmas):
+    if ident == pname:
+      return true
 
 proc removePragmaNode(statement: NimNode,
                       pname: string): NimNode {.compileTime.} =
@@ -178,11 +199,166 @@ proc parseVarSection(decl: NimNode): seq[VarDecl] =
     else:
       result.add(identDefsToVarDecls(decl[i]))
 
+proc parseSignal(sig: NimNode): SignalDecl =
+  let errorMsg = "Signal declaration must have this format: signal my_signal(param1: int, param2: string)"
+
+  if sig.kind != nnkCommand:
+    parseError(sig, errorMsg)
+  if not (sig[1].kind == nnkCall or sig[1].kind == nnkObjConstr):
+    parseError(sig, errorMsg)
+
+  result = SignalDecl(
+    name: $sig[1][0],
+    args: newSeq[SignalArgDecl]()
+  )
+
+  if sig[1].kind == nnkObjConstr:
+    for i in 1..<sig[1].len:
+      var nexpr = sig[1][i]
+      case nexpr.kind:
+      of nnkExprColonExpr:
+        result.args.add(SignalArgDecl(name: nexpr[0].repr, typ: nexpr[1]))
+      else:
+        parseError(sig, errorMsg)
+
+proc parseOnSignalCall(onSignalId:NimNode, onSignalPostfix:string, onSigStmt:NimNode): (VarDecl, MethodDecl, MethodDecl) =
+  # future
+  let futureId = ident("f" & onSignalPostfix)
+  var futureType = newNimNode(nnkBracketExpr)
+  futureType.add ident("Future")
+  var futureDef:NimNode
+
+  let callbackId = ident("cb" & onSignalPostfix)
+  var callbackDef = quote do:
+      proc `callbackId`() {.gdExport.} =
+        self.`futureId`.complete()
+
+  let formatErrorMsg = "on_signal must have this format: on_signal(target:Object, signalName:string, [void|T])"
+  if onSigStmt.len == 3:
+    futureType.add ident("void")
+    futureDef = quote do:
+      var `futureId`:`futureType`
+  elif onSigStmt.len == 4:
+    case onSigStmt[3].kind:
+      of nnkTupleTy:
+        futureType.add newNimNode(nnkTupleTy) #Future[tuple[arg1:type1, arg2:type2]]
+
+        callbackDef[^1][0].add newNimNode(nnkPar) #self.f.complete(())
+        var fcompleteCallArgs = callbackDef[^1][0][^1]
+
+        for arg in onSigStmt[3]:
+          var identDefs = newIdentDefs(arg[0], arg[1])
+          futureType[1].add identDefs
+          callbackDef[3].add identDefs
+          fcompleteCallArgs.add arg[0]
+
+        futureDef = quote do:
+          var `futureId`:`futureType`
+      of nnkIdent:
+        var fT = onSigStmt[3]
+        futureType.add fT
+
+        var callbackArg = ident("arg")
+        callbackDef[3].add newIdentDefs(callbackArg, fT)
+        callbackDef[6][0].add callbackArg
+
+        echo callbackDef.repr()
+
+        futureDef = quote do:
+          var `futureId`:`futureType`
+      else:
+        parseError(onSigStmt, formatErrorMsg)
+  else:
+    parseError(onSigStmt, formatErrorMsg)
+
+  # connect
+  let callbackIdLit = callbackId.toStrLit()
+  var newFutureCall = newNimNode(nnkCall)
+  newFutureCall.add newNimNode(nnkBracketExpr)
+  newFutureCall.add onSignalId.toStrLit()
+  var newFutureType = newFutureCall[0]
+  newFutureType.add ident("newFuture")
+  newFutureType.add futureType[1..^1]
+
+  let onSignalDef = quote do:
+    proc `onSignalId`(target:Object, signalName:string):`futureType` =
+      self.`futureId` = `newFutureCall`
+      if not target.is_connected(signalName, self, `callbackIdLit`):
+        discard target.connect(signalName, self, `callbackIdLit`, flags = CONNECT_ONESHOT)
+      self.`futureId`
+
+  result = (parseVarSection(futureDef)[0], parseMethod(callbackDef), parseMethod(onSignalDef))
+
+# recurse through statement looking for onSignal
+# returns modified statement, futures, and callback / onSignal declarations
+proc recurseOnSignalCalls(methodName:string, signalCallIds:var HashSet[string], nnode:NimNode): (NimNode, seq[VarDecl], seq[MethodDecl]) =
+  var futureDecls:seq[VarDecl]
+  var methodDecls:seq[MethodDecl]
+  var newNNode:NimNode = nnode
+
+  case nnode.kind
+    of nnkCall:
+      if nnode[0] == ident("onSignal"):
+        #generate the future, callback and onSignal proc for the signal
+        var target = nnode[1]
+        var targetName = if target.kind != nnkIdent: genSym().toStrLit.strVal[1..^1] else: target.repr
+        targetName = targetName.toLower
+        var signalName = nnode[2].strVal.toLower
+        var onSignalPostfix = "_" & methodName & "_" & targetName & "_" & signalName
+        let onSignalId = ident("on_signal" & onSignalPostfix)
+        newNNode = (quote do:
+          self.`onSignalId`(`target`, `signalName`))
+
+        if not signalCallIds.containsOrIncl(onSignalPostfix):
+          let (fdecl, callbackDecl, onSignalDecl) = parseOnSignalCall(onSignalId, onSignalPostfix, nnode)
+          futureDecls.add fdecl
+          methodDecls.add @[callbackDecl, onSignalDecl]
+      else:
+        for i in 1..<nnode.len:
+          var (newArg, fdecls, mdecls) = recurseOnSignalCalls(methodName, signalCallIds, nnode[i])
+          newNNode[i] = newArg
+          futureDecls.add fdecls
+          methodDecls.add mdecls
+    else:
+      if nnode.len > 0:
+        newNNode = newNimNode(nnode.kind)
+        for child in nnode:
+          var (newStatement, fdecls, mdecls) = recurseOnSignalCalls(methodName, signalCallIds, child)
+          newNNode.add newStatement
+          futureDecls.add fdecls
+          methodDecls.add mdecls
+
+  result = (newNNode, futureDecls, methodDecls)
+
+proc parseAsyncMethod(meth:NimNode): (seq[VarDecl], seq[MethodDecl]) =
+  var signalCallIds:HashSet[string]
+  var (newNNode, futures, methods) = recurseOnSignalCalls($meth[0].basename.strVal.toLower, signalCallIds, meth[^1])
+
+  meth[^1] = newNNode
+  let isGdExport = removePragma(meth, "gdExport")
+  let isNoGodot = (meth.kind != nnkMethodDef and not isGdExport) or
+                  removePragma(meth, "noGdExport")
+  var md = MethodDecl(
+    name: $meth[0].basename,
+    args: newSeq[VarDecl](),
+    returnType: meth[3][0],
+    isVirtual: meth.kind == nnkMethodDef,
+    isNoGodot: isNoGodot,
+    nimNode: meth
+  )
+  for i in 1..<meth[3].len:
+    var identDefs = meth[3][i]
+    md.args.add(identDefsToVarDecls(identDefs))
+  methods.add md
+
+  result = (futures, methods)
+
 proc parseType(ast: NimNode): ObjectDecl =
   let definition = ast[0]
   let body = ast[^1]
   result = ObjectDecl(
     fields: newSeq[VarDecl](),
+    signals: newSeq[SignalDecl](),
     methods: newSeq[MethodDecl]()
   )
   (result.name, result.parentName) = extractNames(definition)
@@ -205,8 +381,17 @@ proc parseType(ast: NimNode): ObjectDecl =
         let varSection = parseVarSection(statement)
         result.fields.add(varSection)
       of nnkProcDef, nnkMethodDef:
-        let meth = parseMethod(statement)
-        result.methods.add(meth)
+        if hasPragma(statement, "async"):
+          let (futures, handlers) = parseAsyncMethod(statement)
+          result.fields.add(futures)
+          result.methods.add(handlers)
+        else:
+          let meth = parseMethod(statement)
+          result.methods.add(meth)
+      of nnkCommand:
+        if statement[0].strVal == "signal":
+            let sig = parseSignal(statement)
+            result.signals.add(sig)
       of nnkCommentStmt:
         discard
       else:
@@ -619,6 +804,60 @@ N_NOINLINE(void, setStackBottom)(void* thestackbottom);
                           argTypes, genSym(nskProc, "methFunc"),
                           hasReturnValue)))
 
+  template registerGodotSignalNoArgs(classNameLit, signalName) =
+    var godotSignal = GodotSignal(
+      name: signalName.toGodotString())
+    nativeScriptRegisterSignal(getNativeLibHandle(), classNameLit, godotSignal)
+
+  template initSignalArgumentParameters(argName, argTypeIdent, typeInfoIdent,
+                                        godotStringIdent, godotVariantIdent)=
+    var godotStringIdent = argName.toGodotString()
+    mixin godotTypeInfo
+    const typeInfoIdent = when compiles(godotTypeInfo(argTypeIdent)):
+                            godotTypeInfo(argTypeIdent)
+                          else: GodotTypeInfo()
+    var godotVariantIdent:GodotVariant
+    initGodotVariant(godotVariantIdent)
+
+  template deinitSignalArgumentParameters(godotStringIdent, godotVariantIdent)=
+    godotStringIdent.deinit()
+    godotVariantIdent.deinit()
+
+  template createSignalArgument(typeInfoIdent, godotStringIdent, godotVariantIdent) =
+    GodotSignalArgument(name: godotStringIdent,
+                        typ: ord(typeInfoIdent.variantType),
+                        defaultValue: godotVariantIdent)
+
+  template registerGodotSignal(classNameLit, signalName, argCount, sigArgs) =
+    var sigArgsArr = sigArgs
+    var godotSignal = GodotSignal(
+      name: signalName.toGodotString(),
+      numArgs: argCount,
+      args: addr(sigArgsArr[0]))
+    nativeScriptRegisterSignal(getNativeLibHandle(), classNameLit, godotSignal)
+
+  for sig in obj.signals:
+    if sig.args.len == 0:
+      result.add(getAst(
+        registerGodotSignalNoArgs(classNameLit, sig.name)))
+    else:
+      var sigArgsParams:seq[(NimNode, NimNode, NimNode)]
+      for arg in sig.args:
+        var p = (genSym(nskConst, "typeInfo"), genSym(nskVar, "godotString"), genSym(nskVar, "godotVariant"))
+        sigArgsParams.add p
+        result.add(getAst(
+          initSignalArgumentParameters(arg.name, arg.typ, p[0], p[1], p[2])))
+
+      var sigArgs = newNimNode(nnkBracket)
+      for p in sigArgsParams:
+        sigArgs.add(getAst(
+          createSignalArgument(p[0], p[1], p[2])))
+      result.add(getAst(
+        registerGodotSignal(classNameLit, sig.name, sig.args.len, sigArgs)))
+      for p in sigArgsParams:
+        result.add(getAst(
+          deinitSignalArgumentParameters(p[1], p[2])))
+
   if isRef:
     # add ref/unref for types inherited from Reference
     template registerRefIncDec(classNameLit) =
@@ -640,7 +879,10 @@ macro gdobj*(ast: varargs[untyped]): untyped =
   ## Generates Godot type. Self-documenting example:
   ##
   ## .. code-block:: nim
-  ##   import godot, node
+  ##   import godot,
+  ##   import godotapi / [node, scene_tree]
+  ##   import asyncdispatch
+  ##   ## For async, signal handling
   ##
   ##   gdobj MyObj of Node:
   ##     var myField: int
@@ -653,16 +895,56 @@ macro gdobj*(ast: varargs[untyped]): untyped =
   ##       ## ``hintStr`` depends on the value of ``hint``, its format is
   ##       ## described in ``GodotPropertyHint`` documentation.
   ##
+  ##     signal my_signal(amount:int, message:string)
+  ##       ## Defines a signal ``my_signal`` with parameters
+  ##
   ##     method ready*() =
   ##       ## Exported methods are exported to Godot by default,
   ##       ## and their Godot names are prefixed with ``_``
   ##       ## (in this case ``_ready``)
   ##       print("I am ready! myString is: " & self.myString)
   ##
+  ##       discard self.connect("my_signal", self, "on_my_signal")
+  ##       ## Connect to the my_signal and then emit it
+  ##       self.emit_signal("my_signal", 123.toVariant, "hello godot".toVariant)
+  ##
+  ##       ## Another way to handle signals is via async procs
+  ##       registerFrameCallback(
+  ##         proc() =
+  ##           if hasPendingOperations():
+  ##             poll(0)
+  ##         )
+  ##       )
+  ##       ## Setup Future polling for async procs
+  ##
+  ##       asyncCheck self.gameLogic()
+  ##       ## Start our async proc
+  ##       self.emit_signal("my_signal", 456.toVariant, "sending to async".toVariant)
+  ##
   ##     proc myProc*() {.gdExport.} =
   ##       ## Exported to Godot as ``my_proc``
   ##       print("myProc is called! Incrementing myField.")
   ##       inc self.myField
+  ##
+  ##     proc onMySignal(amount:int, message:string) {.gdExport.} =
+  ##       print("received my_signal " & amount & " " & message)
+  ##
+  ##     proc gameLogic() {.async.} =
+  ##       ## Processing is done on an {.async.} pragma proc
+  ##       ## to handle any "on_signal" calls.
+  ##       ## "on_signal" returns a Future[T]
+  ##       ## where T is the type passed in as the third argument
+  ##
+  ##       print "wait 1 second"
+  ##       await on_signal(self.get_tree().createTimer(1), "timeout")
+  ##       ## Basic signal handling with no arguments: Future[void]
+  ##       print "timeout sceneTree"
+  ##
+  ##       var vals = await on_signal(self, "my_signal",
+  ##                                    tuple[amount:int, message:string])
+  ##       ## To handle signals with arguments pass in a tuple type
+  ##       print("got amount:" & vals.amount & " message:" & vals.message)
+  ##       ## Here we read the values from the Future[tuple[amount:int, message:string]]
   ##
   ## If parent type is omitted, the type is inherited from ``Object``.
   ##
