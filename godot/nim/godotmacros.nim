@@ -214,7 +214,7 @@ proc parseType(ast: NimNode): ObjectDecl =
         error("Template definitions are not allowed inside of a 'gdObj'.", statement)
       else:
         # Generic fall through for remainder
-        error("Invalid statement or expression", statement)
+        error("Field or method declaration expected.", statement)
 
 macro invokeVarArgs(procIdent, objIdent;
                     minArgs, maxArgs: static[int], numArgsIdent,
