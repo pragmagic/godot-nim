@@ -30,8 +30,6 @@ type
     methods: seq[MethodDecl]
     isTool: bool
 
-  ParseError = object of Exception
-
 include "internal/backwardcompat.inc.nim"
 
 proc godotToNim[T](val: Variant): (T, ConversionResult) =
@@ -47,9 +45,6 @@ proc nimToGodot[T](val: T): Variant =
                 " into Variant"
     {.error: err.}
 
-template parseError(node: NimNode, msg: string) =
-  raise newException(ParseError, lineinfo(node) & ": " & msg)
-
 proc extractNames(definition: NimNode):
     tuple[name, parentName: string] =
   if definition.kind == nnkIdent:
@@ -57,13 +52,13 @@ proc extractNames(definition: NimNode):
   else:
     if not (definition.kind == nnkInfix and
             definition[0].strVal == "of"):
-      parseError(definition, "invalid type definition")
+      error("invalid type definition", definition)
     result.name = definition[1].strVal
     case definition[2].kind:
       of nnkIdent:
         result.parentName = definition[2].strVal
       else:
-        parseError(definition[2], "parent type expected")
+        error("parent type expected", definition[2])
 
 when not declared(newRStrLit):
   proc newRStrLit(s: string): NimNode {.compileTime.} =
@@ -191,11 +186,11 @@ proc parseType(ast: NimNode): ObjectDecl =
   for i in 1..(ast.len - 2):
     let option = ast[i]
     if option.kind != nnkIdent:
-      parseError(option, "type specifier expected")
+      error("type specifier expected", option)
     if option.strVal == "tool":
       isTool = true
     else:
-      parseError(option, "valid type specifier expected")
+      error("valid type specifier expected", option)
   result.isTool = isTool
 
   if result.parentName.len == 0: result.parentName = "Object"
@@ -209,8 +204,17 @@ proc parseType(ast: NimNode): ObjectDecl =
         result.methods.add(meth)
       of nnkCommentStmt:
         discard
+      of nnkLetSection, nnkConstSection:
+        error("Only 'var' sections are allowed inside of a 'gdObj'.", statement)
+      of nnkIteratorDef:
+        error("Iterator definitions are not allowed inside of a 'gdObj'.", statement)
+      of nnkMacroDef:
+        error("Macro definitions are not allowed inside of a 'gdObj'.", statement)
+      of nnkTemplateDef:
+        error("Template definitions are not allowed inside of a 'gdObj'.", statement)
       else:
-        parseError(statement, "field or method declaration expected")
+        # Generic fall through for remainder
+        error("Field or method declaration expected.", statement)
 
 macro invokeVarArgs(procIdent, objIdent;
                     minArgs, maxArgs: static[int], numArgsIdent,
