@@ -495,6 +495,12 @@ proc genType(obj: ObjectDecl): NimNode {.compileTime.} =
       ident("this"), ident("self")
     )))
 
+  when defined(godotSelflessFields): # User controllable
+    for field in obj.fields: # adds templates for fields so we dont need silly self.
+      let name = field.name
+      result.add quote do:
+        template `name`() : untyped = self.`name`
+
   # Nim proc defintions
   var decls = newSeqOfCap[NimNode](obj.methods.len)
   for meth in obj.methods:
