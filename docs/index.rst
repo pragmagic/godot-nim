@@ -24,7 +24,7 @@ If you are not familiar with Nim yet, it is recommended to go through the
 
 `VSCode <https://code.visualstudio.com/>`_ is the recommended editor for
 working with Nim code. It is cross-platform and has the excellent
-`nim plugin <https://marketplace.visualstudio.com/items?itemName=kosz78.nim>`_
+`nim plugin <https://github.com/saem/vscode-nim>`_
 that supports most of the features you would expect from an IDE.
 It also has `godot-tools plugin <https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools>`_
 which adds features for editing GDScript and Godot resource files.
