@@ -10,6 +10,7 @@ The library is production-ready and has been used to create these games:
 
 - [Frayhem](https://frayhem.com/) - mobile online 3v3 brawler
 - [Summon Age](https://summonage.com/) - mobile hero collection RPG
+- [Turing Complete](https://turingcomplete.game/) - computer science game
 
 ## Links
 
