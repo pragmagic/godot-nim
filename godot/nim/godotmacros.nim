@@ -22,6 +22,7 @@ type
     returnType: NimNode
     nimNode: NimNode
     isNoGodot: bool
+    isGdExport:bool
 
   ObjectDecl = ref object
     name: string
@@ -159,6 +160,7 @@ proc parseMethod(meth: NimNode): MethodDecl =
     returnType: meth[3][0],
     isVirtual: meth.kind == nnkMethodDef,
     isNoGodot: isNoGodot,
+    isGdExport: isGdExport,
     nimNode: meth
   )
   for i in 1..<meth[3].len:
@@ -609,7 +611,7 @@ N_NOINLINE(void, setStackBottom)(void* thestackbottom);
         minArgs = idx
       argTypes.add(arg.typ)
 
-    let godotMethodName = if meth.isVirtual: "_" & toGodotStyle(meth.name)
+    let godotMethodName = if meth.isVirtual and not meth.isGdExport: "_" & toGodotStyle(meth.name)
                           else: toGodotStyle(meth.name)
     let hasReturnValueBool = not (meth.returnType.isNil or
                          meth.returnType.kind == nnkEmpty or
